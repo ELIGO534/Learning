@@ -1,0 +1,1 @@
+web: gunicorn <adani>.wsgi

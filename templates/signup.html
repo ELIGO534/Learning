@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        /* Add your existing styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #001f3d, #2a3a6d);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            opacity: 0.95;
+        }
+
+        .signup-container {
+            background-color: #d4af37;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            color: #000;
+        }
+
+        .signup-container h1 {
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            color: white;
+            background-color: #4CAF50;
+            cursor: pointer;
+        }
+
+        .payment-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .payment-link button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .payment-link button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h1>Sign Up</h1>
+        <!-- Step 1: Fill Form -->
+        <div id="signup-form">
+            <form id="signup-form" action="#" method="POST" onsubmit="return proceedToPayment(event)">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Next</button>
+                </div>
+                <div id="error-message" class="error-message"></div>
+            </form>
+        </div>
+
+        <!-- Step 2: Payment Section -->
+        <div id="payment-section" style="display: none;">
+            <h2>Complete Payment</h2>
+            <p>To complete the signup process, please make a payment.</p>
+            <div class="payment-link">
+                <button onclick="handlePayment()">Pay Now</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function proceedToPayment(event) {
+            event.preventDefault();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const errorMessage = document.getElementById('error-message');
+
+            errorMessage.textContent = ''; // Clear error message
+
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                errorMessage.textContent = 'Passwords do not match!';
+                return false;
+            }
+
+            // Hide signup form and show payment section
+            document.getElementById('signup-form').style.display = 'none';
+            document.getElementById('payment-section').style.display = 'block'; // Show payment section
+            return false;
+        }
+
+        function handlePayment() {
+            const paymentUrl = "https://rzp.io/rzp/xMQlpiiT"; // Replace with your actual payment link
+            window.open(paymentUrl, "_blank"); // Open the payment link in a new tab
+
+            // Simulate payment verification
+            setTimeout(() => {
+                const paymentSuccessful = confirm("Did you complete the payment? Click OK for Yes or Cancel for No.");
+                if (paymentSuccessful) {
+                    alert("Payment successful! You can now log in.");
+                    window.location.href = "/login/";
+                } else {
+                    alert("Your payment was not successful. Redirecting to login.");
+                    window.location.href = "/login/";
+                }
+            }, 1000); // Simulate user return from payment
+        }
+    </script>
+</body>
+</html>

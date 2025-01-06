@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        /* General styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f4f4f9;
+            color: #000;
+        }
+
+        /* Loading animation styles */
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .loader {
+            border: 10px solid #f3f3f3;
+            border-top: 10px solid black;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Server error message styles */
+        .error-message {
+            display: none;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .error-message h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .error-message p {
+            font-size: 18px;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        .error-message img {
+            width: 100px;
+            height: auto;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading animation container -->
+    <div class="loading-container">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Server error message -->
+    <div id="error-message" class="error-message">
+        <h1>500 Internal Server Issue</h1>
+        <p>Oops! Something went wrong.</p>
+        <img src="https://via.placeholder.com/100?text=ERROR" alt="Error Icon">
+        <p>Please try again later or contact support.</p>
+    </div>
+
+    <script>
+        // Wait for 1 minute (60000 milliseconds) and then show the error message
+        setTimeout(function() {
+            // Hide the loading animation
+            document.querySelector('.loading-container').style.display = 'none';
+            // Show the server error message
+            document.getElementById('error-message').style.display = 'block';
+        }, 60000);  // 1 minute delay
+    </script>
+</body>
+</html>
