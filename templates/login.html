@@ -173,6 +173,13 @@
                     {% endfor %}
                 {% endif %}
             </div>
+            <div id="error-message" class="error-message">
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+</div>
         </form>
     </div>
 
