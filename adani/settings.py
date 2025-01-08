@@ -78,15 +78,16 @@ WSGI_APPLICATION = 'adani.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 import dj_database_url
 
+import environ
+
+# Initialize environment variables
+env = environ.Env()
+environ.Env.read_env()  # Reads the .env file
+
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://localhost')
+    'default': env.db(),  # This loads the DATABASE_URL from the .env file
 }
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+
 
 
 # Password validation
