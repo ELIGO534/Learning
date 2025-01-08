@@ -14,17 +14,16 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to right, #001f3d, #2a3a6d); /* Professional blue gradient */
+            background: linear-gradient(to right, #001f3d, #2a3a6d);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            opacity: 0.95; /* Slight opacity for a smooth look */
+            opacity: 0.95;
             overflow: hidden;
             position: relative;
         }
 
-        /* Video styling */
         #welcome-video {
             position: absolute;
             top: 0;
@@ -37,9 +36,8 @@
             transition: opacity 2s ease-in-out;
         }
 
-        /* Login container styling */
         .login-container {
-            background-color: #d4af37; /* Goldish color for the form background */
+            background-color: #d4af37;
             padding: 30px 40px;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -59,8 +57,8 @@
             font-size: 28px;
             margin-bottom: 20px;
             text-align: center;
-            color: #333; /* Dark black for the title */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* 3D shadow effect on header */
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .form-group {
@@ -71,7 +69,7 @@
             font-weight: 600;
             margin-bottom: 8px;
             display: block;
-            color: #000; /* Black text for the labels */
+            color: #000;
         }
 
         .form-group input {
@@ -83,56 +81,70 @@
             background-color: #f4f4f4;
             color: #333;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Input shadow for a 3D effect */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .form-group input:hover {
-            background-color: #e6e6e6; /* Light gray on hover */
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Deeper shadow on hover */
+            background-color: #e6e6e6;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
         }
 
         .form-group input:focus {
-            border-color: #4CAF50; /* Green border when focused */
+            border-color: #4CAF50;
             outline: none;
-            box-shadow: 0 0 8px rgba(76, 175, 80, 0.6); /* Green glow effect */
+            box-shadow: 0 0 8px rgba(76, 175, 80, 0.6);
         }
 
         .form-group button {
             width: 100%;
             padding: 15px;
-            background-color: #4CAF50; /* Fresh green color for the button */
+            background-color: #4CAF50;
             border: none;
-            color: #fff; /* White text on button */
+            color: #fff;
             font-size: 18px;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Button shadow for 3D effect */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
         .form-group button:hover {
-            background-color: #45a049; /* Slightly darker green on hover */
-            transform: translateY(-4px); /* Button raises on hover (3D effect) */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); /* Deeper shadow for the raised effect */
+            background-color: #45a049;
+            transform: translateY(-4px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
         }
 
         .form-group a {
             display: block;
             text-align: center;
             margin-top: 15px;
-            color: #333; /* Dark black color for links */
+            color: #333;
             font-size: 14px;
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         .form-group a:hover {
-            color: #444; /* Slightly darker black on hover for links */
-            text-decoration: underline; /* Underline on hover */
+            color: #444;
+            text-decoration: underline;
         }
 
         .error-message {
-            color: #ff4081; /* Error messages in pink */
+            color: #ff4081;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .success {
+            color: #4CAF50;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .error {
+            color: #ff4081;
             font-size: 14px;
             text-align: center;
             margin-top: 10px;
@@ -149,7 +161,7 @@
 
     <!-- Login Form -->
     <div class="login-container" id="login-form-container">
-        <h1>Login/Signin</h1> <!-- Updated to Login/Signin -->
+        <h1>Login/Signin</h1>
         <form id="login-form" action="{% url 'login' %}" method="POST">
             {% csrf_token %}
             <div class="form-group">
@@ -166,40 +178,30 @@
             <div class="form-group">
                 <a href="/signup/">Don't have an account? Sign Up</a>
             </div>
-            <div id="error-message" class="error-message">
+            <!-- Display messages -->
+            <div id="messages">
                 {% if messages %}
                     {% for message in messages %}
-                        <p>{{ message }}</p>
+                        <p class="{{ message.tags }}">{{ message }}</p>
                     {% endfor %}
                 {% endif %}
             </div>
-            <div id="error-message" class="error-message">
-    {% if messages %}
-        {% for message in messages %}
-            <p>{{ message }}</p>
-        {% endfor %}
-    {% endif %}
-</div>
         </form>
     </div>
 
     <script>
-        // Wait for 2 seconds after the video starts and then fade in the login form
         window.onload = function() {
             const video = document.getElementById('welcome-video');
             const loginFormContainer = document.getElementById('login-form-container');
 
-            // Listen for the end of the video
             video.onended = function() {
                 loginFormContainer.classList.add('fade-in');
             };
 
-            // Start fading in the login form after the video starts (delay of 2 seconds)
             setTimeout(function() {
                 loginFormContainer.classList.add('fade-in');
-            }, 2000); // 2 seconds delay
+            }, 2000);
         };
     </script>
-
 </body>
 </html>
