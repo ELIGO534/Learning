@@ -48,5 +48,10 @@ def signup(request):
 
     return render(request, "signup.html")
 
+from django.shortcuts import render
+
 def home(request):
-    return render(request,'home.html')
+    context = {
+        'welcome_text': 'Hi, Learner! Welcome to Eligo. Enroute to your future paths through Eligo. Start right now for the introduction video!',
+    }
+    return render(request, 'home.html', context)

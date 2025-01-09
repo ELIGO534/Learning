@@ -1,97 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Eligo EdTech - Week 1: Introduction</title>
+
+    <!-- Include Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
     <style>
-        /* General styles */
-        * {
+        body {
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #fff;
+            overflow-x: hidden;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: #f4f4f9;
-            color: #000;
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: flyIn 1.5s ease-in-out;
         }
 
-        /* Loading animation styles */
-        .loading-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        /* Fly-in animation for the container */
+        @keyframes flyIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-200px) scale(0.8);
+            }
+            50% {
+                opacity: 0.7;
+                transform: translateY(50px) scale(1.05);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
-        .loader {
-            border: 10px solid #f3f3f3;
-            border-top: 10px solid black;
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Server error message styles */
-        .error-message {
-            display: none;
+        h1 {
             text-align: center;
-            margin-top: 50px;
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #333;
+            text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .error-message h1 {
-            font-size: 32px;
+        p {
+            text-align: center;
+            font-size: 1.3em;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .branding {
+            text-align: center;
+            font-size: 1.1em;
             font-weight: bold;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        .video-container {
+            width: 100%;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease;
+        }
+
+        .video-container video:hover {
+            transform: scale(1.05);
+        }
+
+        .outline {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f7f2;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            height: auto;
+            overflow-y: auto;
+        }
+
+        .outline h2 {
+            color: #444;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .outline ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .outline li {
+            background: linear-gradient(145deg, #fff, #f0f0f0);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .outline li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .outline li span {
+            font-size: 1.1em;
             color: #333;
         }
 
-        .error-message p {
-            font-size: 18px;
-            color: #555;
-            margin-top: 10px;
+        .outline li:hover span {
+            color: #007bff;
         }
 
-        .error-message img {
-            width: 100px;
-            height: auto;
-            margin-top: 30px;
+        .outline li:active {
+            transform: translateY(2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        footer p {
+            font-size: 1.1em;
+        }
+
+        footer p i {
+            margin-right: 5px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Loading animation container -->
-    <div class="loading-container">
-        <div class="loader"></div>
+    <div class="container">
+        <h1>Welcome to Week 1 of our Java Bootcamp!</h1>
+        <p>At <span class="branding">Eligo EdTech</span>, we aim to empower learners with hands-on programming skills to build their future.</p>
+
+        <div class="video-container">
+            <video id="introVideo" controls>
+                <source src="{% static 'assets/videos/javavideo.mp4' %}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="outline">
+            <h2>Outline</h2>
+            <ul>
+                <li onclick="playSegment(0, 34)"><span>00:00:00 - Introduction to Java</span></li>
+                <li onclick="playSegment(34, 69)"><span>00:00:34 - Setting Up Your Java Workshop</span></li>
+                <li onclick="playSegment(69, 112)"><span>00:01:09 - Hello World!</span></li>
+                <li onclick="playSegment(112, 164)"><span>00:01:52 - The Building Blocks</span></li>
+                <li onclick="playSegment(164, 213)"><span>00:02:44 - Java Control Statements</span></li>
+                <li onclick="playSegment(213, 259)"><span>00:03:33 - Arrays in Java</span></li>
+                <li onclick="playSegment(259, 304)"><span>00:04:19 - Reusable Blocks of Code</span></li>
+                <li onclick="playSegment(304, 350)"><span>00:05:04 - Object-Oriented Programming in Java</span></li>
+                <li onclick="playSegment(350, 390)"><span>00:05:50 - Putting It All Together</span></li>
+            </ul>
+        </div>
     </div>
 
-    <!-- Server error message -->
-    <div id="error-message" class="error-message">
-        <h1>500 Internal Server Issue</h1>
-        <p>Oops! Something went wrong.</p>
-        <img src="https://via.placeholder.com/100?text=ERROR" alt="Error Icon">
-        <p>Please try again later or contact support.</p>
-    </div>
+    <footer>
+        <p>&copy; 2025 Eligo EdTech. All rights reserved.</p>
+    </footer>
 
     <script>
-        // Wait for 1 minute (60000 milliseconds) and then show the error message
-        setTimeout(function() {
-            // Hide the loading animation
-            document.querySelector('.loading-container').style.display = 'none';
-            // Show the server error message
-            document.getElementById('error-message').style.display = 'block';
-        }, 60000);  // 1 minute delay
+        const video = document.getElementById('introVideo');
+
+        // Function to play specific segments from the outline
+        function playSegment(start, end) {
+            video.currentTime = start;
+            video.play();
+
+            const onTimeUpdate = () => {
+                if (video.currentTime >= end) {
+                    video.pause();
+                    video.removeEventListener('timeupdate', onTimeUpdate);
+                }
+            };
+
+            video.addEventListener('timeupdate', onTimeUpdate);
+        }
     </script>
 </body>
 </html>
