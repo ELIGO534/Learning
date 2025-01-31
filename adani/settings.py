@@ -78,8 +78,8 @@ WSGI_APPLICATION = 'adani.wsgi.application'
 
 
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+import os
 import dj_database_url
-
 import environ
 
 # Initialize environment variables
@@ -87,8 +87,12 @@ env = environ.Env()
 environ.Env.read_env()  # Reads the .env file
 
 DATABASES = {
-    'default': env.db(),  # This loads the DATABASE_URL from the .env file
+    'default': env.db(),  # Automatically loads DATABASE_URL from .env
 }
+
+# Ensure PostgreSQL database settings
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
 
 
 
