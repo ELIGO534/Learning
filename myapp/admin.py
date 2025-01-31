@@ -1,11 +1,47 @@
-
-
-# Register your models here.
 from django.contrib import admin
-from .models import User
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth import get_user_model
+from .models import CustomUser, Member, Profile
 
+# Get the custom user model
+User = get_user_model()
+
+# Unregister if already registered
+if admin.site.is_registered(User):
+    admin.site.unregister(User)
+
+# Custom User Admin
 @admin.register(User)
-class UserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'phone', 'password')  # Display name in admin list view
-    search_fields = ('name', 'phone')  # Allow searching by name and phone
+class UserAdmin(BaseUserAdmin):
+    list_display = ('id', 'name', 'phone', 'is_staff', 'is_active')
+    search_fields = ('name', 'phone')
     ordering = ('id',)
+
+    fieldsets = (
+        (None, {'fields': ('phone', 'password')}),
+        ('Personal Info', {'fields': ('name',)}),
+        ('Permissions', {'fields': ('is_staff', 'is_active', 'is_superuser', 'groups', 'user_permissions')}),
+    )
+
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('phone', 'name', 'password1', 'password2', 'is_staff', 'is_active'),
+        }),
+    )
+
+# Member Admin
+@admin.register(Member)
+class MemberAdmin(admin.ModelAdmin):
+    list_display = ('user', 'referral', 'domain', 'payment_id', 'payment_status')
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "user":
+            kwargs["queryset"] = User.objects.exclude(is_staff=True)  # Exclude admin users
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
+# Profile Admin
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ['user', 'balance', 'withdrawal_amount', 'phone_number']
+    list_editable = ['balance', 'withdrawal_amount', 'phone_number']

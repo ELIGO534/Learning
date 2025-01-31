@@ -1,45 +1,69 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.conf import settings
 
+# Custom Manager for User model
 class UserManager(BaseUserManager):
     def create_user(self, phone, password=None, **extra_fields):
-        """
-        Creates and returns a regular user with phone and password.
-        """
         if not phone:
-            raise ValueError('The Phone Number must be set')
+            raise ValueError("The Phone number must be set")
         user = self.model(phone=phone, **extra_fields)
-        user.set_password(password)  # Automatically hashes the password
+        user.set_password(password)  # Hash the password
         user.save(using=self._db)
         return user
 
     def create_superuser(self, phone, password=None, **extra_fields):
-        """
-        Creates and returns a superuser with phone and password.
-        """
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
 
+        if not extra_fields.get('is_staff'):
+            raise ValueError("Superuser must have is_staff=True.")
+        if not extra_fields.get('is_superuser'):
+            raise ValueError("Superuser must have is_superuser=True.")
+
         return self.create_user(phone, password, **extra_fields)
 
-class User(AbstractBaseUser):
-    name = models.CharField(max_length=100)  # New field for name
+# Custom User model
+class CustomUser(AbstractBaseUser, PermissionsMixin):
+    name = models.CharField(max_length=100)
     phone = models.CharField(max_length=15, unique=True)
-    password = models.CharField(max_length=255)  # Store hashed password
-    is_staff = models.BooleanField(default=False)  # To give access to admin
-    is_active = models.BooleanField(default=True)  # To check if the user is active
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    is_superuser = models.BooleanField(default=False)
 
-    # This is how Django knows what field to use for authentication
     USERNAME_FIELD = 'phone'
-    REQUIRED_FIELDS = ['name']  # Fields that are required when creating a user via the admin panel
+    REQUIRED_FIELDS = ['name']
 
-    objects = UserManager()  # Attach the custom manager
+    objects = UserManager()
 
     def __str__(self):
         return self.phone
 
-    def save(self, *args, **kwargs):
-        if self.password and not self.password.startswith(('pbkdf2_sha256$', 'bcrypt')):
-            self.password = make_password(self.password)  # Hash password before saving
-        super(User, self).save(*args, **kwargs)
+    def has_perm(self, perm, obj=None):
+        return True
+
+    def has_module_perms(self, app_label):
+        return True
+
+# Member model related to the User model
+class Member(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="members")
+    referral = models.CharField(max_length=100)
+    domain = models.CharField(max_length=100)
+    payment_id = models.CharField(max_length=100)
+    payment_status = models.CharField(max_length=20, choices=[('Paid', 'Paid'), ('Pending', 'Pending')])
+    temp_field = models.CharField(max_length=100, default="test") 
+
+    def __str__(self):
+        return self.referral
+
+# Profile model related to the User model
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
+    balance = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    withdrawal_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    phone_number = models.CharField(max_length=15, null=True, blank=True)
+
+    def __str__(self):
+        return self.user.phone

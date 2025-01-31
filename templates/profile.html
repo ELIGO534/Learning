@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    
+    <!-- Profile Section -->
+    <div class="bg-green-500 text-white p-6 rounded-b-3xl shadow-md">
+        <div class="flex items-center gap-4">
+            <!-- Profile Picture with fallback -->
+            {% if profile.profile_picture %}
+                <img src="{{ profile.profile_picture.url }}" alt="Profile" class="w-16 h-16 rounded-full border-2 border-white">
+            {% else %}
+                <img src="https://via.placeholder.com/150" alt="No Profile Picture" class="w-16 h-16 rounded-full border-2 border-white">
+            {% endif %}
+            <div>
+                <h2 class="text-xl font-semibold">{{ profile.phone_number }}</h2>
+                <span class="bg-yellow-400 text-black px-2 py-1 text-xs rounded">VIP0</span>
+            </div>
+        </div>
+        <!-- Balance Container -->
+        <div class="mt-4 bg-white text-green-600 p-4 rounded-lg flex justify-between items-center shadow">
+            <span class="text-lg">Balance</span>
+            <span class="text-xl font-semibold">₹{{ profile.balance }}</span>
+        </div>
+        <!-- Withdrawal Amount Container -->
+        <div class="mt-4 bg-white text-red-600 p-4 rounded-lg flex justify-between items-center shadow">
+            <span class="text-lg">Withdrawal Amount</span>
+            <span class="text-xl font-semibold">₹{{ profile.withdrawal_amount }}</span>
+        </div>
+    </div>
+
+    <!-- Quick Actions Grid -->
+    <div class="p-4">
+        <h3 class="text-lg font-semibold mb-4">My Related</h3>
+        <div class="grid grid-cols-2 gap-4 text-center text-gray-700">
+            <!-- Income Details -->
+            <a href="/income/" class="p-3 bg-white rounded-lg shadow hover:bg-gray-100 transition flex flex-col items-center">
+                <span class="text-4xl">✉</span>
+                <p class="mt-2">Income Details</p>
+            </a>
+            <!-- Withdrawal -->
+            <a href="/withdrawl/" class="p-3 bg-white rounded-lg shadow hover:bg-gray-100 transition flex flex-col items-center">
+                <span class="text-4xl">⤴</span>
+                <p class="mt-2">Withdrawal</p>
+            </a>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/917842439551" target="_blank" class="fixed bottom-20 right-6 bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-600 transition">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Chat" class="w-8 h-8">
+    </a>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-300 shadow-lg py-2">
+        <div class="flex justify-around">
+            <a href="/home/" class="flex flex-col items-center text-gray-700 hover:text-blue-500">
+                ⌂ <span class="text-sm">Home</span>
+            </a>
+            <a href="/levels/" class="flex flex-col items-center text-gray-700 hover:text-blue-500">
+                ➕ <span class="text-sm">Levels</span>
+            </a>
+            <a href="/withdrawl/" class="flex flex-col items-center text-gray-700 hover:text-blue-500">
+                ⤴ <span class="text-sm">Withdrawl</span>
+            </a>
+            <a href="/members/" class="flex flex-col items-center text-gray-700 hover:text-blue-500">
+                👤 <span class="text-sm">Members</span>
+            </a>
+            <a href="/chat" class="flex flex-col items-center text-gray-700 hover:text-blue-500">
+                💬 <span class="text-sm">Chat</span>
+            </a>
+        </div>
+    </nav>
+</body>
+</html>

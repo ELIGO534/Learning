@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership Stages</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-green-500 text-white p-4 text-center">
+        <h1 class="text-xl font-bold">Membership Stages</h1>
+    </header>
+
+    <!-- Member Info Section -->
+    <section class="bg-green-500 text-white text-center py-6">
+        <h2 class="text-lg">Hi, {{ user_name }}</h2>
+        <div class="mt-4 bg-white rounded-lg mx-4 p-4 shadow-lg">
+            <div class="flex items-center justify-center">
+                <div class="w-16 h-16 flex items-center justify-center">
+                    <img src="https://tse4.mm.bing.net/th?id=OIP.C2WIhd9Io2SdKXqjy5twHAHaHa&pid=Api&P=0&h=180" alt="Lock Icon" class="w-10 h-10 rounded-full">
+                </div>
+            </div>
+            <p class="mt-2 text-sm font-semibold text-red-500">You are not yet granted access to any level.</p>
+        </div>
+    </section>
+
+    <!-- Levels Section -->
+    <main class="mt-4 px-4">
+        <div class="bg-gray-200 text-center py-2 font-semibold text-gray-700">
+            Level Reference
+        </div>
+        <div class="mt-2">
+            <!-- Stage 1 -->
+            <div class="bg-white rounded-lg shadow-lg p-4 mb-4 flex items-center">
+                <div class="w-16 h-16 flex items-center justify-center mr-4">
+                    <img src="https://tse4.mm.bing.net/th?id=OIP.C2WIhd9Io2SdKXqjy5twHAHaHa&pid=Api&P=0&h=180" alt="Lock Icon" class="w-10 h-10 rounded-full">
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">Stage 1: Initiator</h3>
+                    <p class="text-sm text-gray-600">Refer 20 members to unlock this stage.</p>
+                </div>
+            </div>
+
+            <!-- Stage 2 -->
+            <div class="bg-white rounded-lg shadow-lg p-4 mb-4 flex items-center">
+                <div class="w-16 h-16 flex items-center justify-center mr-4">
+                    <img src="https://tse4.mm.bing.net/th?id=OIP.C2WIhd9Io2SdKXqjy5twHAHaHa&pid=Api&P=0&h=180" alt="Lock Icon" class="w-10 h-10 rounded-full">
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">Stage 2: Connector</h3>
+                    <p class="text-sm text-gray-600">Refer 30 members to unlock this stage.</p>
+                </div>
+            </div>
+
+            <!-- Stage 3 -->
+            <div class="bg-white rounded-lg shadow-lg p-4 mb-4 flex items-center">
+                <div class="w-16 h-16 flex items-center justify-center mr-4">
+                    <img src="https://tse4.mm.bing.net/th?id=OIP.C2WIhd9Io2SdKXqjy5twHAHaHa&pid=Api&P=0&h=180" alt="Lock Icon" class="w-10 h-10 rounded-full">
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">Stage 3: Influencer</h3>
+                    <p class="text-sm text-gray-600">Refer 35 members to unlock this stage.</p>
+                </div>
+            </div>
+
+            <!-- Stage 4 -->
+            <div class="bg-white rounded-lg shadow-lg p-4 mb-4 flex items-center">
+                <div class="w-16 h-16 flex items-center justify-center mr-4">
+                    <img src="https://tse4.mm.bing.net/th?id=OIP.C2WIhd9Io2SdKXqjy5twHAHaHa&pid=Api&P=0&h=180" alt="Lock Icon" class="w-10 h-10 rounded-full">
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">Stage 4: Mentor</h3>
+                    <p class="text-sm text-gray-600">Refer 40 members to unlock this stage.</p>
+                </div>
+            </div>
+
+            <!-- Stage 5 -->
+            <div class="bg-white rounded-lg shadow-lg p-4 mb-4 flex items-center">
+                <div class="w-16 h-16 flex items-center justify-center mr-4">
+                    <img src="https://tse4.mm.bing.net/th?id=OIP.C2WIhd9Io2SdKXqjy5twHAHaHa&pid=Api&P=0&h=180" alt="Lock Icon" class="w-10 h-10 rounded-full">
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">Stage 5: Trailblazer</h3>
+                    <p class="text-sm text-gray-600">Refer 45 members to unlock this stage.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-300 shadow-lg">
+        <div class="flex justify-around py-2 relative">
+            <!-- Home Tab -->
+            <a href="/home/" class="relative group flex flex-col items-center {% if request.path == '/home/' %}text-blue-500{% else %}text-gray-700{% endif %}">
+                <div class="absolute -top-5 bg-white rounded-full p-2 shadow-md">
+                    <svg class="w-6 h-6 {% if request.path == '/home/' %}text-blue-500{% else %}text-gray-700{% endif %}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7m-9 14V9m4 6l-2 2m0 0l-2-2m2 2V9" />
+                    </svg>
+                </div>
+                <span class="text-sm mt-8">Home</span>
+            </a>
+
+            <!-- Levels Tab (Highlight this on the levels page) -->
+            <a href="/levels/" class="relative group flex flex-col items-center {% if request.path == '/levels/' %}text-blue-500{% else %}text-gray-700{% endif %}">
+                <div class="absolute -top-5 bg-white rounded-full p-2 shadow-md">
+                    <svg class="w-6 h-6 {% if request.path == '/levels/' %}text-blue-500{% else %}text-gray-700{% endif %}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V8m-4 4h8M5 12V4h8v8z" />
+                    </svg>
+                </div>
+                <span class="text-sm mt-8">Levels</span>
+            </a>
+
+            <!-- Analytics Tab -->
+            <a href="/withdrawl" class="text-gray-700 hover:text-blue-500 flex flex-col items-center">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3h2v10h-2zm4 6h2v7h-2zm-8 4h2v3H7z" />
+                </svg>
+                <span class="text-sm">Withdrawl</span>
+            </a>
+
+            <!-- Members Tab -->
+            <a href="/members/" class="text-gray-700 hover:text-blue-500 flex flex-col items-center">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a5 5 0 00-5-5H6a5 5 0 00-5 5v2h5m14 0a3 3 0 01-3 3H6a3 3 0 01-3-3" />
+                </svg>
+                <span class="text-sm">Members</span>
+            </a>
+
+            <!-- Chat Tab -->
+            <a href="/chat" class="text-gray-700 hover:text-blue-500 flex flex-col items-center">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h8m-8 4h5m-5-8h.01M21 12.01A9 9 0 113 12a9 9 0 0118 0zM21 12h-3m0 0h3m0 0v3" />
+                </svg>
+                <span class="text-sm">Chat</span>
+            </a>
+        </div>
+    </nav>
+</body>
+</html>

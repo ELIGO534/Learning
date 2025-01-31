@@ -75,19 +75,14 @@ WSGI_APPLICATION = 'adani.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-import dj_database_url
-
-import environ
-
-# Initialize environment variables
-env = environ.Env()
-environ.Env.read_env()  # Reads the .env file
-
 DATABASES = {
-    'default': env.db(),  # This loads the DATABASE_URL from the .env file
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',  # Ensure the path is correct
+    }
 }
 
+# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 
 # Password validation
@@ -142,3 +137,5 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',  # Default backend
     'myapp.backends.PhoneBackend',  # Your custom backend
 ]
+
+AUTH_USER_MODEL = 'myapp.CustomUser'

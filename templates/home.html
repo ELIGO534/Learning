@@ -1,217 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eligo EdTech - Week 1: Introduction</title>
-
-    <!-- Include Font Awesome for icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to right, #6a11cb, #2575fc);
-            color: #fff;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-            position: relative;
-            animation: flyIn 1.5s ease-in-out;
-        }
-
-        /* Fly-in animation for the container */
-        @keyframes flyIn {
-            0% {
-                opacity: 0;
-                transform: translateY(-200px) scale(0.8);
-            }
-            50% {
-                opacity: 0.7;
-                transform: translateY(50px) scale(1.05);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        h1 {
-            text-align: center;
-            font-size: 3em;
-            margin-bottom: 20px;
-            color: #333;
-            text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        p {
-            text-align: center;
-            font-size: 1.3em;
-            color: #555;
-            margin-bottom: 30px;
-        }
-
-        .branding {
-            text-align: center;
-            font-size: 1.1em;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: #444;
-        }
-
-        .video-container {
-            width: 100%;
-            margin-bottom: 30px;
-            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .video-container video {
-            width: 100%;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.5s ease;
-        }
-
-        .video-container video:hover {
-            transform: scale(1.05);
-        }
-
-        .outline {
-            margin-top: 20px;
-            padding: 15px;
-            background: #f9f7f2;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            height: auto;
-            overflow-y: auto;
-        }
-
-        .outline h2 {
-            color: #444;
-            text-align: center;
-            font-size: 2em;
-        }
-
-        .outline ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .outline li {
-            background: linear-gradient(145deg, #fff, #f0f0f0);
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .outline li:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .outline li span {
-            font-size: 1.1em;
-            color: #333;
-        }
-
-        .outline li:hover span {
-            color: #007bff;
-        }
-
-        .outline li:active {
-            transform: translateY(2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 40px;
-        }
-
-        footer p {
-            font-size: 1.1em;
-        }
-
-        footer p i {
-            margin-right: 5px;
-        }
-
-        @media screen and (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-        }
-    </style>
+    <title>Home Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="container">
-        <h1>Welcome to Week 1 of our Java Bootcamp!</h1>
-        <p>At <span class="branding">Eligo EdTech</span>, we aim to empower learners with hands-on programming skills to build their future.</p>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-300 shadow-lg">
+        <div class="flex justify-around py-2 relative">
+            <!-- Home Tab -->
+            <a href="/home/" class="relative group flex flex-col items-center text-blue-500">
+                <div class="absolute -top-5 bg-white rounded-full p-2 shadow-md">
+                    <svg class="w-6 h-6 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7m-9 14V9m4 6l-2 2m0 0l-2-2m2 2V9" />
+                    </svg>
+                </div>
+                <span class="text-sm mt-8">Home</span>
+            </a>
 
-        <div class="video-container">
-            <video id="introVideo" controls>
-                <source src="{% static 'assets/videos/javavideo.mp4' %}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <!-- Levels Tab -->
+            <a href="/levels/" class="text-gray-700 hover:text-blue-500 flex flex-col items-center">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V8m-4 4h8M5 12V4h8v8z" />
+                </svg>
+                <span class="text-sm">Levels</span>
+            </a>
+
+            <!-- Analytics Tab -->
+            <a href="/withdrawl" class="text-gray-700 hover:text-blue-500 flex flex-col items-center">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3h2v10h-2zm4 6h2v7h-2zm-8 4h2v3H7z" />
+                </svg>
+                <span class="text-sm">Withdrawl</span>
+            </a>
+
+            <!-- Members Tab -->
+            <a href="/members/" class="text-gray-700 hover:text-blue-500 flex flex-col items-center">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a5 5 0 00-5-5H6a5 5 0 00-5 5v2h5m14 0a3 3 0 01-3 3H6a3 3 0 01-3-3" />
+                </svg>
+                <span class="text-sm">Members</span>
+            </a>
+
+            <!-- Chat Tab -->
+            <a href="/chat" class="text-gray-700 hover:text-blue-500 flex flex-col items-center">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h8m-8 4h5m-5-8h.01M21 12.01A9 9 0 113 12a9 9 0 0118 0zM21 12h-3m0 0h3m0 0v3" />
+                </svg>
+                <span class="text-sm">Chat</span>
+            </a>
         </div>
+    </nav>
 
-        <div class="outline">
-            <h2>Outline</h2>
-            <ul>
-                <li onclick="playSegment(0, 34)"><span>00:00:00 - Introduction to Java</span></li>
-                <li onclick="playSegment(34, 69)"><span>00:00:34 - Setting Up Your Java Workshop</span></li>
-                <li onclick="playSegment(69, 112)"><span>00:01:09 - Hello World!</span></li>
-                <li onclick="playSegment(112, 164)"><span>00:01:52 - The Building Blocks</span></li>
-                <li onclick="playSegment(164, 213)"><span>00:02:44 - Java Control Statements</span></li>
-                <li onclick="playSegment(213, 259)"><span>00:03:33 - Arrays in Java</span></li>
-                <li onclick="playSegment(259, 304)"><span>00:04:19 - Reusable Blocks of Code</span></li>
-                <li onclick="playSegment(304, 350)"><span>00:05:04 - Object-Oriented Programming in Java</span></li>
-                <li onclick="playSegment(350, 390)"><span>00:05:50 - Putting It All Together</span></li>
-            </ul>
+    <!-- Header -->
+    <header class="bg-white shadow p-4 flex justify-between items-center">
+        <h1 class="text-2xl font-semibold text-gray-700">Home Page</h1>
+        <div>
+            <!-- Profile button -->
+            <a href="/profile/" class="text-gray-600 focus:outline-none">
+                <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4a5 5 0 015 5v1m0 0a2.38 2.38 0 01-.41 1.17m-1.59 2.83l-.02.03c-.52.75-.8 1.69-.8 2.67v1a2.5 2.5 0 01-5 0v-1c0-.98-.28-1.92-.8-2.67l-.02-.03A2.38 2.38 0 019 10V9a5 5 0 015-5z" />
+                </svg>
+            </a>
         </div>
-    </div>
+    </header>
 
-    <footer>
-        <p>&copy; 2025 Eligo EdTech. All rights reserved.</p>
-    </footer>
-
-    <script>
-        const video = document.getElementById('introVideo');
-
-        // Function to play specific segments from the outline
-        function playSegment(start, end) {
-            video.currentTime = start;
-            video.play();
-
-            const onTimeUpdate = () => {
-                if (video.currentTime >= end) {
-                    video.pause();
-                    video.removeEventListener('timeupdate', onTimeUpdate);
-                }
-            };
-
-            video.addEventListener('timeupdate', onTimeUpdate);
-        }
-    </script>
+    <!-- Main Content -->
+    <main class="p-4">
+        <section id="home">
+            <h2 class="text-xl font-bold mb-4">Welcome to the Home Page!</h2>
+            <p class="text-gray-700">Here you can find information about our platform.</p>
+        </section>
+    </main>
 </body>
 </html>
