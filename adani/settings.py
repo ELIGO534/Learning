@@ -151,3 +151,11 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 AUTH_USER_MODEL = 'myapp.CustomUser'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://learning-1-a6c2.onrender.com',
+    # Add other trusted origins if needed
+]
+CSRF_COOKIE_SECURE = True  # Set to True for production with HTTPS
+CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SAMESITE = 'Lax'  # 'Strict' for more security
