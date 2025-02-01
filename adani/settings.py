@@ -74,11 +74,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'adani.wsgi.application'
 
-
 # Database
 
-
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 import os
 import dj_database_url
 import environ
@@ -87,12 +84,10 @@ import environ
 env = environ.Env()
 environ.Env.read_env()  # Reads the .env file
 
+# Use env.db() to load DATABASE_URL from .env automatically
 DATABASES = {
-    'default': env.db(),  # Automatically loads DATABASE_URL from .env
+    'default': env.db(),  # This line loads the DATABASE_URL from the .env file
 }
-
-# Ensure PostgreSQL database settings
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 
 
@@ -156,6 +151,6 @@ CSRF_TRUSTED_ORIGINS = [
     'https://learning-1-a6c2.onrender.com',
     # Add other trusted origins if needed
 ]
-CSRF_COOKIE_SECURE = True  # Set to True for production with HTTPS
-CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SAMESITE = 'Lax'  # 'Strict' for more security
+CSRF_COOKIE_SECURE = False  # Disable secure cookies for testing
+CSRF_COOKIE_HTTPONLY = False  # Disable HTTPOnly for testing
