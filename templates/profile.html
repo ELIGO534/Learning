@@ -11,12 +11,8 @@
     <!-- Profile Section -->
     <div class="bg-green-500 text-white p-6 rounded-b-3xl shadow-md">
         <div class="flex items-center gap-4">
-            <!-- Profile Picture with fallback -->
-            {% if profile.profile_picture %}
-                <img src="{{ profile.profile_picture.url }}" alt="Profile" class="w-16 h-16 rounded-full border-2 border-white">
-            {% else %}
-                <img src="https://via.placeholder.com/150" alt="No Profile Picture" class="w-16 h-16 rounded-full border-2 border-white">
-            {% endif %}
+            <!-- Fallback Icon -->
+            <img src="https://tse4.mm.bing.net/th?id=OIP.yOX1_KBsR6fClg3ek8G_ZwHaHx&pid=Api&P=0&h=180" alt="Profile" class="w-16 h-16 rounded-full border-2 border-white">
             <div>
                 <h2 class="text-xl font-semibold">{{ profile.phone_number }}</h2>
                 <span class="bg-yellow-400 text-black px-2 py-1 text-xs rounded">VIP0</span>
@@ -44,7 +40,7 @@
                 <p class="mt-2">Income Details</p>
             </a>
             <!-- Withdrawal -->
-            <a href="/withdrawl/" class="p-3 bg-white rounded-lg shadow hover:bg-gray-100 transition flex flex-col items-center">
+            <a href="/withdrawl_home/" class="p-3 bg-white rounded-lg shadow hover:bg-gray-100 transition flex flex-col items-center">
                 <span class="text-4xl">⤴</span>
                 <p class="mt-2">Withdrawal</p>
             </a>

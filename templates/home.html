@@ -3,76 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Eligo - Your EdTech Platform</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // JavaScript to toggle the sidebar visibility
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('hidden');
+        }
+    </script>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-50">
+
     <!-- Navbar -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-300 shadow-lg">
-        <div class="flex justify-around py-2 relative">
-            <!-- Home Tab -->
-            <a href="/home/" class="relative group flex flex-col items-center text-blue-500">
-                <div class="absolute -top-5 bg-white rounded-full p-2 shadow-md">
-                    <svg class="w-6 h-6 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7m-9 14V9m4 6l-2 2m0 0l-2-2m2 2V9" />
-                    </svg>
-                </div>
-                <span class="text-sm mt-8">Home</span>
-            </a>
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 py-5 flex justify-between items-center">
+            <div class="flex items-center">
+                <button class="text-2xl text-gray-700 md:hidden" onclick="toggleSidebar()">
+                    &#9776; <!-- Hamburger Icon -->
+                </button>
+                <img src="https://via.placeholder.com/100" alt="Eligo Logo" class="h-12 ml-3">
+                <span class="ml-3 text-2xl font-bold text-blue-600">Eligo</span>
+            </div>
 
-            <!-- Levels Tab -->
-            <a href="/levels/" class="text-gray-700 hover:text-blue-500 flex flex-col items-center">
-                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V8m-4 4h8M5 12V4h8v8z" />
-                </svg>
-                <span class="text-sm">Levels</span>
-            </a>
-
-            <!-- Analytics Tab -->
-            <a href="/withdrawl" class="text-gray-700 hover:text-blue-500 flex flex-col items-center">
-                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3h2v10h-2zm4 6h2v7h-2zm-8 4h2v3H7z" />
-                </svg>
-                <span class="text-sm">Withdrawl</span>
-            </a>
-
-            <!-- Members Tab -->
-            <a href="/members/" class="text-gray-700 hover:text-blue-500 flex flex-col items-center">
-                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a5 5 0 00-5-5H6a5 5 0 00-5 5v2h5m14 0a3 3 0 01-3 3H6a3 3 0 01-3-3" />
-                </svg>
-                <span class="text-sm">Members</span>
-            </a>
-
-            <!-- Chat Tab -->
-            <a href="/chat" class="text-gray-700 hover:text-blue-500 flex flex-col items-center">
-                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h8m-8 4h5m-5-8h.01M21 12.01A9 9 0 113 12a9 9 0 0118 0zM21 12h-3m0 0h3m0 0v3" />
-                </svg>
-                <span class="text-sm">Chat</span>
-            </a>
+            <!-- Profile Icon (visible on larger screens) -->
+            <div class="hidden md:block">
+                <a href="/profile/">
+                    <img src="https://tse4.mm.bing.net/th?id=OIP.Yw4exB-_crv1xcdLRQ6hngHaHx&pid=Api&P=0&h=180" alt="Profile" class="w-10 h-10 rounded-full border border-gray-300">
+                </a>
+            </div>
         </div>
     </nav>
 
-    <!-- Header -->
-    <header class="bg-white shadow p-4 flex justify-between items-center">
-        <h1 class="text-2xl font-semibold text-gray-700">Home Page</h1>
-        <div>
-            <!-- Profile button -->
-            <a href="/profile/" class="text-gray-600 focus:outline-none">
-                <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4a5 5 0 015 5v1m0 0a2.38 2.38 0 01-.41 1.17m-1.59 2.83l-.02.03c-.52.75-.8 1.69-.8 2.67v1a2.5 2.5 0 01-5 0v-1c0-.98-.28-1.92-.8-2.67l-.02-.03A2.38 2.38 0 019 10V9a5 5 0 015-5z" />
-                </svg>
-            </a>
-        </div>
-    </header>
+    <!-- Sidebar (hidden by default) -->
+    <div id="sidebar" class="hidden md:hidden fixed inset-0 bg-gray-800 bg-opacity-50 z-20">
+        <div class="bg-white w-64 h-full p-4 space-y-6">
+            <div class="flex justify-between items-center">
+                <button onclick="toggleSidebar()" class="text-gray-700 text-3xl">&times;</button>
+            </div>
 
-    <!-- Main Content -->
-    <main class="p-4">
-        <section id="home">
-            <h2 class="text-xl font-bold mb-4">Welcome to the Home Page!</h2>
-            <p class="text-gray-700">Here you can find information about our platform.</p>
-        </section>
-    </main>
+            <!-- Sidebar Menu -->
+            <ul class="space-y-4 mt-6">
+                <li><a href="/home" class="text-gray-700">Home</a></li>
+                <li><a href="/levels" class="text-gray-700">Levels</a></li>
+                <li><a href="/withdrawl" class="text-gray-700">Withdrawl</a></li>
+                <li><a href="/members" class="text-gray-700">Members</a></li>
+                <li><a href="/chat" class="text-gray-700">Chat</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <section class="relative bg-blue-600 text-white py-24">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-4xl font-extrabold leading-tight mb-4">Welcome to Eligo, Your EdTech Partner</h1>
+            <p class="text-xl mb-8">Transforming education through innovative learning solutions</p>
+            <a href="https://eligo2014.renderforestsites.com/" class="bg-yellow-500 text-white py-2 px-6 rounded-full text-lg hover:bg-yellow-600 transition">Get Started</a>
+        </div>
+        <div class="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-blue-600 via-transparent to-transparent"></div>
+    </section>
+
+    <!-- About Eligo Section -->
+    <section class="bg-white py-16">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-blue-600 mb-6">About Eligo</h2>
+            <p class="text-lg text-gray-600 mb-6">Eligo is an innovative edtech platform designed to bring modern learning experiences to students and educators. Our mission is to bridge the gap between traditional education and the digital world, offering personalized learning solutions and fostering growth at every stage of the educational journey.</p>
+            <img src="https://via.placeholder.com/800x400" alt="About Eligo" class="mx-auto rounded-lg shadow-xl">
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2025 Eligo. All Rights Reserved.</p>
+        </div>
+    </footer>
+
 </body>
 </html>

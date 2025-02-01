@@ -105,3 +105,9 @@ def withdrawl(request):
 
 def chat(request):
     return render(request, 'chat.html')
+
+def income(request):
+    return render(request, 'income.html')
+
+def transactions(request):
+    return render(request, 'transactions.html')
