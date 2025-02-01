@@ -66,4 +66,4 @@ class Profile(models.Model):
     phone_number = models.CharField(max_length=15, null=True, blank=True)
 
     def __str__(self):
-        return self.user.phone
+        return self.phone_number
