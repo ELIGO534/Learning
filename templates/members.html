@@ -15,28 +15,30 @@
     <!-- Members Table Section -->
     <section class="bg-white py-6">
         <div class="container mx-auto px-4">
-            <table class="min-w-full bg-white shadow-lg rounded-lg overflow-hidden">
-                <thead class="bg-green-500 text-white">
-                    <tr>
-                        <th class="py-2 px-4 text-left">S. No.</th>
-                        <th class="py-2 px-4 text-left">Referral</th>
-                        <th class="py-2 px-4 text-left">Domain</th>
-                        <th class="py-2 px-4 text-left">Payment ID</th>
-                        <th class="py-2 px-4 text-left">Payment Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for member in members %}
-                        <tr class="hover:bg-gray-100">
-                            <td class="py-2 px-4 border-b">{{ forloop.counter }}</td>
-                            <td class="py-2 px-4 border-b">{{ member.referral }}</td>
-                            <td class="py-2 px-4 border-b">{{ member.domain }}</td>
-                            <td class="py-2 px-4 border-b">{{ member.payment_id }}</td>
-                            <td class="py-2 px-4 border-b">{{ member.payment_status }}</td>
+            <div class="w-full overflow-x-auto">
+                <table class="min-w-full bg-white shadow-lg rounded-lg overflow-hidden">
+                    <thead class="bg-green-500 text-white">
+                        <tr>
+                            <th class="py-2 px-4 text-left">S. No.</th>
+                            <th class="py-2 px-4 text-left">Referral</th>
+                            <th class="py-2 px-4 text-left">Domain</th>
+                            <th class="py-2 px-4 text-left">Payment ID</th>
+                            <th class="py-2 px-4 text-left">Payment Status</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {% for member in members %}
+                            <tr class="hover:bg-gray-100">
+                                <td class="py-2 px-4 border-b">{{ forloop.counter }}</td>
+                                <td class="py-2 px-4 border-b">{{ member.referral }}</td>
+                                <td class="py-2 px-4 border-b">{{ member.domain }}</td>
+                                <td class="py-2 px-4 border-b">{{ member.payment_id }}</td>
+                                <td class="py-2 px-4 border-b">{{ member.payment_status }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 
