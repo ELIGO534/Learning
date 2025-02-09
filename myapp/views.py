@@ -77,10 +77,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm
 from .models import Profile
-
 @login_required
-
-
 def profile_view(request):
     try:
         # Fetch the profile or raise an exception if it does not exist
@@ -100,14 +97,73 @@ def profile_view(request):
     return render(request, 'profile.html', {'form': form, 'profile': profile})
 
 
-def withdrawl(request):
-    return render(request, 'withdrawl.html')
-
 def chat(request):
     return render(request, 'chat.html')
 
 def income(request):
     return render(request, 'income.html')
 
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .models import Withdrawal
+
+# Define allowed phone numbers
+ALLOWED_NUMBERS = {"7893355365"}  # Update this list as needed
+
+@login_required
 def transactions(request):
-    return render(request, 'transactions.html')
+    profile = request.user.profile  # Assuming a profile model linked to User
+    
+    # Check if the user's phone number is in the allowed list
+    if profile.phone_number not in ALLOWED_NUMBERS:
+        return redirect("/withdrawal/")  # Redirect unauthorized users
+    
+    # Fetch all withdrawal transactions for the logged-in user
+    transactions = Withdrawal.objects.filter(user=request.user).order_by("-id")  
+    
+    return render(request, "transactions.html", {"transactions": transactions})
+
+
+from decimal import Decimal
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from .models import Profile, Withdrawal
+from .forms import WithdrawalForm
+
+@login_required
+def withdrawl(request):
+    try:
+        profile = Profile.objects.get(user=request.user)
+    except Profile.DoesNotExist:
+        profile = None
+
+    if request.method == "POST":
+        form = WithdrawalForm(request.POST)  # ✅ Corrected: Use WithdrawalForm, not Withdrawal
+        if form.is_valid():
+            withdrawal = form.save(commit=False)
+            withdrawal.user = request.user
+
+            withdrawal_amount = Decimal(form.cleaned_data["amount"])
+
+            if profile and withdrawal_amount <= profile.balance:
+                profile.balance -= withdrawal_amount
+                profile.save()
+
+                withdrawal.save()
+                
+                messages.success(request, "Withdrawal successful!")
+                return redirect("withdrawl")  
+            else:
+                messages.error(request, "❌ Please check your available balance.")  # ✅ Error Message
+
+    else:
+        form = WithdrawalForm()
+
+    return render(request, "withdrawl.html", {"form": form, "balance": profile.balance if profile else Decimal("0.00")})
+
+def withdrawal_students(request):
+    return render(request, "withdrawal_s.html")
+
+def join_members(request):
+    return render(request, "join.html")

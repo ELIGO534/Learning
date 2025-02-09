@@ -58,6 +58,9 @@ class Member(models.Model):
         return self.referral
 
 # Profile model related to the User model
+from django.db import models
+from django.conf import settings
+
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
@@ -66,4 +69,22 @@ class Profile(models.Model):
     phone_number = models.CharField(max_length=15, null=True, blank=True)
 
     def __str__(self):
-        return self.user.phone
+        return f"{self.user.phone} - {self.phone_number if self.phone_number else 'No Phone'}"
+    
+    def get_balance(self):
+        return self.balance  # This will return the balance for the user
+
+    
+from django.db import models
+
+class Withdrawal(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
+    name = models.CharField(max_length=255)
+    account_number = models.CharField(max_length=50)
+    ifsc_code = models.CharField(max_length=20)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} - {self.amount}"
+

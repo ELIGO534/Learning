@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth import get_user_model
-from .models import CustomUser, Member, Profile
+from .models import CustomUser, Member, Profile,Withdrawal
 
 # Get the custom user model
 User = get_user_model()
@@ -45,3 +45,11 @@ class MemberAdmin(admin.ModelAdmin):
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ['user', 'balance', 'withdrawal_amount', 'phone_number']
     list_editable = ['balance', 'withdrawal_amount', 'phone_number']
+
+
+@admin.register(Withdrawal)
+class WithdrawalAdmin(admin.ModelAdmin):
+    list_display = ("name", "account_number", "ifsc_code", "amount", "created_at")
+    search_fields = ("name", "account_number")
+
+
