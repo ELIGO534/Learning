@@ -108,7 +108,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Withdrawal
 
 # Define allowed phone numbers
-ALLOWED_NUMBERS = {"7893355365"}  # Update this list as needed
+ALLOWED_NUMBERS = {"7893355365","7416367276"}  # Update this list as needed
 
 @login_required
 def transactions(request):
