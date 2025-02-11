@@ -167,3 +167,6 @@ def withdrawal_students(request):
 
 def join_members(request):
     return render(request, "join.html")
+
+def my_courses(request):
+    return render(request,"my_courses.html")

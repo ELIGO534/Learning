@@ -16,6 +16,7 @@ urlpatterns = [
     path('chat/', views.chat, name='chat'),
     path('profile/', views.profile_view, name='profile'),
     path('income/', views.income, name='income'),
+    path('my_courses/', views.my_courses, name='my_courses'),
     path('transactions/', views.transactions, name='transactions'),
     path('withdrawal/', views.withdrawal_students, name='withdrawal'),
     path('join_members/', views.join_members, name='join'),
