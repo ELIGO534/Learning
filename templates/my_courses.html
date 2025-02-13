@@ -12,7 +12,7 @@
     <nav class="bg-blue-600 text-white py-4 px-6 shadow-md">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <h1 class="text-2xl font-semibold">My Course</h1>
-            <a href="/" class="text-lg hover:underline">Back to Home</a>
+            <a href="/home" class="text-lg hover:underline">Back to Home</a>
         </div>
     </nav>
 
@@ -50,11 +50,15 @@
                 </a>
             </li>
 
-            <!-- Locked Lessons -->
-            <li class="flex items-center space-x-3 bg-gray-200 p-3 rounded-lg shadow-sm opacity-60">
-                <span class="text-red-500 text-lg font-semibold">🔒</span>
-                <span class="text-gray-600 text-lg font-medium">Introduction to Machine Learning</span>
+            <li class="flex items-center space-x-3 bg-green-100 p-3 rounded-lg shadow-sm">
+                <span class="text-green-600 text-lg font-semibold">✔</span>
+                <a href="#" class="text-gray-800 text-lg font-medium hover:underline"
+                   onclick="changeVideo('Introduction of Briggs Prediction', 'https://drive.google.com/file/d/1gtxnAJfVSAyjMKqCnWeCPvma13pyZEDo/preview')">
+                   Introduction of Briggs Prediction
+                </a>
             </li>
+
+            <!-- Locked Lessons -->
             <li class="flex items-center space-x-3 bg-gray-200 p-3 rounded-lg shadow-sm opacity-60">
                 <span class="text-red-500 text-lg font-semibold">🔒</span>
                 <span class="text-gray-600 text-lg font-medium">Supervised Learning Basics</span>
