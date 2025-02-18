@@ -16,7 +16,8 @@
                  alt="Profile" class="w-16 h-16 rounded-full border-2 border-white">
             
             <div>
-                <h2 class="text-xl font-semibold">{{ profile.phone_number|default:"No Phone" }}</h2>
+                <!-- Display user name from CustomUser model -->
+                <h2 class="text-xl font-semibold">{{ request.user.name|default:"No Name" }}</h2>
                 <span class="bg-yellow-400 text-black px-2 py-1 text-xs rounded">VIP0</span>
             </div>
         </div>
@@ -42,9 +43,9 @@
                 <p class="mt-2">Income Details</p>
             </a>
             <!-- Withdrawal -->
-            <a href="/transactions/" class="p-3 bg-white rounded-lg shadow hover:bg-gray-100 transition flex flex-col items-center">
+            <a href="/transaction/" class="p-3 bg-white rounded-lg shadow hover:bg-gray-100 transition flex flex-col items-center">
                 <span class="text-4xl">⤴</span>
-                <p class="mt-2">Withdrawal</p>
+                <p class="mt-2">Withdrawals</p>
             </a>
         </div>
     </div>

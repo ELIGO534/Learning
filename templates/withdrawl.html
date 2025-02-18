@@ -7,90 +7,65 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
-    <!-- Header -->
-    <header class="bg-green-500 text-white p-4 text-center">
-        <h1 class="text-xl font-bold">Withdrawal</h1>
-    </header>
 
-    <!-- Verifying Message (Initially Hidden) -->
-    <div id="verifying-message" class="hidden text-center text-yellow-500 font-bold text-lg mt-4">
-        Verifying...
-    </div>
+    <!-- Centered Content Section -->
+    <section class="flex items-center justify-center h-screen">
+        <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+            <!-- Header -->
+            <header class="bg-green-500 text-white p-4 text-center mb-6">
+                <h1 class="text-xl font-bold">Withdrawal</h1>
+            </header>
 
-    <div id="verified-message" class="hidden text-center text-green-600 font-bold text-lg mt-4">
-        Verified ✅
-    </div>
+            <!-- Content Section -->
+            <div class="text-center">
+                <h2 class="text-lg font-semibold text-gray-700 mb-4">Withdrawal Request</h2>
 
-    <!-- Content Section -->
-    <section class="bg-white text-center py-6 pb-20">
-        <div class="bg-white rounded-lg shadow-lg mx-4 p-6">
-            <h2 class="text-lg font-semibold text-gray-700 mb-4">Withdrawal Request</h2>
+                <!-- Show Available Balance -->
+                <p class="text-lg font-bold text-green-600 mb-4">Available Balance: ₹{{ balance }}</p>
 
-            <!-- Show Available Balance -->
-            <p class="text-lg font-bold text-green-600 mb-4">Available Balance: ₹{{ balance }}</p>
-
-            <!-- Condition to Enable Withdrawal -->
-
-            <!-- Withdrawal Form -->
-            <form id="withdrawal-form" method="POST" action="{% url 'withdrawl' %}" class="space-y-4">
-                {% csrf_token %}
-                {{ form.as_p }}
-
-                <!-- Error Message -->
+                <!-- Display Messages -->
                 {% if messages %}
                     {% for message in messages %}
-                        <p class="text-red-600 font-semibold">{{ message }}</p>
+                        <p class="font-semibold {% if message.tags == 'error' %}text-red-600{% else %}text-green-600{% endif %}">{{ message }}</p>
                     {% endfor %}
                 {% endif %}
 
-                <!-- Withdrawal Button -->
-                <button type="button" id="withdraw-button" 
-                    class="bg-gray-400 text-white py-2 px-4 rounded cursor-not-allowed">
-                     Withdraw
-                </button>
-            </form>
+                <!-- Withdrawal Form -->
+                <form id="withdrawal-form" method="POST" action="{% url 'withdrawl' %}">
+                    {% csrf_token %}
+
+                    <label class="block mb-2 text-gray-600 font-semibold">Name:</label>
+                    <input type="text" name="name" required class="border p-2 w-full rounded">
+
+                    <label class="block mb-2 text-gray-600 font-semibold">Account Number:</label>
+                    <input type="text" name="account_number" required class="border p-2 w-full rounded">
+
+                    <label class="block mt-4 mb-2 text-gray-600 font-semibold">IFSC Code:</label>
+                    <input type="text" name="ifsc_code" required class="border p-2 w-full rounded">
+
+                    <label class="block mt-4 mb-2 text-gray-600 font-semibold">Amount:</label>
+                    <input type="number" id="amount" name="amount" required min="1" class="border p-2 w-full rounded">
+
+                    <!-- Withdrawal Button -->
+                    <button type="submit" 
+                            id="withdraw-button" 
+                            class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded mt-4
+                                   {% if not is_authorized %} disabled-button {% endif %}">
+                        Withdraw
+                    </button>
+                </form>
+            </div>
         </div>
     </section>
 
     <script>
-        // Mock condition check (Replace with actual backend logic)
-        let internshipCompleted = false;
-        let membersInvited = 2; // Change this to test different cases
-
-        function checkEligibility() {
-            if (internshipCompleted || membersInvited >= 3) {
-                document.getElementById("withdraw-button").classList.remove("bg-gray-400", "cursor-not-allowed");
-                document.getElementById("withdraw-button").classList.add("bg-green-500", "hover:bg-green-600");
-                document.getElementById("withdraw-button").innerText = "✅ Withdraw";
-                document.getElementById("withdraw-button").setAttribute("onclick", "startVerification()");
-
-                document.getElementById("condition-message").innerText = "✅ You are eligible to withdraw!";
-                document.getElementById("condition-message").classList.remove("text-red-500");
-                document.getElementById("condition-message").classList.add("text-green-600");
-            } else {
-                document.getElementById("withdraw-button").setAttribute("onclick", "showAlert()");
+        document.getElementById("withdrawal-form").addEventListener("submit", function (event) {
+            let amount = document.getElementById("amount").value;
+            if (amount <= 0) {
+                alert("Amount must be greater than 0.");
+                event.preventDefault(); // Prevent form submission if invalid
             }
-        }
-
-
-        function startVerification() {
-            document.getElementById("verifying-message").classList.remove("hidden"); // Show "Verifying..."
-            document.getElementById("withdraw-button").disabled = true; // Disable submit button
-
-            setTimeout(function () {
-                document.getElementById("verifying-message").classList.add("hidden"); // Hide "Verifying..."
-                document.getElementById("verified-message").classList.remove("hidden"); // Show "Verified ✅"
-                
-                setTimeout(function () {
-                    document.getElementById("withdrawal-form").submit(); // ✅ Submit form
-                }, 1000);
-                
-            }, 2000);
-        }
-
-        // Check eligibility when page loads
-        checkEligibility();
+        });
     </script>
-
 </body>
 </html>

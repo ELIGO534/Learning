@@ -64,6 +64,7 @@ from django.conf import settings
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
+  
     balance = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     withdrawal_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     phone_number = models.CharField(max_length=15, null=True, blank=True)
@@ -75,16 +76,21 @@ class Profile(models.Model):
         return self.balance  # This will return the balance for the user
 
     
-from django.db import models
-
 class Withdrawal(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=255)
     account_number = models.CharField(max_length=50)
     ifsc_code = models.CharField(max_length=20)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
+    payment_status = models.CharField(
+        max_length=10,
+        choices=[("Paid", "Paid"), ("Pending", "Pending")],
+        default="Pending"
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.name} - {self.amount}"
-
+        if self.user and self.user.phone:
+           return f"{self.user.phone} - ₹{self.amount} - {self.payment_status}"
+        else:
+            return f"Unknown User - ₹{self.amount} - {self.payment_status}"

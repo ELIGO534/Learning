@@ -21,20 +21,43 @@
             <table class="min-w-full bg-white border border-gray-200 rounded-lg">
                 <thead>
                     <tr class="bg-green-500 text-white">
-                        <th class="py-2 px-4 border-b">S.No</th>
-                        <th class="py-2 px-4 border-b">Account No.</th>
+                        <th class="py-2 px-4 border-b">Date</th> <!-- New Date Column -->
+                        <th class="py-2 px-4 border-b">Withdrawal Details</th> <!-- Withdrawal Details Column -->
+                        <th class="py-2 px-4 border-b">Account No.</th> <!-- Account Number Column -->
+                        <th class="py-2 px-4 border-b">Transaction ID</th> <!-- Transaction ID Column -->
                         <th class="py-2 px-4 border-b">Amount (₹)</th>
                         <th class="py-2 px-4 border-b">Payment Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for transaction in transactions %}
+                    {% for withdrawl in withdrawals %}
                     <tr class="text-center border-b">
-                        <td class="py-2 px-4">{{ forloop.counter }}</td>
-                        <td class="py-2 px-4">{{ transaction.account_number }}</td>
-                        <td class="py-2 px-4 text-green-600 font-semibold">₹{{ transaction.amount }}</td>
+                        <!-- Date Column -->
                         <td class="py-2 px-4">
-                            {% if transaction.payment_status == "Paid" %}
+                            {{ withdrawl.created_at|date:"d M Y, H:i" }} <!-- Format the date -->
+                        </td>
+                        
+                        <!-- Withdrawal Details Column -->
+                        <td class="py-2 px-4">
+                          Acc//Eligo//4583xxxxxx@ybl//{{ withdrawl.transaction_id }}//Acc
+                        </td>
+
+                        <!-- Account Number Column -->
+                        <td class="py-2 px-4">
+                          {{ withdrawl.account_number }} <!-- Display Account Number -->
+                        </td>
+
+                        <!-- Transaction ID Column -->
+                        <td class="py-2 px-4">
+                          {{ withdrawl.transaction_id }} <!-- Display Transaction ID -->
+                        </td>
+
+                        <!-- Amount Column -->
+                        <td class="py-2 px-4 text-green-600 font-semibold">₹{{ withdrawl.amount }}</td> 
+
+                        <!-- Payment Status Column -->
+                        <td class="py-2 px-4">
+                            {% if withdrawl.payment_status == "Paid" %}
                                 <span class="text-green-500 font-semibold">Paid</span>
                             {% else %}
                                 <span class="text-red-500 font-semibold">Pending</span>
@@ -43,7 +66,7 @@
                     </tr>
                     {% empty %}
                     <tr>
-                        <td colspan="4" class="py-4 text-gray-500 text-center">No transactions found.</td>
+                        <td colspan="6" class="py-4 text-gray-500 text-center">No transactions found.</td>
                     </tr>
                     {% endfor %}
                 </tbody>

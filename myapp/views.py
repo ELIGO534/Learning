@@ -57,9 +57,36 @@ from django.shortcuts import render
 
 def home(request):
     return render(request, 'home.html', {'user': request.user})
+from django.shortcuts import render, redirect
+from .models import Profile  # Ensure you have this model
+
+# Manually define phone numbers that should have access to Stage 1
+SELECTED_USERS_FOR_STAGE_1 = ['7989709833', '9876543210']  # Add phone numbers here
+
 def level(request):
-    user_name = request.user.phone  # Adjust to your need
-    return render(request, 'levels.html', {'user_name': user_name})
+    user_name = request.user.phone  # Assuming 'phone' is the field you're using
+    user_has_access_to_stage_1 = user_name in SELECTED_USERS_FOR_STAGE_1
+    user_profile = Profile.objects.get(user=request.user)  # Assuming user_profile is linked to user
+    message = ""
+    
+    # Checking if the user is at Stage 1
+    if user_has_access_to_stage_1:
+        message = "Congratulations! Now you are an Initiator and have referred 20 people. Your referred amount is already updated in your profile."
+    
+    if request.method == "POST" and user_has_access_to_stage_1:
+        # Adding 500 points to the user's balance when the button is clicked
+        user_profile.balance += 500  # Add the 500 points to the current balance
+        user_profile.save()  # Save the updated profile
+        message = f"{message} Your balance has been updated with 500 points."
+
+    return render(request, 'levels.html', {
+        'user_name': user_name,
+        'stage_message': message,
+        'balance': user_profile.balance,  # Passing the balance to the template
+    })
+
+
+
 # views.py
 from django.shortcuts import render
 from myapp.models import Member
@@ -103,25 +130,7 @@ def chat(request):
 def income(request):
     return render(request, 'income.html')
 
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from .models import Withdrawal
 
-# Define allowed phone numbers
-ALLOWED_NUMBERS = {"7893355365","7416367276"}  # Update this list as needed
-
-@login_required
-def transactions(request):
-    profile = request.user.profile  # Assuming a profile model linked to User
-    
-    # Check if the user's phone number is in the allowed list
-    if profile.phone_number not in ALLOWED_NUMBERS:
-        return redirect("/withdrawal/")  # Redirect unauthorized users
-    
-    # Fetch all withdrawal transactions for the logged-in user
-    transactions = Withdrawal.objects.filter(user=request.user).order_by("-id")  
-    
-    return render(request, "transactions.html", {"transactions": transactions})
 
 
 from decimal import Decimal
@@ -133,34 +142,61 @@ from .forms import WithdrawalForm
 
 @login_required
 def withdrawl(request):
-    try:
-        profile = Profile.objects.get(user=request.user)
-    except Profile.DoesNotExist:
-        profile = None
+    """Handles the withdrawal request and updates the user's balance."""
+    allowed_phone_numbers = ['0987654321','7989709833','9652871191','7893355365','9666156431','7670812001','7093028071','9182139551']  # Add allowed phone numbers here
 
-    if request.method == "POST":
-        form = WithdrawalForm(request.POST)  # ✅ Corrected: Use WithdrawalForm, not Withdrawal
+    # Ensure the user has a profile
+    profile, created = Profile.objects.get_or_create(user=request.user)
+
+    # Check if the user's phone number is in the allowed list
+    is_authorized = request.user.phone in allowed_phone_numbers
+
+    if request.method == "POST" and is_authorized:
+        form = WithdrawalForm(request.POST)
         if form.is_valid():
             withdrawal = form.save(commit=False)
             withdrawal.user = request.user
-
             withdrawal_amount = Decimal(form.cleaned_data["amount"])
 
-            if profile and withdrawal_amount <= profile.balance:
+            # Check for a valid withdrawal amount
+            if withdrawal_amount <= 0:
+                messages.error(request, "❌ Invalid withdrawal amount. Please enter a positive amount.")
+            elif profile.balance >= withdrawal_amount:
+                # Deduct amount and save profile
                 profile.balance -= withdrawal_amount
                 profile.save()
 
+                # Set withdrawal status to pending and save
+                withdrawal.payment_status = "Pending"
                 withdrawal.save()
-                
-                messages.success(request, "Withdrawal successful!")
-                return redirect("withdrawl")  
-            else:
-                messages.error(request, "❌ Please check your available balance.")  # ✅ Error Message
 
+                messages.success(request, "✅ Withdrawal request submitted successfully!")
+                return redirect("transactions")  # Redirect to transactions page
+            else:
+                messages.error(request, "❌ Insufficient balance.")
     else:
         form = WithdrawalForm()
 
-    return render(request, "withdrawl.html", {"form": form, "balance": profile.balance if profile else Decimal("0.00")})
+    return render(request, "withdrawl.html", {"form": form, "balance": profile.balance, "is_authorized": is_authorized})
+
+
+
+import uuid
+
+@login_required
+def transactions(request):
+    """Displays the user's withdrawal transaction history."""
+    
+    # Get all withdrawals for the logged-in user
+    withdrawals = Withdrawal.objects.filter(user=request.user)
+
+    # Add a unique transaction ID to each withdrawal
+    for withdrawal in withdrawals:
+        withdrawal.transaction_id = uuid.uuid4().hex[:8]  # Or any format you'd like
+
+    return render(request, "transactions.html", {"withdrawals": withdrawals})
+
+
 
 def withdrawal_students(request):
     return render(request, "withdrawal_s.html")
@@ -170,3 +206,45 @@ def join_members(request):
 
 def my_courses(request):
     return render(request,"my_courses.html")
+
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from .models import Profile
+
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from .models import Profile
+
+@login_required
+def collect_stage1_reward(request):
+    # Get the user's profile
+    user_profile = Profile.objects.get(user=request.user)
+
+    # If the request is a POST (the user clicked the "Collect ₹500" button)
+    if request.method == "POST":
+        # Check if the user hasn't collected the reward yet
+        if not user_profile.has_collected_stage1:
+            user_profile.balance += 500  # Add ₹500 to the user's balance
+            user_profile.has_collected_stage1 = True  # Mark as collected
+            user_profile.save()
+
+            # Return a response with the updated balance
+            return JsonResponse({
+                "new_balance": user_profile.balance,
+                "success": True
+            })
+
+        # If the user already collected the reward, don't do anything
+        return JsonResponse({
+            "error": "You have already collected the ₹500!",
+            "success": False
+        })
+
+    # If the request is a GET (rendering the page)
+    has_collected_stage1 = user_profile.has_collected_stage1
+    current_balance = user_profile.balance
+
+    return render(request, "levels.html", {
+        "has_collected_stage1": has_collected_stage1,
+        "current_balance": current_balance,
+    })
