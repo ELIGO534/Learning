@@ -19,6 +19,7 @@ urlpatterns = [
     path('my_courses/', views.my_courses, name='my_courses'),
     path('withdrawal/', views.withdrawal_students, name='withdrawal'),
     path('join_members/', views.join_members, name='join'),
+    path('update-balance/', views.update_balance, name='update_balance'),
     path('transaction/', views.transactions, name='transactions'),
     path("collect-stage1-reward/", views.collect_stage1_reward, name="collect_stage1_reward"), # Add this
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # Home page view

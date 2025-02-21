@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Course - Eligo</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Jitsi Meet API -->
+    <script src="https://meet.jit.si/external_api.js"></script>
 </head>
 <body class="bg-gray-100">
 
@@ -19,14 +21,17 @@
     <!-- Course Container -->
     <div class="max-w-5xl mx-auto mt-8 p-6 bg-white shadow-lg rounded-lg">
         
-        <!-- Video Section -->
+        <!-- Video Section / Live Class Section -->
         <div class="mb-6">
             <h2 id="video-title" class="text-2xl font-bold text-gray-800 mb-2">Introduction to AI-ML</h2>
             <div class="relative w-full h-64 sm:h-96">
+                <!-- Video Frame for Recorded Content -->
                 <iframe id="video-frame" class="w-full h-full rounded-lg shadow-md" 
                     src="https://drive.google.com/file/d/1POeUPP1vdk7sQHIOh_fkzzsdABLYY-F2/preview" 
                     allowfullscreen>
                 </iframe>
+                <!-- Jitsi Container for Live Classes -->
+                <div id="jitsi-container" class="hidden w-full h-full"></div>
             </div>
         </div>
 
@@ -57,12 +62,22 @@
                    Introduction of Briggs Prediction
                 </a>
             </li>
+            <li class="flex items-center space-x-3 bg-green-100 p-3 rounded-lg shadow-sm">
+    <span class="text-green-600 text-lg font-semibold">✔</span>
+    <a href="#" class="text-gray-800 text-lg font-medium hover:underline"
+       onclick="changeVideo('Datapreprocessing using ML', 'https://drive.google.com/file/d/1R59gojKlVFhyc7aAM3SJ11O01eKmA__V/preview')">
+       Datapreprocessing using ML
+    </a>
+</li>
+<li class="flex items-center space-x-3 bg-green-100 p-3 rounded-lg shadow-sm">
+    <span class="text-green-600 text-lg font-semibold">✔</span>
+    <a href="#" class="text-gray-800 text-lg font-medium hover:underline"
+       onclick="changeVideo('Multiple Linear Regression', 'https://drive.google.com/file/d/1H3dVpF0xgeXJg0XwlnNrqZUpO1VdmZ8W/preview')">
+       Multiple Linear Regression
+    </a>
+</li>
 
             <!-- Locked Lessons -->
-            <li class="flex items-center space-x-3 bg-gray-200 p-3 rounded-lg shadow-sm opacity-60">
-                <span class="text-red-500 text-lg font-semibold">🔒</span>
-                <span class="text-gray-600 text-lg font-medium">Supervised Learning Basics</span>
-            </li>
             <li class="flex items-center space-x-3 bg-gray-200 p-3 rounded-lg shadow-sm opacity-60">
                 <span class="text-red-500 text-lg font-semibold">🔒</span>
                 <span class="text-gray-600 text-lg font-medium">Unsupervised Learning Overview</span>
@@ -113,8 +128,59 @@
 
     <script>
         function changeVideo(title, url) {
+            // Update the video title and source
             document.getElementById("video-title").innerText = title;
             document.getElementById("video-frame").src = url;
+
+            // Show the video iframe and hide the Jitsi container
+            document.getElementById("video-frame").classList.remove("hidden");
+            document.getElementById("jitsi-container").classList.add("hidden");
+        }
+
+        function startLiveClass(title, roomName) {
+    // Update the video title
+    document.getElementById("video-title").innerText = title;
+
+    // Hide the video iframe and show the Jitsi container
+    document.getElementById("video-frame").classList.add("hidden");
+    document.getElementById("jitsi-container").classList.remove("hidden");
+
+    // Clear any existing Jitsi instance
+    document.getElementById("jitsi-container").innerHTML = "";
+
+    // Initialize Jitsi Meet
+    const domain = "meet.jit.si";
+    const options = {
+        roomName: roomName,
+        width: "100%",
+        height: "100%",
+        parentNode: document.getElementById("jitsi-container"),
+        configOverwrite: {
+            startWithAudioMuted: true,
+            startWithVideoMuted: false,
+            prejoinPageEnabled: false
+        },
+        interfaceConfigOverwrite: {
+            DEFAULT_BACKGROUND: "#000000",
+            TOOLBAR_BUTTONS: [
+                "fullscreen", "microphone", "camera", "chat", "desktop", "hangup",
+                "raisehand", "tileview", "settings"
+            ]
+        }
+    };
+    const api = new JitsiMeetExternalAPI(domain, options);
+
+    // Enable full screen automatically
+    api.executeCommand("toggleFilmStrip");
+    api.executeCommand("toggleTileView");
+
+    // Handle live class end
+    api.on("readyToClose", () => {
+        alert("The live class has ended. Redirecting to the recorded class...");
+        changeVideo("Supervised Learning Basics (Recorded)", "https://drive.google.com/file/d/your-recorded-video-id/preview");
+    });
+
+
         }
     </script>
 

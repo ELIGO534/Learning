@@ -143,7 +143,7 @@ from .forms import WithdrawalForm
 @login_required
 def withdrawl(request):
     """Handles the withdrawal request and updates the user's balance."""
-    allowed_phone_numbers = ['0987654321','7989709833','9652871191','7893355365','9666156431','7670812001','7093028071','9182139551']  # Add allowed phone numbers here
+    allowed_phone_numbers = ['0987654321','7989709833','9652871191','7893355365','9666156431','7670812001','7093028071']  # Add allowed phone numbers here
 
     # Ensure the user has a profile
     profile, created = Profile.objects.get_or_create(user=request.user)
@@ -248,3 +248,29 @@ def collect_stage1_reward(request):
         "has_collected_stage1": has_collected_stage1,
         "current_balance": current_balance,
     })
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+from .models import Profile
+import json
+
+@csrf_exempt
+@login_required
+def update_balance(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            amount = data.get('amount', 0)
+
+            # Get the user's profile
+            profile = Profile.objects.get(user=request.user)
+
+            # Update the balance
+            profile.balance += amount
+            profile.save()
+
+            return JsonResponse({'success': True, 'new_balance': profile.balance})
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+    return JsonResponse({'error': 'Invalid request method'}, status=405)

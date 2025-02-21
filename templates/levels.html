@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Membership Stages</title>
+    <title>Stage 1: Initiator</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
     <!-- Header -->
     <header class="bg-green-500 text-white p-4 text-center">
-        <h1 class="text-xl font-bold">Membership Stages</h1>
+        <h1 class="text-xl font-bold">Stage 1: Initiator</h1>
     </header>
 
     <!-- Member Info Section -->
@@ -18,10 +18,10 @@
         <div class="mt-4 bg-white rounded-lg mx-4 p-4 shadow-lg">
             <div class="flex items-center justify-center">
                 <div class="w-16 h-16 flex items-center justify-center">
-                    <img src="https://tse4.mm.bing.net/th?id=OIP.C2WIhd9Io2SdKXqjy5twHAHaHa&pid=Api&P=0&h=180" alt="Lock Icon" class="w-10 h-10 rounded-full">
+                    <!-- No lock icon for unlocked stage -->
                 </div>
             </div>
-            <p class="mt-2 text-sm font-semibold text-red-500">You are not yet granted access to any level.</p>
+            <p class="mt-2 text-sm font-semibold text-green-500">Stage 1 Unlocked!</p>
         </div>
     </section>
 
@@ -32,14 +32,19 @@
         </div>
         <div class="mt-2">
             <!-- Stage 1 -->
-            <div class="bg-white rounded-lg shadow-lg p-4 mb-4 flex items-center">
-                <div class="w-16 h-16 flex items-center justify-center mr-4">
-                    <img src="https://tse4.mm.bing.net/th?id=OIP.C2WIhd9Io2SdKXqjy5twHAHaHa&pid=Api&P=0&h=180" alt="Lock Icon" class="w-10 h-10 rounded-full">
+            <div class="bg-white rounded-lg shadow-lg p-4 mb-4 flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="w-16 h-16 flex items-center justify-center mr-4">
+                        <!-- No lock icon for unlocked stage -->
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800">Stage 1: Initiator</h3>
+                        <p class="text-sm text-gray-600">Refer 20 members to unlock this stage.</p>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="text-lg font-bold text-gray-800">Stage 1: Initiator</h3>
-                    <p class="text-sm text-gray-600">Refer 20 members to unlock this stage.</p>
-                </div>
+                <button id="collectButton" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed" onclick="collectAmount(500)">
+                    Collect ₹500
+                </button>
             </div>
 
             <!-- Stage 2 -->
@@ -101,7 +106,7 @@
                 <span class="text-sm mt-8">Home</span>
             </a>
 
-            <!-- Levels Tab (Highlight this on the levels page) -->
+            <!-- Levels Tab -->
             <a href="/levels/" class="relative group flex flex-col items-center {% if request.path == '/levels/' %}text-blue-500{% else %}text-gray-700{% endif %}">
                 <div class="absolute -top-5 bg-white rounded-full p-2 shadow-md">
                     <svg class="w-6 h-6 {% if request.path == '/levels/' %}text-blue-500{% else %}text-gray-700{% endif %}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -136,5 +141,30 @@
             </a>
         </div>
     </nav>
+
+    <script>
+        // Check if the user has already collected the reward
+        const hasCollected = localStorage.getItem('stage1Collected');
+
+        // Get the collect button
+        const collectButton = document.getElementById('collectButton');
+
+        // Disable the button if the reward has already been collected
+        if (hasCollected === 'true') {
+            collectButton.disabled = true;
+            collectButton.textContent = 'Collected';
+        }
+
+        // Function to handle reward collection
+        function collectAmount(amount) {
+            // Update user's profile balance (backend logic required)
+            alert(`₹${amount} collected!`);
+
+            // Disable the button and mark the reward as collected
+            collectButton.disabled = true;
+            collectButton.textContent = 'Collected';
+            localStorage.setItem('stage1Collected', 'true');
+        }
+    </script>
 </body>
 </html>
