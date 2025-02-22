@@ -57,12 +57,14 @@
 
                         <!-- Payment Status Column -->
                         <td class="py-2 px-4">
-                            {% if withdrawl.payment_status == "Paid" %}
-                                <span class="text-green-500 font-semibold">Paid</span>
-                            {% else %}
-                                <span class="text-red-500 font-semibold">Pending</span>
-                            {% endif %}
-                        </td>
+    {% if withdrawl.payment_status == "Paid" %}
+        <span class="text-green-500 font-semibold">Paid</span>
+    {% elif withdrawl.payment_status == "Rejected" %}
+        <span class="text-red-500 font-semibold">Rejected</span>
+    {% else %}
+        <span class="text-yellow-500 font-semibold">Pending</span>
+    {% endif %}
+</td>
                     </tr>
                     {% empty %}
                     <tr>
@@ -73,6 +75,10 @@
             </table>
         </div>
     </div>
+    <!-- Need Help Link -->
+<div class="text-center mt-4">
+    <a href="/needhelp?" class="text-black text-sm hover:text-blue-500 underline transition duration-200">Need help?</a>
+</div>
 
 </body>
 </html>

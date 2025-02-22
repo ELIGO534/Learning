@@ -274,3 +274,10 @@ def update_balance(request):
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=400)
     return JsonResponse({'error': 'Invalid request method'}, status=405)
+
+def help(request):
+    return render(request,'needhelp.html')
+def upload(request):
+    return render(request,'upload.html')
+def uploadsuccess(request):
+    return render(request,'uploadsuccess.html')

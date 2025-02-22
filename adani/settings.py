@@ -127,6 +127,7 @@ CSRF_COOKIE_SAMESITE = 'Lax'  # 'Strict' for more security
 CSRF_COOKIE_SECURE = False  # Disable secure cookies for testing
 CSRF_COOKIE_HTTPONLY = False  # Disable HTTPOnly for testing
 
+
 # Security: Use secure cookies in production
 if not DEBUG:
     CSRF_COOKIE_SECURE = True  # Set to True for production with HTTPS
