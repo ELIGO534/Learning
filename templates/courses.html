@@ -1,0 +1,841 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Courses - Mentor Bootstrap Template</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png ' %}" rel="icon" >
+  <link href="{% static 'assets/img/apple-touch-icon.png ' %}" rel="apple-touch-icon" >
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Mentor
+  * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="courses-page">
+
+ <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="/home" class="logo d-flex align-items-center me-auto">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+         <img src="{% static 'assets/img/logo.png '%}"  alt="" >
+        <h1 class="sitename">liGo</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="/home" class="active">Home<br></a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/courses">Courses</a></li>
+          <li><a href="/my_learning">My Learning</a></li>
+          <li><a href="/referrals">Referrals</a></li>
+          <li><a href="/chatwithus">Chat with us</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li class="dropdown"><a href="/profile"><span>Profile</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+                  <li><a href="/login">Sign-Up</a></li>
+                  <li><a href="/login">Sign-In</a></li>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="/home">Get Started</a>
+
+    </div>
+  </header>
+  <main class="main">
+
+    <!-- Page Title -->
+<div class="page-title" data-aos="fade">
+  <div class="heading">
+    <div class="container">
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-lg-8">
+          <h1>Courses</h1>
+          <p class="mb-0">Explore a wide range of courses designed to help you achieve your goals. From technology to business, we offer expert-led courses to enhance your skills and knowledge.</p>
+          <!-- Search Bar -->
+          <div class="search-bar mt-4">
+            <form action="#" method="get">
+              <input type="text" name="search" placeholder="Search for courses..." class="form-control">
+              <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a href="/home">Home</a></li>
+        <li class="current">Courses</li>
+      </ol>
+    </div>
+  </nav>
+</div><!-- End Page Title -->
+    <!-- Courses Section -->
+<section id="courses" class="courses section">
+  <div class="container">
+    <div class="row">
+      <!-- Machine Learning -->
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+         <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+          <img src="{% static 'assets/img/courses/machine-learning.jpg' %}" class="img-fluid" alt="Machine Learning">
+          <div class="course-content">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <p class="category">Machine Learning</p>
+              <p class="price">Rs. 499</p>
+            </div>
+            <h3><a href="https://rzp.io/rzp/TH2H59W">Machine Learning Fundamentals</a></h3>
+            <p class="description">Learn the basics of machine learning, including supervised and unsupervised learning, algorithms, and applications.</p>
+            <div class="trainer d-flex justify-content-between align-items-center">
+              <div class="trainer-profile d-flex align-items-center">
+                <i class="bi bi-person-circle profile-icon"></i>
+                <a href="#" class="trainer-link">Rahul Sharma</a>
+              </div>
+              <div class="trainer-rank d-flex align-items-center">
+                <i class="bi bi-star-fill star-icon"></i>&nbsp;4.5
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- End Course Item-->
+
+      <!-- Artificial Intelligence -->
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+         <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+          <img src="{% static 'assets/img/courses/artificial-intelligence.jpg.webp' %}" class="img-fluid" alt="Artificial Intelligence">
+          <div class="course-content">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <p class="category">Artificial Intelligence</p>
+              <p class="price">Rs. 499</p>
+            </div>
+            <h3><a href="https://rzp.io/rzp/TH2H59W">AI and Machine Learning</a></h3>
+            <p class="description">Explore the world of AI, neural networks, and deep learning with hands-on projects and real-world applications.</p>
+            <div class="trainer d-flex justify-content-between align-items-center">
+              <div class="trainer-profile d-flex align-items-center">
+                <i class="bi bi-person-circle profile-icon"></i>
+                <a href="#" class="trainer-link">Priya Singh</a>
+              </div>
+              <div class="trainer-rank d-flex align-items-center">
+                <i class="bi bi-star-fill star-icon"></i>&nbsp;4.7
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- End Course Item-->
+
+      <!-- Data Science -->
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="300">
+         <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+          <img src="{% static 'assets/img/courses/data-science.jpg.webp' %}" class="img-fluid" alt="Data Science">
+          <div class="course-content">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <p class="category">Data Science</p>
+              <p class="price">Rs. 499</p>
+            </div>
+            <h3><a href="https://rzp.io/rzp/TH2H59W">Data Science Essentials</a></h3>
+            <p class="description">Master data analysis, visualization, and machine learning techniques to become a data science expert.</p>
+            <div class="trainer d-flex justify-content-between align-items-center">
+              <div class="trainer-profile d-flex align-items-center">
+                <i class="bi bi-person-circle profile-icon"></i>
+                <a href="#" class="trainer-link">Ankit Patel</a>
+              </div>
+              <div class="trainer-rank d-flex align-items-center">
+                <i class="bi bi-star-fill star-icon"></i>&nbsp;4.6
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- End Course Item-->
+
+      <!-- Web Development -->
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
+         <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+          <img src="{% static 'assets/img/courses/web-development.jpg.webp' %}" class="img-fluid" alt="Web Development">
+          <div class="course-content">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <p class="category">Web Development</p>
+              <p class="price">Rs. 499</p>
+            </div>
+            <h3><a href="https://rzp.io/rzp/TH2H59W">Full Stack Web Development</a></h3>
+            <p class="description">Learn front-end and back-end development to build dynamic and responsive websites.</p>
+            <div class="trainer d-flex justify-content-between align-items-center">
+              <div class="trainer-profile d-flex align-items-center">
+                <i class="bi bi-person-circle profile-icon"></i>
+                <a href="#" class="trainer-link">Neha Gupta</a>
+              </div>
+              <div class="trainer-rank d-flex align-items-center">
+                <i class="bi bi-star-fill star-icon"></i>&nbsp;4.8
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- End Course Item-->
+
+      <!-- Cyber Security -->
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
+         <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+          <img src="{% static 'assets/img/courses/cyber-security.jpg.webp' %}" class="img-fluid" alt="Cyber Security">
+          <div class="course-content">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <p class="category">Cyber Security</p>
+              <p class="price">Rs. 499</p>
+            </div>
+            <h3><a href="https://rzp.io/rzp/TH2H59W">Cyber Security Fundamentals</a></h3>
+            <p class="description">Understand the basics of cyber security, including threat detection, prevention, and ethical hacking.</p>
+            <div class="trainer d-flex justify-content-between align-items-center">
+              <div class="trainer-profile d-flex align-items-center">
+                <i class="bi bi-person-circle profile-icon"></i>
+                <a href="#" class="trainer-link">Vikram Singh</a>
+              </div>
+              <div class="trainer-rank d-flex align-items-center">
+                <i class="bi bi-star-fill star-icon"></i>&nbsp;4.4
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- End Course Item-->
+
+      <!-- Cloud Computing -->
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
+         <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+          <img src="{% static 'assets/img/courses/cloud-computing.jpg.webp' %}" class="img-fluid" alt="Cloud Computing">
+          <div class="course-content">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <p class="category">Cloud Computing</p>
+              <p class="price">Rs. 499</p>
+            </div>
+            <h3><a href="https://rzp.io/rzp/TH2H59W">Cloud Computing Basics</a></h3>
+            <p class="description">Learn about cloud platforms like AWS, Azure, and Google Cloud, and how to deploy scalable applications.</p>
+            <div class="trainer d-flex justify-content-between align-items-center">
+              <div class="trainer-profile d-flex align-items-center">
+                <i class="bi bi-person-circle profile-icon"></i>
+                <a href="#" class="trainer-link">Arjun Reddy</a>
+              </div>
+              <div class="trainer-rank d-flex align-items-center">
+                <i class="bi bi-star-fill star-icon"></i>&nbsp;4.3
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- End Course Item-->
+
+      <!-- Java -->
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
+         <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+          <img src="{% static 'assets/img/courses/java.jpg.webp' %}" class="img-fluid" alt="Java">
+          <div class="course-content">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <p class="category">Java</p>
+              <p class="price">Rs. 499</p>
+            </div>
+            <h3><a href="https://rzp.io/rzp/TH2H59W">Java Programming Masterclass</a></h3>
+            <p class="description">Master Java programming from basics to advanced concepts, including OOP, data structures, and algorithms.</p>
+            <div class="trainer d-flex justify-content-between align-items-center">
+              <div class="trainer-profile d-flex align-items-center">
+                <i class="bi bi-person-circle profile-icon"></i>
+                <a href="#" class="trainer-link">Rajesh Kumar</a>
+              </div>
+              <div class="trainer-rank d-flex align-items-center">
+                <i class="bi bi-star-fill star-icon"></i>&nbsp;4.6
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- End Course Item-->
+
+      <!-- Python -->
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
+         <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+          <img src="{% static 'assets/img/courses/python.jpg.webp' %}" class="img-fluid" alt="Python">
+          <div class="course-content">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <p class="category">Python</p>
+              <p class="price">Rs. 499</p>
+            </div>
+            <h3><a href="https://rzp.io/rzp/TH2H59W">Python for Beginners</a></h3>
+            <p class="description">Learn Python programming from scratch, including data analysis, automation, and web development.</p>
+            <div class="trainer d-flex justify-content-between align-items-center">
+              <div class="trainer-profile d-flex align-items-center">
+                <i class="bi bi-person-circle profile-icon"></i>
+                <a href="#" class="trainer-link">Sneha Desai</a>
+              </div>
+              <div class="trainer-rank d-flex align-items-center">
+                <i class="bi bi-star-fill star-icon"></i>&nbsp;4.7
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- End Course Item-->
+
+      <!-- C Programming -->
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
+         <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+          <img src="{% static 'assets/img/courses/c-programming.jpg.webp' %}" class="img-fluid" alt="C Programming">
+          <div class="course-content">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <p class="category">C Programming</p>
+              <p class="price">Rs. 499</p>
+            </div>
+            <h3><a href="https://rzp.io/rzp/TH2H59W">C Programming Basics</a></h3>
+            <p class="description">Learn the fundamentals of C programming, including syntax, data structures, and problem-solving.</p>
+            <div class="trainer d-flex justify-content-between align-items-center">
+              <div class="trainer-profile d-flex align-items-center">
+                <i class="bi bi-person-circle profile-icon"></i>
+                <a href="#" class="trainer-link">Amit Joshi</a>
+              </div>
+              <div class="trainer-rank d-flex align-items-center">
+                <i class="bi bi-star-fill star-icon"></i>&nbsp;4.5
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- End Course Item-->
+
+      <!-- Add more courses here following the same structure -->
+      <!-- Android App Development -->
+<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
+   <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+    <img src="{% static 'assets/img/courses/android-app-development.jpg.webp' %}" class="img-fluid" alt="Android App Development">
+    <div class="course-content">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <p class="category">Android App Development</p>
+        <p class="price">Rs. 499</p>
+      </div>
+      <h3><a href="https://rzp.io/rzp/TH2H59W">Android App Development</a></h3>
+      <p class="description">Learn to build Android apps using Kotlin and Java, and publish them on the Google Play Store.</p>
+      <div class="trainer d-flex justify-content-between align-items-center">
+        <div class="trainer-profile d-flex align-items-center">
+          <i class="bi bi-person-circle profile-icon"></i>
+          <a href="#" class="trainer-link">Ravi Verma</a>
+        </div>
+        <div class="trainer-rank d-flex align-items-center">
+          <i class="bi bi-star-fill star-icon"></i>&nbsp;4.6
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- End Course Item-->
+
+<!-- Data Analytics -->
+<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
+   <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+    <img src="{% static 'assets/img/courses/data-analytics.jpg.webp' %}" class="img-fluid" alt="Data Analytics">
+    <div class="course-content">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <p class="category">Data Analytics</p>
+        <p class="price">Rs. 499</p>
+      </div>
+      <h3><a href="https://rzp.io/rzp/TH2H59W">Data Analytics with Python</a></h3>
+      <p class="description">Learn to analyze and visualize data using Python libraries like Pandas, NumPy, and Matplotlib.</p>
+      <div class="trainer d-flex justify-content-between align-items-center">
+        <div class="trainer-profile d-flex align-items-center">
+          <i class="bi bi-person-circle profile-icon"></i>
+          <a href="#" class="trainer-link">Anjali Mehta</a>
+        </div>
+        <div class="trainer-rank d-flex align-items-center">
+          <i class="bi bi-star-fill star-icon"></i>&nbsp;4.7
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- End Course Item-->
+
+<!-- UI/UX -->
+<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
+   <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+    <img src="{% static 'assets/img/courses/ui-ux.jpg.webp' %}" class="img-fluid" alt="UI/UX">
+    <div class="course-content">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <p class="category">UI/UX</p>
+        <p class="price">Rs. 499</p>
+      </div>
+      <h3><a href="https://rzp.io/rzp/TH2H59W">UI/UX Design Fundamentals</a></h3>
+      <p class="description">Master the principles of user interface and user experience design to create engaging digital products.</p>
+      <div class="trainer d-flex justify-content-between align-items-center">
+        <div class="trainer-profile d-flex align-items-center">
+          <i class="bi bi-person-circle profile-icon"></i>
+          <a href="#" class="trainer-link">Kavita Rao</a>
+        </div>
+        <div class="trainer-rank d-flex align-items-center">
+          <i class="bi bi-star-fill star-icon"></i>&nbsp;4.8
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- End Course Item-->
+
+<!-- Embedded Systems -->
+<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
+   <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+    <img src="{% static 'assets/img/courses/embedded-systems.jpg.webp' %}" class="img-fluid" alt="Embedded Systems">
+    <div class="course-content">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <p class="category">Embedded Systems</p>
+        <p class="price">Rs. 499</p>
+      </div>
+      <h3><a href="https://rzp.io/rzp/TH2H59W">Embedded Systems Design</a></h3>
+      <p class="description">Learn to design and program embedded systems using microcontrollers and real-time operating systems.</p>
+      <div class="trainer d-flex justify-content-between align-items-center">
+        <div class="trainer-profile d-flex align-items-center">
+          <i class="bi bi-person-circle profile-icon"></i>
+          <a href="#" class="trainer-link">Vivek Sharma</a>
+        </div>
+        <div class="trainer-rank d-flex align-items-center">
+          <i class="bi bi-star-fill star-icon"></i>&nbsp;4.4
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- End Course Item-->
+
+<!-- VLSI -->
+<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
+   <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+    <img src="{% static 'assets/img/courses/vlsi.jpg.webp' %}" class="img-fluid" alt="VLSI">
+    <div class="course-content">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <p class="category">VLSI</p>
+        <p class="price">Rs. 499</p>
+      </div>
+      <h3><a href="https://rzp.io/rzp/TH2H59W">VLSI Design and Verification</a></h3>
+      <p class="description">Learn the fundamentals of VLSI design, including digital logic, FPGA, and ASIC design.</p>
+      <div class="trainer d-flex justify-content-between align-items-center">
+        <div class="trainer-profile d-flex align-items-center">
+          <i class="bi bi-person-circle profile-icon"></i>
+          <a href="#" class="trainer-link">Sanjay Reddy</a>
+        </div>
+        <div class="trainer-rank d-flex align-items-center">
+          <i class="bi bi-star-fill star-icon"></i>&nbsp;4.5
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- End Course Item-->
+
+<!-- Robotics -->
+<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
+   <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+    <img src="{% static 'assets/img/courses/robotics.jpg.webp' %}" class="img-fluid" alt="Robotics">
+    <div class="course-content">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <p class="category">Robotics</p>
+        <p class="price">Rs. 499</p>
+      </div>
+      <h3><a href="https://rzp.io/rzp/TH2H59W">Robotics and Automation</a></h3>
+      <p class="description">Learn to design and program robots for industrial and personal use.</p>
+      <div class="trainer d-flex justify-content-between align-items-center">
+        <div class="trainer-profile d-flex align-items-center">
+          <i class="bi bi-person-circle profile-icon"></i>
+          <a href="#" class="trainer-link">Rajiv Khanna</a>
+        </div>
+        <div class="trainer-rank d-flex align-items-center">
+          <i class="bi bi-star-fill star-icon"></i>&nbsp;4.6
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- End Course Item-->
+
+<!-- Internet of Things (IoT) -->
+<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
+   <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+    <img src="{% static 'assets/img/courses/iot.jpg.webp' %}" class="img-fluid" alt="IoT">
+    <div class="course-content">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <p class="category">Internet of Things (IoT)</p>
+        <p class="price">Rs. 499</p>
+      </div>
+      <h3><a href="https://rzp.io/rzp/TH2H59W">IoT Fundamentals</a></h3>
+      <p class="description">Learn to build IoT systems using sensors, microcontrollers, and cloud platforms.</p>
+      <div class="trainer d-flex justify-content-between align-items-center">
+        <div class="trainer-profile d-flex align-items-center">
+          <i class="bi bi-person-circle profile-icon"></i>
+          <a href="#" class="trainer-link">Priyanka Singh</a>
+        </div>
+        <div class="trainer-rank d-flex align-items-center">
+          <i class="bi bi-star-fill star-icon"></i>&nbsp;4.7
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- End Course Item-->
+
+<!-- IC Engine -->
+<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
+   <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+    <img src="{% static 'assets/img/courses/ic-engine.jpg.webp' %}" class="img-fluid" alt="IC Engine">
+    <div class="course-content">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <p class="category">IC Engine</p>
+        <p class="price">Rs. 499</p>
+      </div>
+      <h3><a href="https://rzp.io/rzp/TH2H59W">Internal Combustion Engines</a></h3>
+      <p class="description">Learn the working principles and design of internal combustion engines.</p>
+      <div class="trainer d-flex justify-content-between align-items-center">
+        <div class="trainer-profile d-flex align-items-center">
+          <i class="bi bi-person-circle profile-icon"></i>
+          <a href="#" class="trainer-link">Amitabh Singh</a>
+        </div>
+        <div class="trainer-rank d-flex align-items-center">
+          <i class="bi bi-star-fill star-icon"></i>&nbsp;4.3
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- End Course Item-->
+
+<!-- Hybrid and Electric Vehicle -->
+<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
+   <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+    <img src="{% static 'assets/img/courses/hybrid-electric-vehicle.jpg.webp' %}" class="img-fluid" alt="Hybrid and Electric Vehicle">
+    <div class="course-content">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <p class="category">Hybrid and Electric Vehicle</p>
+        <p class="price">Rs. 499</p>
+      </div>
+      <h3><a href="https://rzp.io/rzp/TH2H59W">Hybrid and Electric Vehicle Technology</a></h3>
+      <p class="description">Learn about the design and working of hybrid and electric vehicles.</p>
+      <div class="trainer d-flex justify-content-between align-items-center">
+        <div class="trainer-profile d-flex align-items-center">
+          <i class="bi bi-person-circle profile-icon"></i>
+          <a href="#" class="trainer-link">Rohit Kapoor</a>
+        </div>
+        <div class="trainer-rank d-flex align-items-center">
+          <i class="bi bi-star-fill star-icon"></i>&nbsp;4.5
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- End Course Item-->
+
+<!-- Add more courses here following the same structure -->
+<!-- Autocad -->
+<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
+   <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+    <img src="{% static 'assets/img/courses/autocad.jpg.webp' %}" class="img-fluid" alt="Autocad">
+    <div class="course-content">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <p class="category">Autocad</p>
+        <p class="price">Rs. 499</p>
+      </div>
+      <h3><a href="https://rzp.io/rzp/TH2H59W">Autocad for Beginners</a></h3>
+      <p class="description">Learn to create 2D and 3D designs using Autocad for engineering and architectural projects.</p>
+      <div class="trainer d-flex justify-content-between align-items-center">
+        <div class="trainer-profile d-flex align-items-center">
+          <i class="bi bi-person-circle profile-icon"></i>
+          <a href="#" class="trainer-link">Anil Kumar</a>
+        </div>
+        <div class="trainer-rank d-flex align-items-center">
+          <i class="bi bi-star-fill star-icon"></i>&nbsp;4.5
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- End Course Item-->
+
+<!-- Construction Planning Management -->
+<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
+   <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+    <img src="{% static 'assets/img/courses/construction-planning.jpg.webp' %}" class="img-fluid" alt="Construction Planning Management">
+    <div class="course-content">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <p class="category">Construction Planning Management</p>
+        <p class="price">Rs. 499</p>
+      </div>
+      <h3><a href="https://rzp.io/rzp/TH2H59W">Construction Project Management</a></h3>
+      <p class="description">Learn the principles of construction planning, scheduling, and resource management.</p>
+      <div class="trainer d-flex justify-content-between align-items-center">
+        <div class="trainer-profile d-flex align-items-center">
+          <i class="bi bi-person-circle profile-icon"></i>
+          <a href="#" class="trainer-link">Rakesh Mehta</a>
+        </div>
+        <div class="trainer-rank d-flex align-items-center">
+          <i class="bi bi-star-fill star-icon"></i>&nbsp;4.6
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- End Course Item-->
+
+<!-- Unity 3D -->
+<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
+   <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+    <img src="{% static 'assets/img/courses/unity-3d.jpg.webp' %}" class="img-fluid" alt="Unity 3D">
+    <div class="course-content">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <p class="category">Unity 3D</p>
+        <p class="price">Rs. 499</p>
+      </div>
+      <h3><a href="https://rzp.io/rzp/TH2H59W">Game Development with Unity 3D</a></h3>
+      <p class="description">Learn to create interactive games using Unity 3D and C# programming.</p>
+      <div class="trainer d-flex justify-content-between align-items-center">
+        <div class="trainer-profile d-flex align-items-center">
+          <i class="bi bi-person-circle profile-icon"></i>
+          <a href="#" class="trainer-link">Suresh Patel</a>
+        </div>
+        <div class="trainer-rank d-flex align-items-center">
+          <i class="bi bi-star-fill star-icon"></i>&nbsp;4.7
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- End Course Item-->
+
+<!-- Digital Marketing -->
+<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
+   <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+    <img src="{% static 'assets/img/courses/digital-marketing.jpg.webp' %}" class="img-fluid" alt="Digital Marketing">
+    <div class="course-content">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <p class="category">Digital Marketing</p>
+        <p class="price">Rs. 499</p>
+      </div>
+      <h3><a href="https://rzp.io/rzp/TH2H59W">Digital Marketing Mastery</a></h3>
+      <p class="description">Learn SEO, social media marketing, email marketing, and Google Ads to grow your business online.</p>
+      <div class="trainer d-flex justify-content-between align-items-center">
+        <div class="trainer-profile d-flex align-items-center">
+          <i class="bi bi-person-circle profile-icon"></i>
+          <a href="#" class="trainer-link">Neha Kapoor</a>
+        </div>
+        <div class="trainer-rank d-flex align-items-center">
+          <i class="bi bi-star-fill star-icon"></i>&nbsp;4.8
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- End Course Item-->
+
+<!-- Marketing -->
+<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
+   <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+    <img src="{% static 'assets/img/courses/marketing.jpg.webp' %}" class="img-fluid" alt="Marketing">
+    <div class="course-content">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <p class="category">Marketing</p>
+        <p class="price">Rs. 499</p>
+      </div>
+      <h3><a href="https://rzp.io/rzp/TH2H59W">Marketing Fundamentals</a></h3>
+      <p class="description">Learn the basics of marketing, including branding, market research, and consumer behavior.</p>
+      <div class="trainer d-flex justify-content-between align-items-center">
+        <div class="trainer-profile d-flex align-items-center">
+          <i class="bi bi-person-circle profile-icon"></i>
+          <a href="#" class="trainer-link">Rajiv Malhotra</a>
+        </div>
+        <div class="trainer-rank d-flex align-items-center">
+          <i class="bi bi-star-fill star-icon"></i>&nbsp;4.5
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- End Course Item-->
+
+<!-- Finance -->
+<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
+   <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+    <img src="{% static 'assets/img/courses/finance.jpg.webp' %}" class="img-fluid" alt="Finance">
+    <div class="course-content">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <p class="category">Finance</p>
+        <p class="price">Rs. 499</p>
+      </div>
+      <h3><a href="https://rzp.io/rzp/TH2H59W">Financial Management</a></h3>
+      <p class="description">Learn financial planning, budgeting, and investment strategies for personal and corporate finance.</p>
+      <div class="trainer d-flex justify-content-between align-items-center">
+        <div class="trainer-profile d-flex align-items-center">
+          <i class="bi bi-person-circle profile-icon"></i>
+          <a href="#" class="trainer-link">Anita Desai</a>
+        </div>
+        <div class="trainer-rank d-flex align-items-center">
+          <i class="bi bi-star-fill star-icon"></i>&nbsp;4.6
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- End Course Item-->
+
+<!-- Business Analytics -->
+<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
+   <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+    <img src="{% static 'assets/img/courses/business-analytics.jpg.webp' %}" class="img-fluid" alt="Business Analytics">
+    <div class="course-content">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <p class="category">Business Analytics</p>
+        <p class="price">Rs. 499</p>
+      </div>
+      <h3><a href="https://rzp.io/rzp/TH2H59W">Business Analytics with Excel</a></h3>
+      <p class="description">Learn to analyze business data and make data-driven decisions using Excel and other tools.</p>
+      <div class="trainer d-flex justify-content-between align-items-center">
+        <div class="trainer-profile d-flex align-items-center">
+          <i class="bi bi-person-circle profile-icon"></i>
+          <a href="#" class="trainer-link">Vikas Singh</a>
+        </div>
+        <div class="trainer-rank d-flex align-items-center">
+          <i class="bi bi-star-fill star-icon"></i>&nbsp;4.7
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- End Course Item-->
+
+<!-- Human Resources -->
+<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
+   <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+    <img src="{% static 'assets/img/courses/human-resources.jpg.webp' %}" class="img-fluid" alt="Human Resources">
+    <div class="course-content">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <p class="category">Human Resources</p>
+        <p class="price">Rs. 499</p>
+      </div>
+      <h3><a href="https://rzp.io/rzp/TH2H59W">HR Management</a></h3>
+      <p class="description">Learn recruitment, employee engagement, and performance management strategies.</p>
+      <div class="trainer d-flex justify-content-between align-items-center">
+        <div class="trainer-profile d-flex align-items-center">
+          <i class="bi bi-person-circle profile-icon"></i>
+          <a href="#" class="trainer-link">Priya Sharma</a>
+        </div>
+        <div class="trainer-rank d-flex align-items-center">
+          <i class="bi bi-star-fill star-icon"></i>&nbsp;4.5
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- End Course Item-->
+
+<!-- Stock Marketing -->
+<div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
+   <div class="course-item" onclick="window.location.href='https://rzp.io/rzp/TH2H59W';" style="cursor: pointer;">
+    <img src="{% static 'assets/img/courses/stock-marketing.jpg.webp' %}" class="img-fluid" alt="Stock Marketing">
+    <div class="course-content">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <p class="category">Stock Marketing</p>
+        <p class="price">Rs. 499</p>
+      </div>
+      <h3><a href="https://rzp.io/rzp/TH2H59W">Stock Market Basics</a></h3>
+      <p class="description">Learn to trade stocks, analyze market trends, and build a profitable investment portfolio.</p>
+      <div class="trainer d-flex justify-content-between align-items-center">
+        <div class="trainer-profile d-flex align-items-center">
+          <i class="bi bi-person-circle profile-icon"></i>
+          <a href="#" class="trainer-link">Rahul Kapoor</a>
+        </div>
+        <div class="trainer-rank d-flex align-items-center">
+          <i class="bi bi-star-fill star-icon"></i>&nbsp;4.6
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- End Course Item-->
+    </div>
+  </div>
+</section><!-- /Courses Section -->
+  </main>
+
+ <footer id="footer" class="footer position-relative light-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">EliGo</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>Noval Tech,HSR Layout</p>
+            <p>Bengalore, Pin - 560102</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+91 78424 39551</span></p>
+            <p><strong>Email:</strong> <span>eligorenderforest@gmail.com</span></p>
+          </div>
+    
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/about">About us</a></li>
+            <li><a href="/courses">Services</a></li>
+            <li><a href="/terms">Terms of service</a></li>
+            <li><a href="/privacy">Privacy policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="/courses">Web Design</a></li>
+            <li><a href="/courses">Web Development</a></li>
+            <li><a href="/courses">Product Management</a></li>
+            <li><a href="/courses">Marketing</a></li>
+            <li><a href="/courses">Graphic Design</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-12 footer-newsletter">
+          <h4>Our Newsletter</h4>
+          <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
+          <form action="forms/newsletter.php" method="post" class="php-email-form">
+            <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
+            <div class="loading">Loading</div>
+            <div class="error-message"></div>
+            <div class="sent-message">Your subscription request has been sent. Thank you!</div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Eligo</strong> <span>All Rights Reserved</span></p>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js'%}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js'%}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js'%}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js'%}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js'%}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js'%}"></script>
+
+</body>
+
+</html>

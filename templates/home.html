@@ -1,87 +1,525 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eligo - Your EdTech Platform</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        // JavaScript to toggle the sidebar visibility
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('hidden');
-        }
-    </script>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Index - EliGo</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png ' %}" rel="icon" >
+  <link href="{% static 'assets/img/apple-touch-icon.png ' %}" rel="apple-touch-icon" >
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Mentor
+  * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
-<body class="bg-gray-50">
 
-    <!-- Navbar -->
-    <nav class="bg-white shadow-lg fixed w-full top-0 z-10">
-        <div class="max-w-7xl mx-auto px-4 py-5 flex justify-between items-center">
-            <div class="flex items-center">
-                <button class="text-2xl text-gray-700 md:hidden" onclick="toggleSidebar()">
-                    &#9776; <!-- Hamburger Icon -->
-                </button>      
-                <span class="ml-3 text-2xl font-bold text-blue-600">Eligo</span>
-            </div>
+<body class="index-page">
 
-            <!-- Profile Icon (visible on larger screens) -->
-            <div class="hidden md:block">
-                <a href="/profile/">
-                    <img src="https://tse4.mm.bing.net/th?id=OIP.Yw4exB-_crv1xcdLRQ6hngHaHx&pid=Api&P=0&h=180" alt="Profile" class="w-10 h-10 rounded-full border border-gray-300">
-                </a>
-            </div>
-        </div>
-    </nav>
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-    <!-- Sidebar (hidden by default) -->
-    <div id="sidebar" class="hidden md:hidden fixed inset-0 bg-gray-800 bg-opacity-50 z-20">
-        <div class="bg-white w-64 h-full p-4 space-y-6">
-            <div class="flex justify-between items-center">
-                <button onclick="toggleSidebar()" class="text-gray-700 text-3xl">&times;</button>
-            </div>
+      <a href="/home" class="logo d-flex align-items-center me-auto">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+         <img src="{% static 'assets/img/logo.png '%}"  alt="" >
+        <h1 class="sitename">liGo</h1>
+      </a>
 
-            <!-- Sidebar Menu -->
-            <ul class="space-y-4 mt-6">
-                <li><a href="/profile" class="text-gray-700">Profile</a></li>
-                <li><a href="/levels" class="text-gray-700">Levels</a></li>
-                <li><a href="/withdrawl" class="text-gray-700">Withdrawl</a></li>
-                <li><a href="/members" class="text-gray-700">Members</a></li>
-                <li><a href="/chat" class="text-gray-700">Chat</a></li>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="/home" class="active">Home<br></a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/courses">Courses</a></li>
+          <li><a href="/my_learning">My Learning</a></li>
+          <li><a href="/referrals">Referrals</a></li>
+          <li><a href="/chatwithus">Chat with us</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li class="dropdown"><a href="/profile"><span>Profile</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+                  <li><a href="/login">Sign-Up</a></li>
+                  <li><a href="/login">Sign-In</a></li>
+              </li>
             </ul>
+          </li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <img src="{% static 'assets/img/hero-bg.jpg' %}"  alt="" data-aos="fade-in"> 
+
+      <div class="container">
+        <h2 data-aos="fade-up" data-aos-delay="100">Learning Today,<br>Leading Tomorrow</h2>
+        <p data-aos="fade-up" data-aos-delay="200">Unlock our courses,Enhance your skills</p>
+        <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
+          <a href="/my_learning" class="btn-get-started">Get Started</a>
         </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="100">
+            <img src="{% static 'assets/img/about.jpg' %}" class="img-fluid"  alt="" >
+          </div>
+
+          <div class="col-lg-6 order-2 order-lg-1 content" data-aos="fade-up" data-aos-delay="200">
+            <h3>Eligo's Missions & Specifications</h3>
+            <p class="fst-italic">
+              EliGo is a dynamic EdTech platform designed to help students excel in their academic and professional journeys. We provide innovative learning solutions, career guidance, and skill-enhancing resources to prepare students for competitive exams, placements, and beyond
+            </p>
+            <ul>
+              <li><i class="bi bi-check-circle"></i> <span>Live and Recorded Sessions</span></li>
+              <li><i class="bi bi-check-circle"></i> <span>Doubt clarifying sessions</span></li>
+              <li><i class="bi bi-check-circle"></i> <span>120+hours classes</span></li>
+              <li><i class="bi bi-check-circle"></i> <span>Get Premium certifications</span></li>
+              <li><i class="bi bi-check-circle"></i> <span>Earn with EliGo</span></li>
+            </ul>
+            <a href="/about" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /About Section -->
+
+    <!-- Counts Section -->
+    <section id="counts" class="section counts light-background">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item text-center w-100 h-100">
+              <span data-purecounter-start="0" data-purecounter-end="1232" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Students</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item text-center w-100 h-100">
+              <span data-purecounter-start="0" data-purecounter-end="64" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Courses</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item text-center w-100 h-100">
+              <span data-purecounter-start="0" data-purecounter-end="42" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Events</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item text-center w-100 h-100">
+              <span data-purecounter-start="0" data-purecounter-end="24" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Trainers</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Counts Section -->
+
+    <!-- Why Us Section -->
+    <section id="why-us" class="section why-us">
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="why-box">
+              <h3>Why Choose Our Courses?</h3>
+              <p>
+                At EliGo, we offer industry-relevant courses designed to equip students with the skills and knowledge needed for academic and career success. Our expert-led training ensures hands-on learning through interactive sessions, real-world case studies, and practical projects. With comprehensive placement support, including mock interviews, resume-building sessions, and career guidance, we help students confidently step into the professional world.
+              </p>
+              <div class="text-center">
+                <a href="/about" class="more-btn"><span>Learn More</span> <i class="bi bi-chevron-right"></i></a>
+              </div>
+            </div>
+          </div><!-- End Why Box -->
+
+          <div class="col-lg-8 d-flex align-items-stretch">
+            <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
+
+              <div class="col-xl-4">
+                <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                  <i class="bi bi-clipboard-data"></i>
+                  <h4>Assignments</h4>
+                  <p>EliGo assignments enhance practical learning and problem-solving skills.</p>
+                </div>
+              </div><!-- End Icon Box -->
+
+              <div class="col-xl-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                  <i class="bi bi-gem"></i>
+                  <h4>Earning</h4>
+                  <p>Earn rewards by referring friends to EliGo courses and grow together! </p>
+                </div>
+              </div><!-- End Icon Box -->
+
+              <div class="col-xl-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                  <i class="bi bi-inboxes"></i>
+                  <h4>Premium Certifications</h4>
+                  <p>Earn industry-recognized certifications and boost your career!</p>
+                </div>
+              </div><!-- End Icon Box -->
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Why Us Section -->
+
+   {% load static %}
+
+<!-- Features Section -->
+<section id="features" class="features section">
+  <div class="container">
+    <div class="row gy-4">
+
+      <!-- Company Logos -->
+      <div class="col-lg-3 col-md-4" data-aos="fade-up">
+        <div class="features-item text-center">
+          <img src="{% static 'assets/img/Amazon.png' %}" alt="Amazon Logo" class="icon" style="width: 100px; height: 100px; object-fit: contain;">
+        </div>
+      </div>
+      
+      <div class="col-lg-3 col-md-4" data-aos="fade-up">
+        <div class="features-item text-center">
+          <img src="{% static 'assets/img/goldmansachs.png' %}" alt="Goldman Sachs Logo" class="icon" style="width: 100px; height: 100px; object-fit: contain;">
+        </div>
+      </div>
+      
+      <div class="col-lg-3 col-md-4" data-aos="fade-up">
+        <div class="features-item text-center">
+          <img src="{% static 'assets/img/microsoft.png' %}" alt="Microsoft Logo" class="icon" style="width: 100px; height: 100px; object-fit: contain;">
+        </div>
+      </div>
+      
+      <div class="col-lg-3 col-md-4" data-aos="fade-up">
+        <div class="features-item text-center">
+          <img src="{% static 'assets/img/booking.png' %}" alt="Booking.com Logo" class="icon" style="width: 100px; height: 100px; object-fit: contain;">
+        </div>
+      </div>
+      
+      <div class="col-lg-3 col-md-4" data-aos="fade-up">
+        <div class="features-item text-center">
+          <img src="{% static 'assets/img/abinbev.png' %}" alt="ABInBev Logo" class="icon" style="width: 100px; height: 100px; object-fit: contain;">
+        </div>
+      </div>
+      
+      <div class="col-lg-3 col-md-4" data-aos="fade-up">
+        <div class="features-item text-center">
+          <img src="{% static 'assets/img/sony.png' %}" alt="Sony Logo" class="icon" style="width: 100px; height: 100px; object-fit: contain;">
+        </div>
+      </div>
+      
+      <div class="col-lg-3 col-md-4" data-aos="fade-up">
+        <div class="features-item text-center">
+          <img src="{% static 'assets/img/delottie.png' %}" alt="Deloitte Logo" class="icon" style="width: 100px; height: 100px; object-fit: contain;">
+        </div>
+      </div>
+      
+      <div class="col-lg-3 col-md-4" data-aos="fade-up">
+        <div class="features-item text-center">
+          <img src="{% static 'assets/img/infosys.png' %}" alt="Infosys Logo" class="icon" style="width: 100px; height: 100px; object-fit: contain;">
+        </div>
+      </div>
+      <!-- End Company Logos -->
+
+    </div>
+  </div>
+</section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="courses section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Courses</h2>
+        <p>Popular Courses</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="course-item">
+              <img src="{% static 'assets/img/course-1.jpg' %}" class="img-fluid" alt="...">
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <p class="category">Artificial Intelligence</p>
+                  <p class="price">Rs.499</p>
+                </div>
+
+                <h3><a href="/courses">AI & ML</a></h3>
+                <p class="description">Artificial Intelligence (AI) enables machines to mimic human intelligence, learning from data to make decisions and solve problems.</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    <img src="{% static 'assets/img/1.png' %}" class="img-fluid"  alt="" >
+                    <a href="" class="trainer-link">Hansika Reddy</a>
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    <i class="bi bi-person user-icon" ></i>&nbsp;50
+                    &nbsp;&nbsp;
+                    <i class="bi bi-heart heart-icon" ></i>&nbsp;65
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Course Item-->
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+            <div class="course-item">
+              <img src="{% static 'assets/img/course-2.jpg' %}" class="img-fluid" alt="...">
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <p class="category">Marketing</p>
+                  <p class="price">Rs.499</p>
+                </div>
+
+                <h3><a href="/courses">Search Engine Optimization</a></h3>
+                <p class="description">Marketing is the strategic process of promoting products or services to the right audience, driving engagement and sales</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    <img src="{% static 'assets/img/4.png' %}" class="img-fluid"  alt="" >
+                    <a href="" class="trainer-link">Suresh sharma</a>
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    <i class="bi bi-person user-icon" ></i>&nbsp;35
+                    &nbsp;&nbsp;
+                    <i class="bi bi-heart heart-icon" ></i>&nbsp;42
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Course Item-->
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+            <div class="course-item">
+              <img src="{% static 'assets/img/course-3.jpg' %}" class="img-fluid" alt="..." >
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <p class="category">Machine learning</p>
+                  <p class="price">Rs.499</p>
+                </div>
+
+                <h3><a href="/courses">Deep Learning</a></h3>
+                <p class="description">Machine learning enables computers to learn from data and improve performance without explicit programming.</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    <img src="{% static 'assets/img/5.png' %}" class="img-fluid"  alt="" >
+                    <a href="" class="trainer-link">Ritwik kumar</a>
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    <i class="bi bi-person user-icon" ></i>&nbsp;20
+                    &nbsp;&nbsp;
+                    <i class="bi bi-heart heart-icon" ></i>&nbsp;85
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Course Item-->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Courses Section -->
+
+    <!-- Trainers Index Section -->
+    <section id="trainers-index" class="section trainers-index">
+
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+            <div class="member">
+              <img src="{% static 'assets/img/trainers/trainer-1.jpg' %}" class="img-fluid"  alt="" >
+              <div class="member-content">
+                <h4>Walter White</h4>
+                <span>Art-Design</span>
+                <p>
+                  Art design combines creativity and technology to create visually compelling graphics, branding, and digital experiences.
+                </p>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter-x"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
+            <div class="member">
+              <img src="{% static 'assets/img/trainers/trainer-2.jpg' %}" class="img-fluid"  alt="" >
+              <div class="member-content">
+                <h4>Sarah Jhinson</h4>
+                <span>Chief Executer</span>
+                <p>
+                  A Chief Executer leads an organization, driving vision, strategy, and growth.
+                </p>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter-x"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+            <div class="member">
+              <img src="{% static 'assets/img/trainers/trainer-3.jpg' %}" class="img-fluid"  alt="" >
+              <div class="member-content">
+                <h4>William Anderson</h4>
+                <span>Content</span>
+                <p>
+                  Content is the foundation of communication, delivering valuable information to engage and inform audiences
+                </p>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter-x"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Trainers Index Section -->
+
+  </main>
+
+  <footer id="footer" class="footer position-relative light-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="/home" class="logo d-flex align-items-center">
+            <span class="sitename">EliGo</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>Noval Tech,HSR Layout</p>
+            <p>Bengalore, Pin - 560102</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+91 78424 39551</span></p>
+            <p><strong>Email:</strong> <span>eligorenderforest@gmail.com</span></p>
+          </div>
+    
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/about">About us</a></li>
+            <li><a href="/courses">Services</a></li>
+            <li><a href="/privacypolicy">Privacy policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="/courses">Web Design</a></li>
+            <li><a href="/courses">Web Development</a></li>
+            <li><a href="/courses">Product Management</a></li>
+            <li><a href="/courses">Marketing</a></li>
+            <li><a href="/courses">Graphic Design</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-12 footer-newsletter">
+          <h4>Our Newsletter</h4>
+          <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
+          <form action="forms/newsletter.php" method="post" class="php-email-form">
+            <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
+            <div class="loading">Loading</div>
+            <div class="error-message"></div>
+            <div class="sent-message">Your subscription request has been sent. Thank you!</div>
+          </form>
+        </div>
+
+      </div>
     </div>
 
-    <!-- Main Content Section -->
-    <section class="relative bg-blue-600 text-white py-24">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <h1 class="text-4xl font-extrabold leading-tight mb-4">Welcome to Eligo, Your EdTech Partner</h1>
-            <p class="text-xl mb-8">Transforming education through innovative learning solutions</p>
-            
-            <!-- Get Started Button (Now Clickable) -->
-            <a href="{% url 'my_courses' %}" class="relative z-10 bg-yellow-500 text-white py-2 px-6 rounded-full text-lg hover:bg-yellow-600 transition">
-                Get Started
-            </a>
-        </div>
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Eligo</strong> <span>All Rights Reserved</span></p>
+    </div>
 
-        <!-- Background Gradient (Now Clickable) -->
-        <div class="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-blue-600 via-transparent to-transparent pointer-events-none"></div>
-    </section>
+  </footer>
 
-    <!-- About Eligo Section -->
-    <section class="bg-white py-16">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold text-blue-600 mb-6">About Eligo</h2>
-            <p class="text-lg text-gray-600 mb-6">Eligo is an innovative edtech platform designed to bring modern learning experiences to students and educators. Our mission is to bridge the gap between traditional education and the digital world, offering personalized learning solutions and fostering growth at every stage of the educational journey.</p>
-        </div>
-    </section>
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p>&copy; 2025 Eligo. All Rights Reserved.</p>
-        </div>
-    </footer>
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js'%}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js'%}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js'%}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js'%}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js'%}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js'%}"></script>
 
 </body>
+
 </html>

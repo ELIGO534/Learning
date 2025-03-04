@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Success</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .success-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      max-width: 500px;
+      text-align: center;
+      transform: perspective(1000px) rotateY(10deg);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .success-card:hover {
+      transform: perspective(1000px) rotateY(0deg);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .success-card h1 {
+      color: #28a745;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .success-card p {
+      color: #555;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    .explore-btn {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .explore-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(40, 167, 69, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="success-card">
+    <h1>Congratulations! 🎉</h1>
+    <p>Your enrollment was successful! Please give our team some time to provide your login credentials. In the meantime, feel free to explore more courses.</p>
+    <button class="explore-btn" onclick="window.location.href='/courses';">Explore More Courses</button>
+  </div>
+
+  <!-- Bootstrap JS (Optional) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

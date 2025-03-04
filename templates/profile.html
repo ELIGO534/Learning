@@ -1,79 +1,289 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Page</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Student Profile - EliGo</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
 </head>
-<body class="bg-gray-100">
-    
-    <!-- Profile Section -->
-    <div class="bg-green-500 text-white p-6 rounded-b-3xl shadow-md">
-        <div class="flex items-center gap-4">
-            <!-- Profile Picture with Fallback -->
-            <img src="{% if profile.profile_picture %}{{ profile.profile_picture.url }}{% else %}https://tse4.mm.bing.net/th?id=OIP.yOX1_KBsR6fClg3ek8G_ZwHaHx&pid=Api&P=0&h=180{% endif %}" 
-                 alt="Profile" class="w-16 h-16 rounded-full border-2 border-white">
-            
-            <div>
-                <!-- Display user name from CustomUser model -->
-                <h2 class="text-xl font-semibold">{{ request.user.name|default:"No Name" }}</h2>
-                <span class="bg-yellow-400 text-black px-2 py-1 text-xs rounded">VIP0</span>
-            </div>
-        </div>
-        <!-- Balance Container -->
-        <div class="mt-4 bg-white text-green-600 p-4 rounded-lg flex justify-between items-center shadow">
-            <span class="text-lg">Balance</span>
-            <span class="text-xl font-semibold">₹{{ profile.balance }}</span>
-        </div>
-        <!-- Withdrawal Amount Container -->
-        <div class="mt-4 bg-white text-red-600 p-4 rounded-lg flex justify-between items-center shadow">
-            <span class="text-lg">Withdrawal Amount</span>
-            <span class="text-xl font-semibold">₹{{ profile.withdrawal_amount }}</span>
-        </div>
-    </div>
 
-    <!-- Quick Actions Grid -->
-    <div class="p-4">
-        <h3 class="text-lg font-semibold mb-4">My Related</h3>
-        <div class="grid grid-cols-2 gap-4 text-center text-gray-700">
-            <!-- Income Details -->
-            <a href="/income/" class="p-3 bg-white rounded-lg shadow hover:bg-gray-100 transition flex flex-col items-center">
-                <span class="text-4xl">✉</span>
-                <p class="mt-2">Income Details</p>
-            </a>
-            <!-- Withdrawal -->
-            <a href="/transaction/" class="p-3 bg-white rounded-lg shadow hover:bg-gray-100 transition flex flex-col items-center">
-                <span class="text-4xl">⤴</span>
-                <p class="mt-2">Withdrawals</p>
-            </a>
-        </div>
-    </div>
+<body class="student-profile-page">
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/917842439551" target="_blank" class="fixed bottom-20 right-6 bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-600 transition">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Chat" class="w-8 h-8">
+  <!-- Header -->
+<header id="header" class="header d-flex align-items-center sticky-top">
+  <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+    <a href="/home" class="logo d-flex align-items-center me-auto">
+      <img src="{% static 'assets/img/logo.png' %}" alt="">
+      <h1 class="sitename">liGo</h1>
     </a>
 
-    <!-- Bottom Navigation Bar -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-300 shadow-lg py-2">
-        <div class="flex justify-around">
-            <a href="/home/" class="flex flex-col items-center text-gray-700 hover:text-blue-500">
-                ⌂ <span class="text-sm">Home</span>
-            </a>
-            <a href="/levels/" class="flex flex-col items-center text-gray-700 hover:text-blue-500">
-                ➕ <span class="text-sm">Levels</span>
-            </a>
-            <a href="/withdrawl/" class="flex flex-col items-center text-gray-700 hover:text-blue-500">
-                ⤴ <span class="text-sm">Withdrawl</span>
-            </a>
-            <a href="/members/" class="flex flex-col items-center text-gray-700 hover:text-blue-500">
-                👤 <span class="text-sm">Members</span>
-            </a>
-            <a href="/chat" class="flex flex-col items-center text-gray-700 hover:text-blue-500">
-                💬 <span class="text-sm">Chat</span>
-            </a>
-        </div>
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="/home" class="active">Home<br></a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/courses">Courses</a></li>
+        <li><a href="/my_learning">My Learning</a></li>
+        <li><a href="/referrals">Referrals</a></li>
+        <li><a href="/chatwithus">Chat with us</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li class="dropdown">
+          <a href="/profile">
+            <span>
+              <i class="bi bi-person-circle me-2"></i> <!-- Profile icon -->
+              Profile
+            </span>
+            <i class="bi bi-chevron-down toggle-dropdown"></i>
+          </a>
+          <ul>
+            <li><a href="/login">Sign-Up</a></li>
+            <li><a href="/login">Sign-In</a></li>
+          </ul>
+        </li>
+      </ul>
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </nav>
+
+    <a class="btn-getstarted" href="/home">Get Started</a>
+
+  </div>
+</header>
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title" data-aos="fade">
+      <div class="heading">
+        <div class="container">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-8">
+              <h1>Student Profile</h1>
+              <p class="mb-0">Track your progress, certifications, and earnings with EliGo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="/home">Home</a></li>
+            <li class="current">Profile</li>
+          </ol>
+        </div>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <!-- Profile Content -->
+    <section id="student-profile" class="student-profile section">
+
+      <div class="container" data-aos="fade-up">
+
+        <!-- Profile Overview -->
+        <div class="profile-overview mb-5">
+          <div class="d-flex align-items-center gap-4">
+            <!-- Profile Icon -->
+            <div class="profile-icon">
+              <i class="bi bi-person-circle display-4 text-primary"></i>
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold">{{ request.user.name|default:"No Name" }}</h2>
+              <span class="badge bg-warning text-dark">Student</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certifications -->
+        <div class="mb-5">
+          <h3 class="text-xl font-bold mb-4">Certifications</h3>
+          {% if certifications %}
+            <div class="row">
+              {% for certification in certifications %}
+                <div class="col-md-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ certification.title }}</h5>
+                      <p class="card-text">Issued by EliGo on {{ certification.issue_date }}</p>
+                      <a href="#" class="btn btn-primary">View Certificate</a>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="alert alert-info">
+              You have no certifications yet. Start learning to earn your first certification!
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Projects -->
+        <div class="mb-5">
+          <h3 class="text-xl font-bold mb-4">Projects</h3>
+          {% if projects %}
+            <div class="row">
+              {% for project in projects %}
+                <div class="col-md-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ project.title }}</h5>
+                      <p class="card-text">{{ project.description }}</p>
+                      <a href="#" class="btn btn-primary">View Project</a>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="alert alert-info">
+              You have no projects yet. Start building your portfolio today!
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Earnings -->
+        <div class="mb-5">
+          <h3 class="text-xl font-bold mb-4">Earnings</h3>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Total Earnings: ₹{{ profile.balance }}</h5>
+              <p class="card-text">View detailed earnings on the <a href="/transaction" class="text-primary">Transactions Page</a>.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Referrals -->
+        <div class="mb-5">
+          <h3 class="text-xl font-bold mb-4">Referrals</h3>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Referral Earnings: ₹</h5>
+              <p class="card-text">You have referred people. Track your referrals on the <a href="/referrals" class="text-primary">Referrals Page</a>.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Withdrawal -->
+        <div class="mb-5">
+          <h3 class="text-xl font-bold mb-4">Withdrawal</h3>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Withdrawal Balance: ₹{{ profile.withdrawal_amount }}</h5>
+              <p class="card-text">You can withdraw your earnings to your bank account.</p>
+              <a href="/withdrawl" class="btn btn-primary">Withdraw Now</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Profile Content -->
+
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer" class="footer position-relative light-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="/home" class="logo d-flex align-items-center">
+            <span class="sitename">EliGo</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>Noval Tech, HSR Layout</p>
+            <p>Bengaluru, Pin - 560102</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+91 78424 39551</span></p>
+            <p><strong>Email:</strong> <span>eligorenderforest@gmail.com</span></p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/courses">Courses</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="/courses">Web Development</a></li>
+            <li><a href="/courses">Data Science</a></li>
+            <li><a href="/courses">Digital Marketing</a></li>
+            <li><a href="/courses">UI/UX Design</a></li>
+            <li><a href="/courses">Cloud Computing</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-12 footer-newsletter">
+          <h4>Our Newsletter</h4>
+          <p>Subscribe to our newsletter and receive the latest updates about our courses and events!</p>
+          <form action="forms/newsletter.php" method="post" class="php-email-form">
+            <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
+            <div class="loading">Loading</div>
+            <div class="error-message"></div>
+            <div class="sent-message">Your subscription request has been sent. Thank you!</div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">EliGo</strong> <span>All Rights Reserved</span></p>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
 </body>
+
 </html>

@@ -1,150 +1,58 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <style>
-        /* Add your existing styles */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to right, #001f3d, #2a3a6d);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            opacity: 0.95;
-        }
-
-        .signup-container {
-            background-color: #d4af37;
-            padding: 30px 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 450px;
-            color: #000;
-        }
-
-        .signup-container h1 {
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
-
-        .form-group button {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            color: white;
-            background-color: #4CAF50;
-            cursor: pointer;
-        }
-
-        .payment-link {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .payment-link button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .payment-link button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <title>Course Offer</title>
+    <link rel="stylesheet" href="{% static 'assets/css/styles2.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="signup-container">
-        <h1>Sign Up</h1>
-        <!-- Step 1: Fill Form -->
-        <div id="signup-form">
-            <form id="signup-form" action="#" method="POST" onsubmit="return proceedToPayment(event)">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+    <div class="container">
+        <h1>Unlock Your Future with Our Courses</h1>
+        <p class="offer-text">We are offering every course for just <span class="highlight">₹499/-</span>. After paying the amount, you can change your domain by filling out our company form.</p>
+        
+        <!-- Trending Courses Section -->
+        <div class="slider-box">
+            <h2>Trending Courses</h2>
+            <div class="slider">
+                <div class="card">
+                    <img class="background" src="https://th.bing.com/th/id/OIP.UtdAh593KP8cyLxJN8TmUgHaDU?w=292&h=156&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="AI Image">
+                    <div class="card-content">
+                        <h3 class="title">Artificial Intelligence</h3>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                <div class="card active">
+                    <img class="background" src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg" alt="Machine Learning Image">
+                    <div class="card-content">
+                        <h3 class="title">Machine Learning</h3>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                <div class="card">
+                    <img class="background" src="https://cdn.pixabay.com/photo/2018/05/18/15/30/web-design-3411373_1280.jpg" alt="Data Science Image">
+                    <div class="card-content">
+                        <h3 class="title">Data Science</h3>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="confirm-password">Confirm Password</label>
-                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+                <div class="card">
+                    <img class="background" src="https://th.bing.com/th/id/OIP.tg0AZZFGHkPuv1wTfiZh9AHaE8?w=256&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Embedded Systems Image">
+                    <div class="card-content">
+                        <h3 class="title">Embedded Systems</h3>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <button type="submit">Next</button>
+                <div class="card">
+                    <img class="background" src="https://images.pexels.com/photos/730564/pexels-photo-730564.jpeg" alt="Stock Marketing Image">
+                    <div class="card-content">
+                        <h3 class="title">Stock Marketing</h3>
+                    </div>
                 </div>
-                <div id="error-message" class="error-message"></div>
-            </form>
-        </div>
-
-        <!-- Step 2: Payment Section -->
-        <div id="payment-section" style="display: none;">
-            <h2>Complete Payment</h2>
-            <p>To complete the signup process, please make a payment.</p>
-            <div class="payment-link">
-                <button onclick="handlePayment()">Pay Now</button>
             </div>
         </div>
+
+        <a href="https://your-payment-link.com" class="pay-now-button">Pay Now</a>
     </div>
 
-    <script>
-        function proceedToPayment(event) {
-            event.preventDefault();
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
-            const errorMessage = document.getElementById('error-message');
-
-            errorMessage.textContent = ''; // Clear error message
-
-            // Check if passwords match
-            if (password !== confirmPassword) {
-                errorMessage.textContent = 'Passwords do not match!';
-                return false;
-            }
-
-            // Hide signup form and show payment section
-            document.getElementById('signup-form').style.display = 'none';
-            document.getElementById('payment-section').style.display = 'block'; // Show payment section
-            return false;
-        }
-
-        function handlePayment() {
-            const paymentUrl = "https://rzp.io/rzp/xMQlpiiT"; // Replace with your actual payment link
-            window.open(paymentUrl, "_blank"); // Open the payment link in a new tab
-
-            // Simulate payment verification
-            setTimeout(() => {
-                const paymentSuccessful = confirm("Did you complete the payment? Click OK for Yes or Cancel for No.");
-                if (paymentSuccessful) {
-                    alert("Payment successful! You can now log in.");
-                    window.location.href = "/login/";
-                } else {
-                    alert("Your payment was not successful. Redirecting to login.");
-                    window.location.href = "/login/";
-                }
-            }, 1000); // Simulate user return from payment
-        }
-    </script>
+    <script src="{% static 'assets/js/script2.js' %}"></script>
 </body>
 </html>

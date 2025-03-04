@@ -1,97 +1,255 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Need Help?</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Need Help? - EliGo</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gray-100">
-    
-    <!-- Header -->
-    <header class="bg-green-500 text-white p-4 text-center">
-        <h1 class="text-xl font-bold">Need Help?</h1>
-    </header>
+
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="/home" class="logo d-flex align-items-center me-auto">
+        <img src="{% static 'assets/img/logo.png' %}" alt="">
+        <h1 class="sitename">liGo</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="/home" class="active">Home<br></a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/courses">Courses</a></li>
+          <li><a href="/my_learning">My Learning</a></li>
+          <li><a href="/referrals">Referrals</a></li>
+          <li><a href="/chatwithus">Chat with us</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li class="dropdown"><a href="/profile"><span>Profile</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="/login">Sign-Up</a></li>
+              <li><a href="/login">Sign-In</a></li>
+            </ul>
+          </li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="/my_learning">Get Started</a>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title" data-aos="fade">
+      <div class="heading">
+        <div class="container">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-8">
+              <h1>Need Help?</h1>
+              <p class="mb-0">Find solutions to common problems or contact us for further assistance.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/referrals">referrals</a></li>
+            <li class="current">Need Help?</li>
+          </ol>
+        </div>
+      </nav>
+    </div><!-- End Page Title -->
 
     <!-- Help Section -->
-    <div class="container mx-auto p-6">
+    <section class="bg-white py-6">
+      <div class="container mx-auto px-4">
         <div class="bg-white shadow-md rounded-lg p-6">
-            
-            <h2 class="text-lg font-semibold text-gray-700 mb-4">Common Problems & Solutions</h2>
+          
+          <h2 class="text-lg font-semibold text-gray-700 mb-4">Common Problems & Solutions</h2>
 
-            <!-- Problem 1 -->
-            <div class="mb-6">
-                <h3 class="text-md font-bold text-red-600">Still Withdrawal Pending?</h3>
-                <p class="text-gray-700 mt-2">Withdrawal processing time takes a minimum of 5-7 working days.</p>
-                <p class="text-gray-700">Ensure that you have provided the correct withdrawal details such as account number and IFSC code.</p>
-                <p class="text-gray-700">Check if your bank account is active and not blocked.</p>
-                <p class="text-gray-700">Confirm that you have received a transaction reference number.</p>
-                <p class="text-gray-700">Monitor your email or SMS for any updates from the bank.</p>
-                <p class="text-gray-700">If there is a delay beyond 7 working days, contact customer support.</p>
-                <p class="text-gray-700">Verify if your account has any restrictions due to KYC issues.</p>
-                <p class="text-gray-700">Ensure that your bank supports incoming transactions from this platform.</p>
-                <p class="text-gray-700">Re-attempt the withdrawal if allowed by the system.</p>
-                <p class="text-gray-700">If the issue persists, escalate it to higher bank authorities.</p>
-            </div>
-            
-            <!-- Problem 2 -->
-            <div class="mb-6">
-                <h3 class="text-md font-bold text-red-600">Payment status is Success but not Credited?</h3>
-                <p class="text-gray-700 mt-2">Kindly check your bank statement twice and wait for a minute.</p>
-                <p class="text-gray-700">Ensure your internet connection is stable and retry checking the balance.</p>
-                <p class="text-gray-700">Look for any SMS or email notification regarding the transaction.</p>
-                <p class="text-gray-700">Sometimes banks process transactions in batches, so wait for some time.</p>
-                <p class="text-gray-700">If the transaction is not reflected, contact your bank support team.</p>
-                <p class="text-gray-700">Verify if your bank account has any restrictions or holds.</p>
-                <p class="text-gray-700">Cross-check with the transaction ID provided in your banking app.</p>
-                <p class="text-gray-700">If necessary, report the issue to your payment service provider.</p>
-                <p class="text-gray-700">Keep records of all transaction details for dispute resolution.</p>
-                <p class="text-gray-700">Visit your respective bank branch for further assistance.</p>
-            </div>
-            
-            <!-- Problem 3 -->
-            <div class="mb-6">
-                <h3 class="text-md font-bold text-red-600">Payment Status is Rejected?</h3>
-                <p class="text-gray-700 mt-2">Ensure that you have provided the correct withdrawal details.</p>
-                <p class="text-gray-700">Double-check your account number and IFSC code for any errors.</p>
-                <p class="text-gray-700">Confirm if your bank account is active and has no restrictions.</p>
-                <p class="text-gray-700">Check whether your bank allows transactions from this platform.</p>
-                <p class="text-gray-700">If your account is involved in third-party websites, take corrective action.</p>
-                <p class="text-gray-700">Follow the steps below to resolve the issue:</p>
-                <ul class="list-disc pl-6 text-gray-700 mt-2">
-                    <li>Click <a href="/upload" class="text-blue-500 hover:underline">Upload</a> and provide the required details.</li>
-                    <li>Fill out the form with valid details.</li>
-                    <li>Ensure your documents are clear and legible.</li>
-                    <li>Submit your objection letter explaining the issue.</li>
-                    <li>Click Submit to finalize the request.</li>
-                    <li>After submission, we will forward your objection form to your withdrawal bank.</li>
-                    <li>Wait for confirmation from your bank regarding the resolution.</li>
-                    <li>Contact support if you do not receive any updates within the given timeframe.</li>
-                </ul>
-            </div>
+          <!-- Problem 1 -->
+          <div class="mb-6">
+            <h3 class="text-md font-bold text-red-600">Still Withdrawal Pending?</h3>
+            <p class="text-gray-700 mt-2">Withdrawal processing time takes a minimum of 5-7 working days.</p>
+            <p class="text-gray-700">Ensure that you have provided the correct withdrawal details such as account number and IFSC code.</p>
+            <p class="text-gray-700">Check if your bank account is active and not blocked.</p>
+            <p class="text-gray-700">Confirm that you have received a transaction reference number.</p>
+            <p class="text-gray-700">Monitor your email or SMS for any updates from the bank.</p>
+            <p class="text-gray-700">If there is a delay beyond 7 working days, contact customer support.</p>
+            <p class="text-gray-700">Verify if your account has any restrictions due to KYC issues.</p>
+            <p class="text-gray-700">Ensure that your bank supports incoming transactions from this platform.</p>
+            <p class="text-gray-700">Re-attempt the withdrawal if allowed by the system.</p>
+            <p class="text-gray-700">If the issue persists, escalate it to higher bank authorities.</p>
+          </div>
+          
+          <!-- Problem 2 -->
+          <div class="mb-6">
+            <h3 class="text-md font-bold text-red-600">Payment status is Success but not Credited?</h3>
+            <p class="text-gray-700 mt-2">Kindly check your bank statement twice and wait for a minute.</p>
+            <p class="text-gray-700">Ensure your internet connection is stable and retry checking the balance.</p>
+            <p class="text-gray-700">Look for any SMS or email notification regarding the transaction.</p>
+            <p class="text-gray-700">Sometimes banks process transactions in batches, so wait for some time.</p>
+            <p class="text-gray-700">If the transaction is not reflected, contact your bank support team.</p>
+            <p class="text-gray-700">Verify if your bank account has any restrictions or holds.</p>
+            <p class="text-gray-700">Cross-check with the transaction ID provided in your banking app.</p>
+            <p class="text-gray-700">If necessary, report the issue to your payment service provider.</p>
+            <p class="text-gray-700">Keep records of all transaction details for dispute resolution.</p>
+            <p class="text-gray-700">Visit your respective bank branch for further assistance.</p>
+          </div>
+          
+          <!-- Problem 3 -->
+          <div class="mb-6">
+            <h3 class="text-md font-bold text-red-600">Payment Status is Rejected?</h3>
+            <p class="text-gray-700 mt-2">Ensure that you have provided the correct withdrawal details.</p>
+            <p class="text-gray-700">Double-check your account number and IFSC code for any errors.</p>
+            <p class="text-gray-700">Confirm if your bank account is active and has no restrictions.</p>
+            <p class="text-gray-700">Check whether your bank allows transactions from this platform.</p>
+            <p class="text-gray-700">If your account is involved in third-party websites, take corrective action.</p>
+            <p class="text-gray-700">Follow the steps below to resolve the issue:</p>
+            <ul class="list-disc pl-6 text-gray-700 mt-2">
+              <li>Click <a href="/upload" class="text-blue-500 hover:underline">Upload</a> and provide the required details.</li>
+              <li>Fill out the form with valid details.</li>
+              <li>Ensure your documents are clear and legible.</li>
+              <li>Submit your objection letter explaining the issue.</li>
+              <li>Click Submit to finalize the request.</li>
+              <li>After submission, we will forward your objection form to your withdrawal bank.</li>
+              <li>Wait for confirmation from your bank regarding the resolution.</li>
+              <li>Contact support if you do not receive any updates within the given timeframe.</li>
+            </ul>
+          </div>
 
-            <!-- Additional Problems -->
-            <div class="mb-6">
-                <h3 class="text-md font-bold text-red-600">Why was my account flagged for suspicious activity?</h3>
-                <p class="text-gray-700 mt-2">Ensure that you are not engaging in fraudulent transactions.</p>
-                <p class="text-gray-700">Verify that your bank account is not linked to suspicious third-party services.</p>
-                <p class="text-gray-700">Contact customer support for further clarification.</p>
-                <p class="text-gray-700">Provide any necessary documents to verify your identity.</p>
-                <p class="text-gray-700">Avoid making multiple withdrawal requests in a short period.</p>
-                <p class="text-gray-700">Use only registered and verified payment methods.</p>
-                <p class="text-gray-700">Monitor your account for any unauthorized transactions.</p>
-                <p class="text-gray-700">Request a security check from your bank if needed.</p>
-                <p class="text-gray-700">Reset your passwords and enable two-factor authentication.</p>
-                <p class="text-gray-700">If flagged incorrectly, submit an appeal to remove the restriction.</p>
-            </div>
+          <!-- Additional Problems -->
+          <div class="mb-6">
+            <h3 class="text-md font-bold text-red-600">Why was my account flagged for suspicious activity?</h3>
+            <p class="text-gray-700 mt-2">Ensure that you are not engaging in fraudulent transactions.</p>
+            <p class="text-gray-700">Verify that your bank account is not linked to suspicious third-party services.</p>
+            <p class="text-gray-700">Contact customer support for further clarification.</p>
+            <p class="text-gray-700">Provide any necessary documents to verify your identity.</p>
+            <p class="text-gray-700">Avoid making multiple withdrawal requests in a short period.</p>
+            <p class="text-gray-700">Use only registered and verified payment methods.</p>
+            <p class="text-gray-700">Monitor your account for any unauthorized transactions.</p>
+            <p class="text-gray-700">Request a security check from your bank if needed.</p>
+            <p class="text-gray-700">Reset your passwords and enable two-factor authentication.</p>
+            <p class="text-gray-700">If flagged incorrectly, submit an appeal to remove the restriction.</p>
+          </div>
         </div>
+      </div>
+    </section><!-- /Help Section -->
+
+  </main>
+
+  <footer id="footer" class="footer position-relative light-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="/home" class="logo d-flex align-items-center">
+            <span class="sitename">EliGo</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>Noval Tech, HSR Layout</p>
+            <p>Bengaluru, Pin - 560102</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+91 98765 43210</span></p>
+            <p><strong>Email:</strong> <span>info@ligo.com</span></p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/courses">Courses</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="/courses">Web Development</a></li>
+            <li><a href="/courses">Data Science</a></li>
+            <li><a href="/courses">Digital Marketing</a></li>
+            <li><a href="/courses">UI/UX Design</a></li>
+            <li><a href="/courses">Cloud Computing</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-12 footer-newsletter">
+          <h4>Our Newsletter</h4>
+          <p>Subscribe to our newsletter and receive the latest updates about our courses and events!</p>
+          <form action="forms/newsletter.php" method="post" class="php-email-form">
+            <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
+            <div class="loading">Loading</div>
+            <div class="error-message"></div>
+            <div class="sent-message">Your subscription request has been sent. Thank you!</div>
+          </form>
+        </div>
+
+      </div>
     </div>
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white text-center p-4 mt-6">
-        <p>Any additional queries? Contact us at <a href="mailto:eligorenderforest@gmail.com" class="text-blue-400 hover:underline">eligorenderforest@gmail.com</a> or call us at <a href="tel:+917842439551" class="text-blue-400 hover:underline">+91 78424 39551</a></p>
-        <p class="mt-2">Eligo &copy; All rights reserved.</p>
-    </footer>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">EliGo</strong> <span>All Rights Reserved</span></p>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
 </body>
-</html>
-</body>
+
 </html>

@@ -6,6 +6,7 @@ from django.contrib.auth.hashers import make_password
 from myapp.models import Profile
 from myapp.forms import ProfileForm
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 
 User = get_user_model()
  # If you are using a custom User model
@@ -281,3 +282,16 @@ def upload(request):
     return render(request,'upload.html')
 def uploadsuccess(request):
     return render(request,'uploadsuccess.html')
+def about(request):
+    return render(request,'about.html')
+def courses(request):
+    return render(request,'courses.html')
+@login_required
+def my_learning(request):
+    return render(request, 'my_learning.html')
+def contact(request):
+    return render(request, "contact.html")
+def payment_success(request):
+    return render(request, 'payment_success.html')
+def privacypolicy(request):
+    return render(request, 'privacypolicy.html')

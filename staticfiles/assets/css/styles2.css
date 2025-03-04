@@ -1,0 +1,198 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    text-align: center;
+    overflow: auto;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeIn 2s ease-in-out;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    animation: slideIn 1.5s ease-in-out;
+}
+
+.offer-text {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    animation: slideIn 2s ease-in-out;
+}
+
+.highlight {
+    color: #ffcc00;
+    font-weight: bold;
+}
+
+/* Slider Box */
+.slider-box {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.slider-box h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #ffcc00;
+}
+
+/* Slider Styles */
+.slider {
+    display: flex;
+    gap: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.card {
+    flex: 1;
+    width: 150px; /* Reduced width for cards */
+    height: 300px; /* Keep the height unchanged */
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    transition: flex 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card.active {
+    flex: 7; /* Wider expansion for the hovered image */
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card:hover .background {
+    transform: scale(1.1);
+}
+
+.card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.card.active .card-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* Pay Now Button */
+.pay-now-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background: #ffcc00;
+    color: #1e3c72;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: background 0.3s ease, transform 0.3s ease;
+    animation: fadeIn 3s ease-in-out;
+    box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
+}
+
+.pay-now-button:hover {
+    background: #ffdd33;
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(255, 204, 0, 0.5);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem; /* Smaller heading for mobile */
+    }
+
+    .slider-box h2 {
+        font-size: 1.5rem; /* Smaller slider heading for mobile */
+    }
+
+    .slider {
+        flex-direction: column; /* Stack cards vertically on mobile */
+        gap: 10px;
+    }
+
+    .card {
+        width: 100%; /* Full width for mobile */
+        height: 150px; /* Shorter cards for mobile */
+        flex: 1;
+    }
+
+    .card.active {
+        flex: 2; /* Slightly expand the hovered card on mobile */
+    }
+
+    .pay-now-button {
+        font-size: 1rem; /* Smaller button text for mobile */
+        padding: 10px 20px;
+    }
+}

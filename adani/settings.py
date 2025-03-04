@@ -97,6 +97,9 @@ STATICFILES_DIRS = [
 ]
 STATIC_URL = 'static/'
 
+LOGIN_URL = '/login/'  # Change to your login URL
+
+
 # Media files (profile pictures, etc.)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

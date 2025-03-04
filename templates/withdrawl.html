@@ -1,71 +1,236 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Withdrawal</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Withdrawal - EliGo</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gray-100">
 
-    <!-- Centered Content Section -->
-    <section class="flex items-center justify-center h-screen">
-        <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
-            <!-- Header -->
-            <header class="bg-green-500 text-white p-4 text-center mb-6">
-                <h1 class="text-xl font-bold">Withdrawal</h1>
-            </header>
+  <!-- Header -->
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-            <!-- Content Section -->
-            <div class="text-center">
-                <h2 class="text-lg font-semibold text-gray-700 mb-4">Withdrawal Request</h2>
+      <a href="/home" class="logo d-flex align-items-center me-auto">
+        <img src="{% static 'assets/img/logo.png' %}" alt="">
+        <h1 class="sitename">liGo</h1>
+      </a>
 
-                <!-- Show Available Balance -->
-                <p class="text-lg font-bold text-green-600 mb-4">Available Balance: ₹{{ balance }}</p>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="/home" class="active">Home<br></a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/courses">Courses</a></li>
+          <li><a href="/my_learning">My Learning</a></li>
+          <li><a href="/referrals">Referrals</a></li>
+          <li><a href="/chatwithus">Chat with us</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li class="dropdown"><a href="/profile"><span>Profile</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="/login">Sign-Up</a></li>
+              <li><a href="/login">Sign-In</a></li>
+            </ul>
+          </li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
 
-                <!-- Display Messages -->
-                {% if messages %}
-                    {% for message in messages %}
-                        <p class="font-semibold {% if message.tags == 'error' %}text-red-600{% else %}text-green-600{% endif %}">{{ message }}</p>
-                    {% endfor %}
-                {% endif %}
+      <a class="btn-getstarted" href="/courses">Get Started</a>
 
-                <!-- Withdrawal Form -->
-                <form id="withdrawal-form" method="POST" action="{% url 'withdrawl' %}">
-                    {% csrf_token %}
+    </div>
+  </header>
 
-                    <label class="block mb-2 text-gray-600 font-semibold">Name:</label>
-                    <input type="text" name="name" required class="border p-2 w-full rounded">
+  <main class="main">
 
-                    <label class="block mb-2 text-gray-600 font-semibold">Account Number:</label>
-                    <input type="text" name="account_number" required class="border p-2 w-full rounded">
-
-                    <label class="block mt-4 mb-2 text-gray-600 font-semibold">IFSC Code:</label>
-                    <input type="text" name="ifsc_code" required class="border p-2 w-full rounded">
-
-                    <label class="block mt-4 mb-2 text-gray-600 font-semibold">Amount:</label>
-                    <input type="number" id="amount" name="amount" required min="1" class="border p-2 w-full rounded">
-
-                    <!-- Withdrawal Button -->
-                    <button type="submit" 
-                            id="withdraw-button" 
-                            class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded mt-4
-                                   {% if not is_authorized %} disabled-button {% endif %}">
-                        Withdraw
-                    </button>
-                </form>
+    <!-- Page Title -->
+    <div class="page-title" data-aos="fade">
+      <div class="heading">
+        <div class="container">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-8">
+              <h1>Withdrawal</h1>
+              <p class="mb-0">Request a withdrawal of your earnings</p>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+      <nav class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li class="current">Withdrawal</li>
+          </ol>
+        </div>
+      </nav>
+    </div><!-- End Page Title -->
 
-    <script>
-        document.getElementById("withdrawal-form").addEventListener("submit", function (event) {
-            let amount = document.getElementById("amount").value;
-            if (amount <= 0) {
-                alert("Amount must be greater than 0.");
-                event.preventDefault(); // Prevent form submission if invalid
-            }
-        });
-    </script>
+    <!-- Withdrawal Form Section -->
+    <section class="bg-white py-6">
+      <div class="container mx-auto px-4">
+        <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md mx-auto">
+          <h2 class="text-lg font-semibold text-gray-700 mb-4">Withdrawal Request</h2>
+
+          <!-- Show Available Balance -->
+          <p class="text-lg font-bold text-green-600 mb-4">Available Balance: ₹{{ balance }}</p>
+
+          <!-- Display Messages -->
+          {% if messages %}
+            {% for message in messages %}
+              <p class="font-semibold {% if message.tags == 'error' %}text-red-600{% else %}text-green-600{% endif %}">{{ message }}</p>
+            {% endfor %}
+          {% endif %}
+
+          <!-- Withdrawal Form -->
+          <form id="withdrawal-form" method="POST" action="{% url 'withdrawl' %}">
+            {% csrf_token %}
+
+            <label class="block mb-2 text-gray-600 font-semibold">Name:</label>
+            <input type="text" name="name" required class="border p-2 w-full rounded">
+
+            <label class="block mb-2 text-gray-600 font-semibold">Account Number:</label>
+            <input type="text" name="account_number" required class="border p-2 w-full rounded">
+
+            <label class="block mt-4 mb-2 text-gray-600 font-semibold">IFSC Code:</label>
+            <input type="text" name="ifsc_code" required class="border p-2 w-full rounded">
+
+            <label class="block mt-4 mb-2 text-gray-600 font-semibold">Amount:</label>
+            <input type="number" id="amount" name="amount" required min="1" class="border p-2 w-full rounded">
+
+            <!-- Withdrawal Button -->
+            <button type="submit" 
+                    id="withdraw-button" 
+                    class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded mt-4
+                           {% if not is_authorized %} disabled-button {% endif %}">
+              Withdraw
+            </button>
+          </form>
+        </div>
+      </div>
+    </section><!-- /Withdrawal Form Section -->
+
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer" class="footer position-relative light-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="/home" class="logo d-flex align-items-center">
+            <span class="sitename">EliGo</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>Noval Tech, HSR Layout</p>
+            <p>Bengaluru, Pin - 560102</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+91 78424 39551</span></p>
+            <p><strong>Email:</strong> <span>eligorenderforest@gmail.com</span></p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/courses">Courses</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="/courses">Web Development</a></li>
+            <li><a href="/courses">Data Science</a></li>
+            <li><a href="/courses">Digital Marketing</a></li>
+            <li><a href="/courses">UI/UX Design</a></li>
+            <li><a href="/courses">Cloud Computing</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-12 footer-newsletter">
+          <h4>Our Newsletter</h4>
+          <p>Subscribe to our newsletter and receive the latest updates about our courses and events!</p>
+          <form action="forms/newsletter.php" method="post" class="php-email-form">
+            <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
+            <div class="loading">Loading</div>
+            <div class="error-message"></div>
+            <div class="sent-message">Your subscription request has been sent. Thank you!</div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">EliGo</strong> <span>All Rights Reserved</span></p>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+  <!-- Form Validation Script -->
+  <script>
+    document.getElementById("withdrawal-form").addEventListener("submit", function (event) {
+      let amount = document.getElementById("amount").value;
+      if (amount <= 0) {
+        alert("Amount must be greater than 0.");
+        event.preventDefault(); // Prevent form submission if invalid
+      }
+    });
+  </script>
+
 </body>
+
 </html>

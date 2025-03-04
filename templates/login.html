@@ -1,207 +1,149 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    {% load static %}
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to right, #001f3d, #2a3a6d);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            opacity: 0.95;
-            overflow: hidden;
-            position: relative;
-        }
-
-        #welcome-video {
-            position: absolute;
+        /* Video container styling */
+        #intro-video {
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 1;
-            opacity: 1;
-            transition: opacity 2s ease-in-out;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            object-fit: cover; /* Ensures the video covers the entire container */
+            z-index: 1000;
+            transition: opacity 1.5s ease-in-out;
         }
 
-        .login-container {
-            background-color: #d4af37;
-            padding: 30px 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 450px;
-            color: #000;
+        /* Adjust video for mobile view */
+        @media (max-width: 768px) {
+            #intro-video {
+                width: 100vh; /* Swap width and height for mobile */
+                height: 100vw; /* Swap width and height for mobile */
+                left: 50%; /* Center horizontally */
+                top: 50%; /* Center vertically */
+                transform: translate(-50%, -50%); /* Center and rotate */
+            }
+        }
+
+        /* Hide the login page initially */
+        .forms-section {
             opacity: 0;
-            z-index: 2;
-            transition: opacity 2s ease-in-out;
+            transition: opacity 1.5s ease-in-out;
         }
 
-        .login-container.fade-in {
+        /* Show the login page after the video ends */
+        .show-login {
             opacity: 1;
-        }
-
-        .login-container h1 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            text-align: center;
-            color: #333;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            font-weight: 600;
-            margin-bottom: 8px;
-            display: block;
-            color: #000;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 15px;
-            font-size: 16px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            background-color: #f4f4f4;
-            color: #333;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-group input:hover {
-            background-color: #e6e6e6;
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-        }
-
-        .form-group input:focus {
-            border-color: #4CAF50;
-            outline: none;
-            box-shadow: 0 0 8px rgba(76, 175, 80, 0.6);
-        }
-
-        .form-group button {
-            width: 100%;
-            padding: 15px;
-            background-color: #4CAF50;
-            border: none;
-            color: #fff;
-            font-size: 18px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        .form-group button:hover {
-            background-color: #45a049;
-            transform: translateY(-4px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-        }
-
-        .form-group a {
-            display: block;
-            text-align: center;
-            margin-top: 15px;
-            color: #333;
-            font-size: 14px;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .form-group a:hover {
-            color: #444;
-            text-decoration: underline;
-        }
-
-        .error-message {
-            color: #ff4081;
-            font-size: 14px;
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        .success {
-            color: #4CAF50;
-            font-size: 14px;
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        .error {
-            color: #ff4081;
-            font-size: 14px;
-            text-align: center;
-            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-
-    <!-- Video background -->
-    <video id="welcome-video" autoplay muted>
-        <source src="{% static 'videos/welcome_video.mp4' %}" type="video/mp4">
+    <!-- Introduction Video -->
+    <video id="intro-video" autoplay muted>
+        <source src="{% static 'assets/videos/logovideo.mp4' %}" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
-    <!-- Login Form -->
-    <div class="login-container" id="login-form-container">
-        <h1>Login/Signin</h1>
-        <form id="login-form" action="{% url 'login' %}" method="POST">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+    <!-- Login Page Content -->
+    <section class="forms-section">
+        <div class="forms">
+            <div class="form-wrapper is-active">
+                <button type="button" class="switcher switcher-login" action="/home">
+                    Login
+                    <span class="underline"></span>
+                </button>
+                <form class="form form-login" method="POST" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <fieldset>
+                        <legend>Please, enter your phone number and password for login.</legend>
+                        <div class="input-block">
+                            <label for="login-phone">Phone number</label>
+                            <input id="login-phone" name="phone" type="text" required>
+                        </div>
+                        <div class="input-block">
+                            <label for="login-password">Password</label>
+                            <input id="login-password" name="password" type="password" required>
+                        </div>
+                        <div class="terms-block">
+                            <input type="checkbox" id="read-terms">
+                            <label for="read-terms">I have read the <a href="/privacypolicy" target="_blank">Terms and Conditions</a></label>
+                        </div>
+                        <div class="terms-block">
+                            <input type="checkbox" id="agree-terms">
+                            <label for="agree-terms">I agree with the Terms and Conditions</label>
+                        </div>
+                    </fieldset>
+                    <button type="submit" class="btn-login" id="login-button" disabled>Login</button>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            <div class="form-wrapper">
+                <button type="button" class="switcher switcher-signup">
+                    Sign Up
+                    <span class="underline"></span>
+                </button>
+                <form class="form form-signup" action="/signup">
+                    <fieldset>
+                        <legend>Please, enter your email, password and password confirmation for sign up.</legend>
+                        <div class="input-block">
+                            <label for="Name">Name</label>
+                            <input id="signup-name" type="name" required>
+                        </div>
+                        <div class="input-block">
+                            <label for="signup-phone">Phone no.</label>
+                            <input id="signup-email" type="phone" required>
+                        </div>
+                        <div class="input-block">
+                            <label for="signup-password">Password</label>
+                            <input id="signup-password" type="password" required>
+                        </div>
+                        <div class="input-block">
+                            <label for="signup-password-confirm">Confirm password</label>
+                            <input id="signup-password-confirm" type="password" required>
+                        </div>
+                    </fieldset>
+                    <button type="submit" class="btn-signup">Continue</button>
+                </form>
             </div>
-            <div class="form-group">
-                <button type="submit">Login</button>
-            </div>
-            <div class="form-group">
-                <a href="/signup/">Don't have an account? Sign Up</a>
-            </div>
-            <!-- Display messages -->
-            <div id="messages">
-                {% if messages %}
-                    {% for message in messages %}
-                        <p class="{{ message.tags }}">{{ message }}</p>
-                    {% endfor %}
-                {% endif %}
-            </div>
-        </form>
-    </div>
+        </div>
+    </section>
+
+    <script src="{% static 'assets/js/script.js'%}"></script>
 
     <script>
-        window.onload = function() {
-            const video = document.getElementById('welcome-video');
-            const loginFormContainer = document.getElementById('login-form-container');
+        document.addEventListener("DOMContentLoaded", function () {
+            const video = document.getElementById("intro-video");
+            const loginSection = document.querySelector(".forms-section");
 
-            video.onended = function() {
-                loginFormContainer.classList.add('fade-in');
-            };
+            // When the video ends, fade out the video and fade in the login page
+            video.addEventListener("ended", function () {
+                video.style.opacity = "0"; // Fade out the video
+                setTimeout(() => {
+                    video.style.display = "none"; // Hide the video
+                    loginSection.classList.add("show-login"); // Fade in the login page
+                }, 1500); // Match the transition duration
+            });
 
-            setTimeout(function() {
-                loginFormContainer.classList.add('fade-in');
-            }, 2000);
-        };
+            // Terms and Conditions Checkbox Logic
+            const readTermsCheckbox = document.getElementById("read-terms");
+            const agreeTermsCheckbox = document.getElementById("agree-terms");
+            const loginButton = document.getElementById("login-button");
+
+            function toggleLoginButton() {
+                if (readTermsCheckbox.checked && agreeTermsCheckbox.checked) {
+                    loginButton.disabled = false;
+                } else {
+                    loginButton.disabled = true;
+                }
+            }
+
+            readTermsCheckbox.addEventListener("change", toggleLoginButton);
+            agreeTermsCheckbox.addEventListener("change", toggleLoginButton);
+        });
     </script>
 </body>
 </html>
