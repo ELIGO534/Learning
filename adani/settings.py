@@ -17,7 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your_default_secret_key')  # Fetch from environment variables
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['learning-1-a6c2.onrender.com', 'localhost', '127.0.0.1']
 
@@ -132,14 +132,4 @@ CSRF_COOKIE_HTTPONLY = False  # Disable HTTPOnly for testing
 
 
 # Security: Use secure cookies in production
-if not DEBUG:
-    CSRF_COOKIE_SECURE = True  # Set to True for production with HTTPS
-    CSRF_COOKIE_HTTPONLY = True
-    SESSION_COOKIE_SECURE = True
-    SECURE_BROWSER_XSS_FILTER = True
-    SECURE_CONTENT_TYPE_NOSNIFF = True
-    X_FRAME_OPTIONS = 'DENY'
-    SECURE_HSTS_SECONDS = 3600  # 1 hour, increase for longer durations
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_PRELOAD = True
 
