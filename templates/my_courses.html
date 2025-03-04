@@ -27,57 +27,143 @@
 
   <!-- Main CSS File -->
   <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Jitsi Meet API -->
+  <script src="https://meet.jit.si/external_api.js"></script>
+
   <style>
-    .course-title {
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-    .course-title:hover {
-      transform: scale(1.05);
-      opacity: 1;
-    }
-    .course-title:not(:hover) {
-      opacity: 0.6;
-    }
-    .video-frame {
-      height: 500px; /* Adjust as needed */
-    }
+  /* Course Title */
+  .course-title {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .course-title:hover {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  .course-title:not(:hover) {
+    opacity: 0.6;
+  }
+
+  /* Video Frame */
+  .video-frame {
+    height: 500px; /* Default height for desktop */
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Course Container */
+  .course-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+  }
+
+  /* Video Section */
+  .video-section {
+    flex: 2;
+  }
+
+  /* Course Content */
+  .course-content {
+    flex: 1;
+    max-height: 500px;
+    overflow-y: auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Course Options */
+  .course-options {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .option-card {
+    flex: 1;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+  }
+
+  .option-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  .locked-text {
+    color: red;
+    font-weight: bold;
+  }
+
+  /* Mobile Responsive Styles */
+  @media (max-width: 768px) {
+    /* Course Container */
     .course-container {
-      display: flex;
-      gap: 20px;
+      flex-direction: column; /* Stack video and content vertically */
+      gap: 20px; /* Add spacing between sections */
     }
-    .video-section {
-      flex: 2;
+
+    /* Video Frame */
+    .video-frame {
+      height: 300px; /* Reduce height for mobile */
     }
+
+    /* Course Content */
     .course-content {
-      flex: 1;
-      max-height: 500px;
-      overflow-y: auto;
+      max-height: none; /* Remove fixed height for better scrolling */
+      overflow-y: visible; /* Allow content to expand */
     }
+
+    /* Course Options */
     .course-options {
-      display: flex;
-      gap: 20px;
-      margin-top: 20px;
+      flex-direction: column; /* Stack option cards vertically */
+      gap: 15px; /* Add spacing between cards */
     }
+
     .option-card {
-      flex: 1;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      background: white;
+      width: 100%; /* Full width on mobile */
+      margin-bottom: 15px; /* Add spacing between cards */
     }
-    .option-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  @media (max-width: 480px) {
+    /* Further adjustments for very small screens */
+    .video-frame {
+      height: 250px; /* Further reduce height for very small screens */
     }
-    .locked-text {
-      color: red;
-      font-weight: bold;
+
+    .course-content ul li {
+      padding: 8px; /* Further reduce padding */
     }
-  </style>
+
+    .course-content ul li a {
+      font-size: 0.9rem; /* Further reduce font size */
+    }
+
+    .option-card h4 {
+      font-size: 1.1rem; /* Reduce font size for option cards */
+    }
+
+    .option-card p {
+      font-size: 0.9rem; /* Reduce font size for option cards */
+    }
+  }
+</style>
 </head>
 
-<body class="course-details-page">
+<body class="bg-gray-100">
 
   <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
@@ -147,21 +233,6 @@
             </iframe>
             <!-- Jitsi Container for Live Classes -->
             <div id="jitsi-container" class="hidden w-full h-full"></div>
-          </div>
-          <!-- Course Overview -->
-          <div class="mt-6">
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">Course Overview</h3>
-            <p class="text-gray-700">
-              This course provides a comprehensive introduction to Artificial Intelligence (AI) and Machine Learning (ML). You'll learn the core concepts, algorithms, and tools used in AI and ML, and apply them to real-world problems. By the end of the course, you'll be able to build and deploy AI models.
-            </p>
-            <h4 class="text-xl font-bold text-gray-800 mt-6 mb-4">What You'll Learn</h4>
-            <ul class="list-disc list-inside text-gray-700">
-              <li>Introduction to AI and ML</li>
-              <li>Supervised and Unsupervised Learning</li>
-              <li>Neural Networks and Deep Learning</li>
-              <li>Natural Language Processing (NLP)</li>
-              <li>Real-world AI applications</li>
-            </ul>
           </div>
         </div>
 
