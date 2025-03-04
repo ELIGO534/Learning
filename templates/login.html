@@ -5,51 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
-    <style>
-        /* Video container styling */
-        #intro-video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            object-fit: cover; /* Ensures the video covers the entire container */
-            z-index: 1000;
-            transition: opacity 1.5s ease-in-out;
-        }
-
-        /* Adjust video for mobile view */
-        @media (max-width: 768px) {
-            #intro-video {
-                width: 100vh; /* Swap width and height for mobile */
-                height: 100vw; /* Swap width and height for mobile */
-                left: 50%; /* Center horizontally */
-                top: 50%; /* Center vertically */
-                transform: translate(-50%, -50%); /* Center and rotate */
-            }
-        }
-
-        /* Hide the login page initially */
-        .forms-section {
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-        }
-
-        /* Show the login page after the video ends */
-        .show-login {
-            opacity: 1;
-        }
-    </style>
+   <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
 </head>
 <body>
-    <!-- Introduction Video -->
-    <video id="intro-video" autoplay muted>
-        <source src="{% static 'assets/videos/logovideo.mp4' %}" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-
-    <!-- Login Page Content -->
+{% csrf_token %}
     <section class="forms-section">
         <div class="forms">
             <div class="form-wrapper is-active">
@@ -111,24 +70,10 @@
             </div>
         </div>
     </section>
-
     <script src="{% static 'assets/js/script.js'%}"></script>
-
+    
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const video = document.getElementById("intro-video");
-            const loginSection = document.querySelector(".forms-section");
-
-            // When the video ends, fade out the video and fade in the login page
-            video.addEventListener("ended", function () {
-                video.style.opacity = "0"; // Fade out the video
-                setTimeout(() => {
-                    video.style.display = "none"; // Hide the video
-                    loginSection.classList.add("show-login"); // Fade in the login page
-                }, 1500); // Match the transition duration
-            });
-
-            // Terms and Conditions Checkbox Logic
             const readTermsCheckbox = document.getElementById("read-terms");
             const agreeTermsCheckbox = document.getElementById("agree-terms");
             const loginButton = document.getElementById("login-button");
@@ -145,5 +90,6 @@
             agreeTermsCheckbox.addEventListener("change", toggleLoginButton);
         });
     </script>
+
 </body>
 </html>
