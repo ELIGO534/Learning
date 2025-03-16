@@ -1,0 +1,154 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliGo Global Sponsorship Program</title>
+    <link href="{% static 'assets/css/sponsors.css' %}" rel="stylesheet">
+    <script src="{% static 'assets/js/sponsors.js' %}" defer></script>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <h1>EliGo Global Sponsorship Program</h1>
+        <p>Designed for our valuable partners to grow their business</p>
+    </div>
+
+    <!-- Sponsorship Description -->
+    <div class="sponsorship-section">
+        <div class="sponsorship-text">
+            <p>
+                The EliGo Sponsorship Program helps partners, customers, and brands grow their business 
+                by connecting them with a vast network. We offer impactful sponsorship benefits to help each 
+                partner meet their business goals and objectives.
+            </p>
+            <a href="#" class="sponsorship-link">Explore how EliGo Sponsorship can help you »</a>
+        </div>
+        <div class="sponsorship-image">
+            <img src="{% static 'assets/img/about-2.jpg' %}" alt="Logo">
+        </div>
+    </div>
+
+    <!-- Impact Section -->
+    <div class="impact-section">
+        <h2>Our Impact</h2>
+        <hr class="impact-line">
+        <div class="impact-cards">
+            <div class="impact-card">
+                <h3><span id="companies-count">0</span>+</h3>
+                <p>Companies partnered with EliGo</p>
+            </div>
+            <div class="impact-card">
+                <h3><span id="courses-count">0</span>+</h3>
+                <p>Courses available under our program</p>
+            </div>
+            <div class="impact-card">
+                <h3><span id="students-count">0</span>+</h3>
+                <p>Students benefited from our network</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Upcoming Sponsorships Section -->
+<div class="sponsorships-section">
+    <h2>Upcoming Sponsorships</h2>
+    <hr class="impact-line">
+    
+    <div class="sponsorships-container">
+        <!-- Chakravyuh -->
+        <div class="sponsorship-card">
+            <img src="chakravyuh.jpg" alt="Chakravyuh Fest">
+            <div class="sponsorship-card-content">
+                <h3>Chakravyuh</h3>
+                <p><strong>College:</strong> Raghu Engineering College</p>
+                <p>A vibrant fest featuring competitions, tech events, and cultural celebrations.</p>
+                <a href="/survey" class="learn-more-btn">Learn More »</a>
+            </div>
+        </div>
+
+        <!-- Tarang -->
+        <div class="sponsorship-card">
+            <img src="tarang.jpg" alt="Tarang Fest">
+            <div class="sponsorship-card-content">
+                <h3>Tarang</h3>
+                <p><strong>College:</strong> Raghu Engineering College</p>
+                <p>A cultural extravaganza bringing together students with music, dance, and creative arts.</p>
+                <a href="/survey" class="learn-more-btn">Learn More »</a>
+            </div>
+        </div>
+
+        <!-- Sparx -->
+        <div class="sponsorship-card">
+            <img src="sparx.jpg" alt="Sparx Fest">
+            <div class="sponsorship-card-content">
+                <h3>Sparx</h3>
+                <p><strong>College:</strong> Raghu Engineering College</p>
+                <p>An annual tech fest fostering innovation and hands-on learning experiences.</p>
+                <a href="/survey" class="learn-more-btn">Learn More »</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Our Valuable Partners Section -->
+<div class="partners-section">
+    <h2>Our Valuable Partners</h2>
+    <div class="underline"></div>
+
+    <!-- Partner Logos Auto-Slide -->
+    <div class="logos-slider">
+        <div class="logos-track">
+            <img src="logo1.png" alt="Partner 1">
+            <img src="logo2.png" alt="Partner 2">
+            <img src="logo3.png" alt="Partner 3">
+            <img src="logo4.png" alt="Partner 4">
+            <img src="logo5.png" alt="Partner 5">
+            <!-- Duplicate for Smooth Loop -->
+            <img src="logo1.png" alt="Partner 1">
+            <img src="logo2.png" alt="Partner 2">
+            <img src="logo3.png" alt="Partner 3">
+            <img src="logo4.png" alt="Partner 4">
+            <img src="logo5.png" alt="Partner 5">
+        </div>
+    </div>
+
+    <!-- Partner Details Auto-Slider -->
+    <div class="partners-carousel">
+        <div class="partner-track">
+            <div class="partner-slide">
+                <img src="company1.jpg" alt="Company 1">
+                <div class="partner-info">
+                    <h3>Company 1</h3>
+                    <p>"Company 1 is a leader in cloud solutions, providing innovative services to businesses worldwide."</p>
+                    <p><strong>John Doe, CEO - Company 1</strong></p>
+                </div>
+            </div>
+
+            <div class="partner-slide">
+                <img src="company2.jpg" alt="Company 2">
+                <div class="partner-info">
+                    <h3>Company 2</h3>
+                    <p>"Company 2 specializes in AI-driven technologies, revolutionizing the industry with cutting-edge solutions."</p>
+                    <p><strong>Jane Smith, CTO - Company 2</strong></p>
+                </div>
+            </div>
+
+            <div class="partner-slide">
+                <img src="company3.jpg" alt="Company 3">
+                <div class="partner-info">
+                    <h3>Company 3</h3>
+                    <p>"Company 3 is dedicated to cybersecurity, ensuring businesses remain safe in the digital era."</p>
+                    <p><strong>Robert Brown, VP Security - Company 3</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</body>
+</html>

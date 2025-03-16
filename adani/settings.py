@@ -19,7 +19,10 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your_default_secret_key')  # Fetch 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['learning-1-a6c2.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['learning-1-a6c2.onrender.com','eligo.space','www.eligo.space','localhost', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ["https://eligo.space", "https://www.eligo.space","http://learning-1-a6c2.onrender.com"]
+SECURE_SSL_REDIRECT = True  # Ensures all traffic is redirected to HTTPS
+
 
 # Application definition
 INSTALLED_APPS = [

@@ -21,6 +21,7 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('income/', views.income, name='income'),
     path('my_courses/', views.my_courses, name='my_courses'),
+    path('sponsorship/', views.sponsors, name='sponsors'),
     path('payment_success/', views.payment_success, name='payment_success'),
     path('privacypolicy/', views.privacypolicy, name='privacypolicy'),
     path('join_members/', views.join_members, name='join'),

@@ -295,3 +295,5 @@ def payment_success(request):
     return render(request, 'payment_success.html')
 def privacypolicy(request):
     return render(request, 'privacypolicy.html')
+def sponsors(request):
+    return render(request,"sponsors.html")
