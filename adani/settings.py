@@ -21,7 +21,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['learning-1-a6c2.onrender.com','eligo.space','www.eligo.space','localhost', '127.0.0.1']
 CSRF_TRUSTED_ORIGINS = ["https://eligo.space", "https://www.eligo.space","http://learning-1-a6c2.onrender.com"]
-SECURE_SSL_REDIRECT = True  # Ensures all traffic is redirected to HTTPS
+SECURE_SSL_REDIRECT = False  # Ensures all traffic is redirected to HTTPS
 
 
 # Application definition
