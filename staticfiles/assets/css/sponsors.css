@@ -204,52 +204,46 @@ body {
     background: linear-gradient(to right, #FF8800, #7733DD);
     transform: scale(1.05);
 }
-.logos-slider {
-    overflow: hidden;
-    white-space: nowrap;
-    width: 100%;
-    background: #f8f9fa; /* Light background */
-    position: relative;
-    padding: 10px 0;
-}
-
-.logos-track {
-    display: flex;
+.logos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Auto-arrange in columns */
+    gap: 20px; /* Space between logos */
+    justify-items: center;
     align-items: center;
-    width: max-content; /* Ensure the container expands */
-    animation: scroll 10s linear infinite;
+    padding: 20px;
 }
 
-/* Uniform Logo Box */
 .logo-box {
-    width: 150px; /* Fixed size */
-    height: 80px;
+    width: 180px;  /* Set uniform width */
+    height: 120px; /* Set uniform height */
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid #ddd; /* Light border for consistency */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     background: white;
-    border-radius: 10px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    flex-shrink: 0; /* Prevent shrinking */
 }
 
-/* Ensure images scale properly */
+/* Uniform logo styling */
 .logo-box img {
-    max-width: 100%;
-    max-height: 80%;
+    max-width: 80%; /* Ensures logo fits */
+    max-height: 60%; /* Keeps aspect ratio */
     object-fit: contain;
 }
 
-/* Infinite Loop Animation */
-@keyframes scroll {
-    from {
-        transform: translateX(0);
+/* Responsive */
+@media (max-width: 768px) {
+    .logos-container {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Adjust for smaller screens */
     }
-    to {
-        transform: translateX(-100%);
+    .logo-box {
+        width: 140px;
+        height: 100px;
     }
 }
+
+
 
 /* Partner Details Auto-Slider */
 .partners-carousel {
@@ -296,156 +290,4 @@ body {
     font-size: 16px;
     color: #333;
     margin-bottom: 10px;
-}
-
-/* Mobile Responsive Styles */
-@media (max-width: 768px) {
-    /* Top Bar */
-    .top-bar h1 {
-        font-size: 24px;
-    }
-
-    .top-bar p {
-        font-size: 16px;
-    }
-
-    /* Sponsorship + Impact Wrapper */
-    .sponsorship-impact-wrapper {
-        padding: 10px;
-    }
-
-    /* Sponsorship Section */
-    .sponsorship-section {
-        flex-direction: column;
-        padding: 20px;
-    }
-
-    .sponsorship-text {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
-    .sponsorship-text p {
-        font-size: 16px;
-    }
-
-    .sponsorship-link {
-        font-size: 16px;
-    }
-
-    .sponsorship-image img {
-        max-width: 100%;
-    }
-
-    /* Impact Section */
-    .impact-section {
-        padding: 20px;
-    }
-
-    .impact-section h2 {
-        font-size: 24px;
-    }
-
-    .impact-line {
-        width: 60px;
-    }
-
-    /* Impact Cards */
-    .impact-cards {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .impact-card {
-        width: 90%;
-        margin-bottom: 20px;
-    }
-
-    .impact-card h3 {
-        font-size: 28px;
-    }
-
-    .impact-card p {
-        font-size: 14px;
-    }
-
-    /* Upcoming Sponsorships Section */
-    .sponsorships-section {
-        padding: 20px;
-    }
-
-    .sponsorships-section p {
-        font-size: 16px;
-    }
-
-    /* Sponsorships Container */
-    .sponsorships-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .sponsorship-card {
-        width: 90%;
-        margin-bottom: 20px;
-    }
-
-    .sponsorship-card img {
-        height: 150px;
-    }
-
-    .sponsorship-card h3 {
-        font-size: 20px;
-    }
-
-    .sponsorship-card p {
-        font-size: 14px;
-    }
-
-    .learn-more-btn {
-        font-size: 14px;
-        padding: 8px 16px;
-    }
-
-    /* Logos Slider */
-    .logos-slider {
-        padding: 5px 0;
-    }
-
-    .logo-box {
-        width: 120px;
-        height: 60px;
-    }
-
-    /* Partner Details Auto-Slider */
-    .partners-carousel {
-        padding: 10px;
-    }
-
-    .partner-track {
-        width: 100%;
-    }
-
-    .partner-slide {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .partner-slide img {
-        width: 80%;
-        margin-bottom: 10px;
-    }
-
-    .partner-info {
-        width: 90%;
-        padding-left: 0;
-        text-align: center;
-    }
-
-    .partner-info h3 {
-        font-size: 20px;
-    }
-
-    .partner-info p {
-        font-size: 14px;
-    }
 }

@@ -16,20 +16,37 @@
         <p>Designed for our valuable partners to grow their business</p>
     </div>
 
-    <!-- Sponsorship Description -->
-    <div class="sponsorship-section">
-        <div class="sponsorship-text">
-            <p>
-                The EliGo Sponsorship Program helps partners, customers, and brands grow their business 
-                by connecting them with a vast network. We offer impactful sponsorship benefits to help each 
-                partner meet their business goals and objectives.
-            </p>
-            <a href="#" class="sponsorship-link">Explore how EliGo Sponsorship can help you »</a>
-        </div>
-        <div class="sponsorship-image">
-            <img src="{% static 'assets/img/about-2.jpg' %}" alt="Logo">
-        </div>
+   <!-- Sponsorship Description -->
+<div class="sponsorship-section">
+    <div class="sponsorship-text">
+        <p>
+            The EliGo Sponsorship Program is designed to empower partners, customers, and brands by providing them with unique opportunities to expand their reach and grow their businesses. Through our extensive network, we help sponsors connect with the right audience, fostering meaningful relationships and brand visibility. Our program offers customized sponsorship benefits, including brand promotion, networking opportunities, and exclusive collaborations to maximize engagement.
+            <span id="moreText" style="display: none;">
+                We focus on helping businesses achieve their marketing, sales, and branding objectives by leveraging strategic partnerships. Whether you're looking to increase brand awareness, generate leads, or enhance customer loyalty, our sponsorship program is tailored to meet your specific goals. Partner with EliGo today and take advantage of a powerful sponsorship platform designed for success.
+            </span>
+        </p>
+        <a href="javascript:void(0);" class="sponsorship-link" onclick="toggleText()">Learn More »</a>
     </div>
+    <div class="sponsorship-image">
+        <img src="{% static 'assets/img/about-2.jpg' %}" alt="Eligo Event">
+    </div>
+</div>
+
+<script>
+function toggleText() {
+    let moreText = document.getElementById("moreText");
+    let link = document.querySelector(".sponsorship-link");
+
+    if (moreText.style.display === "none") {
+        moreText.style.display = "inline";
+        link.innerHTML = "Show Less «"; // Change text
+    } else {
+        moreText.style.display = "none";
+        link.innerHTML = "Learn More »";
+    }
+}
+</script>
+
 
     <!-- Impact Section -->
     <div class="impact-section">
@@ -59,96 +76,97 @@
     <div class="sponsorships-container">
         <!-- Chakravyuh -->
         <div class="sponsorship-card">
-            <img src="chakravyuh.jpg" alt="Chakravyuh Fest">
+            <img src="{% static 'assets/img/fest/raghu.jpg' %}" alt="Chakravyuh Fest">
             <div class="sponsorship-card-content">
                 <h3>Chakravyuh</h3>
                 <p><strong>College:</strong> Raghu Engineering College</p>
                 <p>A vibrant fest featuring competitions, tech events, and cultural celebrations.</p>
-                <a href="/survey" class="learn-more-btn">Learn More »</a>
+                <a href="/survey" class="learn-more-btn">Know More »</a>
             </div>
         </div>
 
         <!-- Tarang -->
         <div class="sponsorship-card">
-            <img src="tarang.jpg" alt="Tarang Fest">
+            <img src="{% static 'assets/img/fest/itm.jpg' %}" alt="UniFest">
             <div class="sponsorship-card-content">
-                <h3>Tarang</h3>
-                <p><strong>College:</strong> Raghu Engineering College</p>
-                <p>A cultural extravaganza bringing together students with music, dance, and creative arts.</p>
-                <a href="/survey" class="learn-more-btn">Learn More »</a>
+                <h3>UniFest</h3>
+                <p><strong>College:</strong>ITM University</p>
+                <p>A cultural extravaganza bringing together students with music, dance, and arts.</p>
+                <a href="/survey" class="learn-more-btn">Know More »</a>
             </div>
         </div>
 
         <!-- Sparx -->
         <div class="sponsorship-card">
-            <img src="sparx.jpg" alt="Sparx Fest">
+            <img src="{% static 'assets/img/fest/srm.jpg' %}" alt="Infinitus">
             <div class="sponsorship-card-content">
-                <h3>Sparx</h3>
-                <p><strong>College:</strong> Raghu Engineering College</p>
+                <h3>Infinitus</h3>
+                <p><strong>College:</strong>SRM University</p>
                 <p>An annual tech fest fostering innovation and hands-on learning experiences.</p>
-                <a href="/survey" class="learn-more-btn">Learn More »</a>
+                <a href="/survey" class="learn-more-btn">Know More »</a>
             </div>
         </div>
     </div>
 </div>
 <!-- Our Valuable Partners Section -->
-<div class="partners-section">
-    <h2>Our Valuable Partners</h2>
-    <div class="underline"></div>
+<div class="sponsorships-section">
+    <h2>Our supportives</h2>
+    <hr class="impact-line">
 
-    <!-- Partner Logos Auto-Slide -->
-    <div class="logos-slider">
-        <div class="logos-track">
-            <img src="logo1.png" alt="Partner 1">
-            <img src="logo2.png" alt="Partner 2">
-            <img src="logo3.png" alt="Partner 3">
-            <img src="logo4.png" alt="Partner 4">
-            <img src="logo5.png" alt="Partner 5">
-            <!-- Duplicate for Smooth Loop -->
-            <img src="logo1.png" alt="Partner 1">
-            <img src="logo2.png" alt="Partner 2">
-            <img src="logo3.png" alt="Partner 3">
-            <img src="logo4.png" alt="Partner 4">
-            <img src="logo5.png" alt="Partner 5">
-        </div>
+   <!-- Partner Logos Auto-Slide -->
+<div class="logos-slider">
+    <div class="logos-track">
+        <div class="logo-box"><img src="{% static 'assets/img/delottie.png' %}" alt="Deloitte Logo"></div>
+        <div class="logo-box"><img src="{% static 'assets/img/Amazon.png' %}" alt="Amazon Logo"></div>
+        <div class="logo-box"><img src="{% static 'assets/img/booking.png' %}" alt="Booking Logo"></div>
+        <div class="logo-box"><img src="{% static 'assets/img/abinbev.png' %}" alt="Abindev Logo"></div>
+        <div class="logo-box"><img src="{% static 'assets/img/goldmansachs.png' %}" alt="goldmansachs Logo"></div>
+        <div class="logo-box"><img src="{% static 'assets/img/infosys.png' %}" alt="Infosys Logo"></div>
+        <!-- Duplicate for Smooth Loop -->
+        <div class="logo-box"><img src="{% static 'assets/img/delottie.png' %}" alt="Deloitte Logo"></div>
+        <div class="logo-box"><img src="{% static 'assets/img/Amazon.png' %}" alt="Amazon Logo"></div>
+        <div class="logo-box"><img src="{% static 'assets/img/booking.png' %}" alt="Booking Logo"></div>
+        <div class="logo-box"><img src="{% static 'assets/img/abinbev.png' %}" alt="Abindev Logo"></div>
+        <div class="logo-box"><img src="{% static 'assets/img/goldmansachs.png' %}" alt="goldmansachs Logo"></div>
+        <div class="logo-box"><img src="{% static 'assets/img/infosys.png' %}" alt="Infosys Logo"></div>
     </div>
+</div>
 
     <!-- Partner Details Auto-Slider -->
+    <div class="sponsorships-section">
+    <h2>Our collaborations</h2>
+    <hr class="impact-line">
     <div class="partners-carousel">
         <div class="partner-track">
             <div class="partner-slide">
-                <img src="company1.jpg" alt="Company 1">
+                <img src="{% static 'assets/img/tabs/deloitte.jpg' %}" alt="Company 1">
                 <div class="partner-info">
-                    <h3>Company 1</h3>
-                    <p>"Company 1 is a leader in cloud solutions, providing innovative services to businesses worldwide."</p>
-                    <p><strong>John Doe, CEO - Company 1</strong></p>
+                    <h3>Deloitte</h3>
+                    <p>Partnering with us offers Deloitte the opportunity to engage with emerging talents and industry professionals, reinforcing its leadership in consulting and strategy. This sponsorship enhances brand credibility and fosters collaboration on innovative solutions. Together, we can drive business transformation.</p>
+                    <p><strong>Punit Renjen, CEO - Deloitte</strong></p>
                 </div>
             </div>
 
             <div class="partner-slide">
-                <img src="company2.jpg" alt="Company 2">
+                <img src="{% static 'assets/img/tabs/Amazon.jpg' %}" alt="Company 2">
                 <div class="partner-info">
-                    <h3>Company 2</h3>
-                    <p>"Company 2 specializes in AI-driven technologies, revolutionizing the industry with cutting-edge solutions."</p>
-                    <p><strong>Jane Smith, CTO - Company 2</strong></p>
+                    <h3>Amazon</h3>
+                    <p>Collaborating with our company allows Amazon to connect with a tech-savvy audience and showcase its cutting-edge solutions. This partnership enhances brand engagement while supporting innovation-driven initiatives. Together, we can create impactful experiences for future leaders and customers.</p>
+                    <p><strong>Andy Jassy, CEO - Amazon</strong></p>
                 </div>
             </div>
-
             <div class="partner-slide">
-                <img src="company3.jpg" alt="Company 3">
+                <img src="{% static 'assets/img/tabs/Microsoft.jpg' %}" alt="Company 3">
                 <div class="partner-info">
-                    <h3>Company 3</h3>
-                    <p>"Company 3 is dedicated to cybersecurity, ensuring businesses remain safe in the digital era."</p>
-                    <p><strong>Robert Brown, VP Security - Company 3</strong></p>
+                    <h3>Microsoft</h3>
+                    <p>Sponsoring our company allows Microsoft to showcase its technological expertise while supporting innovation and skill development. This collaboration fosters engagement with industry leaders and aspiring professionals. Let’s shape the future of technology together.</p>
+                    <p><strong>Satya Nadella, CEO - Microsoft</strong></p>
+                </div>
+            </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
-
 </body>
 </html>

@@ -115,3 +115,16 @@ class Withdrawal(models.Model):
             return f"{self.user.phone} - ₹{self.amount} - {self.payment_status}"
         else:
             return f"Unknown User - ₹{self.amount} - {self.payment_status}"
+class SponsorshipSurvey(models.Model):
+    full_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    college = models.CharField(max_length=200)
+    year = models.CharField(max_length=20)
+    source = models.CharField(max_length=50)
+    interest = models.TextField()  # Store multiple interests as a comma-separated string
+    internship = models.CharField(max_length=10, null=True, blank=True)
+    updates = models.CharField(max_length=3)
+    contact = models.CharField(max_length=10 , unique=True)
+
+    def __str__(self):
+        return self.full_name

@@ -1,0 +1,307 @@
+/* Sponsorship Banner Styling */
+.eligo-banner {
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(135deg, #0072CE, #0056A6, #6C0DB2, #FF731D);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 50px;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Banner Subtitle */
+.eligo-subtitle {
+    font-size: 18px;
+    opacity: 0.8;
+    text-transform: uppercase;
+}
+
+/* Banner Title */
+.eligo-title {
+    font-size: 36px;
+    margin-top: 5px;
+}
+/* Sponsorship Section */
+.eligo-sponsorship {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
+    font-family: Arial, sans-serif;
+}
+
+/* Left Section (Text and Benefits) */
+.eligo-left {
+    width: 60%;
+}
+
+.eligo-left h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.eligo-left p {
+    font-size: 16px;
+    color: #555;
+}
+
+.eligo-left h3 {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.eligo-benefits {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.benefit {
+    width: 48%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.benefit img {
+    width: 30px;
+    margin-right: 10px;
+}
+
+/* Right Section (Form) */
+.eligo-right {
+    width: 35%;
+    background: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.eligo-right h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+form input, form select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+button {
+    background: linear-gradient(135deg, #6C0DB2, #FF731D);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 16px;
+}
+/* Last Section (Learn in Eligo) */
+.eligo-learn-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #0047AB, #8A2BE2);
+    color: white;
+    padding: 20px 50px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.eligo-learn-content {
+    max-width: 70%;
+}
+
+.eligo-learn-content h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.eligo-learn-content p {
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.eligo-learn-button button {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.eligo-learn-button button:hover {
+    background: white;
+    color: #0047AB;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    /* Banner Styling for Mobile */
+    .eligo-banner {
+        height: 200px;
+        padding-left: 20px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .eligo-subtitle {
+        font-size: 16px;
+    }
+
+    .eligo-title {
+        font-size: 28px;
+    }
+
+    /* Sponsorship Section for Mobile */
+    .eligo-sponsorship {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .eligo-left {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .eligo-left h2 {
+        font-size: 22px;
+    }
+
+    .eligo-left p {
+        font-size: 14px;
+    }
+
+    .eligo-left h3 {
+        font-size: 18px;
+    }
+
+    .benefit {
+        width: 100%;
+    }
+
+    .eligo-right {
+        width: 100%;
+    }
+
+    /* Form Styling for Mobile */
+    form input, form select {
+        padding: 10px;
+    }
+
+    button {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    /* Learn Section for Mobile */
+    .eligo-learn-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .eligo-learn-content {
+        max-width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .eligo-learn-content h2 {
+        font-size: 22px;
+    }
+
+    .eligo-learn-content p {
+        font-size: 14px;
+    }
+
+    .eligo-learn-button button {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+/* Custom Alert Box */
+.custom-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Success Alert */
+.custom-alert.success {
+    background: linear-gradient(135deg, #28a745, #218838);
+}
+
+/* Error Alert */
+.custom-alert.error {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+}
+
+/* Alert Content */
+.alert-content p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* OK Button */
+.alert-content button {
+    margin-top: 15px;
+    padding: 8px 20px;
+    border: none;
+    background: white;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.alert-content button:hover {
+    background: #ddd;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -55%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+

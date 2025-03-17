@@ -297,3 +297,84 @@ def privacypolicy(request):
     return render(request, 'privacypolicy.html')
 def sponsors(request):
     return render(request,"sponsors.html")
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.db import IntegrityError
+from django.shortcuts import render
+from .models import SponsorshipSurvey
+
+def survey_page(request):
+    return render(request, "learnmore.html")  # Ensure the correct template is rendered
+
+@csrf_exempt  # If you're using Fetch API without CSRF token, keep this
+def submit_survey(request):
+    if request.method == "POST":
+        contact = request.POST.get("contact")
+        email = request.POST.get("email")
+
+        # Check if the contact number already exists before saving
+        if SponsorshipSurvey.objects.filter(contact=contact).exists():
+            return JsonResponse(
+                {"success": False, "message": "The form has already been pre-filled with this number!"},
+                status=400
+            )
+
+        # Check if the email already exists before saving
+        if SponsorshipSurvey.objects.filter(email=email).exists():
+            return JsonResponse(
+                {"success": False, "message": "Email is already taken!"},
+                status=400
+            )
+
+        try:
+            # Extract form data
+            full_name = request.POST.get("fullName")
+            college = request.POST.get("college")
+            year = request.POST.get("year")
+            source = request.POST.get("source")
+            interest = request.POST.getlist("interest")  # Handle multiple interests
+            internship = request.POST.get("internship")
+            updates = request.POST.get("updates")
+
+            # Ensure required fields are not empty
+            if not full_name or not email or not college or not contact:
+                return JsonResponse(
+                    {"success": False, "message": "Missing required fields!"},
+                    status=400
+                )
+
+            # Save data
+            SponsorshipSurvey.objects.create(
+                full_name=full_name,
+                email=email,
+                college=college,
+                year=year,
+                source=source,
+                interest=",".join(interest),  # Convert list to comma-separated string
+                internship=internship,
+                updates=updates,
+                contact=contact
+            )
+
+            return JsonResponse(
+                {"success": True, "message": "Form submitted successfully!"},
+                status=200
+            )
+
+        except IntegrityError:  # Handle unique constraint violation
+            return JsonResponse(
+                {"success": False, "message": "The form has already been pre-filled with this number or email!"},
+                status=400
+            )
+
+        except Exception as e:  # Handle other exceptions
+            return JsonResponse(
+                {"success": False, "message": f"Error: {str(e)}"},
+                status=400
+            )
+
+    # Handle invalid request method
+    return JsonResponse(
+        {"success": False, "message": "Invalid request method!"},
+        status=400
+    )

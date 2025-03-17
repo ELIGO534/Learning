@@ -63,3 +63,18 @@ class WithdrawalAdmin(admin.ModelAdmin):
     # If you want to add more fields for better customization, you can do it like:
     # fields = ('name', 'account_number', 'amount', 'payment_status', 'created_at')
 
+from django.contrib import admin
+from .models import SponsorshipSurvey
+
+class SponsorshipSurveyAdmin(admin.ModelAdmin):
+    list_display = ("full_name", "email", "college", "year", "contact", "source", "internship", "updates")
+    list_filter = ("year", "source", "internship", "updates")
+    search_fields = ("full_name", "email", "college", "contact")
+    readonly_fields = ("full_name", "email", "college", "year", "source", "interest", "internship", "updates", "contact")
+
+    def formatted_interest(self, obj):
+        return obj.interest.replace(",", ", ")  # Format interest field for readability
+
+    formatted_interest.short_description = "Interest Fields"
+
+admin.site.register(SponsorshipSurvey, SponsorshipSurveyAdmin)

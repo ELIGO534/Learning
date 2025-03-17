@@ -1,0 +1,139 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliGo Space Sponsorship</title>
+    <link rel="stylesheet" href="{% static 'assets/css/learnmore.css'%}"> <!-- Linking CSS File -->
+</head>
+<body>
+
+    <!-- Sponsorship Banner -->
+    <div class="eligo-banner">
+        <div class="eligo-content">
+            <h3 class="eligo-subtitle">EliGo Space</h3>
+            <h1 class="eligo-title">Sponsorship Program</h1>
+        </div>
+    </div>
+     <!-- Sponsorship Details Section -->
+    <section class="eligo-sponsorship">
+        <div class="eligo-left">
+            <h2>Growth for your business starts here</h2>
+            <p>Join our exclusive sponsorship opportunities and connect with a targeted audience.</p>
+            <h3>Why sponsor?</h3>
+            <div class="eligo-benefits">
+                <div class="benefit">
+                    <img src="{% static 'assets/img/learnmore/Brand.png'%}" alt="Visibility Icon">
+                    <div>
+                        <h4>Boost brand visibility</h4>
+                        <p>Stand out with exhibition space at a high-energy event.</p>
+                    </div>
+                </div>
+                <div class="benefit">
+                    <img src="{% static 'assets/img/learnmore/Build-Relationship.png'%}" alt="Customization Icon">
+                    <div>
+                        <h4>Create tailored experiences</h4>
+                        <p>Maximize impact with unique brand moments.</p>
+                    </div>
+                </div>
+                <div class="benefit">
+                    <img src="{% static 'assets/img/learnmore/Lead-Generation.png'%}" alt="Relationships Icon">
+                    <div>
+                        <h4>Build valuable relationships</h4>
+                        <p>Connect with a highly engaged audience.</p>
+                    </div>
+                </div>
+                <div class="benefit">
+                    <img src="{% static 'assets/img/learnmore/Tailored-Customization.png'%}" alt="Lead Generation Icon">
+                    <div>
+                        <h4>Increase lead generation</h4>
+                        <p>Expand your network and customer base.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sponsorship Form -->
+        <div class="eligo-right">
+            <h3>Start Your Sponsorship Journey</h3>
+            <form id="sponsorshipForm">
+             {% csrf_token %}
+                 <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="college">College Name:</label>
+            <input type="text" id="college" name="college" required>
+
+            <label for="year">Year of Study:</label>
+            <select id="year" name="year" required>
+                <option value="">Select</option>
+                <option value="1st Year">1st Year</option>
+                <option value="2nd Year">2nd Year</option>
+                <option value="3rd Year">3rd Year</option>
+                <option value="4th Year">4th Year</option>
+                <option value="Postgraduate">Postgraduate</option>
+            </select>
+
+            <label for="source">How did you hear about us?</label>
+            <select id="source" name="source" required>
+                <option value="">Select</option>
+                <option value="Social Media">Social Media</option>
+                <option value="College Promotion">College Promotion</option>
+                <option value="Friends/Peers">Friends/Peers</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label>What field interests you the most?</label>
+            <select id="source" name="source" required>
+                <option value="">Select</option>
+                <option value="IT & Software Development">IT & Software Development</option>
+                <option value="AI & Machine Learning">AI & Machine Learning</option>
+                <option value="UI/UX">UI/UX</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label>Are you interested in internships or job opportunities?</label>
+<div class="radio-group">
+    <input type="radio" id="internYes" name="internship" value="Yes" required>
+    <label for="internYes">Yes</label>
+
+    <input type="radio" id="internNo" name="internship" value="No" required>
+    <label for="internNo">No</label>
+</div>
+            <label>Would you like to receive updates from us?</label>
+            <div class="radio-group">
+                <input type="radio" id="updatesYes" name="updates" value="Yes">
+                <label for="updatesYes">Yes</label>
+
+                <input type="radio" id="updatesNo" name="updates" value="No">
+                <label for="updatesNo">No</label>
+            </div>
+
+            <label for="contact">Contact Number:</label>
+            <input type="text" id="contact" name="contact" maxlength="10" required>
+
+            <button type="submit">Submit</button>
+            </form>
+        </div>
+    </section>
+    <!-- Last Section -->
+<section class="eligo-learn-section">
+    <div class="eligo-learn-content">
+        <h2>Be a Learner in Eligo</h2>
+        <p>Sign up to connect with Eligo learning opportunities and a diverse, global network of learners and experts.</p>
+    </div>
+    <div class="eligo-learn-button">
+        <button onclick="redirectToHome()">Learn More</button>
+    </div>
+</section>
+
+<script src="{% static 'assets/js/learnmore.js'%}"></script>
+
+</body>
+</html>
+
+
