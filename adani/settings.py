@@ -17,10 +17,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your_default_secret_key')  # Fetch from environment variables
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['learning-1-a6c2.onrender.com','eligo.space','www.eligo.space','localhost', '127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ["https://eligo.space", "https://www.eligo.space","http://learning-1-a6c2.onrender.com"]
+CSRF_TRUSTED_ORIGINS = ["https://eligo.space", "https://www.eligo.space","https://learning-1-a6c2.onrender.com"]
 SECURE_SSL_REDIRECT = False  # Ensures all traffic is redirected to HTTPS
 
 
@@ -123,10 +123,6 @@ AUTHENTICATION_BACKENDS = [
 AUTH_USER_MODEL = 'myapp.CustomUser'
 
 # CSRF trusted origins
-CSRF_TRUSTED_ORIGINS = [
-    'https://learning-1-a6c2.onrender.com',
-    # Add other trusted origins if needed
-]
 
 # CSRF settings for security
 CSRF_COOKIE_SAMESITE = 'Lax'  # 'Strict' for more security
@@ -135,4 +131,3 @@ CSRF_COOKIE_HTTPONLY = False  # Disable HTTPOnly for testing
 
 
 # Security: Use secure cookies in production
-
