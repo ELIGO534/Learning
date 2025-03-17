@@ -157,3 +157,151 @@ button {
     color: #0047AB;
 }
 
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    /* Banner Styling for Mobile */
+    .eligo-banner {
+        height: 200px;
+        padding-left: 20px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .eligo-subtitle {
+        font-size: 16px;
+    }
+
+    .eligo-title {
+        font-size: 28px;
+    }
+
+    /* Sponsorship Section for Mobile */
+    .eligo-sponsorship {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .eligo-left {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .eligo-left h2 {
+        font-size: 22px;
+    }
+
+    .eligo-left p {
+        font-size: 14px;
+    }
+
+    .eligo-left h3 {
+        font-size: 18px;
+    }
+
+    .benefit {
+        width: 100%;
+    }
+
+    .eligo-right {
+        width: 100%;
+    }
+
+    /* Form Styling for Mobile */
+    form input, form select {
+        padding: 10px;
+    }
+
+    button {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    /* Learn Section for Mobile */
+    .eligo-learn-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .eligo-learn-content {
+        max-width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .eligo-learn-content h2 {
+        font-size: 22px;
+    }
+
+    .eligo-learn-content p {
+        font-size: 14px;
+    }
+
+    .eligo-learn-button button {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+/* Custom Alert Box */
+.custom-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Success Alert */
+.custom-alert.success {
+    background: linear-gradient(135deg, #28a745, #218838);
+}
+
+/* Error Alert */
+.custom-alert.error {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+}
+
+/* Alert Content */
+.alert-content p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* OK Button */
+.alert-content button {
+    margin-top: 15px;
+    padding: 8px 20px;
+    border: none;
+    background: white;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.alert-content button:hover {
+    background: #ddd;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -55%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
