@@ -16,8 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.http import HttpResponse
 from django.conf.urls import handler404
 from django.shortcuts import render
+
+def robots_txt(request):
+    content = "User-agent: *\nAllow: /\nSitemap: https://eligo.space/sitemap.xml"
+    return HttpResponse(content, content_type="text/plain")
+
 
 # Custom 404 view
 def custom_404_view(request, exception):
@@ -26,7 +32,8 @@ def custom_404_view(request, exception):
 # URL patterns
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('',include('myapp.urls'))
+    path('',include('myapp.urls')),
+    path('robots.txt', robots_txt)
 ]
 
 # Assign custom 404 handler
