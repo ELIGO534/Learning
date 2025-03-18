@@ -6,6 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
+  <!-- Primary Meta Tags -->
   <title>ELiGo - Empowering Education</title>
   <meta name="description" content="ELiGo offers affordable internships, sponsorships, stipends, and earning opportunities for students to gain real-world experience.">
   <meta name="keywords" content="ELiGo, Education, Online Learning, Internships, Sponsorships, Stipends, EdTech">
@@ -32,10 +33,14 @@
   <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE">
 
   <!-- Favicons -->
-  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
-  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/favicon_io/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/img/favicon_io/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/img/favicon_io/favicon-16x16.png' %}">
+  <link rel="manifest" href="{% static 'assets/img/favicon_io/site.webmanifest' %}">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
 
-  <!-- Fonts -->
+  <!-- Preconnect for Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -52,29 +57,76 @@
 
   <!-- Local Business Schema -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    "name": "ELiGo",
-    "url": "https://www.eligo.space/",
-    "logo": "https://www.eligo.space/static/assets/img/logo.png",
-    "description": "Empowering Education, One Student at a Time.",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Novel Tech Park",
-      "addressLocality": "Kudlu Gate",
-      "addressRegion": "Bangalore",
-      "postalCode": "560102",
-      "addressCountry": "IN"
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": "https://www.eligo.space/",
+  "name": "ELiGo",
+  "description": "ELiGo offers affordable internships, sponsorships, stipends, and earning opportunities for students to gain real-world experience.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.eligo.space/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "mainEntity": [
+    {
+      "@type": "AboutPage",
+      "name": "About Us",
+      "url": "https://www.eligo.space/about",
+      "description": "Learn more about ELiGo and our mission to empower education."
     },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+91 157-148-9741",
-      "contactType": "customer service",
-      "areaServed": "IN",
-      "availableLanguage": "en"
+    {
+      "@type": "LoginAction",
+      "name": "Login",
+      "url": "https://www.eligo.space/login",
+      "description": "Login to your ELiGo account to access your courses and resources."
+    },
+    {
+      "@type": "ContactPage",
+      "name": "Contact Us",
+      "url": "https://www.eligo.space/contact",
+      "description": "Get in touch with ELiGo for support and inquiries."
+    },
+    {
+      "@type": "ItemList",
+      "name": "Courses",
+      "url": "https://www.eligo.space/courses",
+      "description": "Explore our courses in Artificial Intelligence, Machine Learning, and more.",
+      "itemListElement": [
+        {
+          "@type": "Course",
+          "name": "Artificial Intelligence",
+          "url": "https://www.eligo.space/courses/ai"
+        },
+        {
+          "@type": "Course",
+          "name": "Machine Learning with Python",
+          "url": "https://www.eligo.space/courses/ml"
+        }
+      ]
+    },
+    {
+      "@type": "SignUpAction",
+      "name": "Sign Up",
+      "url": "https://www.eligo.space/signup",
+      "description": "Create an account with ELiGo to start your learning journey."
     }
-  }
+  ]
+}
+</script>
+
+  <!-- Additional Performance Optimizations -->
+  <link rel="preload" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" as="style">
+  <link rel="preload" href="{% static 'assets/css/main.css' %}" as="style">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap" as="style">
+
+  <!-- Analytics Script (Example: Google Analytics) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXX-X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-XXXXXX-X');
   </script>
 </head>
 
