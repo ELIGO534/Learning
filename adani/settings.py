@@ -17,7 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your_default_secret_key')  # Fetch from environment variables
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['learning-1-a6c2.onrender.com','eligo.space','www.eligo.space','localhost', '127.0.0.1']
 CSRF_TRUSTED_ORIGINS = ["https://eligo.space", "https://www.eligo.space","https://learning-1-a6c2.onrender.com"]
@@ -95,10 +95,16 @@ USE_I18N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+
+# Corrected STATICFILES_DIRS (remove duplicate)
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static'),  # Only this line is needed
 ]
-STATIC_URL = 'static/'
+
+# For production
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# Production collection
 
 LOGIN_URL = '/login/'  # Change to your login URL
 

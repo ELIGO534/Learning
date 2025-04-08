@@ -54,7 +54,6 @@ def signup(request):
 
     return render(request, "signup.html")
 
-from django.shortcuts import render
 
 def home(request):
     return render(request, 'home.html', {'user': request.user})
@@ -378,3 +377,9 @@ def submit_survey(request):
         {"success": False, "message": "Invalid request method!"},
         status=400
     )
+
+def employee_page(request):
+    return render(request, 'index.html')
+
+
+

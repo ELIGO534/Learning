@@ -20,6 +20,15 @@ from django.http import HttpResponse
 from django.conf.urls import handler404
 from django.shortcuts import render
 
+from django.conf import settings
+from django.conf.urls.static import static
+from django.views.generic import TemplateView
+from myapp.views import employee_page
+
+import os
+
+BASE_DIR = settings.BASE_DIR
+
 def robots_txt(request):
     content = "User-agent: *\nAllow: /\nSitemap: https://eligo.space/sitemap.xml"
     return HttpResponse(content, content_type="text/plain")
@@ -32,9 +41,12 @@ def custom_404_view(request, exception):
 # URL patterns
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('',include('myapp.urls')),
-    path('robots.txt', robots_txt)
+    path('', include('myapp.urls')),
+    path('member/', employee_page, name='employee_page'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # Assign custom 404 handler
 handler404 = custom_404_view
