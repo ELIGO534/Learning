@@ -1884,9 +1884,7 @@ section,
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
-}
+
 .features-item {
   display: flex;
   justify-content: center;
@@ -1958,4 +1956,196 @@ section,
   color: #ff0000; /* Red color for lock icon */
   font-size: 1.5rem;
   margin-top: 10px;
+}
+
+
+@media (max-width: 768px) {
+  .page-title .heading h1 {
+    font-size: 1.5rem;
+  }
+
+  .page-title .heading p {
+    font-size: 0.875rem;
+  }
+
+  table.min-w-full {
+    font-size: 0.75rem;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  table.min-w-full thead {
+    display: none;
+  }
+
+  table.min-w-full tbody tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background-color: #ffffff;
+  }
+
+  table.min-w-full tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem 0;
+    border: none;
+  }
+
+  table.min-w-full tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    text-transform: capitalize;
+    color: #374151;
+  }
+
+  .footer .footer-top {
+    flex-direction: column;
+  }
+
+  .footer .footer-about,
+  .footer .footer-links,
+  .footer .footer-newsletter {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .newsletter-form input[type="email"] {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .newsletter-form input[type="submit"] {
+    width: 100%;
+  }
+
+  nav#navmenu ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .btn-getstarted {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Header and Navigation */
+  #header {
+    padding: 10px 20px;
+    position: relative;
+  }
+
+  .logo img {
+    height: 40px;
+  }
+
+  .navmenu ul {
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    display: none;
+    z-index: 1000;
+  }
+
+  .navmenu ul.show {
+    display: flex;
+  }
+
+  .navmenu li {
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  .btn-getstarted {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  /* Page Title */
+  .page-title .heading h1 {
+    font-size: 24px;
+  }
+
+  .page-title .heading p {
+    font-size: 14px;
+  }
+
+  .breadcrumbs ol {
+    font-size: 14px;
+  }
+
+  /* Table Section */
+  .table-container {
+    overflow-x: auto;
+  }
+
+  table {
+    font-size: 14px;
+    min-width: 600px;
+  }
+
+  .text-green-600,
+  .text-yellow-500,
+  .text-red-500 {
+    font-size: 14px;
+  }
+
+  /* Footer */
+  .footer-top .footer-about,
+  .footer-top .footer-links,
+  .footer-top .footer-newsletter {
+    text-align: center;
+  }
+
+  .footer-top .row > div {
+    margin-bottom: 20px;
+  }
+
+  .footer-newsletter input[type="email"] {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .footer-newsletter input[type="submit"] {
+    width: 100%;
+  }
+
+  /* General Utility */
+  .container,
+  .container-xl {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .py-6 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .rounded-lg {
+    border-radius: 0.5rem;
+  }
 }
