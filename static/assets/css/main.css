@@ -1959,193 +1959,255 @@ section,
 }
 
 
+/* Mobile Styles for Transaction History Page */
 @media (max-width: 768px) {
+  /* Header adjustments */
+  .header {
+    padding: 10px 0;
+  }
+  
+  .logo img {
+    max-height: 30px;
+  }
+  
+  .sitename {
+    font-size: 1.2rem;
+  }
+  
+  /* Page Title */
+  .page-title .heading h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .page-title .heading p {
+    font-size: 1rem;
+  }
+  
+  /* Breadcrumbs */
+  .breadcrumbs ol {
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+  }
+  
+  /* Transaction Table */
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .min-w-full {
+    min-width: 600px; /* Allows horizontal scrolling on small devices */
+  }
+  
+  /* Transaction Cards (alternative to table on smallest screens) */
+  @media (max-width: 576px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+    
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+    
+    tr {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+    }
+    
+    td {
+      border: none;
+      border-bottom: 1px solid #edf2f7;
+      position: relative;
+      padding-left: 50%;
+      text-align: left;
+    }
+    
+    td:before {
+      position: absolute;
+      left: 0.5rem;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+      font-weight: 600;
+      color: #4a5568;
+    }
+    
+    td:nth-of-type(1):before { content: "Date"; }
+    td:nth-of-type(2):before { content: "Details"; }
+    td:nth-of-type(3):before { content: "Account No."; }
+    td:nth-of-type(4):before { content: "Transaction ID"; }
+    td:nth-of-type(5):before { content: "Amount"; }
+    td:nth-of-type(6):before { content: "Status"; }
+  }
+  
+  /* Footer adjustments */
+  .footer-top .row {
+    flex-direction: column;
+  }
+  
+  .footer-about, 
+  .footer-links, 
+  .footer-newsletter {
+    margin-bottom: 2rem;
+  }
+  
+  /* Container padding */
+  .container, .container-fluid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Button sizing */
+  .btn-getstarted {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  /* No transactions message */
+  .text-center.py-6 {
+    padding: 2rem 1rem;
+  }
+}
+
+/* Extra small devices (phones, 480px and down) */
+@media (max-width: 480px) {
+  /* Header logo */
+  .logo img {
+    max-height: 25px;
+  }
+  
+  /* Page title */
   .page-title .heading h1 {
     font-size: 1.5rem;
   }
-
-  .page-title .heading p {
-    font-size: 0.875rem;
+  
+  /* Transaction status colors */
+  .text-green-500, .text-red-500, .text-yellow-500 {
+    font-size: 0.9rem;
   }
+  
+  /* Need help link */
+  .text-sm {
+    font-size: 0.85rem;
+  }
+}
 
-  table.min-w-full {
-    font-size: 0.75rem;
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  /* Header adjustments */
+  .header {
+    padding: 10px 0;
+  }
+  
+  .logo img {
+    max-height: 30px;
+  }
+  
+  .sitename {
+    font-size: 1.2rem;
+  }
+  
+  .btn-getstarted {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
+  /* Page title adjustments */
+  .page-title .heading h1 {
+    font-size: 1.5rem;
+  }
+  
+  .page-title .heading p {
+    font-size: 0.9rem;
+  }
+  
+  /* Transaction table adjustments */
+  .container.mx-auto.px-4 {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  table {
     display: block;
     overflow-x: auto;
     white-space: nowrap;
   }
-
-  table.min-w-full thead {
-    display: none;
+  
+  .bg-white.shadow-md.rounded-lg.p-6 {
+    padding: 15px;
   }
-
-  table.min-w-full tbody tr {
-    display: block;
-    margin-bottom: 1rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 0.5rem;
-    padding: 1rem;
-    background-color: #ffffff;
+  
+  .min-w-full.bg-white.border.border-gray-200.rounded-lg {
+    font-size: 0.8rem;
   }
-
-  table.min-w-full tbody td {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.25rem 0;
-    border: none;
+  
+  th, td {
+    padding: 8px 6px !important;
   }
-
-  table.min-w-full tbody td::before {
-    content: attr(data-label);
-    font-weight: 600;
-    text-transform: capitalize;
-    color: #374151;
+  
+  /* Footer adjustments */
+  .footer-top {
+    padding-top: 30px;
   }
-
-  .footer .footer-top {
-    flex-direction: column;
+  
+  .footer-about, .footer-links, .footer-newsletter {
+    padding-bottom: 20px;
   }
-
-  .footer .footer-about,
-  .footer .footer-links,
-  .footer .footer-newsletter {
-    margin-bottom: 1.5rem;
-    text-align: center;
+  
+  .footer-links h4, .footer-newsletter h4 {
+    font-size: 1.1rem;
   }
-
+  
+  .footer-links ul li a {
+    font-size: 0.9rem;
+  }
+  
+  .footer-newsletter p {
+    font-size: 0.9rem;
+  }
+  
   .newsletter-form input[type="email"] {
-    width: 100%;
-    margin-bottom: 0.5rem;
-  }
-
-  .newsletter-form input[type="submit"] {
-    width: 100%;
-  }
-
-  nav#navmenu ul {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .btn-getstarted {
-    display: none;
-  }
-}
-
-@media (max-width: 768px) {
-  /* Header and Navigation */
-  #header {
-    padding: 10px 20px;
-    position: relative;
-  }
-
-  .logo img {
-    height: 40px;
-  }
-
-  .navmenu ul {
-    flex-direction: column;
-    background-color: white;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    width: 100%;
-    display: none;
-    z-index: 1000;
-  }
-
-  .navmenu ul.show {
-    display: flex;
-  }
-
-  .navmenu li {
-    margin: 10px 0;
-    text-align: center;
-  }
-
-  .btn-getstarted {
-    padding: 8px 16px;
-    font-size: 14px;
-  }
-
-  .mobile-nav-toggle {
-    display: block;
-    font-size: 24px;
-    cursor: pointer;
-  }
-
-  /* Page Title */
-  .page-title .heading h1 {
-    font-size: 24px;
-  }
-
-  .page-title .heading p {
-    font-size: 14px;
-  }
-
-  .breadcrumbs ol {
-    font-size: 14px;
-  }
-
-  /* Table Section */
-  .table-container {
-    overflow-x: auto;
-  }
-
-  table {
-    font-size: 14px;
-    min-width: 600px;
-  }
-
-  .text-green-600,
-  .text-yellow-500,
-  .text-red-500 {
-    font-size: 14px;
-  }
-
-  /* Footer */
-  .footer-top .footer-about,
-  .footer-top .footer-links,
-  .footer-top .footer-newsletter {
-    text-align: center;
-  }
-
-  .footer-top .row > div {
-    margin-bottom: 20px;
-  }
-
-  .footer-newsletter input[type="email"] {
     width: 100%;
     margin-bottom: 10px;
   }
+  
+  .copyright p {
+    font-size: 0.8rem;
+  }
+}
 
-  .footer-newsletter input[type="submit"] {
+@media (max-width: 576px) {
+  /* Even smaller devices */
+  .page-title .heading h1 {
+    font-size: 1.3rem;
+  }
+  
+  .page-title .heading p {
+    font-size: 0.8rem;
+  }
+  
+  .min-w-full.bg-white.border.border-gray-200.rounded-lg {
+    font-size: 0.7rem;
+  }
+  
+  th, td {
+    padding: 6px 4px !important;
+  }
+  
+  /* Stack footer columns */
+  .footer-top .row > div {
     width: 100%;
-  }
-
-  /* General Utility */
-  .container,
-  .container-xl {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
-  .text-center {
     text-align: center;
   }
-
-  .py-6 {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-
-  .px-4 {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .rounded-lg {
-    border-radius: 0.5rem;
+  
+  .social-links {
+    justify-content: center;
   }
 }
