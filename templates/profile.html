@@ -31,49 +31,250 @@
 
   <!-- Main CSS File -->
   <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+  
+  <style>
+    /* ====================
+       PROFILE PAGE STYLES
+       ==================== */
+    
+    /* Profile Icon */
+    .profile-icon {
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f8f9fa;
+      border-radius: 50%;
+      font-size: 3rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .profile-icon:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+    
+    /* Certificate Container */
+    .certificate-container {
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 300px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      background: #fff;
+    }
+    
+    .certificate-container:hover {
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
+    
+    .certificate-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #fff;
+    }
+    
+    /* Stats Cards */
+    .stats-card {
+      border-radius: 16px;
+      padding: 25px;
+      color: white;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .stats-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.1);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .stats-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    }
+    
+    .stats-card:hover::before {
+      opacity: 1;
+    }
+    
+    .stats-card.earnings {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .stats-card.referrals {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+    
+    .stats-card.withdrawal {
+      background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    }
+    
+    .stats-amount {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .stats-label {
+      font-size: 1rem;
+      opacity: 0.9;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Project Cards */
+    .project-card {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      background: #fff;
+      border: 1px solid #f0f0f0;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+      border-color: #e0e0e0;
+    }
+    
+    .project-card .card-body {
+      padding: 25px;
+    }
+    
+    .project-card .card-title {
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+    
+    .project-card .badge {
+      background-color: #f8f9fa;
+      color: #333;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid #eee;
+      transition: all 0.3s ease;
+    }
+    
+    .project-card:hover .badge {
+      background-color: #4e54c8;
+      color: white;
+      border-color: transparent;
+    }
+    
+    /* ====================
+       MOBILE RESPONSIVENESS
+       ==================== */
+    @media (max-width: 768px) {
+      .profile-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 2.5rem;
+      }
+      
+      .certificate-container {
+        height: 250px;
+      }
+      
+      .stats-card {
+        padding: 20px;
+        margin-bottom: 15px;
+      }
+      
+      .stats-amount {
+        font-size: 2rem;
+      }
+      
+      .project-card {
+        margin-bottom: 20px;
+      }
+      
+      .project-card .card-body {
+        padding: 20px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .profile-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+      }
+      
+      .certificate-container {
+        height: 200px;
+      }
+      
+      .stats-card {
+        padding: 15px;
+      }
+      
+      .stats-amount {
+        font-size: 1.8rem;
+      }
+    }
+</style>
 </head>
 
 <body class="student-profile-page">
 
   <!-- Header -->
-<header id="header" class="header d-flex align-items-center sticky-top">
-  <div class="container-fluid container-xl position-relative d-flex align-items-center">
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-    <a href="/home" class="logo d-flex align-items-center me-auto">
-      <img src="{% static 'assets/img/logo.png' %}" alt="">
-      <h1 class="sitename">liGo</h1>
-    </a>
+      <a href="/home" class="logo d-flex align-items-center me-auto">
+        <img src="{% static 'assets/img/logo.png' %}" alt="">
+        <h1 class="sitename">liGo</h1>
+      </a>
 
-    <nav id="navmenu" class="navmenu">
-      <ul>
-        <li><a href="/home" class="active">Home<br></a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/courses">Courses</a></li>
-        <li><a href="/my_learning">My Learning</a></li>
-        <li><a href="/referrals">Referrals</a></li>
-        <li><a href="/chatwithus">Chat with us</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li class="dropdown">
-          <a href="/profile">
-            <span>
-              <i class="bi bi-person-circle me-2"></i> <!-- Profile icon -->
-              Profile
-            </span>
-            <i class="bi bi-chevron-down toggle-dropdown"></i>
-          </a>
-          <ul>
-            <li><a href="/login">Sign-Up</a></li>
-            <li><a href="/login">Sign-In</a></li>
-          </ul>
-        </li>
-      </ul>
-      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-    </nav>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="/home" class="active">Home<br></a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/courses">Courses</a></li>
+          <li><a href="/my_learning">My Learning</a></li>
+          <li><a href="/referrals">Referrals</a></li>
+          <li><a href="/chatwithus">Chat with us</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li class="dropdown">
+            <a href="/profile">
+              <span>
+                <i class="bi bi-person-circle me-2"></i> <!-- Profile icon -->
+                Profile
+              </span>
+              <i class="bi bi-chevron-down toggle-dropdown"></i>
+            </a>
+            <ul>
+              <li><a href="/login">Sign-Up</a></li>
+              <li><a href="/login">Sign-In</a></li>
+            </ul>
+          </li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
 
-    <a class="btn-getstarted" href="/home">Get Started</a>
+      <a class="btn-getstarted" href="/home">Get Started</a>
 
-  </div>
-</header>
+    </div>
+  </header>
 
   <main class="main">
 
@@ -118,13 +319,38 @@
           </div>
         </div>
 
+        <!-- Stats Section -->
+        <div class="row mb-5">
+          <div class="col-md-4">
+            <div class="stats-card earnings">
+              <div class="stats-amount">₹{{ profile.balance|add:profile.withdrawal_amount|add:"1500" }}</div>
+              <div class="stats-label">Total Earnings</div>
+              <a href="/transaction" class="text-white d-block mt-3">View transactions <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="stats-card referrals">
+              <div class="stats-amount">₹1500</div>
+              <div class="stats-label">Referral Earnings</div>
+              <a href="/referrals" class="text-white d-block mt-3">View referrals <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="stats-card withdrawal">
+              <div class="stats-amount">₹{{ profile.balance }}</div>
+              <div class="stats-label">Available for withdrawal</div>
+              <a href="/withdrawl" class="text-white d-block mt-3">Withdraw now <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
         <!-- Certifications -->
         <div class="mb-5">
           <h3 class="text-xl font-bold mb-4">Certifications</h3>
           {% if certifications %}
             <div class="row">
               {% for certification in certifications %}
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <div class="card">
                     <div class="card-body">
                       <h5 class="card-title">{{ certification.title }}</h5>
@@ -134,6 +360,23 @@
                   </div>
                 </div>
               {% endfor %}
+            </div>
+          {% elif request.user.name == "Sairam Barla" %}
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Artificial Intelligence Certification</h5>
+                    <p class="card-text">Issued by EliGo on Jan 5, 2025</p>
+                    <div class="certificate-container mt-3">
+                      <iframe src="https://drive.google.com/file/d/1qkRa1CQLdTu7qxQu9O7rfdfQLxZB1tbL/preview" allow="autoplay"></iframe>
+                    </div>
+                    <div class="mt-3">
+                      <a href="https://drive.google.com/file/d/1qkRa1CQLdTu7qxQu9O7rfdfQLxZB1tbL/view?usp=sharing" class="btn btn-primary" target="_blank">Download Certificate</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           {% else %}
             <div class="alert alert-info">
@@ -148,16 +391,40 @@
           {% if projects %}
             <div class="row">
               {% for project in projects %}
-                <div class="col-md-6">
-                  <div class="card">
+                <div class="col-md-6 mb-4">
+                  <div class="project-card card">
                     <div class="card-body">
                       <h5 class="card-title">{{ project.title }}</h5>
                       <p class="card-text">{{ project.description }}</p>
-                      <a href="#" class="btn btn-primary">View Project</a>
+                      <span class="badge">Completed</span>
+                      <a href="#" class="btn btn-outline-primary mt-3">View Project Details</a>
                     </div>
                   </div>
                 </div>
               {% endfor %}
+            </div>
+          {% elif request.user.name == "Sairam Barla" %}
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <div class="project-card card">
+                  <div class="card-body">
+                    <h5 class="card-title">AI-Powered Medical Diagnosis System</h5>
+                    <p class="card-text">Developed a machine learning model that analyzes medical images to assist doctors in diagnosing diseases with 92% accuracy.</p>
+                    <span class="badge">Completed</span>
+                    <a href="#" class="btn btn-outline-primary mt-3">View Project Details</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="project-card card">
+                  <div class="card-body">
+                    <h5 class="card-title">E-commerce Recommendation Engine</h5>
+                    <p class="card-text">Built a collaborative filtering recommendation system that increased sales by 18% for an online retailer.</p>
+                    <span class="badge">Completed</span>
+                    <a href="#" class="btn btn-outline-primary mt-3">View Project Details</a>
+                  </div>
+                </div>
+              </div>
             </div>
           {% else %}
             <div class="alert alert-info">
@@ -166,43 +433,8 @@
           {% endif %}
         </div>
 
-        <!-- Earnings -->
-        <div class="mb-5">
-          <h3 class="text-xl font-bold mb-4">Earnings</h3>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Total Earnings: ₹{{ profile.balance }}</h5>
-              <p class="card-text">View detailed earnings on the <a href="/transaction" class="text-primary">Transactions Page</a>.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Referrals -->
-        <div class="mb-5">
-          <h3 class="text-xl font-bold mb-4">Referrals</h3>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Referral Earnings: ₹</h5>
-              <p class="card-text">You have referred people. Track your referrals on the <a href="/referrals" class="text-primary">Referrals Page</a>.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Withdrawal -->
-        <div class="mb-5">
-          <h3 class="text-xl font-bold mb-4">Withdrawal</h3>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Withdrawal Balance: ₹{{ profile.withdrawal_amount }}</h5>
-              <p class="card-text">You can withdraw your earnings to your bank account.</p>
-              <a href="/withdrawl" class="btn btn-primary">Withdraw Now</a>
-            </div>
-          </div>
-        </div>
-
       </div>
 
-    </section><!-- /Profile Content -->
 
   </main>
 

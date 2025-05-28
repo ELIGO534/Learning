@@ -54,12 +54,11 @@ class ProfileAdmin(admin.ModelAdmin):
 @admin.register(Withdrawal)
 class WithdrawalAdmin(admin.ModelAdmin):
     list_display = ('name', 'account_number', 'ifsc_code', 'amount', 'payment_status', 'created_at')
-    search_fields = ('name', 'account_number', 'ifsc_code')
-    list_filter = ('payment_status',)  # Adding filter for payment status
-    ordering = ('-created_at',)  # Ordering by creation date, descending
+    search_fields = ('name', 'account_number', 'ifsc_code','created_at')
+    list_filter = ('payment_status',)  # Adding filter for payment status # Ordering by creation date, descending
 
     # Optionally, you can make some fields readonly or editable
-    readonly_fields = ('created_at',)  # Make 'created_at' field readonly
+     # Make 'created_at' field readonly
     # If you want to add more fields for better customization, you can do it like:
     # fields = ('name', 'account_number', 'amount', 'payment_status', 'created_at')
 

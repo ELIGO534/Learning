@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.conf import settings
+from django.utils import timezone
+
 
 # Custom Manager for User model
 class UserManager(BaseUserManager):
@@ -97,7 +99,7 @@ class Withdrawal(models.Model):
         choices=PAYMENT_STATUS_CHOICES,
         default="Pending"
     )
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(default=timezone.now)
 
     def save(self, *args, **kwargs):
         if self.pk:  # Ensure it's an update (not a new record)
