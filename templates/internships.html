@@ -1,0 +1,920 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>ELiGo - Premium Internship Opportunities with Stipend</title>
+  <meta name="description" content="ELiGo connects students with paid internship opportunities across India, especially with South Indian companies. Gain real-world experience while earning.">
+  <meta name="keywords" content="paid internships, internship with stipend, south india internships, bangalore internships, chennai internships, hyderabad internships, student internships, tech internships, business internships">
+  <meta name="author" content="ELiGo Education">
+  
+  <!-- Same CSS as previous page -->
+  <style>
+    :root {
+      --primary: #16a34a;
+      --primary-light: #22c55e;
+      --primary-dark: #15803d;
+      --secondary: #3b82f6;
+      --accent: #f59e0b;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gray: #94a3b8;
+      --card-bg: #ffffff;
+      --body-bg: #f9fafb;
+    }
+    
+    /* Internship Specific Styles */
+    .internship-hero {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.2));
+      padding: 5rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .internship-card {
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--card-bg);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0,0,0,0.03);
+      height: 100%;
+    }
+    
+    .internship-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    
+    .stipend-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.35rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      z-index: 2;
+    }
+    
+    .company-logo {
+      height: 60px;
+      width: 60px;
+      object-fit: contain;
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.05);
+      background: white;
+      padding: 5px;
+    }
+    
+    .testimonial-slide {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      margin: 1rem;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+    
+    .urgent-tag {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: #ef4444;
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      z-index: 2;
+    }
+    
+    .location-tag {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--secondary);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    
+    .cta-banner {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40%;
+      height: 100%;
+      background: url('{% static "assets/img/dots-pattern.png" %}') repeat;
+      opacity: 0.1;
+    }
+    
+    .floating {
+      animation: floating 6s ease-in-out infinite;
+    }
+    
+    @keyframes floating {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
+</head>
+
+<body class="internships-page">
+
+  <!-- Same Header as Previous Page -->
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+      <a href="/home" class="logo d-flex align-items-center me-auto">
+        <img src="{% static 'assets/img/logo.png' %}" alt="ELiGo Logo" width="40" height="40">
+        <h1 class="sitename ms-2">ELiGo</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="/home">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li class="dropdown">
+            <a href="/courses">Courses <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/courses/technology">Technology</a></li>
+              <li><a href="/courses/business">Business</a></li>
+              <li><a href="/courses/creative-arts">Creative Arts</a></li>
+              <li><a href="/courses/professional-development">Professional Development</a></li>
+            </ul>
+          </li>
+          <li><a href="/my_learning">My Learning</a></li>
+          <li><a href="/referrals">Earn Money</a></li>
+          <li><a href="/internships" class="active">Internships</a></li>
+          <li class="dropdown">
+            <a href="/profile"><i class="fas fa-user-circle me-1"></i> Profile <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/login">Sign In</a></li>
+              <li><a href="/register">Sign Up</a></li>
+              <li><a href="/profile">My Profile</a></li>
+              <li><a href="/settings">Settings</a></li>
+            </ul>
+          </li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      
+      <div class="d-flex align-items-center ms-auto">
+        <a href="/courses" class="btn btn-outline-primary me-2 d-none d-md-inline-flex">Browse Courses</a>
+        <a href="/my_learning" class="btn btn-primary d-none d-md-inline-flex">My Learning</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Internship Hero Section -->
+    <section class="internship-hero">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6" data-aos="fade-right">
+            <h1 class="display-5 fw-bold mb-4">Launch Your Career with Paid Internships</h1>
+            <p class="lead mb-4">ELiGo partners with 150+ Indian companies, primarily from South India, to provide exclusive paid internship opportunities to our students. Gain real-world experience while earning stipends up to ₹15,000/month.</p>
+            <div class="d-flex flex-wrap gap-3 mb-4">
+              <a href="#current-openings" class="btn btn-primary px-4 py-3">
+                <i class="fas fa-briefcase me-2"></i> View Openings
+              </a>
+              <a href="#how-it-works" class="btn btn-outline-primary px-4 py-3">
+                <i class="fas fa-info-circle me-2"></i> How It Works
+              </a>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="d-flex me-4">
+                <img src="{% static 'assets/img/companies/company-1.png' %}" class="rounded-3 border border-2 border-white bg-white p-1" width="40" height="40" alt="Company">
+                <img src="{% static 'assets/img/companies/company-2.png' %}" class="rounded-3 border border-2 border-white bg-white p-1 ms-n2" width="40" height="40" alt="Company">
+                <img src="{% static 'assets/img/companies/company-3.png' %}" class="rounded-3 border border-2 border-white bg-white p-1 ms-n2" width="40" height="40" alt="Company">
+                <img src="{% static 'assets/img/companies/company-4.png' %}" class="rounded-3 border border-2 border-white bg-white p-1 ms-n2" width="40" height="40" alt="Company">
+              </div>
+              <div>
+                <p class="mb-0 fw-bold">Trusted by 120+ South Indian Companies</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6" data-aos="fade-left">
+            <img src="{% static 'assets/img/internship-hero.png' %}" alt="Internship Opportunities" class="img-fluid floating">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-3 col-6" data-aos="fade-up">
+            <div class="text-center">
+              <h2 class="text-primary fw-bold mb-1">1,250+</h2>
+              <p class="text-muted mb-0">Students Placed</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="text-center">
+              <h2 class="text-primary fw-bold mb-1">120+</h2>
+              <p class="text-muted mb-0">Partner Companies</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="text-center">
+              <h2 class="text-primary fw-bold mb-1">₹8.5M+</h2>
+              <p class="text-muted mb-0">Total Stipends Paid</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="text-center">
+              <h2 class="text-primary fw-bold mb-1">65%</h2>
+              <p class="text-muted mb-0">Conversion to Jobs</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Current Openings Section -->
+    <section id="current-openings" class="py-5 bg-light">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-5" data-aos="fade-up">
+          <div>
+            <h2 class="fw-bold mb-2">Current Internship Openings</h2>
+            <p class="text-muted mb-0">Exclusive opportunities for ELiGo students</p>
+          </div>
+          <div class="d-flex">
+            <div class="dropdown me-2">
+              <button class="btn btn-outline-primary dropdown-toggle" type="button" id="locationFilter" data-bs-toggle="dropdown">
+                <i class="fas fa-map-marker-alt me-2"></i> Location
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Bangalore</a></li>
+                <li><a class="dropdown-item" href="#">Chennai</a></li>
+                <li><a class="dropdown-item" href="#">Hyderabad</a></li>
+                <li><a class="dropdown-item" href="#">Pune</a></li>
+                <li><a class="dropdown-item" href="#">Remote</a></li>
+              </ul>
+            </div>
+            <div class="dropdown">
+              <button class="btn btn-outline-primary dropdown-toggle" type="button" id="categoryFilter" data-bs-toggle="dropdown">
+                <i class="fas fa-filter me-2"></i> Category
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Technology</a></li>
+                <li><a class="dropdown-item" href="#">Business</a></li>
+                <li><a class="dropdown-item" href="#">Marketing</a></li>
+                <li><a class="dropdown-item" href="#">Design</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row g-4">
+          <!-- Internship 1 -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up">
+            <div class="internship-card">
+              <div class="urgent-tag">Urgent Hiring</div>
+              <div class="stipend-badge">₹10k-15k/month</div>
+              <img src="{% static 'assets/img/internships/tech-intern.jpg' %}" class="img-fluid w-100" alt="Tech Internship" style="height: 180px; object-fit: cover;">
+              <div class="p-4">
+                <div class="d-flex align-items-center mb-3">
+                  <img src="{% static 'assets/img/companies/techwave.png' %}" class="company-logo me-3" alt="TechWave">
+                  <div>
+                    <h4 class="mb-1">Full Stack Developer Intern</h4>
+                    <p class="mb-0 text-muted">TechWave Solutions, Bangalore</p>
+                  </div>
+                </div>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <span class="location-tag"><i class="fas fa-map-marker-alt me-1"></i> Bangalore</span>
+                  <span class="badge bg-primary bg-opacity-10 text-primary">3 Months</span>
+                  <span class="badge bg-success bg-opacity-10 text-success">Immediate Joining</span>
+                </div>
+                <p class="mb-4">Work on real client projects using MERN stack. Opportunity for PPO based on performance.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <a href="#" class="btn btn-sm btn-primary">Apply Now</a>
+                  <small class="text-muted">5 positions left</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Internship 2 -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="internship-card">
+              <div class="stipend-badge">₹8k-12k/month</div>
+              <img src="{% static 'assets/img/internships/marketing-intern.jpg' %}" class="img-fluid w-100" alt="Marketing Internship" style="height: 180px; object-fit: cover;">
+              <div class="p-4">
+                <div class="d-flex align-items-center mb-3">
+                  <img src="{% static 'assets/img/companies/growthify.png' %}" class="company-logo me-3" alt="Growthify">
+                  <div>
+                    <h4 class="mb-1">Digital Marketing Intern</h4>
+                    <p class="mb-0 text-muted">Growthify Media, Chennai</p>
+                  </div>
+                </div>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <span class="location-tag"><i class="fas fa-map-marker-alt me-1"></i> Chennai</span>
+                  <span class="badge bg-primary bg-opacity-10 text-primary">6 Months</span>
+                  <span class="badge bg-success bg-opacity-10 text-success">Part-time Available</span>
+                </div>
+                <p class="mb-4">Handle social media campaigns, SEO, and content creation for clients across industries.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <a href="#" class="btn btn-sm btn-primary">Apply Now</a>
+                  <small class="text-muted">8 positions left</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Internship 3 -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="internship-card">
+              <div class="stipend-badge">₹5k-8k/month</div>
+              <img src="{% static 'assets/img/internships/design-intern.jpg' %}" class="img-fluid w-100" alt="Design Internship" style="height: 180px; object-fit: cover;">
+              <div class="p-4">
+                <div class="d-flex align-items-center mb-3">
+                  <img src="{% static 'assets/img/companies/creativelabs.png' %}" class="company-logo me-3" alt="CreativeLabs">
+                  <div>
+                    <h4 class="mb-1">UI/UX Design Intern</h4>
+                    <p class="mb-0 text-muted">CreativeLabs, Hyderabad</p>
+                  </div>
+                </div>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <span class="location-tag"><i class="fas fa-map-marker-alt me-1"></i> Hyderabad</span>
+                  <span class="badge bg-primary bg-opacity-10 text-primary">3 Months</span>
+                  <span class="badge bg-warning bg-opacity-10 text-warning">Figma Required</span>
+                </div>
+                <p class="mb-4">Design interfaces for mobile/web apps. Portfolio building opportunity with real projects.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <a href="#" class="btn btn-sm btn-primary">Apply Now</a>
+                  <small class="text-muted">3 positions left</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Internship 4 -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up">
+            <div class="internship-card">
+              <div class="stipend-badge">₹12k-15k/month</div>
+              <img src="{% static 'assets/img/internships/data-intern.jpg' %}" class="img-fluid w-100" alt="Data Internship" style="height: 180px; object-fit: cover;">
+              <div class="p-4">
+                <div class="d-flex align-items-center mb-3">
+                  <img src="{% static 'assets/img/companies/datanova.png' %}" class="company-logo me-3" alt="DataNova">
+                  <div>
+                    <h4 class="mb-1">Data Science Intern</h4>
+                    <p class="mb-0 text-muted">DataNova Analytics, Bangalore</p>
+                  </div>
+                </div>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <span class="location-tag"><i class="fas fa-map-marker-alt me-1"></i> Bangalore</span>
+                  <span class="badge bg-primary bg-opacity-10 text-primary">6 Months</span>
+                  <span class="badge bg-info bg-opacity-10 text-info">Python Required</span>
+                </div>
+                <p class="mb-4">Work on machine learning models for real-world datasets. Mentorship from senior data scientists.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <a href="#" class="btn btn-sm btn-primary">Apply Now</a>
+                  <small class="text-muted">2 positions left</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Internship 5 -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="internship-card">
+              <div class="urgent-tag">Urgent Hiring</div>
+              <div class="stipend-badge">₹6k-10k/month</div>
+              <img src="{% static 'assets/img/internships/business-intern.jpg' %}" class="img-fluid w-100" alt="Business Internship" style="height: 180px; object-fit: cover;">
+              <div class="p-4">
+                <div class="d-flex align-items-center mb-3">
+                  <img src="{% static 'assets/img/companies/finwise.png' %}" class="company-logo me-3" alt="FinWise">
+                  <div>
+                    <h4 class="mb-1">Business Analyst Intern</h4>
+                    <p class="mb-0 text-muted">FinWise Consultants, Chennai</p>
+                  </div>
+                </div>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <span class="location-tag"><i class="fas fa-map-marker-alt me-1"></i> Chennai</span>
+                  <span class="badge bg-primary bg-opacity-10 text-primary">3 Months</span>
+                  <span class="badge bg-success bg-opacity-10 text-success">Excel Required</span>
+                </div>
+                <p class="mb-4">Analyze market trends, prepare reports, and assist in client presentations for financial services.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <a href="#" class="btn btn-sm btn-primary">Apply Now</a>
+                  <small class="text-muted">4 positions left</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Internship 6 -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="internship-card">
+              <div class="stipend-badge">₹7k-12k/month</div>
+              <img src="{% static 'assets/img/internships/content-intern.jpg' %}" class="img-fluid w-100" alt="Content Internship" style="height: 180px; object-fit: cover;">
+              <div class="p-4">
+                <div class="d-flex align-items-center mb-3">
+                  <img src="{% static 'assets/img/companies/wordcraft.png' %}" class="company-logo me-3" alt="WordCraft">
+                  <div>
+                    <h4 class="mb-1">Content Writing Intern</h4>
+                    <p class="mb-0 text-muted">WordCraft Studios, Remote</p>
+                  </div>
+                </div>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <span class="location-tag"><i class="fas fa-map-marker-alt me-1"></i> Remote</span>
+                  <span class="badge bg-primary bg-opacity-10 text-primary">3 Months</span>
+                  <span class="badge bg-warning bg-opacity-10 text-warning">English Proficiency</span>
+                </div>
+                <p class="mb-4">Create blog posts, social media content, and website copy for diverse clients. Flexible hours.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <a href="#" class="btn btn-sm btn-primary">Apply Now</a>
+                  <small class="text-muted">6 positions left</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="text-center mt-5" data-aos="fade-up">
+          <a href="#" class="btn btn-outline-primary px-4 py-3">
+            <i class="fas fa-plus-circle me-2"></i> View All Internships (32+)
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-5">
+      <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+          <h2 class="fw-bold mb-3">How Our Internship Program Works</h2>
+          <p class="lead text-muted mx-auto" style="max-width: 700px;">Simple steps to land your dream internship with South India's top companies</p>
+        </div>
+        
+        <div class="row g-4">
+          <div class="col-lg-3 col-md-6" data-aos="fade-up">
+            <div class="step-card text-center p-4 h-100">
+              <div class="step-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">1</div>
+              <h4 class="mb-3">Complete ELiGo Courses</h4>
+              <p class="text-muted">Finish at least one ELiGo course with 85%+ score to become eligible</p>
+              <div class="step-icon mt-3">
+                <i class="fas fa-graduation-cap fs-1 text-primary"></i>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="step-card text-center p-4 h-100">
+              <div class="step-number bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">2</div>
+              <h4 class="mb-3">Build Your Profile</h4>
+              <p class="text-muted">Create a compelling student profile highlighting your skills and projects</p>
+              <div class="step-icon mt-3">
+                <i class="fas fa-user-tie fs-1 text-success"></i>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="step-card text-center p-4 h-100">
+              <div class="step-number bg-warning text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">3</div>
+              <h4 class="mb-3">Apply to Internships</h4>
+              <p class="text-muted">Browse and apply to suitable openings from our partner companies</p>
+              <div class="step-icon mt-3">
+                <i class="fas fa-briefcase fs-1 text-warning"></i>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="step-card text-center p-4 h-100">
+              <div class="step-number bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">4</div>
+              <h4 class="mb-3">Get Selected & Start</h4>
+              <p class="text-muted">Companies review applications and conduct interviews for selection</p>
+              <div class="step-icon mt-3">
+                <i class="fas fa-handshake fs-1 text-info"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Student Testimonials Section -->
+    <section class="py-5 bg-light">
+      <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+          <h2 class="fw-bold mb-3">Success Stories from Our Interns</h2>
+          <p class="lead text-muted mx-auto" style="max-width: 700px;">Hear from students who transformed their careers through ELiGo internships</p>
+        </div>
+        
+        <div class="swiper testimonials-slider" data-aos="fade-up">
+          <div class="swiper-wrapper">
+            <!-- Testimonial 1 -->
+            <div class="swiper-slide">
+              <div class="testimonial-slide">
+                <div class="d-flex align-items-center mb-4">
+                  <img src="{% static 'assets/img/testimonials/intern-1.jpg' %}" class="rounded-circle me-3" width="60" height="60" alt="Student">
+                  <div>
+                    <h5 class="mb-1">Rahul K.</h5>
+                    <p class="text-muted small mb-0">Full Stack Developer at TechWave</p>
+                    <div class="text-warning small">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mb-0">"ELiGo's internship program changed my life! I got placed at TechWave Bangalore with ₹8LPA package after my internship. The hands-on experience was invaluable."</p>
+                <div class="mt-3 pt-3 border-top">
+                  <small class="text-muted">Former Intern at TechWave Solutions, Bangalore</small>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Testimonial 2 -->
+            <div class="swiper-slide">
+              <div class="testimonial-slide">
+                <div class="d-flex align-items-center mb-4">
+                  <img src="{% static 'assets/img/testimonials/intern-2.jpg' %}" class="rounded-circle me-3" width="60" height="60" alt="Student">
+                  <div>
+                    <h5 class="mb-1">Priya M.</h5>
+                    <p class="text-muted small mb-0">Digital Marketing Executive</p>
+                    <div class="text-warning small">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star-half-alt"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mb-0">"My internship at Growthify Chennai through ELiGo helped me build a strong portfolio. I now handle social media for 5 international clients independently!"</p>
+                <div class="mt-3 pt-3 border-top">
+                  <small class="text-muted">Former Intern at Growthify Media, Chennai</small>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Testimonial 3 -->
+            <div class="swiper-slide">
+              <div class="testimonial-slide">
+                <div class="d-flex align-items-center mb-4">
+                  <img src="{% static 'assets/img/testimonials/intern-3.jpg' %}" class="rounded-circle me-3" width="60" height="60" alt="Student">
+                  <div>
+                    <h5 class="mb-1">Arjun S.</h5>
+                    <p class="text-muted small mb-0">UI/UX Designer at CreativeLabs</p>
+                    <div class="text-warning small">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mb-0">"From intern to full-time designer in 6 months! The projects I worked on during my ELiGo internship became the highlight of my portfolio."</p>
+                <div class="mt-3 pt-3 border-top">
+                  <small class="text-muted">Former Intern at CreativeLabs, Hyderabad</small>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Testimonial 4 -->
+            <div class="swiper-slide">
+              <div class="testimonial-slide">
+                <div class="d-flex align-items-center mb-4">
+                  <img src="{% static 'assets/img/testimonials/intern-4.jpg' %}" class="rounded-circle me-3" width="60" height="60" alt="Student">
+                  <div>
+                    <h5 class="mb-1">Neha P.</h5>
+                    <p class="text-muted small mb-0">Data Analyst at DataNova</p>
+                    <div class="text-warning small">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mb-0">"The stipend and learning during my internship helped me support my education. I'm now working full-time at the same company with great growth prospects."</p>
+                <div class="mt-3 pt-3 border-top">
+                  <small class="text-muted">Former Intern at DataNova Analytics, Bangalore</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Navigation Buttons -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="py-5">
+      <div class="container">
+        <div class="cta-banner p-5 text-white" data-aos="zoom-in">
+          <div class="row align-items-center">
+            <div class="col-lg-8 mb-4 mb-lg-0">
+              <h2 class="fw-bold mb-3">Ready to Launch Your Career?</h2>
+              <p class="mb-0">Join ELiGo's internship program today and get placed with top South Indian companies. Limited seats available!</p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+              <a href="#" class="btn btn-light btn-lg px-4 py-3">
+                <i class="fas fa-rocket me-2"></i> Apply Now
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partner Companies Section -->
+    <section class="py-5 bg-light">
+      <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+          <h2 class="fw-bold mb-3">Our Trusted Partner Companies</h2>
+          <p class="lead text-muted mx-auto" style="max-width: 700px;">We collaborate with growing companies across South India to provide quality internship opportunities</p>
+        </div>
+        
+        <div class="row g-4 justify-content-center align-items-center">
+          <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up">
+            <img src="{% static 'assets/img/companies/techwave.png' %}" class="img-fluid opacity-75" alt="TechWave">
+          </div>
+                    <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="100">
+            <img src="{% static 'assets/img/companies/growthify.png' %}" class="img-fluid opacity-75" alt="Growthify">
+          </div>
+          <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="200">
+            <img src="{% static 'assets/img/companies/creativelabs.png' %}" class="img-fluid opacity-75" alt="CreativeLabs">
+          </div>
+          <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="300">
+            <img src="{% static 'assets/img/companies/datanova.png' %}" class="img-fluid opacity-75" alt="DataNova">
+          </div>
+          <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up">
+            <img src="{% static 'assets/img/companies/finwise.png' %}" class="img-fluid opacity-75" alt="FinWise">
+          </div>
+          <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="100">
+            <img src="{% static 'assets/img/companies/wordcraft.png' %}" class="img-fluid opacity-75" alt="WordCraft">
+          </div>
+          <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="200">
+            <img src="{% static 'assets/img/companies/company-1.png' %}" class="img-fluid opacity-75" alt="Company">
+          </div>
+          <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="300">
+            <img src="{% static 'assets/img/companies/company-2.png' %}" class="img-fluid opacity-75" alt="Company">
+          </div>
+        </div>
+        
+        <div class="text-center mt-5" data-aos="fade-up">
+          <a href="#" class="btn btn-outline-primary px-4 py-3">
+            <i class="fas fa-building me-2"></i> View All Partner Companies
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-5">
+      <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+          <h2 class="fw-bold mb-3">Frequently Asked Questions</h2>
+          <p class="lead text-muted mx-auto" style="max-width: 700px;">Get answers to common questions about our internship program</p>
+        </div>
+        
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="accordion" id="faqAccordion">
+              <!-- FAQ 1 -->
+              <div class="accordion-item mb-3 border-0 shadow-sm" data-aos="fade-up">
+                <h3 class="accordion-header" id="headingOne">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                    What are the eligibility criteria for ELiGo internships?
+                  </button>
+                </h3>
+                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    To be eligible for our internship program, you must: <br>
+                    1. Be currently enrolled in or recently graduated from a recognized educational institution<br>
+                    2. Have completed at least one ELiGo course with 85% or higher score<br>
+                    3. Have a complete student profile with projects/skills showcased<br>
+                    4. Meet any additional requirements specified by the hiring company
+                  </div>
+                </div>
+              </div>
+              
+              <!-- FAQ 2 -->
+              <div class="accordion-item mb-3 border-0 shadow-sm" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="accordion-header" id="headingTwo">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                    Are all ELiGo internships paid?
+                  </button>
+                </h3>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Yes! We exclusively partner with companies that offer stipends for internships. Stipend amounts vary based on:<br>
+                    - Role and responsibilities (₹5,000 - ₹15,000/month typically)<br>
+                    - Company size and location<br>
+                    - Duration of internship<br>
+                    - Your skills and experience level<br>
+                    All stipend details are clearly mentioned in each internship posting.
+                  </div>
+                </div>
+              </div>
+              
+              <!-- FAQ 3 -->
+              <div class="accordion-item mb-3 border-0 shadow-sm" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="accordion-header" id="headingThree">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                    What locations are available for internships?
+                  </button>
+                </h3>
+                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Our internships are primarily available in:<br>
+                    <strong>Major South Indian Cities:</strong> Bangalore, Chennai, Hyderabad, Coimbatore, Kochi<br>
+                    <strong>Other Indian Cities:</strong> Pune, Mumbai, Delhi/NCR (limited openings)<br>
+                    <strong>Remote Opportunities:</strong> Selected roles allow work from anywhere<br><br>
+                    About 70% of our opportunities are in South India, with Bangalore having the most openings.
+                  </div>
+                </div>
+              </div>
+              
+              <!-- FAQ 4 -->
+              <div class="accordion-item mb-3 border-0 shadow-sm" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="accordion-header" id="headingFour">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                    How does the selection process work?
+                  </button>
+                </h3>
+                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Our streamlined selection process involves:<br>
+                    1. <strong>Application:</strong> Submit your profile through ELiGo (takes 5 minutes)<br>
+                    2. <strong>Screening:</strong> Our team verifies your eligibility and course completion<br>
+                    3. <strong>Company Review:</strong> Partner companies review applications<br>
+                    4. <strong>Interviews:</strong> Selected candidates interview with companies (1-2 rounds typically)<br>
+                    5. <strong>Offer:</strong> Successful candidates receive internship offer letters<br><br>
+                    The entire process usually takes 7-14 days from application to offer.
+                  </div>
+                </div>
+              </div>
+              
+              <!-- FAQ 5 -->
+              <div class="accordion-item mb-3 border-0 shadow-sm" data-aos="fade-up">
+                <h3 class="accordion-header" id="headingFive">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
+                    Can I get a full-time job after the internship?
+                  </button>
+                </h3>
+                <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Absolutely! Many of our partner companies use internships as a pipeline for full-time hiring:<br>
+                    - 65% of our interns receive Pre-Placement Offers (PPOs)<br>
+                    - Top performers often get offers before internship completion<br>
+                    - Even if not hired immediately, the experience significantly boosts your employability<br><br>
+                    We've seen interns land jobs with packages ranging from ₹3.5 LPA to ₹12 LPA based on role and company.
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="text-center mt-5" data-aos="fade-up">
+              <a href="#" class="btn btn-outline-primary px-4 py-3">
+                <i class="fas fa-question-circle me-2"></i> More Questions? Contact Us
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer" class="footer bg-dark text-white pt-5 pb-4">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-logo mb-3">
+            <img src="{% static 'assets/img/logo-white.png' %}" alt="ELiGo Logo" width="40" height="40">
+            <span class="ms-2 sitename">ELiGo</span>
+          </div>
+          <p class="small text-muted">Empowering students with skills and opportunities to launch successful careers.</p>
+          <div class="social-links mt-3">
+            <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-3">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="/home" class="text-muted small">Home</a></li>
+            <li class="mb-2"><a href="/about" class="text-muted small">About Us</a></li>
+            <li class="mb-2"><a href="/courses" class="text-muted small">All Courses</a></li>
+            <li class="mb-2"><a href="/internships" class="text-muted small">Internships</a></li>
+            <li class="mb-2"><a href="/referrals" class="text-muted small">Refer & Earn</a></li>
+            <li class="mb-2"><a href="/contact" class="text-muted small">Contact Us</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-3">Support</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="/faq" class="text-muted small">FAQs</a></li>
+            <li class="mb-2"><a href="/help-center" class="text-muted small">Help Center</a></li>
+            <li class="mb-2"><a href="/privacy" class="text-muted small">Privacy Policy</a></li>
+            <li class="mb-2"><a href="/terms" class="text-muted small">Terms of Service</a></li>
+            <li class="mb-2"><a href="/refund" class="text-muted small">Refund Policy</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-3">Contact Info</h5>
+          <ul class="list-unstyled text-muted small">
+            <li class="mb-2"><i class="fas fa-map-marker-alt me-2 text-primary"></i> Bangalore, Karnataka, India</li>
+            <li class="mb-2"><i class="fas fa-phone-alt me-2 text-primary"></i> +91 9876543210</li>
+            <li class="mb-2"><i class="fas fa-envelope me-2 text-primary"></i> support@eligo.in</li>
+            <li class="mb-2"><i class="fas fa-clock me-2 text-primary"></i> Mon-Sat: 9:00 AM - 6:00 PM</li>
+          </ul>
+        </div>
+      </div>
+      
+      <hr class="my-4 border-secondary">
+      
+      <div class="row">
+        <div class="col-md-6 text-center text-md-start">
+          <p class="small text-muted mb-0">&copy; 2023 ELiGo Education. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <p class="small text-muted mb-0">Made with <i class="fas fa-heart text-danger"></i> in India</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+
+  <!-- Same Scripts as Previous Page -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  
+  <!-- Initialize Swiper -->
+  <script>
+    // Testimonials slider
+    var testimonialSwiper = new Swiper(".testimonials-slider", {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+        },
+        992: {
+          slidesPerView: 3,
+        }
+      }
+    });
+    
+    // Initialize AOS
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      offset: 100
+    });
+  </script>
+</body>
+</html>

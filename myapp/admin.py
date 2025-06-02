@@ -45,7 +45,7 @@ class MemberAdmin(admin.ModelAdmin):
 # Profile Admin
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'balance', 'withdrawal_amount', 'phone_number']
+    list_display = ['user', 'balance', 'withdrawal_amount', 'phone_number','earnings']
     list_editable = ['balance', 'withdrawal_amount', 'phone_number']
     search_fields = ('user__phone',)
     list_filter = ('balance',)  # Adding filter for balance

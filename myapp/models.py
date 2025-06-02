@@ -70,6 +70,7 @@ class Profile(models.Model):
     balance = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     withdrawal_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     phone_number = models.CharField(max_length=15, null=True, blank=True)
+    earnings = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.user.phone} - {self.phone_number if self.phone_number else 'No Phone'}"

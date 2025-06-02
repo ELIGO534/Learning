@@ -14,224 +14,218 @@
   <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/img/favicon_io/favicon-32x32.png' %}">
   <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/img/favicon_io/favicon-16x16.png' %}">
   <link rel="manifest" href="{% static 'assets/img/favicon_io/site.webmanifest' %}">
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="theme-color" content="#ffffff">
 
+  <!-- 3D Icons Library -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.css">
+  
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
   <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
   <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
 
   <!-- Main CSS File -->
   <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
   
   <style>
-    /* ====================
-       PROFILE PAGE STYLES
-       ==================== */
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #4338ca;
+      --secondary: #10b981;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gray: #94a3b8;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+    }
     
-    /* Profile Icon */
-    .profile-icon {
-      width: 80px;
-      height: 80px;
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafb;
+      color: var(--dark);
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    
+    /* Header */
+    .header {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    }
+    
+    /* Profile Container */
+    .profile-container {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      overflow: hidden;
+      margin-top: -80px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Profile Header */
+    .profile-header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      padding: 3rem 2rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .profile-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      transform: rotate(30deg);
+    }
+    
+    /* Avatar */
+    .profile-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid white;
+      background: linear-gradient(45deg, #e0e7ff, #c7d2fe);
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: #f8f9fa;
-      border-radius: 50%;
-      font-size: 3rem;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-    }
-    
-    .profile-icon:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    }
-    
-    /* Certificate Container */
-    .certificate-container {
-      border: 1px solid #e0e0e0;
-      border-radius: 12px;
-      overflow: hidden;
-      height: 300px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      transition: all 0.3s ease;
-      background: #fff;
-    }
-    
-    .certificate-container:hover {
-      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-    }
-    
-    .certificate-container iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      background: #fff;
+      font-size: 3.5rem;
+      color: var(--primary);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      margin-top: -60px;
+      position: relative;
+      z-index: 3;
+      transform: translateY(13px);
     }
     
     /* Stats Cards */
-    .stats-card {
+    .stat-card {
       border-radius: 16px;
-      padding: 25px;
-      color: white;
-      margin-bottom: 20px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-    
-    .stats-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255,255,255,0.1);
-      z-index: -1;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .stats-card:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
-    }
-    
-    .stats-card:hover::before {
-      opacity: 1;
-    }
-    
-    .stats-card.earnings {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-    
-    .stats-card.referrals {
-      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    }
-    
-    .stats-card.withdrawal {
-      background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-    }
-    
-    .stats-amount {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 5px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    
-    .stats-label {
-      font-size: 1rem;
-      opacity: 0.9;
-      letter-spacing: 0.5px;
-    }
-    
-    /* Project Cards */
-    .project-card {
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-      background: #fff;
-      border: 1px solid #f0f0f0;
-    }
-    
-    .project-card:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-      border-color: #e0e0e0;
-    }
-    
-    .project-card .card-body {
-      padding: 25px;
-    }
-    
-    .project-card .card-title {
-      font-weight: 600;
-      margin-bottom: 15px;
-      color: #2c3e50;
-    }
-    
-    .project-card .badge {
-      background-color: #f8f9fa;
-      color: #333;
-      font-weight: 500;
-      padding: 5px 12px;
-      border-radius: 20px;
-      border: 1px solid #eee;
+      padding: 1.5rem;
+      background: white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
       transition: all 0.3s ease;
+      border: 1px solid rgba(0,0,0,0.03);
+      height: 100%;
     }
     
-    .project-card:hover .badge {
-      background-color: #4e54c8;
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    
+    .stat-label {
+      color: var(--gray);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    
+    /* Progress Trackers */
+    .progress-tracker {
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .progress-title {
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    .progress-bar-container {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 4px;
+      transition: width 1s ease;
+    }
+    
+    /* Learning Path */
+    .learning-path-card {
+      border-radius: 16px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+    
+    .learning-path-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .path-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--primary);
       color: white;
-      border-color: transparent;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
     }
     
-    /* ====================
-       MOBILE RESPONSIVENESS
-       ==================== */
+    /* 3D Elements */
+    .floating-element {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    /* Responsive */
     @media (max-width: 768px) {
-      .profile-icon {
-        width: 70px;
-        height: 70px;
-        font-size: 2.5rem;
+      .profile-avatar {
+        width: 100px;
+        height: 100px;
+        font-size: 3rem;
       }
       
-      .certificate-container {
-        height: 250px;
-      }
-      
-      .stats-card {
-        padding: 20px;
-        margin-bottom: 15px;
-      }
-      
-      .stats-amount {
-        font-size: 2rem;
-      }
-      
-      .project-card {
-        margin-bottom: 20px;
-      }
-      
-      .project-card .card-body {
-        padding: 20px;
+      .stat-value {
+        font-size: 1.75rem;
       }
     }
-    
-    @media (max-width: 576px) {
-      .profile-icon {
-        width: 60px;
-        height: 60px;
-        font-size: 2rem;
-      }
-      
-      .certificate-container {
-        height: 200px;
-      }
-      
-      .stats-card {
-        padding: 15px;
-      }
-      
-      .stats-amount {
-        font-size: 1.8rem;
-      }
-    }
-</style>
+  </style>
 </head>
 
 <body class="student-profile-page">
@@ -239,288 +233,364 @@
   <!-- Header -->
   <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
-
       <a href="/home" class="logo d-flex align-items-center me-auto">
         <img src="{% static 'assets/img/logo.png' %}" alt="">
-        <h1 class="sitename">liGo</h1>
+        <h1 class="sitename">EliGo</h1>
       </a>
-
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="/home" class="active">Home<br></a></li>
-          <li><a href="/about">About</a></li>
+          <li><a href="/home">Home</a></li>
           <li><a href="/courses">Courses</a></li>
           <li><a href="/my_learning">My Learning</a></li>
           <li><a href="/referrals">Referrals</a></li>
-          <li><a href="/chatwithus">Chat with us</a></li>
-          <li><a href="/contact">Contact</a></li>
           <li class="dropdown">
             <a href="/profile">
-              <span>
-                <i class="bi bi-person-circle me-2"></i> <!-- Profile icon -->
-                Profile
-              </span>
-              <i class="bi bi-chevron-down toggle-dropdown"></i>
+              <iconify-icon icon="solar:user-circle-bold" class="me-2"></iconify-icon>
+              Profile
             </a>
-            <ul>
-              <li><a href="/login">Sign-Up</a></li>
-              <li><a href="/login">Sign-In</a></li>
-            </ul>
           </li>
         </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
-
       <a class="btn-getstarted" href="/home">Get Started</a>
-
     </div>
   </header>
 
   <main class="main">
 
-    <!-- Page Title -->
-    <div class="page-title" data-aos="fade">
-      <div class="heading">
-        <div class="container">
-          <div class="row d-flex justify-content-center text-center">
-            <div class="col-lg-8">
-              <h1>Student Profile</h1>
-              <p class="mb-0">Track your progress, certifications, and earnings with EliGo</p>
+    <!-- Profile Hero Section -->
+    <section class="profile-hero py-5" style="background: linear-gradient(135deg, #f0f9ff, #e0f2fe);">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <h1 class="display-5 fw-bold mb-3">Welcome back, {{ request.user.name|default:"Student" }}!</h1>
+            <p class="lead text-muted mb-4">Track your learning progress, achievements, and career growth</p>
+            <div class="d-flex gap-3">
+              <a href="/my_learning" class="btn btn-primary px-4 py-2">Continue Learning</a>
+              <a href="/courses" class="btn btn-outline-primary px-4 py-2">Explore Courses</a>
             </div>
+          </div>
+          <div class="col-md-6 text-center floating-element">
+            <img src="{% static 'assets/img/profile-3d.png' %}" 
+     class="img-fluid" 
+     style="max-height: 300px; mix-blend-mode: multiply; background-color: transparent;">
+
           </div>
         </div>
       </div>
-      <nav class="breadcrumbs">
-        <div class="container">
-          <ol>
-            <li><a href="/home">Home</a></li>
-            <li class="current">Profile</li>
-          </ol>
-        </div>
-      </nav>
-    </div><!-- End Page Title -->
+    </section>
 
     <!-- Profile Content -->
-    <section id="student-profile" class="student-profile section">
-
-      <div class="container" data-aos="fade-up">
-
-        <!-- Profile Overview -->
-        <div class="profile-overview mb-5">
-          <div class="d-flex align-items-center gap-4">
-            <!-- Profile Icon -->
-            <div class="profile-icon">
-              <i class="bi bi-person-circle display-4 text-primary"></i>
-            </div>
-            <div>
-              <h2 class="text-2xl font-bold">{{ request.user.name|default:"No Name" }}</h2>
-              <span class="badge bg-warning text-dark">Student</span>
+    <div class="container py-5">
+      <div class="profile-container">
+        <!-- Profile Header -->
+        <div class="profile-header text-center">
+          <div class="d-flex justify-content-center">
+            <div class="profile-avatar">
+              <iconify-icon icon="solar:user-circle-bold" width="60"></iconify-icon>
             </div>
           </div>
+          <h2 class="mt-3 mb-1">{{ request.user.name|default:"No Name" }}</h2>
+          <p class="text-white-50 mb-0">EliGo Student</p>
         </div>
-
-        <!-- Stats Section -->
-        <div class="row mb-5">
-          <div class="col-md-4">
-            <div class="stats-card earnings">
-              <div class="stats-amount">₹{{ profile.balance|add:profile.withdrawal_amount|add:"1500" }}</div>
-              <div class="stats-label">Total Earnings</div>
-              <a href="/transaction" class="text-white d-block mt-3">View transactions <i class="bi bi-arrow-right"></i></a>
+        
+        <!-- Profile Body -->
+        <div class="p-4 p-md-5">
+          <!-- Stats Row -->
+          <div class="row g-4 mb-5">
+            <div class="col-md-4">
+              <div class="stat-card">
+                <div class="stat-icon bg-primary bg-opacity-10 text-primary">
+                  <iconify-icon icon="solar:wallet-bold" width="24"></iconify-icon>
+                </div>
+                <h3 class="stat-value">₹{{ profile.balance|add:profile.withdrawal_amount|add:profile.earnings }}</h3>
+                <p class="stat-label">Total Earnings</p>
+                <a href="/transaction" class="text-primary d-flex align-items-center mt-2">
+                  View transactions <iconify-icon icon="solar:arrow-right-bold" class="ms-1"></iconify-icon>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="stat-card">
+                <div class="stat-icon bg-danger bg-opacity-10 text-danger">
+                  <iconify-icon icon="solar:users-group-two-rounded-bold" width="24"></iconify-icon>
+                </div>
+                <h3 class="stat-value">{{ profile.referral_count|default:"0" }}</h3>
+                <p class="stat-label">Referrals</p>
+                <a href="/referrals" class="text-primary d-flex align-items-center mt-2">
+                  View referrals <iconify-icon icon="solar:arrow-right-bold" class="ms-1"></iconify-icon>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="stat-card">
+                <div class="stat-icon bg-success bg-opacity-10 text-success">
+                  <iconify-icon icon="solar:banknote-bold" width="24"></iconify-icon>
+                </div>
+                <h3 class="stat-value">₹{{ profile.balance }}</h3>
+                <p class="stat-label">Available Balance</p>
+                <a href="/withdrawl" class="text-primary d-flex align-items-center mt-2">
+                  Withdraw now <iconify-icon icon="solar:arrow-right-bold" class="ms-1"></iconify-icon>
+                </a>
+              </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="stats-card referrals">
-              <div class="stats-amount">₹1500</div>
-              <div class="stats-label">Referral Earnings</div>
-              <a href="/referrals" class="text-white d-block mt-3">View referrals <i class="bi bi-arrow-right"></i></a>
+          
+          <!-- Progress Section -->
+          <div class="row g-4 mb-5">
+            <div class="col-lg-8">
+              <div class="progress-tracker">
+                <h3 class="progress-title">Your Learning Progress</h3>
+                
+                <div class="mb-4">
+                  <div class="d-flex justify-content-between mb-2">
+                    <span>Course Completion</span>
+                    <span>0%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div class="progress-bar" style="width: 0%"></div>
+                  </div>
+                </div>
+                
+                <div class="mb-4">
+                  <div class="d-flex justify-content-between mb-2">
+                    <span>Skills Mastery</span>
+                    <span>0%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div class="progress-bar" style="width: 0%"></div>
+                  </div>
+                </div>
+                
+                <div class="mb-4">
+                  <div class="d-flex justify-content-between mb-2">
+                    <span>Certification Progress</span>
+                    <span>0%</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div class="progress-bar" style="width: 0%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-lg-4">
+              <div class="progress-tracker h-100">
+                <h3 class="progress-title">Quick Actions</h3>
+                <div class="d-grid gap-2">
+                  <a href="/courses" class="btn btn-primary">
+                    <iconify-icon icon="solar:book-bold" class="me-2"></iconify-icon>
+                    Browse Courses
+                  </a>
+                  <a href="/my_learning" class="btn btn-outline-primary">
+                    <iconify-icon icon="solar:play-circle-bold" class="me-2"></iconify-icon>
+                    Continue Learning
+                  </a>
+                  <a href="/referrals" class="btn btn-outline-primary">
+                    <iconify-icon icon="solar:users-group-two-rounded-bold" class="me-2"></iconify-icon>
+                    Invite Friends
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="stats-card withdrawal">
-              <div class="stats-amount">₹{{ profile.balance }}</div>
-              <div class="stats-label">Available for withdrawal</div>
-              <a href="/withdrawl" class="text-white d-block mt-3">Withdraw now <i class="bi bi-arrow-right"></i></a>
+          
+          <!-- Learning Path Section -->
+          <div class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h3>Your Learning Path</h3>
+              <a href="/courses" class="text-primary">View all courses</a>
             </div>
-          </div>
-        </div>
-
-        <!-- Certifications -->
-        <div class="mb-5">
-          <h3 class="text-xl font-bold mb-4">Certifications</h3>
-          {% if certifications %}
-            <div class="row">
-              {% for certification in certifications %}
-                <div class="col-md-6">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">{{ certification.title }}</h5>
-                      <p class="card-text">Issued by EliGo on {{ certification.issue_date }}</p>
-                      <a href="#" class="btn btn-primary">View Certificate</a>
+            
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="learning-path-card position-relative">
+                  <div class="path-badge">Not Started</div>
+                  <div class="p-4">
+                    <div class="d-flex align-items-center mb-3">
+                      <div class="bg-primary bg-opacity-10 p-2 rounded me-3">
+                        <iconify-icon icon="solar:code-bold" width="24" class="text-primary"></iconify-icon>
+                      </div>
+                      <h5 class="mb-0">Web Development Fundamentals</h5>
+                    </div>
+                    <p class="text-muted">Master HTML, CSS, and JavaScript to build modern websites</p>
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                      <div class="text-muted small">
+                        <iconify-icon icon="solar:clock-circle-bold" class="me-1"></iconify-icon>
+                        8 weeks
+                      </div>
+                      <a href="/courses" class="btn btn-sm btn-outline-primary">Start Learning</a>
                     </div>
                   </div>
                 </div>
-              {% endfor %}
-            </div>
-          {% elif request.user.name == "Sairam Barla" %}
-            <div class="row">
-              <div class="col-md-12">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Artificial Intelligence Certification</h5>
-                    <p class="card-text">Issued by EliGo on Jan 5, 2025</p>
-                    <div class="certificate-container mt-3">
-                      <iframe src="https://drive.google.com/file/d/1qkRa1CQLdTu7qxQu9O7rfdfQLxZB1tbL/preview" allow="autoplay"></iframe>
+              </div>
+              
+              <div class="col-md-6">
+                <div class="learning-path-card position-relative">
+                  <div class="path-badge">Not Started</div>
+                  <div class="p-4">
+                    <div class="d-flex align-items-center mb-3">
+                      <div class="bg-success bg-opacity-10 p-2 rounded me-3">
+                        <iconify-icon icon="solar:chart-bold" width="24" class="text-success"></iconify-icon>
+                      </div>
+                      <h5 class="mb-0">Data Analytics with Python</h5>
                     </div>
-                    <div class="mt-3">
-                      <a href="https://drive.google.com/file/d/1qkRa1CQLdTu7qxQu9O7rfdfQLxZB1tbL/view?usp=sharing" class="btn btn-primary" target="_blank">Download Certificate</a>
+                    <p class="text-muted">Learn to analyze and visualize data with Python and Pandas</p>
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                      <div class="text-muted small">
+                        <iconify-icon icon="solar:clock-circle-bold" class="me-1"></iconify-icon>
+                        10 weeks
+                      </div>
+                      <a href="/courses" class="btn btn-sm btn-outline-primary">Start Learning</a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          {% else %}
-            <div class="alert alert-info">
-              You have no certifications yet. Start learning to earn your first certification!
+          </div>
+          
+          <!-- Certifications Section -->
+          <div class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h3>Certifications</h3>
+              <a href="/certifications" class="text-primary">View all</a>
             </div>
-          {% endif %}
-        </div>
-
-        <!-- Projects -->
-        <div class="mb-5">
-          <h3 class="text-xl font-bold mb-4">Projects</h3>
-          {% if projects %}
-            <div class="row">
-              {% for project in projects %}
-                <div class="col-md-6 mb-4">
-                  <div class="project-card card">
-                    <div class="card-body">
-                      <h5 class="card-title">{{ project.title }}</h5>
-                      <p class="card-text">{{ project.description }}</p>
-                      <span class="badge">Completed</span>
-                      <a href="#" class="btn btn-outline-primary mt-3">View Project Details</a>
+            
+            {% if request.user.name == "Sairam Barla" %}
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="learning-path-card">
+                  <div class="p-4">
+                    <div class="d-flex align-items-center mb-3">
+                      <div class="bg-warning bg-opacity-10 p-2 rounded me-3">
+                        <iconify-icon icon="solar:medal-ribbon-bold" width="24" class="text-warning"></iconify-icon>
+                      </div>
+                      <div>
+                        <h5 class="mb-0">Artificial Intelligence Certification</h5>
+                        <small class="text-muted">Issued Jan 5, 2025</small>
+                      </div>
+                    </div>
+                    <div class="ratio ratio-16x9 mb-3">
+                      <iframe src="https://drive.google.com/file/d/1qkRa1CQLdTu7qxQu9O7rfdfQLxZB1tbL/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="d-flex gap-2">
+                      <a href="https://drive.google.com/file/d/1qkRa1CQLdTu7qxQu9O7rfdfQLxZB1tbL/view" class="btn btn-primary btn-sm" target="_blank">
+                        <iconify-icon icon="solar:download-bold" class="me-1"></iconify-icon>
+                        Download
+                      </a>
+                      <a href="#" class="btn btn-outline-primary btn-sm">
+                        <iconify-icon icon="solar:share-bold" class="me-1"></iconify-icon>
+                        Share
+                      </a>
                     </div>
                   </div>
                 </div>
-              {% endfor %}
-            </div>
-          {% elif request.user.name == "Sairam Barla" %}
-            <div class="row">
-              <div class="col-md-6 mb-4">
-                <div class="project-card card">
-                  <div class="card-body">
-                    <h5 class="card-title">AI-Powered Medical Diagnosis System</h5>
-                    <p class="card-text">Developed a machine learning model that analyzes medical images to assist doctors in diagnosing diseases with 92% accuracy.</p>
-                    <span class="badge">Completed</span>
-                    <a href="https://github.com/Abhiram123dsab/AI-Powered-Medical-Diagnosis-System" class="btn btn-outline-primary mt-3">View Project Details</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 mb-4">
-                <div class="project-card card">
-                  <div class="card-body">
-                    <h5 class="card-title">E-commerce Recommendation Engine</h5>
-                    <p class="card-text">Built a collaborative filtering recommendation system that increased sales by 18% for an online retailer.</p>
-                    <span class="badge">Completed</span>
-                    <a href="https://github.com/ayusahuja/AI-Project" class="btn btn-outline-primary mt-3">View Project Details</a>
-                  </div>
-                </div>
               </div>
             </div>
-          {% else %}
-            <div class="alert alert-info">
-              You have no projects yet. Start building your portfolio today!
+            {% else %}
+            <div class="text-center py-5">
+              <div class="mb-4">
+                <iconify-icon icon="solar:medal-ribbon-star-bold" width="60" class="text-muted"></iconify-icon>
+              </div>
+              <h5 class="mb-2">No certifications yet</h5>
+              <p class="text-muted mb-4">Complete a course to earn your first certification</p>
+              <a href="/courses" class="btn btn-primary">Browse Courses</a>
             </div>
-          {% endif %}
+            {% endif %}
+          </div>
         </div>
-
       </div>
-
+    </div>
 
   </main>
 
   <!-- Footer -->
-  <footer id="footer" class="footer position-relative light-background">
-
+  <footer id="footer" class="footer position-relative">
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
           <a href="/home" class="logo d-flex align-items-center">
             <span class="sitename">EliGo</span>
           </a>
-          <div class="footer-contact pt-3">
-            <p>Noval Tech, HSR Layout</p>
-            <p>Bengaluru, Pin - 560102</p>
-            <p class="mt-3"><strong>Phone:</strong> <span>+91 78424 39551</span></p>
-            <p><strong>Email:</strong> <span>eligorenderforest@gmail.com</span></p>
-          </div>
+          <p class="mt-3">Empowering the next generation of tech professionals through immersive learning experiences.</p>
           <div class="social-links d-flex mt-4">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
+            <a href="#"><iconify-icon icon="solar:twitter-bold"></iconify-icon></a>
+            <a href="#"><iconify-icon icon="solar:facebook-bold"></iconify-icon></a>
+            <a href="#"><iconify-icon icon="solar:instagram-bold"></iconify-icon></a>
+            <a href="#"><iconify-icon icon="solar:linkedin-bold"></iconify-icon></a>
           </div>
         </div>
 
         <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Useful Links</h4>
+          <h4>Quick Links</h4>
           <ul>
             <li><a href="/home">Home</a></li>
             <li><a href="/about">About</a></li>
             <li><a href="/courses">Courses</a></li>
             <li><a href="/contact">Contact</a></li>
-            <li><a href="/sponsorship">Sponsorship</a></li>
-            <li><a href="/privacypolicy">Privacy policy</a></li>
           </ul>
         </div>
 
         <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Our Services</h4>
+          <h4>Courses</h4>
           <ul>
-            <li><a href="/courses">Web Development</a></li>
-            <li><a href="/courses">Data Science</a></li>
-            <li><a href="/courses">Digital Marketing</a></li>
-            <li><a href="/courses">UI/UX Design</a></li>
-            <li><a href="/courses">Cloud Computing</a></li>
+            <li><a href="/courses/web-development">Web Development</a></li>
+            <li><a href="/courses/data-science">Data Science</a></li>
+            <li><a href="/courses/digital-marketing">Digital Marketing</a></li>
+            <li><a href="/courses/cloud-computing">Cloud Computing</a></li>
           </ul>
         </div>
 
-        <div class="col-lg-4 col-md-12 footer-newsletter">
-          <h4>Our Newsletter</h4>
-          <p>Subscribe to our newsletter and receive the latest updates about our courses and events!</p>
-          <form action="forms/newsletter.php" method="post" class="php-email-form">
-            <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
-            <div class="loading">Loading</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-          </form>
+        <div class="col-lg-4 col-md-12 footer-contact">
+          <h4>Contact Us</h4>
+          <p>Noval Tech, HSR Layout<br>Bengaluru, Pin - 560102<br>India</p>
+          <p class="mt-3">
+            <strong>Phone:</strong> +91 78424 39551<br>
+            <strong>Email:</strong> eligorenderforest@gmail.com
+          </p>
         </div>
-
       </div>
     </div>
 
     <div class="container copyright text-center mt-4">
       <p>© <span>Copyright</span> <strong class="px-1 sitename">EliGo</strong> <span>All Rights Reserved</span></p>
     </div>
-
   </footer>
 
   <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Preloader -->
-  <div id="preloader"></div>
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+    <iconify-icon icon="solar:arrow-up-bold"></iconify-icon>
+  </a>
 
   <!-- Vendor JS Files -->
   <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
   <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
-  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
   <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  
+  <!-- 3D Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
 
   <!-- Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
-
+  
+  <script>
+    // Animate progress bars on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const progressBars = document.querySelectorAll('.progress-bar');
+      progressBars.forEach(bar => {
+        const targetWidth = bar.style.width;
+        bar.style.width = '0%';
+        setTimeout(() => {
+          bar.style.width = targetWidth;
+        }, 100);
+      });
+      
+      // Initialize animations
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+      });
+    });
+  </script>
 </body>
-
 </html>

@@ -31,276 +31,680 @@
 
   <!-- Main CSS File -->
   <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
-  
   <style>
-    /* Custom CSS for Course Details Page */
-    .course-image {
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-    }
-    
-    .course-image:hover {
-      transform: scale(1.02);
-    }
-    
-    .course-info {
-      padding: 15px 0;
-      border-bottom: 1px solid #eee;
-    }
-    
-    .course-info h5 {
-      font-weight: 600;
-      color: #333;
-      margin-bottom: 0;
-    }
-    
-    .progress {
-      height: 10px;
-      border-radius: 5px;
-    }
-    
-    .progress-bar {
-      background-color: #4e54c8;
-      border-radius: 5px;
-    }
-    
-    /* Options Grid */
-    .options-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
-    
-    .option-card {
-      background: white;
-      border-radius: 12px;
-      padding: 30px;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-    }
-    
-    .option-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
-    
-    .option-card i {
-      font-size: 2.5rem;
-      color: #4e54c8;
-      margin-bottom: 15px;
-    }
-    
-    .option-card h4 {
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-    
-    .option-card p {
-      color: #666;
-    }
-    
-    .option-card.locked {
-      position: relative;
-      opacity: 0.7;
-    }
-    
-    .option-card.locked::after {
-      content: "\f023";
-      font-family: bootstrap-icons;
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      color: #ff4757;
-    }
-    
-    .option-card.unlocked {
-      border: 2px solid #4e54c8;
-    }
-    
-    .option-card.unlocked i {
-      color: #4e54c8;
-    }
-    
-    .badge-completed {
-      background-color: #4e54c8;
-      color: white;
-    }
-    
-    .trainer-card {
-      background: white;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      margin-top: 20px;
-    }
-    
-    .trainer-card img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-right: 15px;
-    }
-    
-    .certificate-preview {
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      overflow: hidden;
-      height: 300px;
-      margin-top: 20px;
-    }
-    
-    .certificate-preview iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-    
-    .achievement-badge {
-      display: inline-block;
-      background: #4e54c8;
-      color: white;
-      padding: 5px 15px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      margin-right: 10px;
-      margin-bottom: 10px;
-
-      
-    }
-    /* Mobile-specific styles (max-width: 768px) */
-@media (max-width: 768px) {
-  /* Course Details Section */
-  .course-details .row {
-    flex-direction: column;
+  /* Modern Glassmorphism Styles */
+  :root {
+    --primary-color: #4e54c8;
+    --secondary-color: #8f94fb;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+    --purple: #6f42c1;
+    --pink: #d63384;
+    --teal: #20c997;
+    --cyan: #0dcaf0;
   }
+  
+  .glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    padding: 2rem;
+    transition: all 0.3s ease;
+  }
+  
+  .glass-card:hover {
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+    transform: translateY(-5px);
+  }
+  
+  /* Course Image Container */
+  .course-image-container {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
   .course-image {
-    margin-bottom: 20px;
-    max-height: 250px;
-    object-fit: cover;
+    width: 100%;
+    height: 230px;
+    transition: transform 0.5s ease;
   }
   
+  .course-image-container:hover .course-image {
+    transform: scale(1.05);
+  }
+  
+  .domain-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 5px 15px;
+    border-radius: 50px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .bg-purple {
+    background: var(--purple);
+  }
+  
+  /* Trainer Card */
   .trainer-card {
-    flex-direction: column;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    gap: 1.5rem;
   }
   
-  .trainer-card img {
-    margin-right: 0;
-    margin-bottom: 15px;
+  .trainer-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(78, 84, 200, 0.1), rgba(143, 148, 251, 0.2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
   }
   
-  /* Progress Bar */
-  .progress {
-    margin-top: 15px;
+  .trainer-info {
+    flex: 1;
   }
   
-  /* Achievements */
-  .achievement-badge {
-    display: block;
-    margin-right: 0;
-    margin-bottom: 8px;
-    width: 100%;
+  .trainer-info h4 {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: var(--dark-color);
   }
   
-  /* Course Options Grid */
-  .options-grid {
-    grid-template-columns: 1fr;
-    gap: 15px;
+  .trainer-title {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
   }
   
-  .option-card {
-    padding: 20px;
+  .trainer-bio {
+    font-size: 0.9rem;
+    color: #555;
+    font-style: italic;
+    margin-bottom: 0.75rem;
   }
   
-  /* Project Links */
-  .project-links {
-    flex-direction: column;
+  .trainer-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--warning-color);
+    font-size: 0.85rem;
   }
   
-  .project-links .btn {
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 10px;
+  .trainer-rating span {
+    color: #666;
+    margin-left: 5px;
   }
   
-  /* Certificate Preview */
-  .certificate-preview {
-    height: 200px;
+  /* Course Meta Grid */
+  .course-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
   
-  /* Modal Adjustments */
-  .modal-dialog {
-    margin: 1rem;
+  .meta-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
   }
   
-  /* Footer Adjustments */
-  .footer-top .row {
-    flex-direction: column;
+  .meta-card:hover {
+    background: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transform: translateY(-3px);
   }
   
-  .footer-about, 
-  .footer-links, 
-  .footer-newsletter {
-    margin-bottom: 30px;
+  .meta-card i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
   }
   
-  /* Header adjustments */
-  .header {
-    padding: 10px 0;
+  .meta-card h6 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 0.25rem;
   }
   
-  .logo img {
-    max-height: 30px;
+  .meta-card p {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--dark-color);
+    margin-bottom: 0;
   }
   
-  .sitename {
+  /* Progress Container */
+  .progress-container {
+    padding: 1.5rem;
+  }
+  
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .progress-header h5 {
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+  
+  .progress-header small {
+    font-weight: 600;
+    color: var(--primary-color);
+  }
+  
+  .progress-track {
+    height: 10px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 10px;
+    position: relative;
+    transition: width 1s ease;
+  }
+  
+  .progress-fill span {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+  }
+  
+  .progress-milestones {
+    position: relative;
+    height: 30px;
+    margin-top: 0.5rem;
+  }
+  
+  .milestone {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #666;
+  }
+  
+  /* Achievements Container */
+  .achievements-container {
+    padding: 1.5rem;
+  }
+  
+  .achievements-container h6 {
+      font-weight: 600; 
+      margin-bottom: 1rem;
+    color: var(--dark-color);
+  }
+  
+  .badges-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .badge-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  
+  .badge-item i {
+    font-size: 1.25rem;
+  }
+  
+  .badge-item.gold {
+    background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,215,0,0.2));
+    border: 1px solid rgba(255,215,0,0.3);
+    color: #daa520;
+  }
+  
+  .badge-item.silver {
+    background: linear-gradient(135deg, rgba(192,192,192,0.1), rgba(192,192,192,0.2));
+    border: 1px solid rgba(192,192,192,0.3);
+    color: #a6a6a6;
+  }
+  
+  .badge-item.bronze {
+    background: linear-gradient(135deg, rgba(205,127,50,0.1), rgba(205,127,50,0.2));
+    border: 1px solid rgba(205,127,50,0.3);
+    color: #cd7f32;
+  }
+  
+  .badge-item.platinum {
+    background: linear-gradient(135deg, rgba(229,228,226,0.1), rgba(229,228,226,0.2));
+    border: 1px solid rgba(229,228,226,0.3);
+    color: #e5e4e2;
+  }
+  
+  /* Modules Accordion */
+  .modules-accordion {
+    margin-top: 1.5rem;
+  }
+  
+  .module-card {
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .module-card:hover {
+    border-color: rgba(78, 84, 200, 0.3);
+    box-shadow: 0 5px 15px rgba(78, 84, 200, 0.1);
+  }
+  
+  .module-header {
+    display: flex;
+    align-items: center;
+    padding: 1.25rem;
+    background: white;
+    cursor: pointer;
+    gap: 1rem;
+  }
+  
+  .module-header h5 {
+    flex: 1;
+    margin-bottom: 0;
+    font-weight: 600;
+    color: var(--dark-color);
+  }
+  
+  .module-header span {
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 500;
+  }
+  
+  .module-header i:last-child {
+    transition: transform 0.3s ease;
+  }
+  
+  .module-header.collapsed i:last-child {
+    transform: rotate(0deg);
+  }
+  
+  .module-header:not(.collapsed) i:last-child {
+    transform: rotate(180deg);
+  }
+  
+  .module-header i:first-child {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+  }
+  
+  .module-content {
+    padding: 0 1.25rem 1.25rem 4.5rem;
+    background: rgba(248, 249, 250, 0.5);
+  }
+  
+  .module-content ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+  
+  .module-content li {
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .module-content li i {
+    color: var(--success-color);
+    font-size: 0.9rem;
+  }
+  
+  /* Resources Grid */
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .resource-card {
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  }
+  
+  .resource-card.locked {
+    opacity: 0.7;
+    filter: grayscale(30%);
+  }
+  
+  .resource-card.locked::after {
+    content: "\f023";
+    font-family: bootstrap-icons;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: var(--danger-color);
     font-size: 1.2rem;
   }
   
-  /* Page Title */
-  .page-title .heading h1 {
-    font-size: 1.8rem;
+  .resource-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    color: white;
+    margin-bottom: 1.25rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   }
   
-  .page-title .heading p {
-    font-size: 1rem;
-  }
-}
-
-/* Smaller mobile devices (max-width: 480px) */
-@media (max-width: 480px) {
-  /* Course Info Items */
-  .course-info {
-    flex-direction: column;
-    align-items: flex-start;
+  .resource-content h4 {
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--dark-color);
   }
   
-  .course-info h5,
-  .course-info p {
-    width: 100%;
-  }
-  
-  .course-info p {
-    text-align: right;
-    margin-top: 5px;
+  .resource-content p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1.25rem;
   }
   
   /* Certificate Preview */
-  .certificate-preview {
-    height: 150px;
+  .certificate-container {
+    perspective: 1000px;
+    margin: 2rem auto;
+    max-width: 800px;
   }
   
-  /* Buttons */
-  .btn {
-    padding: 0.375rem 0.75rem;
-    font-size: 0.9rem;
+  .certificate-frame {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+    transform: rotateY(5deg) rotateX(2deg);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.1);
   }
-}
-  </style>
+  
+  .certificate-frame:hover {
+    transform: rotateY(0) rotateX(0);
+  }
+  
+  .certificate-content {
+    background: white;
+    padding: 3rem;
+    border: 15px solid #f5f5f5;
+    position: relative;
+  }
+  
+  .certificate-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  
+  .certificate-logo {
+    height: 60px;
+    margin-bottom: 1rem;
+  }
+  
+  .certificate-header h4 {
+    font-weight: 600;
+    color: #333;
+    position: relative;
+    display: inline-block;
+    padding: 0 2rem;
+  }
+  
+  .certificate-header h4::before,
+  .certificate-header h4::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  }
+  
+  .certificate-header h4::before {
+    left: -50px;
+  }
+  
+  .certificate-header h4::after {
+    right: -50px;
+  }
+  
+  .certificate-body {
+    text-align: center;
+    margin: 2rem 0;
+  }
+  
+  .certificate-body h3 {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 1rem 0;
+    font-size: 2rem;
+  }
+  
+  .certificate-body h5 {
+    font-weight: 600;
+    color: #333;
+    margin: 1.5rem 0;
+    position: relative;
+    display: inline-block;
+    padding: 0 1rem;
+  }
+  
+  .certificate-body h5::before,
+  .certificate-body h5::after {
+    content: "★";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--warning-color);
+    font-size: 0.8rem;
+  }
+  
+  .certificate-body h5::before {
+    left: -15px;
+  }
+  
+  .certificate-body h5::after {
+    right: -15px;
+  }
+  
+  .certificate-details {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .certificate-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 3rem;
+  }
+  
+  .signature img {
+    height: 50px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .signature p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    color: #333;
+    border-top: 1px solid #ddd;
+    padding-top: 0.5rem;
+    text-align: center;
+  }
+  
+  .verification {
+    text-align: right;
+  }
+  
+  .verification p {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+  
+  .qr-code {
+    width: 80px;
+    height: 80px;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  /* Section Header */
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .section-header h3 {
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .section-header h3::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 3px;
+  }
+  
+  .section-header p {
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 992px) {
+    .course-meta-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .trainer-card {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .trainer-avatar {
+      margin-bottom: 1rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .resources-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .certificate-content {
+      padding: 2rem;
+    }
+    
+    .certificate-footer {
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .signature, .verification {
+      text-align: center;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .glass-card {
+      padding: 1.5rem;
+    }
+    
+    .module-header {
+      padding: 1rem;
+      gap: 0.75rem;
+    }
+    
+    .module-content {
+      padding-left: 3.5rem;
+    }
+    
+    .certificate-content {
+      padding: 1.5rem;
+    }
+    
+    .certificate-body h3 {
+      font-size: 1.5rem;
+    }
+  }
+</style>
 </head>
 
 <body class="course-details-page">
@@ -335,209 +739,674 @@
     </div>
   </header>
 
-  <main class="main">
-    <!-- Page Title -->
-    <div class="page-title" data-aos="fade">
-      <div class="heading">
-        <div class="container">
-          <div class="row d-flex justify-content-center text-center">
-            <div class="col-lg-8">
-              <h1>Enrolled Courses</h1>
-              <p class="mb-0">Master in your Enrolled Courses!!! With EliGo</p>
-            </div>
+  <!-- Main Content Section -->
+<main class="main">
+  <!-- Page Title -->
+  <div class="page-title" data-aos="fade">
+    <div class="heading">
+      <div class="container">
+        <div class="row d-flex justify-content-center text-center">
+          <div class="col-lg-8">
+            <h1>Enrolled Course Details</h1>
+            <p class="mb-0">Master your domain skills with EliGo's comprehensive training program</p>
           </div>
-        </div>
-      </div>
-      <nav class="breadcrumbs">
-        <div class="container">
-          <ol>
-            <li><a href="/home">Home</a></li>
-            <li class="current">Course Details</li>
-          </ol>
-        </div>
-      </nav>
-    </div><!-- End Page Title -->
-
-    <!-- Course Details Section -->
-    <section id="course-details" class="course-details section">
-      <div class="container" data-aos="fade-up">
-        <div class="row">
-          <!-- Image Column -->
-          <div class="col-lg-6">
-            <img src="{% static 'assets/img/courses/artificial-intelligence.jpg.webp' %}" class="img-fluid course-image" alt="AIML Course">
-            
-            {% if request.user.name == "Sairam Barla" %}
-            <!-- Trainer Info Card for Sairam -->
-            <div class="trainer-card d-flex align-items-center">
-              <div>
-                <h4>Mrs. Priya Singh</h4>
-                <span class="text-primary">AI/ML Trainer</span>
-                <p class="mt-2">"Sairam has completed all assignments and projects with excellence!"</p>
-              </div>
-            </div>
-            {% endif %}
-          </div>
-
-          <!-- Course Details Column -->
-          <div class="col-lg-6 d-flex flex-column justify-content-center">
-            <div class="course-info d-flex justify-content-between align-items-center">
-              <h5>Trainer</h5>
-              <p><a href="#">{% if request.user.name == "Sairam Barla" %}Mrs. Priya Singh{% else %}Dr. Ravi Kumar{% endif %}</a></p>
-            </div>
-
-            <div class="course-info d-flex justify-content-between align-items-center">
-              <h5>Course Name</h5>
-              <p>AI&ML</p>
-            </div>
-
-            <div class="course-info d-flex justify-content-between align-items-center">
-              <h5>Available Seats</h5>
-              <p>60</p>
-            </div>
-
-            <div class="course-info d-flex justify-content-between align-items-center">
-              <h5>Schedule</h5>
-              <p>5.00 pm - 7.00 pm</p>
-            </div>
-
-            <!-- Progress Bar -->
-            <div class="progress mt-4">
-              <div class="progress-bar" role="progressbar" style="width: {% if request.user.name == "Sairam Barla" %}100%{% else %}25%{% endif %};" 
-                   aria-valuenow="{% if request.user.name == "Sairam Barla" %}100{% else %}25{% endif %}" 
-                   aria-valuemin="0" 
-                   aria-valuemax="100">
-                {% if request.user.name == "Sairam Barla" %}100% Complete{% else %}25% Complete{% endif %}
-              </div>
-            </div>
-
-            <!-- Achievements for Sairam -->
-            {% if request.user.name == "Sairam Barla" %}
-            <div class="mt-3">
-              <span class="achievement-badge"><i class="bi bi-check-circle-fill me-1"></i> 10 Assignments Completed</span>
-              <span class="achievement-badge"><i class="bi bi-check-circle-fill me-1"></i> 2 Projects Submitted</span>
-              <span class="achievement-badge"><i class="bi bi-check-circle-fill me-1"></i> Course Completed</span>
-            </div>
-            {% endif %}
-
-            <!-- Continue Button -->
-            <!-- Alternative badge-style version -->
-<div class="text-center mt-4">
-  <span class="badge bg-danger text-white p-2">
-    <i class="bi bi-exclamation-octagon-fill me-1"></i>
-    AICTE Portal Expired
-  </span>
-</div>
-          </div>
-        </div>
-      </div>
-    </section><!-- /Course Details Section -->
-
-    <!-- Course Options Section -->
-    <section id="course-options" class="course-options section light-background">
-      <div class="container" data-aos="fade-up">
-        <div class="row">
-          <div class="col-lg-12">
-            <h3>Course Options</h3>
-            <div class="options-grid">
-              <!-- Assignments -->
-              <div class="option-card {% if request.user.name != "Sairam Barla" %}locked{% else %}unlocked{% endif %}">
-  <i class="bi bi-file-earmark-text"></i>
-  <h4>Assignments</h4>
-  <p>{% if request.user.name == "Sairam Barla" %}
-    <strong>10/10</strong> assignments completed with Mrs. Priya Singh
-    {% else %}
-    Complete assignments to test your knowledge.
-    {% endif %}
-  </p>
-  {% if request.user.name == "Sairam Barla" %}
-  <div class="mt-3">
-    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#aicteExpiredModal">
-      View Assignments
-    </button>
-  </div>
-  
-  <!-- Modal for AICTE Expired Message -->
-  <div class="modal fade" id="aicteExpiredModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header bg-danger text-white">
-          <h5 class="modal-title"><i class="bi bi-exclamation-triangle-fill me-2"></i>AICTE Portal Expired</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>You cannot view the assignments because your AICTE portal access has expired.</p>
-          <p>Please contact support to renew your access.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <a href="/contact" class="btn btn-primary">Contact Support</a>
         </div>
       </div>
     </div>
-  </div>
-  {% endif %}
-</div>
-              
-              <!-- Projects -->
-<div class="option-card {% if request.user.name != "Sairam Barla" %}locked{% else %}unlocked{% endif %}">
-  <i class="bi bi-laptop"></i>
-  <h4>Projects</h4>
-  <p>{% if request.user.name == "Sairam Barla" %}
-    <strong>2/2</strong> projects completed:
-    <small class="d-block">- AI-Powered Medical Diagnosis System</small>
-    <small class="d-block">- E-commerce Recommendation Engine</small>
-    {% else %}
-    Work on real-world projects to apply your skills.
-    {% endif %}
-  </p>
-  {% if request.user.name == "Sairam Barla" %}
-  <div class="project-links mt-3">
-    <a href="https://github.com/Abhiram123dsab/AI-Powered-Medical-Diagnosis-System" 
-       class="btn btn-outline-primary btn-sm me-2 mb-2" 
-       target="_blank">
-      <i class="bi bi-heart-pulse me-1"></i> Medical Project
-    </a>
-    <a href="https://github.com/ayusahuja/AI-Project" 
-       class="btn btn-outline-primary btn-sm mb-2" 
-       target="_blank">
-      <i class="bi bi-cart4 me-1"></i> E-commerce Project
-    </a>
-  </div>
-  {% endif %}
-</div>
-              
-              <!-- Get My Certificate -->
-              <div class="option-card {% if request.user.name != "Sairam Barla" %}locked{% else %}unlocked{% endif %}">
-                <i class="bi bi-award"></i>
-                <h4>Get My Certificate</h4>
-                <p>{% if request.user.name == "Sairam Barla" %}
-                  Congratulations! You've earned your AI/ML certificate.
-                  {% else %}
-                  Earn a certificate upon course completion.
-                  {% endif %}
-                </p>
-                {% if request.user.name == "Sairam Barla" %}
-                <a href="https://drive.google.com/file/d/1qkRa1CQLdTu7qxQu9O7rfdfQLxZB1tbL/view?usp=sharing" class="btn btn-primary mt-3" target="_blank">Download Certificate</a>
+    <nav class="breadcrumbs">
+      <div class="container">
+        <ol>
+          <li><a href="/home">Home</a></li>
+          <li><a href="#">My Learning</a></li>
+          <li><a href="/my_courses">Course Details</a></li>
+        </ol>
+      </div>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <!-- Course Details Section -->
+  <section id="course-details" class="course-details section">
+    <div class="container" data-aos="fade-up">
+      
+      {% if request.user.name == "Sairam Barla" %}
+      <!-- AICTE Warning for Sairam -->
+      <div class="alert alert-warning alert-dismissible fade show d-flex align-items-center" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-3 fs-4"></i>
+        <div>
+          <strong>Access Expiration Notice:</strong> Your portal access is Expired. Contact support at 
+          <a href="mailto:eligointernship@gmail.com" class="alert-link">eligointernship@gmail.com</a> or call 
+          <a href="tel:+917842439551" class="alert-link">+91 78424 39551</a> to renew.
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endif %}
+      
+      <div class="row">
+        <!-- Image Column -->
+        <div class="col-lg-6">
+          <!-- Dynamic Course Image Based on Domain -->
+          {% if request.user.phone in data_analysis_numbers %}
+          <div class="course-image-container">
+            <img src="{% static 'assets/img/courses/data-analytics.jpg.webp' %}" class="img-fluid course-image rounded-4" alt="Data Analysis Course">
+            <span class="domain-badge bg-primary">Data Analytics</span>
+          </div>
+          
+          {% elif request.user.phone in web_dev_numbers %}
+          <div class="course-image-container">
+            <img src="{% static 'assets/img/courses/web-development.jpg.webp' %}" class="img-fluid course-image rounded-4" alt="Web Development Course">
+            <span class="domain-badge bg-success">Web Development</span>
+          </div>
+          
+          {% elif request.user.phone in ml_numbers %}
+          <div class="course-image-container">
+            <img src="{% static 'assets/img/courses/machine-learning.jpg' %}" class="img-fluid course-image rounded-4" alt="Machine Learning Course">
+            <span class="domain-badge bg-danger">Machine Learning</span>
+          </div>
+          
+          {% else %}
+          <!-- Default to AI/ML Course -->
+          <div class="course-image-container">
+            <img src="{% static 'assets/img/courses/artificial-intelligence.jpg.webp' %}" class="img-fluid course-image rounded-4" alt="AI/ML Course">
+            <span class="domain-badge bg-purple">Artificial Intelligence</span>
+          </div>
+          {% endif %}
+          
+          <!-- Trainer Info Card -->
+          <div class="trainer-card glass-card mt-4">
+            <div class="trainer-avatar">
+              {% if request.user.phone in data_analysis_numbers %}
+              <i class="bi bi-person-vcard-fill text-primary"></i>
+              {% elif request.user.phone in web_dev_numbers %}
+              <i class="bi bi-code-square text-success"></i>
+              {% elif request.user.phone in ml_numbers %}
+              <i class="bi bi-robot text-danger"></i>
+              {% else %}
+              <i class="bi bi-cpu-fill text-purple"></i>
+              {% endif %}
+            </div>
+            <div class="trainer-info">
+              <h4>
+                {% if request.user.phone in data_analysis_numbers %}
+                Mrs. Anjali Mehta
+                {% elif request.user.phone in web_dev_numbers %}
+                Mr. Rahul Kumar
+                {% elif request.user.phone in ml_numbers %}
+                Mrs. Priya Singh
+                {% else %}
+                {% if request.user.name == "Sairam Barla" %}Mrs. Priya Singh{% else %}Dr. Ravi Verma{% endif %}
                 {% endif %}
+              </h4>
+              <span class="trainer-title">
+                {% if request.user.phone in data_analysis_numbers %}
+                <i class="bi bi-database-fill me-1"></i> Senior Data Scientist
+                {% elif request.user.phone in web_dev_numbers %}
+                <i class="bi bi-globe me-1"></i> Full Stack Architect
+                {% elif request.user.phone in ml_numbers %}
+                <i class="bi bi-diagram-3-fill me-1"></i> ML Research Lead
+                {% else %}
+                <i class="bi bi-brain me-1"></i> AI Principal Engineer
+                {% endif %}
+              </span>
+              <p class="trainer-bio">
+                {% if request.user.phone in data_analysis_numbers %}
+                "10+ years experience at Google and Microsoft, specializing in big data analytics"
+                {% elif request.user.phone in web_dev_numbers %}
+                "Former tech lead at Amazon with expertise in scalable web applications"
+                {% elif request.user.phone in ml_numbers %}
+                "PhD in Computer Science with publications in top ML journals"
+                {% else %}
+                "{% if request.user.name == "Sairam Barla" %}15 years experience in deep learning research{% else %}Pioneer in neural network architectures{% endif %}"
+                {% endif %}
+              </p>
+              <div class="trainer-rating">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-half"></i>
+                <span>4.7 (1,248 reviews)</span>
               </div>
             </div>
-            
+          </div>
+        </div>
+
+        <!-- Course Details Column -->
+        <div class="col-lg-6 d-flex flex-column justify-content-center">
+          <div class="course-meta-grid">
+            <div class="meta-card">
+              <i class="bi bi-person-badge"></i>
+              <div>
+                <h6>Trainer</h6>
+                <p>
+                  {% if request.user.phone in data_analysis_numbers %}
+                  Mrs. Anjali Mehta
+                  {% elif request.user.phone in web_dev_numbers %}
+                  Mr. Rahul Kumar
+                  {% elif request.user.phone in ml_numbers %}
+                  Mrs. Priya Singh
+                  {% else %}
+                  {% if request.user.name == "Sairam Barla" %}Mrs. Priya Singh{% else %}Dr. Ravi Verma{% endif %}
+                  {% endif %}
+                </p>
+              </div>
+            </div>
+
+            <div class="meta-card">
+              <i class="bi bi-journal-bookmark"></i>
+              <div>
+                <h6>Course Name</h6>
+                <p>
+                  {% if request.user.phone in data_analysis_numbers %}
+                  Data Analytics
+                  {% elif request.user.phone in web_dev_numbers %}
+                  Full Stack Development
+                  {% elif request.user.phone in ml_numbers %}
+                  Machine Learning Engineer
+                  {% else %}
+                  AI Engineering 
+                  {% endif %}
+                </p>
+              </div>
+            </div>
+
+            <div class="meta-card">
+              <i class="bi bi-clock"></i>
+              <div>
+                <h6>Duration</h6>
+                <p>
+                  {% if request.user.phone in data_analysis_numbers %}
+                   8 Weeks
+                  {% elif request.user.phone in web_dev_numbers %}
+                  8 Weeks
+                  {% elif request.user.phone in ml_numbers %}
+                  8 Weeks
+                  {% else %}
+                  8 Weeks
+                  {% endif %}
+                </p>
+              </div>
+            </div>
+
+            <div class="meta-card">
+              <i class="bi bi-calendar-week"></i>
+              <div>
+                <h6>Schedule</h6>
+                <p>
+                  {% if request.user.phone in data_analysis_numbers %}
+                  Mon - Fri | 6-8 PM
+                  {% elif request.user.phone in web_dev_numbers %}
+                  Mon - Fri | 6-8 PM
+                  {% elif request.user.phone in ml_numbers %}
+                  Mon - Fri | 6-8 PM
+                  {% else %}
+                  Mon - Fri | 6-8 PM
+                  {% endif %}
+                </p>
+              </div>
+            </div>
+
+            <div class="meta-card">
+              <i class="bi bi-calendar-check"></i>
+              <div>
+                <h6>Start Date</h6>
+                <p>
+                  {% if request.user.phone in data_analysis_numbers %}
+                  June 1, 2025
+                  {% elif request.user.phone in web_dev_numbers %}
+                  June 1, 2025
+                  {% elif request.user.phone in ml_numbers %}
+                  June 1, 2025
+                  {% else %}
+                  June 1, 2025
+                  {% endif %}
+                </p>
+              </div>
+            </div>
+
+            <div class="meta-card">
+              <i class="bi bi-award"></i>
+              <div>
+                <h6>Certification</h6>
+                <p>
+                  {% if request.user.phone in data_analysis_numbers %}
+                  AICTE Certified
+                  {% elif request.user.phone in web_dev_numbers %}
+                  AICTE Accredited
+                  {% elif request.user.phone in ml_numbers %}
+                  AICTE Certified
+                  {% else %}
+                  AICTE Certified
+                  {% endif %}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="progress-container glass-card mt-4">
+            <div class="progress-header">
+              <h5>Your Learning Progress</h5>
+              <small>
+                {% if request.user.name == "Sairam Barla" %}
+                Expert Level
+                {% else %}
+                Getting Started
+                {% endif %}
+              </small>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width: {% if request.user.name == "Sairam Barla" %}100%{% else %}5%{% endif %};">
+                <span>{% if request.user.name == "Sairam Barla" %}100%{% else %}0%{% endif %}</span>
+              </div>
+            </div>
+            <div class="progress-milestones">
+              <span class="milestone" style="left: 25%;">Beginner</span>
+              <span class="milestone" style="left: 50%;">Intermediate</span>
+              <span class="milestone" style="left: 75%;">Advanced</span>
+              <span class="milestone" style="left: 100%;">Expert</span>
+            </div>
+          </div>
+
+          <!-- Only show achievements for Sairam -->
+          {% if request.user.name == "Sairam Barla" %}
+          <div class="achievements-container glass-card mt-3">
+            <h6>Your Achievements</h6>
+            <div class="badges-grid">
+              <div class="badge-item gold">
+                <i class="bi bi-trophy-fill"></i>
+                <span>Course Completion</span>
+              </div>
+              <div class="badge-item silver">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>10 Assignments</span>
+              </div>
+              <div class="badge-item bronze">
+                <i class="bi bi-file-code-fill"></i>
+                <span>2 Projects</span>
+              </div>
+              <div class="badge-item platinum">
+                <i class="bi bi-star-fill"></i>
+                <span>Top Performer</span>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      
+      <!-- Course Modules Section -->
+      <div class="course-modules glass-card mt-5">
+        <div class="section-header">
+          <h3>Curriculum Overview</h3>
+          <p>Comprehensive learning path designed by industry experts</p>
+        </div>
+        
+        <div class="modules-accordion" id="modulesAccordion">
+          {% if request.user.phone in data_analysis_numbers %}
+          <!-- Data Analysis Modules -->
+          <div class="module-card">
+            <div class="module-header" data-bs-toggle="collapse" data-bs-target="#module1">
+              <i class="bi bi-database"></i>
+              <h5>Foundations of Data Analytics</h5>
+              <span>4 Weeks</span>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+            <div id="module1" class="collapse show" data-bs-parent="#modulesAccordion">
+              <div class="module-content">
+                <ul>
+                  <li><i class="bi bi-check-circle-fill"></i> Introduction to Data Analytics</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Advanced Excel for Analytics</li>
+                  <li><i class="bi bi-check-circle-fill"></i> SQL for Data Analysis</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Python for Data Analysis</li>
+                  <li><i class="bi bi-check-circle-fill"></i> NumPy Fundamentals</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Pandas Introduction</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="module-card">
+            <div class="module-header" data-bs-toggle="collapse" data-bs-target="#module2">
+              <i class="bi bi-graph-up-arrow"></i>
+              <h5>Advanced Analytics</h5>
+              <span>4 Weeks</span>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+            <div id="module2" class="collapse" data-bs-parent="#modulesAccordion">
+              <div class="module-content">
+                <ul>
+                  <li><i class="bi bi-check-circle-fill"></i> Data Visualization</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Matplotlib Fundamentals</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Dashboard Creation</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Minor Project</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Major Project</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          {% elif request.user.phone in web_dev_numbers %}
+          <!-- Web Development Modules -->
+          <div class="module-card">
+            <div class="module-header" data-bs-toggle="collapse" data-bs-target="#module1">
+              <i class="bi bi-filetype-html"></i>
+              <h5>Frontend Foundations</h5>
+              <span>4 Weeks</span>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+            <div id="module1" class="collapse show" data-bs-parent="#modulesAccordion">
+              <div class="module-content">
+                <ul>
+                  <li><i class="bi bi-check-circle-fill"></i> HTML5 & CSS3</li>
+                  <li><i class="bi bi-check-circle-fill"></i> JavaScript ES6+</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Responsive Design</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Bootstrap</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="module-card">
+            <div class="module-header" data-bs-toggle="collapse" data-bs-target="#module2">
+              <i class="bi bi-filetype-jsx"></i>
+              <h5>React Ecosystem</h5>
+              <span>4 Weeks</span>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+            <div id="module2" class="collapse" data-bs-parent="#modulesAccordion">
+              <div class="module-content">
+                <ul>
+                  <li><i class="bi bi-check-circle-fill"></i> Layout Design</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Website Integration</li>
+                  <li><i class="bi bi-check-circle-fill"></i> HTML hyperlinks</li>
+                  <li><i class="bi bi-check-circle-fill"></i> On Demand Sessions</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Minor Project</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Major Project</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          {% elif request.user.phone in ml_numbers %}
+          <!-- Machine Learning Modules -->
+          <div class="module-card">
+            <div class="module-header" data-bs-toggle="collapse" data-bs-target="#module1">
+              <i class="bi bi-cpu"></i>
+              <h5>ML Foundations</h5>
+              <span>4 Weeks</span>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+            <div id="module1" class="collapse show" data-bs-parent="#modulesAccordion">
+              <div class="module-content">
+                <ul>
+                  <li><i class="bi bi-check-circle-fill"></i> Python for ML</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Supervised Learning</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Feature Engineering</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Model Evaluation</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="module-card">
+            <div class="module-header" data-bs-toggle="collapse" data-bs-target="#module2">
+              <i class="bi bi-diagram-3"></i>
+              <h5>Advanced ML</h5>
+              <span>4 Weeks</span>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+            <div id="module2" class="collapse" data-bs-parent="#modulesAccordion">
+              <div class="module-content">
+                <ul>
+                  <li><i class="bi bi-check-circle-fill"></i> Neural Networks</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Computer Vision</li>
+                  <li><i class="bi bi-check-circle-fill"></i> NLP Techniques</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Model Deployment</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Minor Project</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Major Project</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          {% else %}
+          <!-- Default AI/ML Modules -->
+          <div class="module-card">
+            <div class="module-header" data-bs-toggle="collapse" data-bs-target="#module1">
+              <i class="bi bi-brain"></i>
+              <h5>AI Foundations</h5>
+              <span>4 Weeks</span>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+            <div id="module1" class="collapse show" data-bs-parent="#modulesAccordion">
+              <div class="module-content">
+                <ul>
+                  <li><i class="bi bi-check-circle-fill"></i> Linear Algebra for AI</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Probability Theory</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Neural Networks</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Optimization Methods</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="module-card">
+            <div class="module-header" data-bs-toggle="collapse" data-bs-target="#module2">
+              <i class="bi bi-robot"></i>
+              <h5>Deep Learning</h5>
+              <span>4 Weeks</span>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+            <div id="module2" class="collapse" data-bs-parent="#modulesAccordion">
+              <div class="module-content">
+                <ul>
+                  <li><i class="bi bi-check-circle-fill"></i> CNN Architectures</li>
+                  <li><i class="bi bi-check-circle-fill"></i> RNNs & Transformers</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Generative Models</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Reinforcement Learning</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section><!-- /Course Details Section -->
+
+  <!-- Course Resources Section -->
+  <section id="course-resources" class="course-resources section">
+    <div class="container" data-aos="fade-up">
+      <div class="section-header">
+        <h3>Learning Resources</h3>
+        <p>Everything you need to succeed in your learning journey</p>
+      </div>
+
+      <!-- Live Sessions -->
+        <div class="resource-card">
+        <div class="resource-icon">
+          <i class="bi bi-camera-video-fill"></i>
+        </div>
+        <div class="resource-content">
+          <h4>Live Sessions</h4>
+          <p>
+            Interactive sessions with instructor and peers
+          </p>
+          {% if request.user.name != "Sairam Barla" %}
+          <a href="{% url 'my_courses' %}" class="btn btn-sm btn-primary">
+            Join Now
+          </a>
+          {% endif %}
+        </div>
+      </div>
+
+      
+      <div class="resources-grid">
+        <!-- Assignments -->
+        <div class="resource-card {% if request.user.name != "Sairam Barla" %}locked{% endif %}">
+          <div class="resource-icon">
+            <i class="bi bi-file-earmark-text-fill"></i>
+          </div>
+          <div class="resource-content">
+            <h4>Assignments</h4>
+            <p>
+              {% if request.user.name == "Sairam Barla" %}
+              <strong>10/10</strong> assignments completed with average grade of 92%
+              {% else %}
+              Weekly practical exercises to reinforce learning
+              {% endif %}
+            </p>
             {% if request.user.name == "Sairam Barla" %}
-            <!-- Certificate Preview -->
-            <div class="certificate-preview mt-5">
-              <iframe src="https://drive.google.com/file/d/1qkRa1CQLdTu7qxQu9O7rfdfQLxZB1tbL/preview" allow="autoplay"></iframe>
-            </div>
-            <div class="text-center mt-3">
-              <small class="text-muted">Your AI/ML Certificate - Issued on Jan 5, 2024</small>
-            </div>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#aicteExpiredModal">
+              View Submissions
+            </button>
+            {% else %}
+            <button class="btn btn-sm btn-outline-secondary" disabled>
+              Locked
+            </button>
             {% endif %}
           </div>
         </div>
-      </div>
-    </section><!-- /Course Options Section -->
-  </main>
+        
+        <!-- Projects -->
+        <div class="resource-card {% if request.user.name != "Sairam Barla" %}locked{% endif %}">
+          <div class="resource-icon">
+            <i class="bi bi-laptop-fill"></i>
+          </div>
+          <div class="resource-content">
+            <h4>Projects</h4>
+            <p>
+              {% if request.user.name == "Sairam Barla" %}
+              <strong>2/2</strong> industry-relevant projects completed
+              {% else %}
+              One minor and One major real-world applications of your skills
+              {% endif %}
+            </p>
+            {% if request.user.name == "Sairam Barla" %}
+            <div class="btn-group">
+              <button class="btn btn-sm btn-primary">View Projects</button>
+              <button class="btn btn-sm btn-outline-primary">GitHub</button>
+            </div>
+            {% else %}
+            <button class="btn btn-sm btn-outline-secondary" disabled>
+              Locked
+            </button>
+            {% endif %}
+          </div>
+        </div>
+        
+        <!-- Certificate -->
+        <div class="resource-card {% if request.user.name != "Sairam Barla" %}locked{% endif %}">
+          <div class="resource-icon">
+            <i class="bi bi-award-fill"></i>
+          </div>
+          <div class="resource-content">
+            <h4>Certification</h4>
+            <p>
+              {% if request.user.name == "Sairam Barla" %}
+              Earned professional certification with distinction
+              {% else %}
+              Industry-recognized certification upon completion
+              {% endif %}
+            </p>
+            {% if request.user.name == "Sairam Barla" %}
+            <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#certificateModal">
+              Download
+            </button>
+            {% else %}
+            <button class="btn btn-sm btn-outline-secondary" disabled>
+              Locked
+            </button>
+            {% endif %}
+          </div>
+        </div>
+        
+        
+  </section><!-- /Course Resources Section -->
 
-  <footer id="footer" class="footer position-relative light-background">
+  <!-- Certificate Preview Section (Only for Sairam) -->
+  {% if request.user.name == "Sairam Barla" %}
+  <section id="certificate-preview" class="certificate-preview section">
+    <div class="container" data-aos="fade-up">
+      <div class="section-header">
+        <h3>Your Certificate of Completion</h3>
+        <p>Official recognition of your achievement</p>
+      </div>
+      
+      <div class="certificate-container">
+        <div class="certificate-frame">
+          <div class="certificate-content">
+            <div class="certificate-header">
+              <img src="{% static 'assets/img/logo.png' %}" alt="EliGo Logo" class="certificate-logo">
+              <h4>Certificate of Completion</h4>
+            </div>
+            <div class="certificate-body">
+              <p>This is to certify that</p>
+              <h3>Sairam Barla</h3>
+              <p>has successfully completed the</p>
+              <h5>
+                {% if request.user.phone in data_analysis_numbers %}
+                Data Science Professional Certification
+                {% elif request.user.phone in web_dev_numbers %}
+                Full Stack Development Certification
+                {% elif request.user.phone in ml_numbers %}
+                Machine Learning Engineer Certification
+                {% else %}
+                AI Engineering Specialist Certification
+                {% endif %}
+              </h5>
+              <div class="certificate-details">
+                <p>
+                  <span>Issued on: 
+                    {% if request.user.phone in data_analysis_numbers %}
+                    September 15, 2024
+                    {% elif request.user.phone in web_dev_numbers %}
+                    October 20, 2024
+                    {% elif request.user.phone in ml_numbers %}
+                    November 25, 2024
+                    {% else %}
+                    December 31, 2024
+                    {% endif %}
+                  </span>
+                  <span>Certificate ID: ELI-2024-{% if request.user.phone in data_analysis_numbers %}DS{% elif request.user.phone in web_dev_numbers %}WD{% elif request.user.phone in ml_numbers %}ML{% else %}AI{% endif %}-{{ request.user.phone|slice:"-4:" }}</span>
+                </p>
+              </div>
+            </div>
+            <div class="certificate-footer">
+              <div class="signature">
+                <img src="{% static 'assets/img/signature.png' %}" alt="Director Signature">
+                <p>Dr. Ananya Sharma<br>Director of Education</p>
+              </div>
+              <div class="verification">
+                <p>Verify at: eligo.com/verify-certificate</p>
+                <div class="qr-code">
+                  <i class="bi bi-qr-code-scan"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="certificate-actions text-center mt-4">
+        <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#certificateModal">
+          <i class="bi bi-download me-1"></i> Download PDF
+        </button>
+        <button class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#shareModal">
+          <i class="bi bi-share me-1"></i> Share
+        </button>
+        <button class="btn btn-outline-secondary">
+          <i class="bi bi-printer me-1"></i> Print
+        </button>
+      </div>
+    </div>
+  </section><!-- /Certificate Preview Section -->
+  {% endif %}
+</main>
+
+  <!-- Footer -->
+   <footer id="footer" class="footer position-relative light-background">
+
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
@@ -545,26 +1414,20 @@
             <span class="sitename">EliGo</span>
           </a>
           <div class="footer-contact pt-3">
-            <p>Noval Tech, HSR Layout</p>
-            <p>Bengaluru, Pin - 560102</p>
+            <p>Noval Tech,HSR Layout</p>
+            <p>Bengalore, Pin - 560102</p>
             <p class="mt-3"><strong>Phone:</strong> <span>+91 78424 39551</span></p>
             <p><strong>Email:</strong> <span>eligorenderforest@gmail.com</span></p>
           </div>
-          <div class="social-links d-flex mt-4">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
-          </div>
+    
         </div>
 
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Useful Links</h4>
           <ul>
             <li><a href="/home">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/courses">Courses</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a href="/about">About us</a></li>
+            <li><a href="/courses">Services</a></li>
             <li><a href="/sponsorship">Sponsorship</a></li>
             <li><a href="/privacypolicy">Privacy policy</a></li>
           </ul>
@@ -573,17 +1436,17 @@
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Our Services</h4>
           <ul>
+            <li><a href="/courses">Web Design</a></li>
             <li><a href="/courses">Web Development</a></li>
-            <li><a href="/courses">Data Science</a></li>
-            <li><a href="/courses">Digital Marketing</a></li>
-            <li><a href="/courses">UI/UX Design</a></li>
-            <li><a href="/courses">Cloud Computing</a></li>
+            <li><a href="/courses">Product Management</a></li>
+            <li><a href="/courses">Marketing</a></li>
+            <li><a href="/courses">Graphic Design</a></li>
           </ul>
         </div>
 
         <div class="col-lg-4 col-md-12 footer-newsletter">
           <h4>Our Newsletter</h4>
-          <p>Subscribe to our newsletter and receive the latest updates about our courses and events!</p>
+          <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
           <form action="forms/newsletter.php" method="post" class="php-email-form">
             <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
             <div class="loading">Loading</div>
@@ -591,12 +1454,14 @@
             <div class="sent-message">Your subscription request has been sent. Thank you!</div>
           </form>
         </div>
+
       </div>
     </div>
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">EliGo</strong> <span>All Rights Reserved</span></p>
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Eligo</strong> <span>All Rights Reserved</span></p>
     </div>
+
   </footer>
 
   <!-- Scroll Top -->
@@ -605,16 +1470,249 @@
   <!-- Preloader -->
   <div id="preloader"></div>
 
+  <!-- Modals -->
+  <!-- Certificate Modal -->
+  <div class="modal fade" id="certificateModal" tabindex="-1" aria-labelledby="certificateModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="certificateModalLabel">Download Certificate</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="certificate-preview mb-3" style="height: 250px;">
+                <iframe src="{% static 'assets/docs/certificate-preview.html' %}" 
+                        title="Certificate Preview"></iframe>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h6>Certificate Details</h6>
+              <ul class="list-unstyled">
+                <li><strong>Name:</strong> Sairam Barla</li>
+                <li><strong>Course:</strong> 
+                  {% if request.user.phone in data_analysis_numbers %}
+                  Data Analysis Professional
+                  {% elif request.user.phone in web_dev_numbers %}
+                  Full Stack Web Development
+                  {% elif request.user.phone in ml_numbers %}
+                  Machine Learning Engineer
+                  {% else %}
+                  AI/ML Specialist
+                  {% endif %}
+                </li>
+                <li><strong>Completion Date:</strong> 
+                  {% if request.user.phone in data_analysis_numbers %}
+                  September 15, 2024
+                  {% elif request.user.phone in web_dev_numbers %}
+                  October 20, 2024
+                  {% elif request.user.phone in ml_numbers %}
+                  November 25, 2024
+                  {% else %}
+                  December 31, 2024
+                  {% endif %}
+                </li>
+                <li><strong>Certificate ID:</strong> ELI-2024-{% if request.user.phone in data_analysis_numbers %}DA{% elif request.user.phone in web_dev_numbers %}WD{% elif request.user.phone in ml_numbers %}ML{% else %}AI{% endif %}-{{ request.user.phone|slice:"-4:" }}</li>
+              </ul>
+              <div class="alert alert-info mt-3">
+                <i class="bi bi-info-circle me-2"></i> This certificate verifies that the student has successfully completed all course requirements.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">
+            <i class="bi bi-download me-1"></i> Download PDF
+          </button>
+          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#shareModal">
+            <i class="bi bi-share me-1"></i> Share
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Share Modal -->
+  <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="shareModalLabel">Share Your Certificate</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Share your achievement with your network:</p>
+          <div class="social-share d-flex justify-content-center gap-3 mb-4">
+            <a href="#" class="btn btn-outline-primary"><i class="bi bi-linkedin"></i> LinkedIn</a>
+            <a href="#" class="btn btn-outline-primary"><i class="bi bi-twitter"></i> Twitter</a>
+            <a href="#" class="btn btn-outline-primary"><i class="bi bi-facebook"></i> Facebook</a>
+          </div>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" value="https://eligo.com/certificate/verify/ELI-2024-{% if request.user.phone in data_analysis_numbers %}DA{% elif request.user.phone in web_dev_numbers %}WD{% elif request.user.phone in ml_numbers %}ML{% else %}AI{% endif %}-{{ request.user.phone|slice:"-4:" }}" id="certificateLink" readonly>
+            <button class="btn btn-outline-secondary" type="button" id="copyLinkBtn">
+              <i class="bi bi-clipboard"></i> Copy
+            </button>
+          </div>
+          <div class="alert alert-success d-none" id="copySuccessAlert">
+            Link copied to clipboard!
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AICTE Expired Modal -->
+  <div class="modal fade" id="aicteExpiredModal" tabindex="-1" aria-labelledby="aicteExpiredModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-warning">
+          <h5 class="modal-title" id="aicteExpiredModalLabel"><i class="bi bi-exclamation-triangle-fill me-2"></i> AICTE Access Expired</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Your access to the AICTE learning portal has expired on <strong>May 15, 2024</strong>. To continue accessing course materials, assignments, and certificates, please renew your subscription.</p>
+          <div class="alert alert-info">
+            <i class="bi bi-info-circle-fill me-2"></i> Contact our support team at <strong>support@eligo.com</strong> or call <strong>+91 98765 43210</strong> to renew your access.
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a href="/contact" class="btn btn-warning">
+            <i class="bi bi-headset me-1"></i> Contact Support
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Course Materials Modal -->
+  <div class="modal fade" id="materialsModal" tabindex="-1" aria-labelledby="materialsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="materialsModalLabel">Course Materials</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="list-group">
+            {% if request.user.phone in data_analysis_numbers %}
+            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+              <span>Module 1: Introduction to Data Analysis (PDF)</span>
+              <span class="badge bg-primary rounded-pill">New</span>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">Module 2: Data Visualization (PDF)</a>
+            <a href="#" class="list-group-item list-group-item-action">Module 3: SQL for Data Analysis (PDF)</a>
+            <a href="#" class="list-group-item list-group-item-action">Module 4: EDA (PDF)</a>
+            <a href="#" class="list-group-item list-group-item-action">Data Analysis Cheat Sheet (PDF)</a>
+            <a href="#" class="list-group-item list-group-item-action">Sample Datasets (ZIP)</a>
+            {% elif request.user.phone in web_dev_numbers %}
+            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+              <span>Module 1: HTML5 & CSS3 (PDF)</span>
+              <span class="badge bg-primary rounded-pill">New</span>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">Module 2: JavaScript (PDF)</a>
+            <a href="#" class="list-group-item list-group-item-action">Module 3: React.js (PDF)</a>
+            <a href="#" class="list-group-item list-group-item-action">Module 4: Node.js (PDF)</a>
+            <a href="#" class="list-group-item list-group-item-action">Web Dev Cheat Sheet (PDF)</a>
+            <a href="#" class="list-group-item list-group-item-action">Starter Templates (ZIP)</a>
+            {% elif request.user.phone in ml_numbers %}
+            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+              <span>Module 1: Python for ML (PDF)</span>
+              <span class="badge bg-primary rounded-pill">New</span>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">Module 2: Supervised Learning (PDF)</a>
+            <a href="#" class="list-group-item list-group-item-action">Module 3: Unsupervised Learning (PDF)</a>
+            <a href="#" class="list-group-item list-group-item-action">Module 4: Model Evaluation (PDF)</a>
+            <a href="#" class="list-group-item list-group-item-action">ML Algorithms Guide (PDF)</a>
+            <a href="#" class="list-group-item list-group-item-action">Practice Datasets (ZIP)</a>
+            {% else %}
+            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+              <span>Module 1: Neural Networks (PDF)</span>
+              <span class="badge bg-primary rounded-pill">New</span>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">Module 2: Computer Vision (PDF)</a>
+            <a href="#" class="list-group-item list-group-item-action">Module 3: NLP (PDF)</a>
+            <a href="#" class="list-group-item list-group-item-action">Module 4: TensorFlow (PDF)</a>
+            <a href="#" class="list-group-item list-group-item-action">AI/ML Reference Guide (PDF)</a>
+            <a href="#" class="list-group-item list-group-item-action">Project Resources (ZIP)</a>
+            {% endif %}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">
+            <i class="bi bi-download me-1"></i> Download All
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Vendor JS Files -->
   <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
   <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
   <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
-  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
   <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
 
   <!-- Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
-</body>
+  
+  <script>
+    // Animate progress bar on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const progressBar = document.querySelector('.progress-bar');
+      const progressPercentage = document.querySelector('.progress-percentage');
+      
+      // Only animate for Sairam (100% complete)
+      {% if request.user.name == "Sairam Barla" %}
+      let width = 0;
+      const interval = setInterval(function() {
+        if (width >= 100) {
+          clearInterval(interval);
+        } else {
+          width++;
+          progressBar.style.width = width + '%';
+          progressBar.querySelector('.progress-text').textContent = width + '%';
+          progressPercentage.textContent = width + '% Complete';
+          
+          // Update the small text based on progress
+          const progressText = document.querySelector('.progress-container + .d-flex small');
+          if (width < 30) {
+            progressText.textContent = 'Beginner';
+          } else if (width < 60) {
+            progressText.textContent = 'Intermediate';
+          } else if (width < 90) {
+            progressText.textContent = 'Advanced';
+          } else {
+            progressText.textContent = 'Expert';
+          }
+        }
+      }, 20);
+      {% endif %}
+      
+      // Copy link functionality
+      const copyLinkBtn = document.getElementById('copyLinkBtn');
+      if (copyLinkBtn) {
+        copyLinkBtn.addEventListener('click', function() {
+          const certificateLink = document.getElementById('certificateLink');
+          certificateLink.select();
+          document.execCommand('copy');
+          
+          const copySuccessAlert = document.getElementById('copySuccessAlert');
+          copySuccessAlert.classList.remove('d-none');
+          setTimeout(function() {
+            copySuccessAlert.classList.add('d-none');
+          }, 2000);
+        });
+      }
+    });
+  </script>
 
+</body>
 </html>

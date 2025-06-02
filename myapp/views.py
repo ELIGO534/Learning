@@ -91,14 +91,26 @@ def level(request):
 from django.shortcuts import render
 from myapp.models import Member
 
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from .models import Member, Profile  # Import your profile model
+
+@login_required
 def members(request):
     if request.user.is_authenticated:
-        # Get the logged-in user and filter members associated with them
+        # Get the logged-in user's members
         members_list = Member.objects.filter(user=request.user)
+        
+        # Get or create the user's profile
+        profile = Profile.objects.get_or_create(user=request.user)
     else:
         members_list = []
+        profile = None  # or you could create an anonymous profile with 0 earnings
 
-    return render(request, 'members.html', {'members': members_list})
+    return render(request, 'members.html', {
+        'members': members_list,
+        'profile': profile  # Now passing the profile to template
+    })
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -205,7 +217,30 @@ def join_members(request):
     return render(request, "join.html")
 
 def my_courses(request):
-    return render(request,"my_courses.html")
+    context = {
+    'data_analysis_numbers': [
+        "9063047813", "7989219165", "9346181489", "7396252699", "6305969920", "7386323303",
+        "6301377530", "7382579283", "8309621284", "9618944742", "6305376046", "9063182706",
+        "7847887022", "6301740212", "9959134659", "9100792452", "9704261549", "9398940353",
+        "7207794091"
+    ],
+
+    'web_dev_numbers': [
+        "9963242195", "9347844479", "7842351513", "9381700503", "6281371577", "7386376764",
+        "7207674531", "8639454686", "8341633481", "9347709402", "9010134688", "9985317855",
+        "9100390114", "9014574670", "8125274748", "7013627174", "9346053083", "9390427208",
+        "6281808939", "8500166525", "8790413984", "9381987419", "6301382198", "8247836086",
+        "6302451271", "6281850287", "8977709225", "8125883892", "6302186722", "8919272658",
+        "8309138848", "6301242839", "7075303564"
+    ],
+
+    'ml_numbers': [
+        "8328480287", "7337050706", "8712837063",
+        "9603689566", "8712385254", "9908191735"
+    ],
+}
+
+    return render(request, 'my_courses.html', context)
 
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
@@ -382,4 +417,32 @@ def employee_page(request):
     return render(request, 'index.html')
 
 
+# In your view
+def my_learning(request):
+    context = {
+    'data_analysis_numbers': [
+        "9063047813", "7989219165", "9346181489", "7396252699", "6305969920", "7386323303",
+        "6301377530", "7382579283", "8309621284", "9618944742", "6305376046", "9063182706",
+        "7847887022", "6301740212", "9959134659", "9100792452", "9704261549", "9398940353",
+        "7207794091"
+    ],
 
+    'web_dev_numbers': [
+        "9963242195", "9347844479", "7842351513", "9381700503", "6281371577", "7386376764",
+        "7207674531", "8639454686", "8341633481", "9347709402", "9010134688", "9985317855",
+        "9100390114", "9014574670", "8125274748", "7013627174", "9346053083", "9390427208",
+        "6281808939", "8500166525", "8790413984", "9381987419", "6301382198", "8247836086",
+        "6302451271", "6281850287", "8977709225", "8125883892", "6302186722", "8919272658",
+        "8309138848", "6301242839", "7075303564"
+    ],
+
+    'ml_numbers': [
+        "8328480287", "7337050706", "8712837063",
+        "9603689566", "8712385254", "9908191735"
+    ],
+}
+
+    return render(request, 'my_learning.html', context)
+
+def internships(request):
+    return render(request , 'internships.html')
