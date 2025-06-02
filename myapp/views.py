@@ -24,7 +24,7 @@ def login(request):
         if user is not None:
             auth_login(request, user)  # Log the user in
             messages.success(request, 'Login successful!')
-            return redirect('home')  # Redirect to homepage or dashboard
+            return redirect('profile')  # Redirect to homepage or dashboard
         else:
             messages.error(request, 'Invalid credentials. Please try again.')
 
