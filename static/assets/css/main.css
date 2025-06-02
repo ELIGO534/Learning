@@ -407,7 +407,7 @@ h6 {
 
   .navmenu {
     padding: 0;
-    z-index: 9997;
+    z-index: 99999;
   }
 
   .navmenu ul {
@@ -423,7 +423,7 @@ h6 {
     box-shadow: none;
     overflow-y: auto;
     transition: 0.3s;
-    z-index: 9998;
+    z-index: 99999;
   }
 
   .navmenu a,
@@ -477,7 +477,7 @@ h6 {
   .navmenu .dropdown ul {
     position: static;
     display: none;
-    z-index: 99;
+    z-index: 99999;
     padding: 10px 0;
     margin: 10px 20px;
     background-color: var(--nav-dropdown-background-color);
@@ -509,7 +509,7 @@ h6 {
 
   .mobile-nav-active .navmenu {
     position: fixed;
-    overflow: hidden;
+    overflow: auto;
     inset: 0;
     background: rgba(33, 37, 41, 0.8);
     transition: 0.3s;

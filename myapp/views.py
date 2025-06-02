@@ -418,6 +418,7 @@ def employee_page(request):
 
 
 # In your view
+@login_required
 def my_learning(request):
     context = {
     'data_analysis_numbers': [
