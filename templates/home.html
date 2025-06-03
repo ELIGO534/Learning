@@ -53,9 +53,8 @@
 
   <!-- Main CSS -->
   <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
-
   <style>
-    :root {
+      :root {
       --primary: #16a34a;
       --primary-light: #22c55e;
       --primary-dark: #15803d;
@@ -86,6 +85,7 @@
       backdrop-filter: blur(8px);
       box-shadow: 0 2px 20px rgba(0,0,0,0.05);
       border-bottom: 1px solid rgba(0,0,0,0.03);
+      z-index: 1000
     }
     
     /* Hero Section */
@@ -93,7 +93,7 @@
       background: linear-gradient(135deg, rgba(22, 163, 74, 0.1), rgba(22, 163, 74, 0.2));
       padding: 6rem 0;
       position: relative;
-      overflow: hidden;
+      overflow: auto;
       z-index: 1;
     }
     
@@ -107,6 +107,7 @@
       background: url('{% static "assets/img/hero-pattern.png" %}') no-repeat;
       background-size: cover;
       opacity: 0.1;
+      z-index: 1;
     }
     
     /* Stats Cards */
@@ -263,9 +264,13 @@
       
       .hero-section::before {
         display: none;
+        position: relative;
+        z-index: 1;
       }
+
     }
   </style>
+
 </head>
 
 <body class="index-page">
@@ -313,7 +318,7 @@
             <a href="/profile"><i class="fas fa-user-circle me-1"></i> Profile <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="/login">Sign In</a></li>
-              <li><a href="/register">Sign Up</a></li>
+              <li><a href="/login">Sign Up</a></li>
               <li><a href="/profile">My Profile</a></li>
             </ul>
           </li>
