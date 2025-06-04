@@ -530,7 +530,15 @@
               <!-- Use a normal div as the container -->
 <!-- Video container with previous styles preserved -->
 <div id="video-frame" class="video-frame w-full aspect-video rounded-lg shadow-md overflow-hidden">
-  <video controls autoplay class="w-full h-full object-cover rounded-lg">
+  <video 
+    controls 
+    autoplay 
+    controlsList="nodownload noplaybackrate nodownload" 
+    class="w-full h-full object-cover rounded-lg"
+    oncontextmenu="return false"
+    ontimeupdate="handleTimeUpdate(this)"
+    data-last-time="0"
+  >
     <source src="https://www.dropbox.com/scl/fi/1az3hkg7w5q2cvbavzdnq/final.mp4?rlkey=90o3sb4ym8men9p34tisequr5&st=5h4mz12w&raw=1" type="video/mp4">
     Your browser does not support the video tag.
   </video>
@@ -1822,28 +1830,37 @@
 });
 
   function changeVideo(title, url) {
-    document.getElementById("video-title").innerText = title;
-    
-    // Replace iframe with video element for Dropbox URLs
-    if (url.includes('dropbox.com')) {
-      const videoFrame = document.getElementById("video-frame");
-      videoFrame.innerHTML = `
-        <video controls class="w-full h-full rounded-lg shadow-md">
-          <source src="${url}" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      `;
-    } else {
-      document.getElementById("video-frame").innerHTML = `
-        <iframe class="w-full h-full rounded-lg shadow-md" 
-          src="${url}" 
-          allowfullscreen>
-        </iframe>
-      `;
-    }
-    
-    showToast(`Now playing: ${title}`);
+  document.getElementById("video-title").innerText = title;
+
+  const videoFrame = document.getElementById("video-frame");
+
+  if (url.includes('dropbox.com')) {
+    videoFrame.innerHTML = `
+      <video 
+        controls 
+        autoplay 
+        controlsList="nodownload noplaybackrate"
+        oncontextmenu="return false"
+        ontimeupdate="handleTimeUpdate(this)"
+        data-last-time="0"
+        class="w-full h-full object-cover rounded-lg shadow-md"
+      >
+        <source src="${url}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    `;
+  } else {
+    videoFrame.innerHTML = `
+      <iframe class="w-full h-full rounded-lg shadow-md"
+        src="${url}"
+        allowfullscreen>
+      </iframe>
+    `;
   }
+
+  showToast(`Now playing: ${title}`);
+}
+
 
   function toggleModule(event, moduleId) {
     event.stopPropagation();
@@ -1878,15 +1895,6 @@
     });
   });
 
-  function downloadVideo(title, url) {
-    showToast(`Downloading: ${title}`);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `${title.replace(/ /g, '_')}.mp4`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
 
   function markAsComplete() {
     showToast("Module marked as complete! Next module unlocks at 6:00 PM");
@@ -1904,6 +1912,15 @@
       toast.classList.add('opacity-0', 'transition-opacity', 'duration-300');
       setTimeout(() => toast.remove(), 300);
     }, 3000);
+  }
+  function handleTimeUpdate(video) {
+    // Prevent seeking forward
+    const lastTime = parseFloat(video.dataset.lastTime || 0);
+    if (video.currentTime > lastTime + 0.5) {
+      video.currentTime = lastTime;
+    } else {
+      video.dataset.lastTime = video.currentTime;
+    }
   }
 </script>
 </body>
