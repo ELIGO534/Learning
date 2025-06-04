@@ -527,11 +527,16 @@
             </span>
           </div>
           
-              <div class="video-frame">
-      <iframe id="video-frame" class="w-full h-full rounded-lg shadow-md" 
-          src="https://www.dropbox.com/scl/fi/1az3hkg7w5q2cvbavzdnq/final.mp4?rlkey=90o3sb4ym8men9p34tisequr5&st=5h4mz12w&raw=1&disableControls=seek" 
-          allowfullscreen>
-      </iframe>
+              <!-- Use a normal div as the container -->
+<!-- Video container with previous styles preserved -->
+<div id="video-frame" class="video-frame w-full aspect-video rounded-lg shadow-md overflow-hidden">
+  <video controls autoplay class="w-full h-full object-cover rounded-lg">
+    <source src="https://www.dropbox.com/scl/fi/1az3hkg7w5q2cvbavzdnq/final.mp4?rlkey=90o3sb4ym8men9p34tisequr5&st=5h4mz12w&raw=1" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+
     </div>
           
           <div class="video-controls">
@@ -541,9 +546,6 @@
               </button>
             </div>
             <div>
-              <button class="video-control-btn" onclick="downloadVideo()">
-                <i class="bi bi-download"></i> Download Video
-              </button>
             </div>
           </div>
         </div>
@@ -560,7 +562,9 @@
           <ul class="space-y-3">
             {% if request.user.phone in data_analysis_numbers %}
               <!-- Data Analysis Curriculum -->
-              <li class="flex items-center bg-blue-50 p-4 rounded-lg shadow-sm course-title" onclick="changeVideo('Introduction to Data Analysis', 'https://www.dropbox.com/scl/fi/1az3hkg7w5q2cvbavzdnq/final.mp4?rlkey=90o3sb4ym8men9p34tisequr5&st=5h4mz12w&raw=1', event)">
+              <li class="flex items-center bg-blue-100 p-3 rounded-lg course-title"
+    data-video-title="Introduction to EliGo Ccbp Academy"
+    data-video-url="https://www.dropbox.com/scl/fi/1az3hkg7w5q2cvbavzdnq/final.mp4?rlkey=90o3sb4ym8men9p34tisequr5&st=5h4mz12w&raw=1">
                 <div class="completion-indicator completed">
                   <i class="bi bi-check" style="font-size: 0.7rem;"></i>
                 </div>
@@ -568,35 +572,33 @@
                   <div class="text-gray-800 font-medium">1. Introduction to EliGo CCBP Academy</div>
                   <div class="text-sm text-gray-500 mt-1">Apx 60min • Available</div>
                 </div>
-                <button class="download-btn" onclick="event.stopPropagation(); downloadVideo('Introduction to EliGo Ccbp Academy', 'https://www.dropbox.com/scl/fi/1az3hkg7w5q2cvbavzdnq/final.mp4?rlkey=90o3sb4ym8men9p34tisequr5&st=5h4mz12w&raw=1')">
-                  <i class="bi bi-download"></i>
-                </button>
               </li>
               
 
 <li class="flex items-center bg-blue-50 p-4 rounded-lg shadow-sm course-title" onclick="toggleModule(event, 'da-module1')">
-  <div class="completion-indicator">
-    <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-  </div>
+  <div class="completion-indicator completed">
+                  <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+                </div>
   <div class="flex-grow">
     <div class="flex items-center justify-between">
-      <div class="text-gray-800 font-medium">1. Foundations of Data Analytics</div>
+      <div class="text-gray-800 font-medium">1.Foundations of Data Analytics</div>
       <i class="bi bi-chevron-down transition-transform duration-300 transform" id="da-module1-arrow"></i>
     </div>
     <div class="text-sm text-gray-500 mt-1">Week-1 | Schedule</div>
   </div>
 </li>
 
-<!-- Sub-modules for Module 1 -->
 <div id="da-module1-content" class="sub-modules pl-12 pr-4 overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
   <ul class="space-y-3 mt-2">
-    <li class="flex items-center bg-blue-100 p-3 rounded-lg">
-      <div class="completion-indicator">
-        <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-      </div>
+    <li class="flex items-center bg-blue-100 p-3 rounded-lg"
+     data-video-title="Introduction to Data Analytics"
+    data-video-url="https://www.dropbox.com/scl/fi/qyyvwtj7cx6nz9xabxqe8/Intro-for-data-analatics-1.mov?rlkey=utrdy73seabk1o4oj9w4whb4d&st=5h90dnem&raw=1">
+      <div class="completion-indicator completed">
+                  <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+                </div>
       <div class="flex-grow">
-        <div class="text-gray-700 font-medium">1.1 Understanding Data Analytics</div>
-        <div class="text-xs text-gray-500 mt-1">Apx 1 hr</div>
+        <div class="text-gray-700 font-medium">1.1 Introduction to Data Analytics</div>
+        <div class="text-xs text-gray-500 mt-1">Apx 1.5 hrs</div>
       </div>
     </li>
     <li class="flex items-center bg-blue-100 p-3 rounded-lg">
@@ -1009,7 +1011,9 @@
               
             {% elif request.user.phone in web_dev_numbers %}
   <!-- Web Development Curriculum -->
-  <li class="flex items-center bg-orange-50 p-4 rounded-lg shadow-sm course-title" class="flex items-center bg-blue-50 p-4 rounded-lg shadow-sm course-title" onclick="changeVideo('Introduction to EliGo Ccbp Academy', 'https://www.dropbox.com/scl/fi/1az3hkg7w5q2cvbavzdnq/final.mp4?rlkey=90o3sb4ym8men9p34tisequr5&st=5h4mz12w&raw=1', event)" >
+  <li class="flex items-center bg-blue-100 p-3 rounded-lg course-title"
+    data-video-title="Introduction to EliGo Ccbp Academy"
+    data-video-url="https://www.dropbox.com/scl/fi/1az3hkg7w5q2cvbavzdnq/final.mp4?rlkey=90o3sb4ym8men9p34tisequr5&st=5h4mz12w&raw=1">
     <div class="completion-indicator completed">
       <i class="bi bi-check" style="font-size: 0.7rem;"></i>
     </div>
@@ -1021,9 +1025,9 @@
     </div>
   </li>
   <li class="flex items-center bg-orange-50 p-4 rounded-lg shadow-sm course-title" onclick="toggleModule(event, 'module1')">
-    <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
+    <div class="completion-indicator completed">
+      <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+    </div>
     <div class="flex-grow">
       <div class="flex items-center justify-between">
         <div class="text-gray-800 font-medium">1. Introduction to HTML & CSS</div>
@@ -1036,15 +1040,18 @@
   <!-- Sub-modules for Module 1 -->
   <div id="module1-content" class="sub-modules pl-12 pr-4 overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
     <ul class="space-y-3 mt-2">
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">1.1 Your First Frontend Project| Getting Started</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 50 min</div>
-        </div>
-      </li>
+      <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title"
+    data-video-title="1.1 Your First Frontend Project | Getting Started"
+    data-video-url="https://www.dropbox.com/scl/fi/s1kpl6hwdl39xgvlzwo56/Your-first-frontend-project.mov?rlkey=m76vjn7gqf5xh6neio66rwqak&st=m0pimpio&raw=1">
+  <div class="completion-indicator completed">
+    <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+  </div>
+  <div class="flex-grow">
+    <div class="text-gray-700 font-medium">1.1 Your First Frontend Project | Getting Started</div>
+    <div class="text-xs text-gray-500 mt-1">Apx 50 min</div>
+  </div>
+</li>
+
       <li class="flex items-center bg-orange-100 p-3 rounded-lg">
         <div class="completion-indicator">
           <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
@@ -1572,7 +1579,9 @@
               
             {% elif request.user.phone in ml_numbers %}
               <!-- Machine Learning Curriculum -->
-              <li class="flex items-center bg-green-50 p-4 rounded-lg shadow-sm course-title" onclick="changeVideo('Machine Learning Basics', 'https://www.dropbox.com/scl/fi/1az3hkg7w5q2cvbavzdnq/final.mp4?rlkey=90o3sb4ym8men9p34tisequr5&st=5h4mz12w&raw=1', event)">
+              <li class="flex items-center bg-blue-100 p-3 rounded-lg course-title"
+    data-video-title="Introduction to EliGo Ccbp Academy"
+    data-video-url="https://www.dropbox.com/scl/fi/1az3hkg7w5q2cvbavzdnq/final.mp4?rlkey=90o3sb4ym8men9p34tisequr5&st=5h4mz12w&raw=1">
                 <div class="completion-indicator completed">
                   <i class="bi bi-check" style="font-size: 0.7rem;"></i>
                 </div>
@@ -1795,129 +1804,107 @@
   <script src="{% static 'assets/js/main.js'%}"></script>
 
   <script>
-    function changeVideo(title, url, event) {
-      if (event) event.stopPropagation();
-      document.getElementById("video-title").innerText = title;
-      document.getElementById("video-frame").src = url;
-      
-      // Show a toast notification
-      showToast(`Now playing: ${title}`);
-    }
+  // Initialize with the first video
+  document.addEventListener('DOMContentLoaded', function () {
+  // Set initial video
+  changeVideo('Welcome to EliGo CCBP Academy', 'https://www.dropbox.com/scl/fi/1az3hkg7w5q2cvbavzdnq/final.mp4?rlkey=90o3sb4ym8men9p34tisequr5&st=5h4mz12w&raw=1');
 
-    function downloadVideo(title, url) {
-      // In a real implementation, this would trigger the download
-      showToast(`Downloading: ${title}`);
-      
-      // Create a temporary link to trigger download
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `${title}.mp4`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
+  // Attach listeners to all course items
+  document.querySelectorAll('.course-title').forEach(item => {
+    item.addEventListener('click', function () {
+      const title = this.dataset.videoTitle;
+      const url = this.dataset.videoUrl;
+      if (url) {
+        changeVideo(title, url);
+      }
+    });
+  });
+});
 
-    function markAsComplete() {
-      showToast("Module marked as complete! Next module unlocks at 6:00 PM");
-    }
-
-    function showNotes() {
-      showToast("Showing course notes for this module");
-    }
-
-    function showToast(message) {
-      // Create toast element
-      const toast = document.createElement('div');
-      toast.className = 'fixed bottom-5 right-5 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-lg flex items-center';
-      toast.innerHTML = `
-        <i class="bi bi-check-circle-fill mr-2"></i>
-        <span>${message}</span>
+  function changeVideo(title, url) {
+    document.getElementById("video-title").innerText = title;
+    
+    // Replace iframe with video element for Dropbox URLs
+    if (url.includes('dropbox.com')) {
+      const videoFrame = document.getElementById("video-frame");
+      videoFrame.innerHTML = `
+        <video controls class="w-full h-full rounded-lg shadow-md">
+          <source src="${url}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
       `;
-      
-      // Add to body
-      document.body.appendChild(toast);
-      
-      // Remove after 3 seconds
-      setTimeout(() => {
-        toast.classList.add('opacity-0', 'transition-opacity', 'duration-300');
-        setTimeout(() => toast.remove(), 300);
-      }, 3000);
+    } else {
+      document.getElementById("video-frame").innerHTML = `
+        <iframe class="w-full h-full rounded-lg shadow-md" 
+          src="${url}" 
+          allowfullscreen>
+        </iframe>
+      `;
     }
-
-    // Check for new content at 6:00 PM daily
-    function checkForNewContent() {
-      const now = new Date();
-      const hours = now.getHours();
-      const minutes = now.getMinutes();
-      
-      if (hours === 18 && minutes === 0) {
-        showToast("New content is now available!");
-      }
-    }
-
-    // Check every minute
-    setInterval(checkForNewContent, 60000);
-  </script>
-  <script>
-  function toggleModule(event, moduleId) {
-  event.stopPropagation();
-  
-  const content = document.getElementById(`${moduleId}-content`);
-  const arrow = document.getElementById(`${moduleId}-arrow`);
-  
-  // Toggle the module content
-  content.classList.toggle('show');
-  arrow.classList.toggle('rotate-180');
-  
-  // Close other open modules
-  document.querySelectorAll('.sub-modules').forEach(el => {
-    if (el.id !== `${moduleId}-content` && el.classList.contains('show')) {
-      el.classList.remove('show');
-      const otherArrow = document.getElementById(el.id.replace('-content', '-arrow'));
-      if (otherArrow) otherArrow.classList.remove('rotate-180');
-    }
-  });
-}
-  // Prevent video seeking
-  document.getElementById('video-frame').addEventListener('loadedmetadata', function() {
-    const video = document.getElementById('video-frame').contentWindow.document.querySelector('video');
-    if (video) {
-      video.addEventListener('seeked', function(e) {
-        // Reset to current time if user tries to seek
-        video.currentTime = this.currentTime;
-      });
-      
-      // Disable right-click menu
-      video.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-        return false;
-      });
-    }
-  });
-
-  // Alternative approach using video.js for more control
-  function initializeVideoControls() {
-    const iframe = document.getElementById('video-frame');
-    iframe.onload = function() {
-      const video = iframe.contentWindow.document.querySelector('video');
-      if (video) {
-        // Disable seeking
-        video.addEventListener('timeupdate', function() {
-          if (this.currentTime > this.lastAllowedTime) {
-            this.currentTime = this.lastAllowedTime;
-          }
-          this.lastAllowedTime = this.currentTime;
-        });
-        
-        // Disable right-click
-        video.addEventListener('contextmenu', function(e) {
-          e.preventDefault();
-          return false;
-        });
-      }
-    };   
+    
+    showToast(`Now playing: ${title}`);
   }
-  initializeVideoControls();
+
+  function toggleModule(event, moduleId) {
+    event.stopPropagation();
+    
+    const content = document.getElementById(`${moduleId}-content`);
+    const arrow = document.getElementById(`${moduleId}-arrow`);
+    
+    // Toggle the module content
+    content.classList.toggle('show');
+    arrow.classList.toggle('rotate-180');
+    
+    // Close other open modules
+    document.querySelectorAll('.sub-modules').forEach(el => {
+      if (el.id !== `${moduleId}-content` && el.classList.contains('show')) {
+        el.classList.remove('show');
+        const otherArrow = document.getElementById(el.id.replace('-content', '-arrow'));
+        if (otherArrow) otherArrow.classList.remove('rotate-180');
+      }
+    });
+  }
+
+  // Set up event listeners for submodule items
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.sub-modules li').forEach(item => {
+      item.addEventListener('click', function(e) {
+        const title = this.querySelector('.text-gray-700').innerText;
+        const url = this.getAttribute('data-video-url') || '';
+        if (url) {
+          changeVideo(title, url);
+        }
+      });
+    });
+  });
+
+  function downloadVideo(title, url) {
+    showToast(`Downloading: ${title}`);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${title.replace(/ /g, '_')}.mp4`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  function markAsComplete() {
+    showToast("Module marked as complete! Next module unlocks at 6:00 PM");
+  }
+
+  function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'fixed bottom-5 right-5 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-lg flex items-center';
+    toast.innerHTML = `
+      <i class="bi bi-check-circle-fill mr-2"></i>
+      <span>${message}</span>
+    `;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+      toast.classList.add('opacity-0', 'transition-opacity', 'duration-300');
+      setTimeout(() => toast.remove(), 300);
+    }, 3000);
+  }
 </script>
 </body>
 </html>
