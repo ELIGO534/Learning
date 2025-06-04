@@ -447,3 +447,15 @@ def my_learning(request):
 
 def internships(request):
     return render(request , 'internships.html')
+
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect('home')  # Redirect to home page after logout
+
+def courseoffer(request):
+    return render(request, 'courseoffer.html')

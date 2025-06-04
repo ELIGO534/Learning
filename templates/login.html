@@ -2,97 +2,378 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - ELiGo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - ELiGo</title>
   <meta name="description" content="Login to your ELiGo account to access internships, courses, and resources. Start your journey with ELiGo today.">
   <meta name="keywords" content="ELiGo, Login, Account, Internships, Courses, Education">
   <link rel="canonical" href="https://www.eligo.space/login">
-   <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.css">
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <style>
+    :root {
+      --primary: #2271e3; /* Professional blue */
+      --primary-light: #4d8df1;
+      --primary-dark: #1a5bbf;
+      --dark: #121212;
+      --light: #F8F9FA;
+      --gray: #6C757D;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url('https://www.transparenttextures.com/patterns/cubes.png'), linear-gradient(to right, #f8fbff, #e8f0ff);
+      background-blend-mode: overlay;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      display: flex;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 1100px;
+      position: relative;
+    }
+
+    .left-panel {
+      flex: 1;
+      padding: 60px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #ffffff;
+    }
+
+    .right-panel {
+      flex: 1.5;
+      background: linear-gradient(135deg, #e0f7ff, #eaf4ff);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .corner-logo {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      height: 40px;
+    }
+
+    .login-header {
+      margin-bottom: 2rem;
+    }
+
+    .login-title {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+      font-weight: 600;
+    }
+
+    .login-subtitle {
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.8rem 1rem 0.8rem 2.5rem;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      color: var(--dark);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(34, 113, 227, 0.2);
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+
+    .terms-container {
+      margin: 1.5rem 0;
+    }
+
+    .terms-checkbox {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    .terms-checkbox input {
+      margin-right: 8px;
+      accent-color: var(--primary);
+    }
+
+    .terms-link {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, var(--primary), var(--primary-dark));
+      color: white;
+      box-shadow: 0 4px 15px rgba(34, 113, 227, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(34, 113, 227, 0.4);
+    }
+
+    .btn-primary:disabled {
+      background: var(--gray);
+      transform: none;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    .corner-brand {
+  position: absolute;
+  top: 0px;
+  right: 5px;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+
+.corner-brand img {
+  height: 30px;
+}
+
+.corner-brand span {
+  font-size: 1.2rem;
+  font-weight: 1700;
+}
+
+    .signup-link {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+
+    .signup-link a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .right-panel h1 {
+      font-size: 2rem;
+      color: #2c3e50;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .right-panel p {
+      font-size: 16px;
+      color: #34495e;
+      max-width: 420px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .features {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+      max-width: 350px;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      color: #2d3436;
+      padding: 10px 15px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 8px;
+      backdrop-filter: blur(5px);
+    }
+
+    .feature-icon {
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+
+    .lottie-container {
+      width: 100%;
+      max-width: 400px;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .left-panel, .right-panel {
+        width: 100%;
+        padding: 40px 30px;
+      }
+
+      .corner-logo {
+        top: 20px;
+        left: 20px;
+        height: 30px;
+      }
+    }
+  </style>
 </head>
 <body>
-{% csrf_token %}
-    <section class="forms-section">
-        <div class="forms">
-            <div class="form-wrapper is-active">
-                <button type="button" class="switcher switcher-login" action="/home">
-                    Login
-                    <span class="underline"></span>
-                </button>
-                <form class="form form-login" method="POST" action="{% url 'login' %}">
-                    {% csrf_token %}
-                    <fieldset>
-                        <legend>Please, enter your phone number and password for login.</legend>
-                        <div class="input-block">
-                            <label for="login-phone">Phone number</label>
-                            <input id="login-phone" name="phone" type="text" required>
-                        </div>
-                        <div class="input-block">
-                            <label for="login-password">Password</label>
-                            <input id="login-password" name="password" type="password" required>
-                        </div>
-                        <div class="terms-block">
-                            <input type="checkbox" id="read-terms">
-                            <label for="read-terms">I have read the <a href="/privacypolicy" target="_blank">Terms and Conditions</a></label>
-                        </div>
-                        <div class="terms-block">
-                            <input type="checkbox" id="agree-terms">
-                            <label for="agree-terms">I agree with the Terms and Conditions</label>
-                        </div>
-                    </fieldset>
-                    <button type="submit" class="btn-login" id="login-button" disabled>Login</button>
-                </form>
-            </div>
-            <div class="form-wrapper">
-                <button type="button" class="switcher switcher-signup">
-                    Sign Up
-                    <span class="underline"></span>
-                </button>
-                <form class="form form-signup" action="/signup">
-                    <fieldset>
-                        <legend>Please, enter your email, password and password confirmation for sign up.</legend>
-                        <div class="input-block">
-                            <label for="Name">Name</label>
-                            <input id="signup-name" type="name" required>
-                        </div>
-                        <div class="input-block">
-                            <label for="signup-phone">Phone no.</label>
-                            <input id="signup-email" type="phone" required>
-                        </div>
-                        <div class="input-block">
-                            <label for="signup-password">Password</label>
-                            <input id="signup-password" type="password" required>
-                        </div>
-                        <div class="input-block">
-                            <label for="signup-password-confirm">Confirm password</label>
-                            <input id="signup-password-confirm" type="password" required>
-                        </div>
-                    </fieldset>
-                    <button type="submit" class="btn-signup">Continue</button>
-                </form>
-            </div>
+  <div class="container">
+    <div class="left-panel">
+      <img src="{% static 'assets/img/logo.png' %}" alt="ELiGo Logo" class="corner-logo">
+      
+
+      <div class="mini-animation">
+        <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_5tkzkblw.json" background="transparent" speed="1" loop autoplay></lottie-player>
+      </div>
+      
+      <div class="login-header">
+        <h1 class="login-title">Welcome Back</h1>
+        <p class="login-subtitle">Login to access your internships and courses</p>
+      </div>
+      
+      <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="form-group">
+          <iconify-icon icon="solar:phone-bold" class="input-icon"></iconify-icon>
+          <input type="tel" id="login-phone" name="phone" class="form-input" placeholder="Phone Number" required>
         </div>
-    </section>
-    <script src="{% static 'assets/js/script.js'%}"></script>
+        
+        <div class="form-group">
+          <iconify-icon icon="solar:lock-password-bold" class="input-icon"></iconify-icon>
+          <input type="password" id="login-password" name="password" class="form-input" placeholder="Password" required>
+        </div>
+        
+        <div class="terms-container">
+          <div class="terms-checkbox">
+            <input type="checkbox" id="read-terms" required>
+            <label for="read-terms">I have read the <a href="/privacypolicy" target="_blank" class="terms-link">Terms and Conditions</a></label>
+          </div>
+          <div class="terms-checkbox">
+            <input type="checkbox" id="agree-terms" required>
+            <label for="agree-terms">I agree with the Terms and Conditions</label>
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" id="login-button" disabled>
+          <iconify-icon icon="solar:login-3-bold"></iconify-icon>
+          Login
+        </button>
+      </form>
+      
+      <div class="signup-link">
+        Don't have an account? <a href="/signup">Sign up</a>
+      </div>
+    </div>
     
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const readTermsCheckbox = document.getElementById("read-terms");
-            const agreeTermsCheckbox = document.getElementById("agree-terms");
-            const loginButton = document.getElementById("login-button");
+    <div class="right-panel">
+      <div class="corner-brand">
+    <img src="{% static 'assets/img/logo.png' %}" alt="ELiGo Logo">
+    <span>ELiGo</span>
+  </div>
+      <h1>Your Career Journey Starts Here</h1>
+      <p>We connect students to meaningful internships, skill-building courses, and career opportunities tailored to their ambitions.</p>
+      
+      <div class="features">
+        <div class="feature">
+          <iconify-icon icon="solar:book-bold" class="feature-icon"></iconify-icon>
+          <span>Skill-based Learning</span>
+        </div>
+        <div class="feature">
+          <iconify-icon icon="solar:case-minimalistic-bold" class="feature-icon"></iconify-icon>
+          <span>Internships & Real Projects</span>
+        </div>
+        <div class="feature">
+          <iconify-icon icon="solar:rocket-bold" class="feature-icon"></iconify-icon>
+          <span>Boost Your Career Path</span>
+        </div>
+      </div>
+      
+      <div class="lottie-container">
+        <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_vybwn7df.json" background="transparent" speed="1" style="width: 100%;" loop autoplay></lottie-player>
+      </div>
+    </div>
+  </div>
 
-            function toggleLoginButton() {
-                if (readTermsCheckbox.checked && agreeTermsCheckbox.checked) {
-                    loginButton.disabled = false;
-                } else {
-                    loginButton.disabled = true;
-                }
-            }
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const readTermsCheckbox = document.getElementById("read-terms");
+      const agreeTermsCheckbox = document.getElementById("agree-terms");
+      const loginButton = document.getElementById("login-button");
 
-            readTermsCheckbox.addEventListener("change", toggleLoginButton);
-            agreeTermsCheckbox.addEventListener("change", toggleLoginButton);
-        });
-    </script>
+      function toggleLoginButton() {
+        loginButton.disabled = !(readTermsCheckbox.checked && agreeTermsCheckbox.checked);
+      }
 
+      readTermsCheckbox.addEventListener("change", toggleLoginButton);
+      agreeTermsCheckbox.addEventListener("change", toggleLoginButton);
+    });
+  </script>
 </body>
 </html>

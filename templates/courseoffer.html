@@ -1,0 +1,634 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Offer - ELiGo</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.css">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <style>
+        :root {
+            --primary: #2271e3;
+            --primary-light: #4d8df1;
+            --primary-dark: #1a5bbf;
+            --accent: #ff6b6b;
+            --dark: #121212;
+            --light: #F8F9FA;
+            --gray: #6C757D;
+            --success: #28a745;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4f0ff 100%);
+            min-height: 100vh;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .corner-logo {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .corner-logo img {
+            height: 36px;
+        }
+
+        .corner-logo span {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h1:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            border-radius: 2px;
+        }
+
+        .offer-text {
+            font-size: 1.2rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.4rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(34, 113, 227, 0.2);
+            z-index: -1;
+            border-radius: 3px;
+        }
+
+        .slider-box {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slider-box:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--dark);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2:before {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        .slider {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            padding: 20px 0;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .slider::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .slider::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+        }
+
+        .slider::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        .card {
+            min-width: 300px;
+            height: 350px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            scroll-snap-align: start;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card.active {
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 0 5px rgba(34, 113, 227, 0.2);
+        }
+
+        .card .background {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .background {
+            transform: scale(1.05);
+        }
+
+        .card .card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+        }
+
+        .card .title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .price-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .price-tag {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .pay-now-button {
+            display: block;
+            width: 250px;
+            margin: 0 auto;
+            padding: 18px;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            text-align: center;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(34, 113, 227, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+        }
+
+        .pay-now-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(34, 113, 227, 0.4);
+        }
+
+        .pay-now-button:active {
+            transform: translateY(1px);
+        }
+
+        .pay-now-button:after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 50px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(30deg);
+            transition: all 0.3s;
+        }
+
+        .pay-now-button:hover:after {
+            left: 120%;
+        }
+
+        .benefits {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 50px 0;
+        }
+
+        .benefit-card {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .benefit-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .benefit-desc {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(34, 113, 227, 0.05);
+            animation: float 15s infinite linear;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            margin: 50px auto;
+            max-width: 800px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-container:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+        }
+
+        .form-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            text-align: center;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(34, 113, 227, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .form-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(34, 113, 227, 0.4);
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+            color: var(--gray);
+        }
+
+        .contact-info a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+                margin-top: 40px;
+            }
+
+            .offer-text {
+                font-size: 1rem;
+            }
+
+            .highlight {
+                font-size: 1.1rem;
+            }
+
+            .slider-box {
+                padding: 30px 20px;
+            }
+
+            .card {
+                min-width: 250px;
+                height: 300px;
+            }
+
+            .corner-logo {
+                top: 20px;
+                left: 20px;
+            }
+
+            .corner-logo img {
+                height: 30px;
+            }
+
+            .corner-logo span {
+                font-size: 1.2rem;
+                color : black;
+            }
+
+            .form-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape" style="width: 150px; height: 150px; top: 20%; left: 10%; animation-duration: 20s;"></div>
+        <div class="shape" style="width: 100px; height: 100px; top: 60%; left: 70%; animation-duration: 25s;"></div>
+        <div class="shape" style="width: 80px; height: 80px; top: 80%; left: 30%; animation-duration: 18s;"></div>
+        <div class="shape" style="width: 120px; height: 120px; top: 30%; left: 80%; animation-duration: 22s;"></div>
+    </div>
+
+    <div class="container">
+        <div class="corner-logo">
+            <img src="{% static 'assets/img/logo.png' %}" alt="ELiGo Logo">
+            <span>ELiGo</span>
+        </div>
+
+        <h1>Unlock Your Future with Our Courses</h1>
+        <p class="offer-text">We're offering every course for just <span class="highlight">₹3,000/-</span> as a special welcome offer for new members. After payment, you can access all courses and even change your specialization by filling out our simple domain selection form.</p>
+        
+        <!-- Benefits Section -->
+        <div class="benefits">
+            <div class="benefit-card">
+                <iconify-icon icon="solar:medal-star-bold" class="benefit-icon"></iconify-icon>
+                <h3 class="benefit-title">Premium Content</h3>
+                <p class="benefit-desc">Access high-quality courses designed by industry experts with practical projects.</p>
+            </div>
+            <div class="benefit-card">
+                <iconify-icon icon="solar:infinity-bold" class="benefit-icon"></iconify-icon>
+                <h3 class="benefit-title">Lifetime Access</h3>
+                <p class="benefit-desc">One-time payment gives you unlimited access to all current and future course materials.</p>
+            </div>
+            <div class="benefit-card">
+                <iconify-icon icon="solar:case-minimalistic-bold" class="benefit-icon"></iconify-icon>
+                <h3 class="benefit-title">Career Boost</h3>
+                <p class="benefit-desc">Get internship opportunities and career guidance after course completion.</p>
+            </div>
+        </div>
+
+        <!-- Trending Courses Section -->
+        <div class="slider-box">
+            <h2><iconify-icon icon="solar:fire-bold"></iconify-icon> Trending Courses</h2>
+            <div class="slider">
+                <div class="card">
+                    <img class="background" src="{% static 'assets/img/courses/artificial-intelligence.jpg.webp' %}" alt="AI Image">
+                    <div class="card-content">
+                        <h3 class="title">Artificial Intelligence</h3>
+                        <div class="price-tag">₹3,000 Only</div>
+                    </div>
+                </div>
+                <div class="card active">
+                    <img class="background" src="{% static 'assets/img/courses/machine-learning.jpg' %}" alt="Machine Learning Image">
+                    <div class="card-content">
+                        <h3 class="title">Machine Learning</h3>
+                        <div class="price-tag">₹3,000 Only</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="background" src="{% static 'assets/img/courses/data-science.jpg.webp' %}" alt="Data Science Image">
+                    <div class="card-content">
+                        <h3 class="title">Data Science</h3>
+                        <div class="price-tag">₹3,000 Only</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="background" src="{% static 'assets/img/courses/web-development.jpg.webp' %}" alt="Web Development Image">
+                    <div class="card-content">
+                        <h3 class="title">Web Development</h3>
+                        <div class="price-tag">₹3,000 Only</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="background" src="{% static 'assets/img/courses/stock-marketing.jpg.webp' %}" alt="Stock Marketing Image">
+                    <div class="card-content">
+                        <h3 class="title">Stock Marketing</h3>
+                        <div class="price-tag">₹3,000 Only</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href='https://rzp.io/rzp/Jy1kQDLS' class="pay-now-button">
+            <iconify-icon icon="solar:wallet-money-bold"></iconify-icon> Enroll Now - ₹3,000
+        </a>
+
+        <!-- Domain Selection Form Section -->
+        <div class="form-container">
+            <h2><iconify-icon icon="solar:document-text-bold"></iconify-icon> Domain Selection Form</h2>
+            <p style="margin-bottom: 20px; color: var(--gray); line-height: 1.6;">
+                After payment, please fill out our domain selection form to specify your preferred course specialization. 
+                Our team will review your submission and contact you shortly to finalize your enrollment details.
+            </p>
+            <div style="text-align: center;">
+                <a href="https://forms.gle/6nVHgKit2oo5WgnR6" target="_blank" class="form-button">
+                    <iconify-icon icon="solar:pen-new-square-bold"></iconify-icon> Fill Domain Selection Form
+                </a>
+            </div>
+        </div>
+
+        <!-- Contact Information Section -->
+        <div class="contact-info">
+            <h3><iconify-icon icon="solar:chat-round-call-bold"></iconify-icon> Need Assistance?</h3>
+            <p>Our support team is here to help you with any questions about our courses or enrollment process.</p>
+            <p>
+                <iconify-icon icon="solar:letter-bold"></iconify-icon> Email: 
+                <a href="mailto:eligointernship@gmail.com">eligointernship@gmail.com</a>
+            </p>
+            <p>
+                <iconify-icon icon="solar:phone-bold"></iconify-icon> Phone: 
+                <a href="tel:+917842439551">+91 7842439551</a>
+            </p>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; color: var(--gray); font-size: 0.9rem;">
+            <p>© 2024 ELiGo. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Card hover effects
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    cards.forEach(c => c.classList.remove('active'));
+                    card.classList.add('active');
+                });
+            });
+
+            // Floating shapes animation
+            const container = document.querySelector('.container');
+            container.addEventListener('mousemove', (e) => {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                container.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
+
+            container.addEventListener('mouseenter', () => {
+                container.style.transition = 'all 0.1s ease';
+            });
+
+            container.addEventListener('mouseleave', () => {
+                container.style.transition = 'all 0.5s ease';
+                container.style.transform = 'rotateY(0deg) rotateX(0deg)';
+            });
+        });
+    </script>
+</body>
+</html>

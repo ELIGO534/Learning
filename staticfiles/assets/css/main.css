@@ -226,7 +226,7 @@ h6 {
   background-color: var(--background-color);
   padding: 15px 0;
   transition: all 0.5s;
-  z-index: 997;
+  z-index: 1000;
 }
 
 .header .logo {
@@ -349,7 +349,7 @@ h6 {
     opacity: 0;
     transition: 0.3s;
     border-radius: 4px;
-    z-index: 99;
+    z-index: 9999;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
   }
 
@@ -407,7 +407,7 @@ h6 {
 
   .navmenu {
     padding: 0;
-    z-index: 9997;
+    z-index: 9999;
   }
 
   .navmenu ul {
@@ -423,7 +423,7 @@ h6 {
     box-shadow: none;
     overflow-y: auto;
     transition: 0.3s;
-    z-index: 9998;
+    z-index: 9999;
   }
 
   .navmenu a,
@@ -504,7 +504,7 @@ h6 {
     top: 15px;
     right: 15px;
     margin-right: 0;
-    z-index: 9999;
+    z-index: 10000;
   }
 
   .mobile-nav-active .navmenu {
@@ -1981,5 +1981,77 @@ section,
     background-size: 40px 100%, 40px 100%;
     background-position: left center, right center;
     background-repeat: no-repeat;
+  }
+}
+/* Mobile Navigation */
+@media (max-width: 1199px) {
+  .mobile-nav-toggle {
+    color: var(--nav-color);
+    font-size: 28px;
+    line-height: 0;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: color 0.3s;
+    z-index: 1002; /* Higher than navmenu */
+  }
+
+  .navmenu {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100vh;
+    padding-top: 70px;
+    background: var(--nav-mobile-background-color);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    z-index: 1001; /* Higher than hero section */
+  }
+
+  .navmenu.active {
+    right: 0;
+  }
+
+  .navmenu ul {
+    display: block;
+    position: relative;
+    padding: 10px 0;
+    margin: 0;
+    list-style: none;
+    overflow-y: auto;
+    height: calc(100vh - 70px);
+  }
+
+  .navmenu a, 
+  .navmenu a:focus {
+    color: var(--nav-dropdown-color);
+    padding: 10px 20px;
+    font-family: var(--nav-font);
+    font-size: 17px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    transition: 0.3s;
+  }
+
+  .mobile-nav-active {
+    overflow: hidden;
+  }
+
+  .mobile-nav-active .mobile-nav-toggle {
+    position: fixed;
+    right: 15px;
+    color: #fff;
+    z-index: 1003;
+  }
+
+  .mobile-nav-active .navmenu::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
   }
 }
