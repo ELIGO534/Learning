@@ -23,6 +23,8 @@ ALLOWED_HOSTS = ['learning-1-a6c2.onrender.com','eligo.space','www.eligo.space',
 CSRF_TRUSTED_ORIGINS = ["https://eligo.space", "https://www.eligo.space","https://learning-1-a6c2.onrender.com"]
 SECURE_SSL_REDIRECT = False  # Ensures all traffic is redirected to HTTPS
 
+X_FRAME_OPTIONS = 'ALLOWALL'
+
 
 # Application definition
 INSTALLED_APPS = [

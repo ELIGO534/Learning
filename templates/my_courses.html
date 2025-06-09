@@ -529,20 +529,37 @@
           
               <!-- Use a normal div as the container -->
 <!-- Video container with previous styles preserved -->
-<div id="video-frame" class="video-frame w-full aspect-video rounded-lg shadow-md overflow-hidden">
-  <video 
-    controls 
-    autoplay 
-    controlsList="nodownload noplaybackrate nodownload" 
+<!-- Video container -->
+<div id="video-frame" class="video-frame w-full aspect-video rounded-lg shadow-md overflow-hidden bg-black relative">
+  <!-- YouTube Iframe -->
+  <iframe 
+    id="yt-player"
     class="w-full h-full object-cover rounded-lg"
+    src="https://www.youtube.com/embed/xCUmDR6Z-t4?enablejsapi=1&autoplay=0&controls=0&modestbranding=1&rel=0&iv_load_policy=3&fs=1&disablekb=1"
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  ></iframe>
+
+  <!-- Transparent overlay to block mouse -->
+  <div 
+    id="video-overlay"
+    class="absolute top-0 left-0 w-full h-full z-20"
+    style="cursor: default;"
     oncontextmenu="return false"
-    ontimeupdate="handleTimeUpdate(this)"
-    data-last-time="0"
+  ></div>
+
+  <!-- Custom Play Button Overlay -->
+  <div 
+    id="custom-play-button"
+    class="absolute top-1/2 left-1/2 z-30 -translate-x-1/2 -translate-y-1/2 text-white text-4xl cursor-pointer bg-black/60 px-6 py-3 rounded-full hover:bg-black/80 transition"
   >
-    <source src="https://www.dropbox.com/scl/fi/1az3hkg7w5q2cvbavzdnq/final.mp4?rlkey=90o3sb4ym8men9p34tisequr5&st=5h4mz12w&raw=1" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+    ▶️ Play
+  </div>
 </div>
+
+
 
 
     </div>
@@ -572,7 +589,7 @@
               <!-- Data Analysis Curriculum -->
               <li class="flex items-center bg-blue-100 p-3 rounded-lg course-title"
     data-video-title="Introduction to EliGo Ccbp Academy"
-    data-video-url="https://www.dropbox.com/scl/fi/1az3hkg7w5q2cvbavzdnq/final.mp4?rlkey=90o3sb4ym8men9p34tisequr5&st=5h4mz12w&raw=1">
+    data-video-id="xCUmDR6Z-t4">
                 <div class="completion-indicator completed">
                   <i class="bi bi-check" style="font-size: 0.7rem;"></i>
                 </div>
@@ -600,7 +617,7 @@
   <ul class="space-y-3 mt-2">
     <li class="flex items-center bg-blue-100 p-3 rounded-lg"
      data-video-title="Introduction to Data Analytics"
-    data-video-url="https://www.dropbox.com/scl/fi/qyyvwtj7cx6nz9xabxqe8/Intro-for-data-analatics-1.mov?rlkey=utrdy73seabk1o4oj9w4whb4d&st=5h90dnem&raw=1">
+    data-video-id="hlG_uhMXHA0">
       <div class="completion-indicator completed">
                   <i class="bi bi-check" style="font-size: 0.7rem;"></i>
                 </div>
@@ -1021,7 +1038,7 @@
   <!-- Web Development Curriculum -->
   <li class="flex items-center bg-blue-100 p-3 rounded-lg course-title"
     data-video-title="Introduction to EliGo Ccbp Academy"
-    data-video-url="https://www.dropbox.com/scl/fi/1az3hkg7w5q2cvbavzdnq/final.mp4?rlkey=90o3sb4ym8men9p34tisequr5&st=5h4mz12w&raw=1">
+    data-video-id="xCUmDR6Z-t4">
     <div class="completion-indicator completed">
       <i class="bi bi-check" style="font-size: 0.7rem;"></i>
     </div>
@@ -1050,7 +1067,7 @@
     <ul class="space-y-3 mt-2">
       <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title"
     data-video-title="1.1 Your First Frontend Project | Getting Started"
-    data-video-url="https://www.dropbox.com/scl/fi/s1kpl6hwdl39xgvlzwo56/Your-first-frontend-project.mov?rlkey=m76vjn7gqf5xh6neio66rwqak&st=m0pimpio&raw=1">
+    data-video-id="jtpqgxh0OLY">
   <div class="completion-indicator completed">
     <i class="bi bi-check" style="font-size: 0.7rem;"></i>
   </div>
@@ -1810,31 +1827,50 @@
 
   <!-- Main JS File -->
   <script src="{% static 'assets/js/main.js'%}"></script>
+  <!-- Load YouTube API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
 
-  <script>
-  // Initialize with the first video
-  document.addEventListener('DOMContentLoaded', function () {
-  // Set initial video
-  changeVideo('Welcome to EliGo CCBP Academy', 'https://www.dropbox.com/scl/fi/1az3hkg7w5q2cvbavzdnq/final.mp4?rlkey=90o3sb4ym8men9p34tisequr5&st=5h4mz12w&raw=1');
+<script>
+  let player;
+  let tapTimer = null;
+  let tapCount = 0;
+  let lastTapX = 0;
 
-  // Attach listeners to all course items
-  document.querySelectorAll('.course-title').forEach(item => {
-    item.addEventListener('click', function () {
-      const title = this.dataset.videoTitle;
-      const url = this.dataset.videoUrl;
-      if (url) {
-        changeVideo(title, url);
-      }
-    });
-  });
-});
+  // Initialize YouTube Player
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('yt-player');
+  }
 
-  function changeVideo(title, url) {
-  document.getElementById("video-title").innerText = title;
+  // Load YouTube Video
+  function changeYouTubeVideo(title, videoId) {
+    document.getElementById("video-title").innerText = title;
+    const videoFrame = document.getElementById("video-frame");
+    videoFrame.innerHTML = `
+      <iframe 
+        id="yt-player"
+        class="w-full h-full object-cover rounded-lg"
+        src="https://www.youtube.com/embed/${videoId}?enablejsapi=1&autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&fs=1&disablekb=1"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+      <div id="video-overlay" 
+        class="absolute top-0 left-0 w-full h-full z-20" 
+        style="cursor: default;" 
+        oncontextmenu="return false">
+      </div>
+    `;
+    setTimeout(() => {
+      player = new YT.Player('yt-player');
+    }, 300);
+    showToast(`Now playing: ${title}`);
+  }
 
-  const videoFrame = document.getElementById("video-frame");
-
-  if (url.includes('dropbox.com')) {
+  // Load Custom Video (e.g. Dropbox MP4 links)
+  function changeCustomVideo(title, url) {
+    document.getElementById("video-title").innerText = title;
+    const videoFrame = document.getElementById("video-frame");
     videoFrame.innerHTML = `
       <video 
         controls 
@@ -1849,29 +1885,197 @@
         Your browser does not support the video tag.
       </video>
     `;
-  } else {
-    videoFrame.innerHTML = `
-      <iframe class="w-full h-full rounded-lg shadow-md"
-        src="${url}"
-        allowfullscreen>
-      </iframe>
-    `;
+    showToast(`Now playing: ${title}`);
   }
 
-  showToast(`Now playing: ${title}`);
-}
+  // Handle time update to prevent skipping ahead
+  function handleTimeUpdate(video) {
+    const lastTime = parseFloat(video.dataset.lastTime || 0);
+    if (video.currentTime > lastTime + 0.5) {
+      video.currentTime = lastTime;
+    } else {
+      video.dataset.lastTime = video.currentTime;
+    }
+  }
 
+  // Touch gesture handler for mobile
+  document.getElementById("video-frame").addEventListener("touchstart", function(e) {
+    if (e.touches.length === 1) {
+      const touchX = e.touches[0].clientX;
+      const screenWidth = window.innerWidth;
 
+      tapCount++;
+      if (tapCount === 1) {
+        tapTimer = setTimeout(() => {
+          tapCount = 0;
+          singleTapAction();
+        }, 300);
+      } else if (tapCount === 2) {
+        clearTimeout(tapTimer);
+        tapCount = 0;
+        doubleTapAction(touchX, screenWidth);
+      }
+
+      lastTapX = touchX;
+    }
+  }, { passive: true });
+
+  // Single Tap Action - Play / Pause
+  function singleTapAction() {
+    if (!player) return;
+    const state = player.getPlayerState();
+    if (state === YT.PlayerState.PLAYING) {
+      player.pauseVideo();
+    } else {
+      player.playVideo();
+    }
+  }
+
+  // Double Tap Action - Fullscreen or Seek
+  function doubleTapAction(x, width) {
+    const tapRegion = width * 0.3;
+    if (x < tapRegion) {
+      seekBackward(); // Left side
+    } else if (x > width - tapRegion) {
+      seekForward(); // Right side
+    } else {
+      toggleFullscreen(); // Center
+    }
+  }
+
+  // Seek Forward
+  function seekForward() {
+    if (!player) return;
+    const currentTime = player.getCurrentTime();
+    player.seekTo(currentTime + 10, true);
+    showControlFeedback("Seek +10s");
+  }
+
+  // Seek Backward
+  function seekBackward() {
+    if (!player) return;
+    const currentTime = player.getCurrentTime();
+    player.seekTo(Math.max(0, currentTime - 10), true);
+    showControlFeedback("Seek -10s");
+  }
+
+  // Toggle Fullscreen
+  function toggleFullscreen() {
+    const container = document.getElementById("video-frame");
+
+    if (!document.fullscreenElement) {
+      if (container.requestFullscreen) {
+        container.requestFullscreen();
+      } else if (container.webkitRequestFullscreen) {
+        container.webkitRequestFullscreen();
+      } else if (container.msRequestFullscreen) {
+        container.msRequestFullscreen();
+      }
+    } else {
+      document.exitFullscreen();
+    }
+  }
+
+  // Reapply overlay position when fullscreen changes
+  document.addEventListener('fullscreenchange', () => {
+    const overlay = document.getElementById("video-overlay");
+    if (overlay) {
+      if (document.fullscreenElement) {
+        overlay.style.position = "fixed";
+        overlay.style.width = "100vw";
+        overlay.style.height = "100vh";
+        overlay.style.top = "0";
+        overlay.style.left = "0";
+        overlay.style.zIndex = "1000";
+      } else {
+        overlay.style.position = "absolute";
+        overlay.style.width = "100%";
+        overlay.style.height = "100%";
+        overlay.style.top = "0";
+        overlay.style.left = "0";
+        overlay.style.zIndex = "20";
+      }
+    }
+  });
+
+  // Keyboard Controls
+  document.addEventListener('keydown', function (e) {
+    if (!player) return;
+    switch (e.key) {
+      case ' ':
+        e.preventDefault();
+        const state = player.getPlayerState();
+        if (state === YT.PlayerState.PLAYING) {
+          player.pauseVideo();
+        } else {
+          player.playVideo();
+        }
+        break;
+      case 'f':
+      case 'F':
+        toggleFullscreen();
+        break;
+      case 'ArrowRight':
+        seekForward();
+        break;
+      case 'ArrowLeft':
+        seekBackward();
+        break;
+    }
+  });
+
+  // Show feedback toast
+  function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'fixed bottom-5 right-5 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-opacity duration-300';
+    toast.innerText = message;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+      toast.classList.add('opacity-0');
+      setTimeout(() => toast.remove(), 300);
+    }, 3000);
+  }
+
+  // Show control feedback (like in center of screen)
+  function showControlFeedback(message) {
+    let feedback = document.getElementById("control-feedback");
+    if (!feedback) {
+      feedback = document.createElement("div");
+      feedback.id = "control-feedback";
+      feedback.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0,0,0,0.7);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 16px;
+        z-index: 9999;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      `;
+      document.body.appendChild(feedback);
+    }
+
+    feedback.innerText = message;
+    feedback.style.opacity = "1";
+    setTimeout(() => {
+      feedback.style.opacity = "0";
+    }, 1500);
+  }
+
+  // Module toggling (for sub-modules accordion)
   function toggleModule(event, moduleId) {
     event.stopPropagation();
-    
     const content = document.getElementById(`${moduleId}-content`);
     const arrow = document.getElementById(`${moduleId}-arrow`);
-    
-    // Toggle the module content
+
     content.classList.toggle('show');
     arrow.classList.toggle('rotate-180');
-    
+
     // Close other open modules
     document.querySelectorAll('.sub-modules').forEach(el => {
       if (el.id !== `${moduleId}-content` && el.classList.contains('show')) {
@@ -1882,46 +2086,33 @@
     });
   }
 
-  // Set up event listeners for submodule items
-  document.addEventListener('DOMContentLoaded', function() {
+  // Initialize everything after DOM loads
+  document.addEventListener('DOMContentLoaded', function () {
+    // Set initial video
+    changeYouTubeVideo('Welcome to EliGo CCBP Academy', 'xCUmDR6Z-t4');
+
+    // Add click handlers for course titles
+    document.querySelectorAll('.course-title').forEach(item => {
+      item.addEventListener('click', function () {
+        const title = this.dataset.videoTitle;
+        const videoId = this.dataset.videoId;
+        if (videoId) {
+          changeYouTubeVideo(title, videoId);
+        }
+      });
+    });
+
+    // Add click handlers for sub-module videos
     document.querySelectorAll('.sub-modules li').forEach(item => {
-      item.addEventListener('click', function(e) {
-        const title = this.querySelector('.text-gray-700').innerText;
+      item.addEventListener('click', function () {
+        const title = this.querySelector('.text-gray-700')?.innerText;
         const url = this.getAttribute('data-video-url') || '';
         if (url) {
-          changeVideo(title, url);
+          changeCustomVideo(title, url);
         }
       });
     });
   });
-
-
-  function markAsComplete() {
-    showToast("Module marked as complete! Next module unlocks at 6:00 PM");
-  }
-
-  function showToast(message) {
-    const toast = document.createElement('div');
-    toast.className = 'fixed bottom-5 right-5 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-lg flex items-center';
-    toast.innerHTML = `
-      <i class="bi bi-check-circle-fill mr-2"></i>
-      <span>${message}</span>
-    `;
-    document.body.appendChild(toast);
-    setTimeout(() => {
-      toast.classList.add('opacity-0', 'transition-opacity', 'duration-300');
-      setTimeout(() => toast.remove(), 300);
-    }, 3000);
-  }
-  function handleTimeUpdate(video) {
-    // Prevent seeking forward
-    const lastTime = parseFloat(video.dataset.lastTime || 0);
-    if (video.currentTime > lastTime + 0.5) {
-      video.currentTime = lastTime;
-    } else {
-      video.dataset.lastTime = video.currentTime;
-    }
-  }
 </script>
 </body>
 </html>
