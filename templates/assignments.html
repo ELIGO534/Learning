@@ -1,0 +1,618 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Assignments - EliGo</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/favicon_io/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/img/favicon_io/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/img/favicon_io/favicon-16x16.png' %}">
+  <link rel="manifest" href="{% static 'assets/img/favicon_io/site.webmanifest' %}">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+  <!-- Chat Page Specific CSS -->
+  <style>
+    /* Chat Page Specific Styles - Scoped to avoid conflicts */
+    .chat-page {
+      --primary-color: #3498db;
+      --secondary-color: #2c3e50;
+      --success-color: #27ae60;
+      --danger-color: #e74c3c;
+      --warning-color: #f39c12;
+      --light-bg: #f8f9fa;
+      --dark-text: #333;
+      --light-text: #777;
+    }
+    
+    .chat-page .task-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .chat-page .task-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .chat-page .task-header {
+      padding: 25px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--light-bg);
+      border-bottom: 1px solid #eee;
+    }
+    
+    .chat-page .task-header:hover {
+      background-color: #f1f1f1;
+    }
+    
+    .chat-page .task-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--secondary-color);
+      margin: 0 0 5px 0;
+    }
+    
+    .chat-page .task-meta {
+      display: flex;
+      gap: 25px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+    
+    .chat-page .meta-item {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      color: var(--light-text);
+    }
+    
+    .chat-page .task-price {
+      color: var(--success-color);
+      font-weight: bold;
+    }
+    
+    .chat-page .task-deadline {
+      color: var(--danger-color);
+    }
+    
+    .chat-page .task-level {
+      background-color: var(--warning-color);
+      color: white;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .chat-page .bi {
+      margin-right: 8px;
+      font-size: 18px;
+    }
+    
+    .chat-page .task-details {
+      padding: 0 25px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+    }
+    
+    .chat-page .task-details.expanded {
+      padding: 25px;
+      max-height: none;
+      overflow: visible;
+    }
+    
+    .chat-page .section {
+      margin-bottom: 25px;
+    }
+    
+    .chat-page .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--secondary-color);
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #eee;
+      display: flex;
+      align-items: center;
+    }
+    
+    .chat-page .section-title i {
+      margin-right: 10px;
+      color: var(--primary-color);
+    }
+    
+    .chat-page .role-card {
+      background: var(--light-bg);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-left: 4px solid var(--primary-color);
+    }
+    
+    .chat-page .role-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    
+    .chat-page .role-title {
+      font-weight: 700;
+      color: var(--primary-color);
+      font-size: 18px;
+      margin: 0;
+    }
+    
+    .chat-page .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 15px 0;
+    }
+    
+    .chat-page .skill-tag {
+      background-color: #e0e0e0;
+      color: var(--dark-text);
+      padding: 4px 12px;
+      border-radius: 15px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .chat-page .skill-tag.frontend {
+      background-color: #ffe0b2;
+      color: #e65100;
+    }
+    
+    .chat-page .skill-tag.backend {
+      background-color: #d1c4e9;
+      color: #4527a0;
+    }
+    
+    .chat-page .skill-tag.ml {
+      background-color: #c8e6c9;
+      color: #2e7d32;
+    }
+    
+    .chat-page .skill-tag.data {
+      background-color: #bbdefb;
+      color: #1565c0;
+    }
+    
+    .chat-page .subtasks {
+      padding-left: 20px;
+    }
+    
+    .chat-page .subtasks li {
+      margin-bottom: 10px;
+      position: relative;
+      padding-left: 25px;
+    }
+    
+    
+    
+    .chat-page .upload-section {
+      background: #e8f4fd;
+      padding: 25px;
+      border-radius: 8px;
+      margin-top: 30px;
+      text-align: center;
+      border: 2px dashed #b3d7ff;
+    }
+    
+    .chat-page .upload-btn {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      margin-top: 15px;
+      transition: background-color 0.3s;
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .chat-page .upload-btn:hover {
+      background-color: #2980b9;
+    }
+    
+    .chat-page .upload-btn i {
+      margin-right: 8px;
+    }
+    
+    .chat-page .chevron {
+      transition: transform 0.3s;
+      color: var(--light-text);
+    }
+    
+    .chat-page .rotated {
+      transform: rotate(180deg);
+    }
+    
+    .chat-page .project-description {
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    
+    /* Chat container specific styles */
+    .chat-page .chat-container {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100">
+
+  <!-- Header -->
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="/home" class="logo d-flex align-items-center me-auto">
+        <img src="{% static 'assets/img/logo.png' %}" alt="">
+        <h1 class="sitename">liGo</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="/home" class="active">Home<br></a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/courses">Courses</a></li>
+          <li><a href="/my_learning">My Learning</a></li>
+          <li><a href="/referrals">Referrals</a></li>
+          <li><a href="/chatwithus">Chat with us</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li class="dropdown"><a href="/profile"><span>Profile</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="/login">Login</a></li>
+              <li><a href="/signup">SignUp</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+
+      <a class="btn-getstarted" href="/my_learning">Get Started</a>
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+
+    </div>
+  </header>
+
+  <main class="container chat-page">
+    <div class="page-title" data-aos="fade">
+      <div class="heading">
+        <div class="container">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-8">
+              <h1>Assignments</h1>
+              <p class="mb-0">Complete Real-World Tasks and Get Paid</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/my_learning">My Learning</a></li>
+            <li class="current">Assignments</li>
+          </ol>
+        </div>
+      </nav>
+    </div><!-- End Page Title -->
+    
+    <div class="chat-container">
+      <div class="task-card">
+        <div class="task-header" onclick="toggleTaskDetails()">
+          <div>
+            <h2 class="task-title">AI Sentiment Analysis Tool Development</h2>
+            <div class="task-meta">
+              <span class="meta-item task-price">
+                <i class="bi bi-currency-rupee"></i>4,500 INR
+              </span>
+              <span class="meta-item task-deadline">
+                <i class="bi bi-clock"></i>7 days delivery
+              </span>
+              <span class="meta-item">
+                <i class="bi bi-bar-chart"></i>
+                <span class="task-level">Medium Level</span>
+              </span>
+            </div>
+          </div>
+          <i class="bi bi-chevron-down chevron"></i>
+        </div>
+        
+        <div class="task-details expanded" id="taskDetails">
+          <div class="section">
+            <h3 class="section-title"><i class="bi bi-card-text"></i>Project Description</h3>
+            <p class="project-description">
+              Develop an AI-powered sentiment analysis tool that can classify text inputs (reviews, comments) into positive, negative, or neutral sentiments. 
+              The tool should have a user-friendly interface, a robust backend, and a trained machine learning model with at least 85% accuracy. 
+              The project requires collaboration between frontend, backend, and machine learning specialists to deliver a complete working application.
+            </p>
+          </div>
+          
+          <div class="section">
+            <h3 class="section-title"><i class="bi bi-people"></i>Team Roles & Responsibilities</h3>
+            
+            <div class="role-card">
+              <div class="role-header">
+                <h4 class="role-title">Frontend Developer</h4>
+              </div>
+              <div class="skills-container">
+                <span class="skill-tag frontend">HTML5</span>
+                <span class="skill-tag frontend">CSS3</span>
+                <span class="skill-tag frontend">JavaScript</span>
+                <span class="skill-tag frontend">React.js</span>
+                <span class="skill-tag frontend">Bootstrap</span>
+                <span class="skill-tag frontend">Chart.js</span>
+              </div>
+              <ul class="subtasks">
+                <li>Design and implement a responsive user interface using React.js (optional - can use vanilla JS)</li>
+                <li>Create intuitive forms for text input with proper validation</li>
+                <li>Display analysis results in an user-friendly manner with visualizations (using Chart.js or similar)</li>
+                <li>Ensure mobile responsiveness (at least 3 breakpoints) and cross-browser compatibility</li>
+                <li>Implement loading states and error handling for API calls</li>
+              </ul>
+            </div>
+            
+            <div class="role-card">
+              <div class="role-header">
+                <h4 class="role-title">Backend & Integration Developer</h4>
+              </div>
+              <div class="skills-container">
+                <span class="skill-tag backend">Node.js</span>
+                <span class="skill-tag backend">Express</span>
+                <span class="skill-tag backend">REST API</span>
+                <span class="skill-tag backend">MongoDB</span>
+                <span class="skill-tag backend">Python</span>
+                <span class="skill-tag backend">Flask/Django (optional)</span>
+              </div>
+              <ul class="subtasks">
+                <li>Set up Node.js/Express server with proper project structure</li>
+                <li>Create secure REST API endpoints for frontend communication</li>
+                <li>Integrate the machine learning model with the backend (can use Python Flask if needed)</li>
+                <li>Implement JWT authentication for API endpoints</li>
+                <li>Set up MongoDB database for storing analysis history with proper schema design</li>
+                <li>Implement rate limiting and request validation</li>
+              </ul>
+            </div>
+            
+            <div class="role-card">
+              <div class="role-header">
+                <h4 class="role-title">Machine Learning Engineer</h4>
+              </div>
+              <div class="skills-container">
+                <span class="skill-tag ml">Python</span>
+                <span class="skill-tag ml">TensorFlow/PyTorch</span>
+                <span class="skill-tag ml">NLTK</span>
+                <span class="skill-tag ml">Scikit-learn</span>
+                <span class="skill-tag ml">Transformers</span>
+                <span class="skill-tag ml">BERT/LSTM</span>
+              </div>
+              <ul class="subtasks">
+                <li>Select and implement appropriate ML algorithm (BERT, LSTM, or similar)</li>
+                <li>Train and fine-tune model on sentiment analysis dataset</li>
+                <li>Achieve at least 85% accuracy on test data with proper metrics</li>
+                <li>Optimize model for production deployment (size, speed considerations)</li>
+                <li>Implement model versioning and create evaluation report</li>
+                <li>Create API endpoint for model predictions</li>
+              </ul>
+            </div>
+            
+            <div class="role-card">
+              <div class="role-header">
+                <h4 class="role-title">Data Handler</h4>
+              </div>
+              <div class="skills-container">
+                <span class="skill-tag data">Python</span>
+                <span class="skill-tag data">Pandas</span>
+                <span class="skill-tag data">Numpy</span>
+                <span class="skill-tag data">Data Cleaning</span>
+                <span class="skill-tag data">EDA</span>
+              </div>
+              <ul class="subtasks">
+                <li>Source and acquire appropriate datasets (IMDB reviews, Twitter data, etc.)</li>
+                <li>Perform comprehensive data cleaning and preprocessing</li>
+                <li>Conduct exploratory data analysis (EDA) with visualizations</li>
+                <li>Create balanced train/test/validation splits</li>
+                <li>Implement data augmentation techniques if needed</li>
+                <li>Prepare data documentation and statistics</li>
+              </ul>
+            </div>
+            
+            <div class="role-card">
+              <div class="role-header">
+                <h4 class="role-title">Team Lead</h4>
+              </div>
+              <div class="skills-container">
+                <span class="skill-tag">Project Management</span>
+                <span class="skill-tag">Communication</span>
+                <span class="skill-tag">Documentation</span>
+                <span class="skill-tag">QA Testing</span>
+              </div>
+              <ul class="subtasks">
+                <li>Coordinate between all team members and set up workflows</li>
+                <li>Ensure project milestones are met with daily standups</li>
+                <li>Handle all client communication and requirement clarification</li>
+                <li>Conduct quality assurance testing across all components</li>
+                <li>Prepare and submit comprehensive project documentation</li>
+                <li>Manage deployment and final delivery process</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="section">
+            <h3 class="section-title"><i class="bi bi-list-check"></i>Project Requirements</h3>
+            <ul class="subtasks">
+              <li>Complete working web application with all features deployed on a live server</li>
+              <li>Well-documented source code with README and API documentation</li>
+              <li>Trained ML model files with evaluation metrics (precision, recall, F1-score)</li>
+              <li>Detailed deployment instructions for both development and production</li>
+              <li>User manual with screenshots and feature explanations</li>
+              <li>Technical documentation covering architecture decisions</li>
+            </ul>
+          </div>
+          
+          <div class="section">
+            <h3 class="section-title"><i class="bi bi-clipboard2-check"></i>Evaluation Criteria</h3>
+            <ul class="subtasks">
+              <li>Model accuracy (minimum 85% on test set) - 30% weight</li>
+              <li>UI/UX quality and responsiveness - 20% weight</li>
+              <li>System performance and API response time - 15% weight</li>
+              <li>Code quality, structure, and documentation - 20% weight</li>
+              <li>Completion within deadline - 15% weight</li>
+            </ul>
+          </div>
+          
+          <div class="upload-section">
+            <h3 class="section-title"><i class="bi bi-file-earmark-arrow-up"></i>Project Documentation Submission</h3>
+            <p>Team lead should upload the complete project documentation here after completion. Include all source code, model files, and documentation in a zip file.</p>
+            <input type="file" id="documentation" name="documentation" accept=".pdf,.doc,.docx,.zip" style="display: none;">
+            <button class="upload-btn" onclick="document.getElementById('documentation').click()">
+              <i class="bi bi-cloud-upload"></i> Upload Documentation
+            </button>
+            <p class="meta-item" style="margin-top: 10px;">
+              <i class="bi bi-info-circle"></i> Max file size: 50MB (ZIP preferred)
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer" class="footer position-relative light-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="/home" class="logo d-flex align-items-center">
+            <span class="sitename">EliGo</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>Noval Tech, HSR Layout</p>
+            <p>Bengaluru, Pin - 560102</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+91 98765 43210</span></p>
+            <p><strong>Email:</strong> <span>info@ligo.com</span></p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/courses">Courses</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/sponsorship">Sponsorship</a></li>
+            <li><a href="/privacypolicy">Privacy policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="/courses">Web Development</a></li>
+            <li><a href="/courses">Data Science</a></li>
+            <li><a href="/courses">Digital Marketing</a></li>
+            <li><a href="/courses">UI/UX Design</a></li>
+            <li><a href="/courses">Cloud Computing</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-12 footer-newsletter">
+          <h4>Our Newsletter</h4>
+          <p>Subscribe to our newsletter and receive the latest updates about our courses and events!</p>
+          <form action="forms/newsletter.php" method="post" class="php-email-form">
+            <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
+            <div class="loading">Loading</div>
+            <div class="error-message"></div>
+            <div class="sent-message">Your subscription request has been sent. Thank you!</div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">EliGo</strong> <span>All Rights Reserved</span></p>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+  <script>
+    function toggleTaskDetails() {
+      const details = document.getElementById('taskDetails');
+      const chevron = document.querySelector('.chevron');
+      
+      details.classList.toggle('expanded');
+      chevron.classList.toggle('rotated');
+
+      if(details.classList.contains('expanded')) {
+            details.style.maxHeight = 'none';
+        } else {
+            details.style.maxHeight = '0';
+        }
+    }
+  </script>
+
+</body>
+</html>

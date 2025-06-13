@@ -24,6 +24,7 @@ urlpatterns = [
     path('survey/submit/', views.submit_survey, name='submit_survey'),
     path('income/', views.income, name='income'),
     path('my_courses/', views.my_courses, name='my_courses'),
+    path('assignments/', views.assignments, name='assignments'),
     path('sponsorship/', views.sponsors, name='sponsors'),
     path('payment_success/', views.payment_success, name='payment_success'),
     path('privacypolicy/', views.privacypolicy, name='privacypolicy'),
