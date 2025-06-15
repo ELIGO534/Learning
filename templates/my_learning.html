@@ -797,6 +797,12 @@
             <span class="domain-badge bg-success">Web Development</span>
           </div>
           
+          {% elif request.user.name == "Veturi Sai Kishor" %}
+          <div class="course-image-container">
+            <img src="{% static 'assets/img/courses/vlsi.jpg.webp' %}" class="img-fluid course-image rounded-4" alt="Web Development Course">
+            <span class="domain-badge bg-success">Web Development</span>
+          </div>
+          
           {% elif request.user.phone in ml_numbers %}
           <div class="course-image-container">
             <img src="{% static 'assets/img/courses/machine-learning.jpg' %}" class="img-fluid course-image rounded-4" alt="Machine Learning Course">
@@ -832,6 +838,8 @@
                 Mr. Rahul Kumar
                 {% elif request.user.phone in ml_numbers %}
                 Mrs. Priya Singh
+                {% elif request.user.name == "Veturi Sai Kishor" %}
+                Mr.Rajesh Prasad
                 {% else %}
                 {% if request.user.name == "Sairam Barla" %}Mrs. Priya Singh{% else %}Dr. Ravi Verma{% endif %}
                 {% endif %}
@@ -843,6 +851,8 @@
                 <i class="bi bi-globe me-1"></i> Full Stack Architect
                 {% elif request.user.phone in ml_numbers %}
                 <i class="bi bi-diagram-3-fill me-1"></i> ML Research Lead
+                {% elif request.user.name == "Veturi Sai Kishor" %}
+                <i class="bi bi-diagram-3-fill me-1"></i> VLSI Expert
                 {% else %}
                 <i class="bi bi-brain me-1"></i> AI Principal Engineer
                 {% endif %}
@@ -854,6 +864,8 @@
                 "Former tech lead at Amazon with expertise in scalable web applications"
                 {% elif request.user.phone in ml_numbers %}
                 "PhD in Computer Science with publications in top ML journals"
+                {% elif request.user.name == "Veturi Sai Kishor" %}
+                "Former tech lead at Amazon with expertise in scalable VLSI"
                 {% else %}
                 "{% if request.user.name == "Sairam Barla" %}15 years experience in deep learning research{% else %}Pioneer in neural network architectures{% endif %}"
                 {% endif %}
@@ -884,6 +896,8 @@
                   Mr. Rahul Kumar
                   {% elif request.user.phone in ml_numbers %}
                   Mrs. Priya Singh
+                  {% elif request.user.name == "Veturi Sai Kishor" %}
+                  Mr.Rajesh Prasad
                   {% else %}
                   {% if request.user.name == "Sairam Barla" %}Mrs. Priya Singh{% else %}Dr. Ravi Verma{% endif %}
                   {% endif %}
@@ -902,6 +916,8 @@
                   Full Stack Development
                   {% elif request.user.phone in ml_numbers %}
                   Machine Learning Engineer
+                  {% elif request.user.name == "Veturi Sai Kishor" %}
+                  VLSI Engineer
                   {% else %}
                   AI Engineering 
                   {% endif %}
@@ -1084,6 +1100,51 @@
               </div>
             </div>
           </div>
+
+          {% elif request.user.name == "Veturi Sai Kishor" %}
+  <!-- VLSI Modules -->
+  <div class="module-card">
+    <div class="module-header" data-bs-toggle="collapse" data-bs-target="#vlsiModule1">
+      <i class="bi bi-cpu-fill"></i>
+      <h5>VLSI Design Foundations</h5>
+      <span>4 Weeks</span>
+      <i class="bi bi-chevron-down"></i>
+    </div>
+    <div id="vlsiModule1" class="collapse show" data-bs-parent="#modulesAccordion">
+      <div class="module-content">
+        <ul>
+          <li><i class="bi bi-check-circle-fill"></i> Introduction to VLSI</li>
+          <li><i class="bi bi-check-circle-fill"></i> Digital Logic Design</li>
+          <li><i class="bi bi-check-circle-fill"></i> CMOS Circuit Design</li>
+          <li><i class="bi bi-check-circle-fill"></i> Transistor Operations</li>
+          <li><i class="bi bi-check-circle-fill"></i> VHDL/Verilog fundamentals</li>
+          <li><i class="bi bi-check-circle-fill"></i> HDL Simulation Tools</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="module-card">
+    <div class="module-header" data-bs-toggle="collapse" data-bs-target="#vlsiModule2">
+      <i class="bi bi-memory-fill"></i>
+      <h5>Advanced VLSI</h5>
+      <span>4 Weeks</span>
+      <i class="bi bi-chevron-down"></i>
+    </div>
+    <div id="vlsiModule2" class="collapse" data-bs-parent="#modulesAccordion">
+      <div class="module-content">
+        <ul>
+          <li><i class="bi bi-check-circle-fill"></i> FPGA Design</li>
+          <li><i class="bi bi-check-circle-fill"></i> Synthesis and Timing Analysis</li>
+          <li><i class="bi bi-check-circle-fill"></i> Layout Design</li>
+          <li><i class="bi bi-check-circle-fill"></i> Power and Signal Integrity</li>
+          <li><i class="bi bi-check-circle-fill"></i> Tape-Out Procedures</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
           
           {% elif request.user.phone in web_dev_numbers %}
           <!-- Web Development Modules -->
