@@ -796,6 +796,11 @@
             <img src="{% static 'assets/img/courses/web-development.jpg.webp' %}" class="img-fluid course-image rounded-4" alt="Web Development Course">
             <span class="domain-badge bg-success">Web Development</span>
           </div>
+          {% elif request.user.phone in autocad %}
+          <div class="course-image-container">
+            <img src="{% static 'assets/img/courses/autocad.jpg.webp' %}" class="img-fluid course-image rounded-4" alt="Autocad">
+            <span class="domain-badge bg-success">Autocad</span>
+          </div>
           
           {% elif request.user.name == "Veturi Sai Kishor" %}
           <div class="course-image-container">
@@ -838,6 +843,8 @@
                 Mr. Rahul Kumar
                 {% elif request.user.phone in ml_numbers %}
                 Mrs. Priya Singh
+                {% elif request.user.phone in autocad %}
+                Mr. Aryan
                 {% elif request.user.name == "Veturi Sai Kishor" %}
                 Mr.Rajesh Prasad
                 {% else %}
@@ -851,6 +858,8 @@
                 <i class="bi bi-globe me-1"></i> Full Stack Architect
                 {% elif request.user.phone in ml_numbers %}
                 <i class="bi bi-diagram-3-fill me-1"></i> ML Research Lead
+                {% elif request.user.phone in autocad %}
+                <i class="bi bi-diagram-3-fill me-1"></i> Autocad expert
                 {% elif request.user.name == "Veturi Sai Kishor" %}
                 <i class="bi bi-diagram-3-fill me-1"></i> VLSI Expert
                 {% else %}
@@ -866,6 +875,8 @@
                 "PhD in Computer Science with publications in top ML journals"
                 {% elif request.user.name == "Veturi Sai Kishor" %}
                 "Former tech lead at Amazon with expertise in scalable VLSI"
+                {% elif request.user.name == "Veturi Sai Kishor" %}
+                "Former tech lead at Amazon with expertise in scalable Autocad"
                 {% else %}
                 "{% if request.user.name == "Sairam Barla" %}15 years experience in deep learning research{% else %}Pioneer in neural network architectures{% endif %}"
                 {% endif %}
@@ -896,6 +907,8 @@
                   Mr. Rahul Kumar
                   {% elif request.user.phone in ml_numbers %}
                   Mrs. Priya Singh
+                  {% elif request.user.phone in autocad %}
+                  Mr. Aryan
                   {% elif request.user.name == "Veturi Sai Kishor" %}
                   Mr.Rajesh Prasad
                   {% else %}
@@ -916,6 +929,8 @@
                   Full Stack Development
                   {% elif request.user.phone in ml_numbers %}
                   Machine Learning Engineer
+                  {% elif request.user.phone in autocad %}
+                  Autocad Engineer
                   {% elif request.user.name == "Veturi Sai Kishor" %}
                   VLSI Engineer
                   {% else %}
@@ -936,6 +951,8 @@
                   8 Weeks
                   {% elif request.user.phone in ml_numbers %}
                   8 Weeks
+                  {% elif request.user.phone in autocad %}
+                  16 Weeks
                   {% else %}
                   8 Weeks
                   {% endif %}
@@ -972,6 +989,8 @@
                   June 1, 2025
                   {% elif request.user.phone in ml_numbers %}
                   June 1, 2025
+                  {% elif request.user.phone in autocad %}
+                  June 17, 2025
                   {% else %}
                   June 1, 2025
                   {% endif %}
@@ -1058,24 +1077,24 @@
         </div>
         
         <div class="modules-accordion" id="modulesAccordion">
-          {% if request.user.phone in data_analysis_numbers %}
-          <!-- Data Analysis Modules -->
+          {% if request.user.phone in autocad %}
+          <!-- AutoCAD Modules -->
           <div class="module-card">
             <div class="module-header" data-bs-toggle="collapse" data-bs-target="#module1">
-              <i class="bi bi-database"></i>
-              <h5>Foundations of Data Analytics</h5>
+              <i class="bi bi-pencil-square"></i>
+              <h5>AutoCAD Fundamentals</h5>
               <span>4 Weeks</span>
               <i class="bi bi-chevron-down"></i>
             </div>
             <div id="module1" class="collapse show" data-bs-parent="#modulesAccordion">
               <div class="module-content">
                 <ul>
-                  <li><i class="bi bi-check-circle-fill"></i> Introduction to Data Analytics</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Advanced Excel for Analytics</li>
-                  <li><i class="bi bi-check-circle-fill"></i> SQL for Data Analysis</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Python for Data Analysis</li>
-                  <li><i class="bi bi-check-circle-fill"></i> NumPy Fundamentals</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Pandas Introduction</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Introduction to AutoCAD Interface</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Basic Drawing Tools</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Modify Commands</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Precision Tools</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Layers and Properties</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Dimensioning</li>
                 </ul>
               </div>
             </div>
@@ -1083,23 +1102,64 @@
           
           <div class="module-card">
             <div class="module-header" data-bs-toggle="collapse" data-bs-target="#module2">
-              <i class="bi bi-graph-up-arrow"></i>
-              <h5>Advanced Analytics</h5>
+              <i class="bi bi-box-seam"></i>
+              <h5>3D Modeling</h5>
               <span>4 Weeks</span>
               <i class="bi bi-chevron-down"></i>
             </div>
             <div id="module2" class="collapse" data-bs-parent="#modulesAccordion">
               <div class="module-content">
                 <ul>
-                  <li><i class="bi bi-check-circle-fill"></i> Data Visualization</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Matplotlib Fundamentals</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Dashboard Creation</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Minor Project</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Major Project</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Introduction to 3D Space</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Solid Primitives</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Surface Modeling</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Materials and Textures</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Rendering Techniques</li>
                 </ul>
               </div>
             </div>
           </div>
+
+          <div class="module-card">
+            <div class="module-header" data-bs-toggle="collapse" data-bs-target="#module3">
+              <i class="bi bi-building"></i>
+              <h5>Specialized Drafting</h5>
+              <span>4 Weeks</span>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+            <div id="module3" class="collapse" data-bs-parent="#modulesAccordion">
+              <div class="module-content">
+                <ul>
+                  <li><i class="bi bi-check-circle-fill"></i> Architectural Drawing</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Mechanical Drawing</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Electrical Schematics</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Plumbing Layouts</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Site Plans</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card">
+            <div class="module-header" data-bs-toggle="collapse" data-bs-target="#module4">
+              <i class="bi bi-gear"></i>
+              <h5>Advanced Techniques</h5>
+              <span>4 Weeks</span>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+            <div id="module4" class="collapse" data-bs-parent="#modulesAccordion">
+              <div class="module-content">
+                <ul>
+                  <li><i class="bi bi-check-circle-fill"></i> Parametric Drawing</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Dynamic Blocks</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Customization</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Automation with Scripts</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Final Project</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
 
           {% elif request.user.name == "Veturi Sai Kishor" %}
   <!-- VLSI Modules -->
@@ -1304,29 +1364,37 @@
       
       <div class="resources-grid">
         <!-- Assignments -->
-        <div class="resource-card {% if request.user.name != "Sairam Barla" %}locked{% endif %}">
-          <div class="resource-icon">
-            <i class="bi bi-file-earmark-text-fill"></i>
-          </div>
-          <div class="resource-content">
-            <h4>Assignments</h4>
-            <p>
-              {% if request.user.name == "Sairam Barla" %}
-              <strong>10/10</strong> assignments completed with average grade of 92%
-              {% else %}
-              Weekly practical exercises to reinforce learning
-              {% endif %}
-            </p>
-            {% if request.user.name == "Sairam Barla" %}
-            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#aicteExpiredModal">
-              View Submissions
-            </button>
-            {% else %}
-            <button class="btn btn-sm btn-outline-secondary" disabled>
-              Locked
-            </button>
-            {% endif %}
-          </div>
+        <div class="resource-card {% if request.user.name != "Sairam Barla" and request.user.phone not in rohitteam %}locked{% endif %}">
+  <div class="resource-icon">
+    <i class="bi bi-file-earmark-text-fill"></i>
+  </div>
+  <div class="resource-content">
+    <h4>Assignments</h4>
+    <p>
+      {% if request.user.name == "Sairam Barla" %}
+      <strong>10/10</strong> assignments completed with average grade of 92%
+      {% elif request.user.phone in rohitteam %}
+      You have access to your team’s assignments.
+      {% else %}
+      Weekly practical exercises to reinforce learning
+      {% endif %}
+    </p>
+    {% if request.user.name == "Sairam Barla" %}
+    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#aicteExpiredModal">
+      View Submissions
+    </button>
+    {% elif request.user.phone in rohitteam %}
+    <a href="/assignments" class="btn btn-sm btn-primary">
+      View Team Assignments
+    </a>
+    {% else %}
+    <button class="btn btn-sm btn-outline-secondary" disabled>
+      Locked
+    </button>
+    {% endif %}
+  </div>
+</div>
+
         </div>
         
         <!-- Projects -->
