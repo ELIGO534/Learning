@@ -1,31 +1,61 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth import authenticate, login as auth_login
-from .models import Member
+from django.contrib.auth import authenticate, login as auth_login, logout
+from .models import Member, Profile, Withdrawal, SponsorshipSurvey, UserActivity
 from django.contrib.auth.hashers import make_password
-from myapp.models import Profile
-from myapp.forms import ProfileForm
+from .forms import ProfileForm, WithdrawalForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.db import IntegrityError
+import uuid
+from decimal import Decimal
+import json
+from datetime import datetime, timedelta
+from django.db.models import Count
 
 User = get_user_model()
- # If you are using a custom User model
 
-# In your views.py
+# Helper function to track user activity
+def track_activity(user, action, details=None):
+    UserActivity.objects.create(
+        user=user,
+        action=action,
+        details=details or {}
+    )
 
 def login(request):
     if request.method == 'POST':
         phone = request.POST['phone']
         password = request.POST['password']
-
-        # Authenticate user using the custom backend
         user = authenticate(request, phone=phone, password=password)
 
         if user is not None:
-            auth_login(request, user)  # Log the user in
+            auth_login(request, user)
+            
+            # Track login activity
+            track_activity(user, 'login', {
+                'ip_address': request.META.get('REMOTE_ADDR'),
+                'user_agent': request.META.get('HTTP_USER_AGENT')
+            })
+            
+            # Update last login time and login count
+            profile, created = Profile.objects.get_or_create(user=user)
+            profile.login_count += 1
+            profile.last_login = datetime.now()
+            profile.save()
+            
             messages.success(request, 'Login successful!')
-            return redirect('profile')  # Redirect to homepage or dashboard
+            return redirect('profile')
         else:
+            # Track failed login attempt
+            if User.objects.filter(phone=phone).exists():
+                user = User.objects.get(phone=phone)
+                track_activity(user, 'failed_login', {
+                    'attempted_with': phone,
+                    'ip_address': request.META.get('REMOTE_ADDR')
+                })
             messages.error(request, 'Invalid credentials. Please try again.')
 
     return render(request, 'login.html')
@@ -45,122 +75,118 @@ def signup(request):
             messages.error(request, "Phone number already exists!")
             return render(request, "signup.html")
 
-        # Hash the password before saving to the database
         hashed_password = make_password(password)
-        User.objects.create(name=name, phone=phone, password=hashed_password)
-
+        user = User.objects.create(name=name, phone=phone, password=hashed_password)
+        
+        # Track signup activity
+        track_activity(user, 'signup', {
+            'ip_address': request.META.get('REMOTE_ADDR'),
+            'signup_method': 'web'
+        })
+        
         messages.success(request, "Account created successfully!")
-        return redirect("/home/")  # Redirect to login page
+        return redirect("/home/")
 
     return render(request, "signup.html")
 
-
 def home(request):
+    if request.user.is_authenticated:
+        # Track homepage visit
+        track_activity(request.user, 'homepage_visit')
     return render(request, 'home.html', {'user': request.user})
-from django.shortcuts import render, redirect
-from .models import Profile  # Ensure you have this model
 
 # Manually define phone numbers that should have access to Stage 1
-SELECTED_USERS_FOR_STAGE_1 = ['7989709833', '9876543210']  # Add phone numbers here
+SELECTED_USERS_FOR_STAGE_1 = ['7989709833', '9876543210']
 
+@login_required
 def level(request):
-    user_name = request.user.phone  # Assuming 'phone' is the field you're using
+    user_name = request.user.phone
     user_has_access_to_stage_1 = user_name in SELECTED_USERS_FOR_STAGE_1
-    user_profile = Profile.objects.get(user=request.user)  # Assuming user_profile is linked to user
+    user_profile = Profile.objects.get(user=request.user)
     message = ""
     
-    # Checking if the user is at Stage 1
+    # Track level page visit
+    track_activity(request.user, 'level_page_visit', {
+        'has_stage1_access': user_has_access_to_stage_1,
+        'current_balance': float(user_profile.balance)
+    })
+    
     if user_has_access_to_stage_1:
         message = "Congratulations! Now you are an Initiator and have referred 20 people. Your referred amount is already updated in your profile."
     
     if request.method == "POST" and user_has_access_to_stage_1:
-        # Adding 500 points to the user's balance when the button is clicked
-        user_profile.balance += 500  # Add the 500 points to the current balance
-        user_profile.save()  # Save the updated profile
+        user_profile.balance += 500
+        user_profile.save()
+        
+        # Track reward collection
+        track_activity(request.user, 'stage1_reward_collected', {
+            'amount_added': 500,
+            'new_balance': float(user_profile.balance)
+        })
+        
         message = f"{message} Your balance has been updated with 500 points."
 
     return render(request, 'levels.html', {
         'user_name': user_name,
         'stage_message': message,
-        'balance': user_profile.balance,  # Passing the balance to the template
+        'balance': user_profile.balance,
     })
-
-
-
-# views.py
-from django.shortcuts import render
-from myapp.models import Member
-
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
-from .models import Member, Profile  # Import your profile model
 
 @login_required
 def members(request):
-    if request.user.is_authenticated:
-        # Get the logged-in user's members
-        members_list = Member.objects.filter(user=request.user)
-        
-        # Get or create the user's profile
-        profile = Profile.objects.get_or_create(user=request.user)
-    else:
-        members_list = []
-        profile = None  # or you could create an anonymous profile with 0 earnings
-
+    members_list = Member.objects.filter(user=request.user)
+    profile = Profile.objects.get_or_create(user=request.user)
+    
+    # Track members page visit
+    track_activity(request.user, 'members_page_visit', {
+        'member_count': members_list.count()
+    })
+    
     return render(request, 'members.html', {
         'members': members_list,
-        'profile': profile  # Now passing the profile to template
+        'profile': profile[0]
     })
 
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from .forms import ProfileForm
-from .models import Profile
 @login_required
 def profile_view(request):
     try:
-        # Fetch the profile or raise an exception if it does not exist
         profile = request.user.profile
     except Profile.DoesNotExist:
-        # Optionally, create a profile if it doesn't exist
         profile = Profile.objects.create(user=request.user)
 
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
-            return redirect('profile')  # Ensure 'profile' is defined in your URLs
+            
+            # Track profile update
+            track_activity(request.user, 'profile_updated', {
+                'fields_updated': list(form.cleaned_data.keys())
+            })
+            
+            return redirect('profile')
     else:
         form = ProfileForm(instance=profile)
+        
+    # Track profile page visit
+    track_activity(request.user, 'profile_page_visit')
 
     return render(request, 'profile.html', {'form': form, 'profile': profile})
 
-
 def chat(request):
+    if request.user.is_authenticated:
+        track_activity(request.user, 'chat_page_visit')
     return render(request, 'chat.html')
 
 def income(request):
+    if request.user.is_authenticated:
+        track_activity(request.user, 'income_page_visit')
     return render(request, 'income.html')
-
-
-
-
-from decimal import Decimal
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from .models import Profile, Withdrawal
-from .forms import WithdrawalForm
 
 @login_required
 def withdrawl(request):
-    """Handles the withdrawal request and updates the user's balance."""
-    allowed_phone_numbers = ['0987654321','7989709833','9652871191','7893355365','9666156431','7670812001','7093028071']  # Add allowed phone numbers here
-
-    # Ensure the user has a profile
+    allowed_phone_numbers = ['0987654321','7989709833','9652871191','7893355365','9666156431','7670812001','7093028071']
     profile, created = Profile.objects.get_or_create(user=request.user)
-
-    # Check if the user's phone number is in the allowed list
     is_authorized = request.user.phone in allowed_phone_numbers
 
     if request.method == "POST" and is_authorized:
@@ -170,118 +196,84 @@ def withdrawl(request):
             withdrawal.user = request.user
             withdrawal_amount = Decimal(form.cleaned_data["amount"])
 
-            # Check for a valid withdrawal amount
             if withdrawal_amount <= 0:
                 messages.error(request, "❌ Invalid withdrawal amount. Please enter a positive amount.")
             elif profile.balance >= withdrawal_amount:
-                # Deduct amount and save profile
                 profile.balance -= withdrawal_amount
                 profile.save()
-
-                # Set withdrawal status to pending and save
                 withdrawal.payment_status = "Pending"
                 withdrawal.save()
-
+                
+                # Track withdrawal request
+                track_activity(request.user, 'withdrawal_requested', {
+                    'amount': float(withdrawal_amount),
+                    'new_balance': float(profile.balance),
+                    'payment_method': withdrawal.payment_method
+                })
+                
                 messages.success(request, "✅ Withdrawal request submitted successfully!")
-                return redirect("transactions")  # Redirect to transactions page
+                return redirect("transactions")
             else:
                 messages.error(request, "❌ Insufficient balance.")
     else:
         form = WithdrawalForm()
+        
+    # Track withdrawal page visit
+    track_activity(request.user, 'withdrawal_page_visit', {
+        'current_balance': float(profile.balance),
+        'is_authorized': is_authorized
+    })
 
     return render(request, "withdrawl.html", {"form": form, "balance": profile.balance, "is_authorized": is_authorized})
 
-
-
-import uuid
-
 @login_required
 def transactions(request):
-    """Displays the user's withdrawal transaction history."""
-    
-    # Get all withdrawals for the logged-in user
     withdrawals = Withdrawal.objects.filter(user=request.user)
-
-    # Add a unique transaction ID to each withdrawal
-    for withdrawal in withdrawals:
-        withdrawal.transaction_id = uuid.uuid4().hex[:8]  # Or any format you'd like
-
+    
+    # Track transactions page visit
+    track_activity(request.user, 'transactions_page_visit', {
+        'withdrawal_count': withdrawals.count()
+    })
+    
     return render(request, "transactions.html", {"withdrawals": withdrawals})
 
-
-
 def withdrawal_students(request):
+    if request.user.is_authenticated:
+        track_activity(request.user, 'withdrawal_students_page_visit')
     return render(request, "withdrawal_s.html")
 
 def join_members(request):
+    if request.user.is_authenticated:
+        track_activity(request.user, 'join_members_page_visit')
     return render(request, "join.html")
 
-def my_courses(request):
-    context = {
-    'data_analysis_numbers': [
-        "9063047813", "7989219165", "9346181489", "7396252699", "6305969920", "7386323303",
-        "6301377530", "7382579283", "8309621284", "9618944742", "6305376046", "9063182706",
-        "7847887022", "6301740212", "9959134659", "9100792452", "9704261549", "9398940353",
-        "7207794091", "7989709833"
-    ],
-
-    'web_dev_numbers': [
-        "9963242195", "9347844479", "7842351513", "9381700503", "6281371577", "7386376764",
-        "7207674531", "8639454686", "8341633481", "9347709402", "9010134688", "9985317855",
-        "9100390114", "9014574670", "8125274748", "7013627174", "9346053083", "9390427208",
-        "6281808939", "8500166525", "8790413984", "9381987419", "6301382198", "8247836086",
-        "6302451271", "6281850287", "8977709225", "8125883892", "6302186722", "8919272658",
-        "8309138848", "6301242839", "7075303564", "9989026209", "7013085054",
-        "9346800335", "7996154586", "7671835583" 
-    ],
-
-    'ml_numbers': [
-        "8328480287", "7337050706", "8712837063",
-        "9603689566", "8712385254", "9908191735","9603689566"
-    ],
-
-    'autocad' : [
-        "9866343114"
-    ]
-
-}
-
-    return render(request, 'my_courses.html', context)
-
-from django.http import JsonResponse
-from django.contrib.auth.decorators import login_required
-from .models import Profile
-
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
-from .models import Profile
 
 @login_required
 def collect_stage1_reward(request):
-    # Get the user's profile
     user_profile = Profile.objects.get(user=request.user)
 
-    # If the request is a POST (the user clicked the "Collect ₹500" button)
     if request.method == "POST":
-        # Check if the user hasn't collected the reward yet
         if not user_profile.has_collected_stage1:
-            user_profile.balance += 500  # Add ₹500 to the user's balance
-            user_profile.has_collected_stage1 = True  # Mark as collected
+            user_profile.balance += 500
+            user_profile.has_collected_stage1 = True
             user_profile.save()
 
-            # Return a response with the updated balance
+            # Track reward collection
+            track_activity(request.user, 'stage1_reward_collected', {
+                'amount_added': 500,
+                'new_balance': float(user_profile.balance)
+            })
+
             return JsonResponse({
                 "new_balance": user_profile.balance,
                 "success": True
             })
 
-        # If the user already collected the reward, don't do anything
         return JsonResponse({
             "error": "You have already collected the ₹500!",
             "success": False
         })
 
-    # If the request is a GET (rendering the page)
     has_collected_stage1 = user_profile.has_collected_stage1
     current_balance = user_profile.balance
 
@@ -289,12 +281,6 @@ def collect_stage1_reward(request):
         "has_collected_stage1": has_collected_stage1,
         "current_balance": current_balance,
     })
-
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.decorators import login_required
-from .models import Profile
-import json
 
 @csrf_exempt
 @login_required
@@ -304,12 +290,16 @@ def update_balance(request):
             data = json.loads(request.body)
             amount = data.get('amount', 0)
 
-            # Get the user's profile
             profile = Profile.objects.get(user=request.user)
-
-            # Update the balance
             profile.balance += amount
             profile.save()
+            
+            # Track balance update
+            track_activity(request.user, 'balance_updated', {
+                'amount': amount,
+                'new_balance': float(profile.balance),
+                'source': 'manual_update'
+            })
 
             return JsonResponse({'success': True, 'new_balance': profile.balance})
         except Exception as e:
@@ -317,113 +307,30 @@ def update_balance(request):
     return JsonResponse({'error': 'Invalid request method'}, status=405)
 
 def help(request):
+    if request.user.is_authenticated:
+        track_activity(request.user, 'help_page_visit')
     return render(request,'needhelp.html')
+
 def upload(request):
+    if request.user.is_authenticated:
+        track_activity(request.user, 'upload_page_visit')
     return render(request,'upload.html')
+
 def uploadsuccess(request):
+    if request.user.is_authenticated:
+        track_activity(request.user, 'upload_success_page_visit')
     return render(request,'uploadsuccess.html')
+
 def about(request):
+    if request.user.is_authenticated:
+        track_activity(request.user, 'about_page_visit')
     return render(request,'about.html')
+
 def courses(request):
+    if request.user.is_authenticated:
+        track_activity(request.user, 'courses_page_visit')
     return render(request,'courses.html')
-@login_required
-def my_learning(request):
-    return render(request, 'my_learning.html')
-def contact(request):
-    return render(request, "contact.html")
-def payment_success(request):
-    return render(request, 'payment_success.html')
-def privacypolicy(request):
-    return render(request, 'privacypolicy.html')
-def sponsors(request):
-    return render(request,"sponsors.html")
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.db import IntegrityError
-from django.shortcuts import render
-from .models import SponsorshipSurvey
 
-def survey_page(request):
-    return render(request, "learnmore.html")  # Ensure the correct template is rendered
-
-@csrf_exempt  # If you're using Fetch API without CSRF token, keep this
-def submit_survey(request):
-    if request.method == "POST":
-        contact = request.POST.get("contact")
-        email = request.POST.get("email")
-
-        # Check if the contact number already exists before saving
-        if SponsorshipSurvey.objects.filter(contact=contact).exists():
-            return JsonResponse(
-                {"success": False, "message": "The form has already been pre-filled with this number!"},
-                status=400
-            )
-
-        # Check if the email already exists before saving
-        if SponsorshipSurvey.objects.filter(email=email).exists():
-            return JsonResponse(
-                {"success": False, "message": "Email is already taken!"},
-                status=400
-            )
-
-        try:
-            # Extract form data
-            full_name = request.POST.get("fullName")
-            college = request.POST.get("college")
-            year = request.POST.get("year")
-            source = request.POST.get("source")
-            interest = request.POST.getlist("interest")  # Handle multiple interests
-            internship = request.POST.get("internship")
-            updates = request.POST.get("updates")
-
-            # Ensure required fields are not empty
-            if not full_name or not email or not college or not contact:
-                return JsonResponse(
-                    {"success": False, "message": "Missing required fields!"},
-                    status=400
-                )
-
-            # Save data
-            SponsorshipSurvey.objects.create(
-                full_name=full_name,
-                email=email,
-                college=college,
-                year=year,
-                source=source,
-                interest=",".join(interest),  # Convert list to comma-separated string
-                internship=internship,
-                updates=updates,
-                contact=contact
-            )
-
-            return JsonResponse(
-                {"success": True, "message": "Form submitted successfully!"},
-                status=200
-            )
-
-        except IntegrityError:  # Handle unique constraint violation
-            return JsonResponse(
-                {"success": False, "message": "The form has already been pre-filled with this number or email!"},
-                status=400
-            )
-
-        except Exception as e:  # Handle other exceptions
-            return JsonResponse(
-                {"success": False, "message": f"Error: {str(e)}"},
-                status=400
-            )
-
-    # Handle invalid request method
-    return JsonResponse(
-        {"success": False, "message": "Invalid request method!"},
-        status=400
-    )
-
-def employee_page(request):
-    return render(request, 'index.html')
-
-
-# In your view
 @login_required
 def my_learning(request):
     context = {
@@ -455,24 +362,201 @@ def my_learning(request):
     'autocad' : [
         "9866343114"
     ]
-}
-
+    }
+    
+    track_activity(request.user, 'my_learning_page_visit')
+    
     return render(request, 'my_learning.html', context)
 
-def internships(request):
-    return render(request , 'internships.html')
+def my_courses(request):
+    context = {
+    'data_analysis_numbers': [
+        "9063047813", "7989219165", "9346181489", "7396252699", "6305969920", "7386323303",
+        "6301377530", "7382579283", "8309621284", "9618944742", "6305376046", "9063182706",
+        "7847887022", "6301740212", "9959134659", "9100792452", "9704261549", "9398940353",
+        "7207794091", "7989709833"
+    ],
 
-from django.contrib.auth import logout
-from django.shortcuts import redirect
-from django.contrib.auth.decorators import login_required
+    'web_dev_numbers': [
+        "9963242195", "9347844479", "7842351513", "9381700503", "6281371577", "7386376764",
+        "7207674531", "8639454686", "8341633481", "9347709402", "9010134688", "9985317855",
+        "9100390114", "9014574670", "8125274748", "7013627174", "9346053083", "9390427208",
+        "6281808939", "8500166525", "8790413984", "9381987419", "6301382198", "8247836086",
+        "6302451271", "6281850287", "8977709225", "8125883892", "6302186722", "8919272658",
+        "8309138848", "6301242839", "7075303564", "9989026209", "7013085054",
+        "9346800335", "7996154586", "7671835583" 
+    ],
+
+    'ml_numbers': [
+        "8328480287", "7337050706", "8712837063",
+        "9603689566", "8712385254", "9908191735","9603689566"
+    ],
+
+    'autocad' : [
+        "9866343114"
+    ]
+    }
+    
+    if request.user.is_authenticated:
+        track_activity(request.user, 'my_courses_page_visit')
+
+    return render(request, 'my_courses.html', context)
+
+
+def internships(request):
+    if request.user.is_authenticated:
+        track_activity(request.user, 'internships_page_visit')
+    return render(request , 'internships.html')
 
 @login_required
 def logout_view(request):
+    # Track logout activity
+    track_activity(request.user, 'logout', {
+        'session_duration': (datetime.now() - request.user.last_login).total_seconds() if request.user.last_login else 0
+    })
+    
     logout(request)
-    return redirect('home')  # Redirect to home page after logout
+    return redirect('home')
 
 def courseoffer(request):
+    if request.user.is_authenticated:
+        track_activity(request.user, 'courseoffer_page_visit')
     return render(request, 'courseoffer.html')
 
 def assignments(request):
+    if request.user.is_authenticated:
+        track_activity(request.user, 'assignments_page_visit')
     return render(request, 'assignments.html')
+
+def contact(request):
+    if request.user.is_authenticated:
+        track_activity(request.user, 'contact_page_visit')
+    return render(request, "contact.html")
+
+def payment_success(request):
+    if request.user.is_authenticated:
+        track_activity(request.user, 'payment_success_page_visit')
+    return render(request, 'payment_success.html')
+
+def privacypolicy(request):
+    if request.user.is_authenticated:
+        track_activity(request.user, 'privacypolicy_page_visit')
+    return render(request, 'privacypolicy.html')
+
+def sponsors(request):
+    if request.user.is_authenticated:
+        track_activity(request.user, 'sponsors_page_visit')
+    return render(request,"sponsors.html")
+
+def survey_page(request):
+    if request.user.is_authenticated:
+        track_activity(request.user, 'survey_page_visit')
+    return render(request, "learnmore.html")
+
+@csrf_exempt
+def submit_survey(request):
+    if request.method == "POST":
+        contact = request.POST.get("contact")
+        email = request.POST.get("email")
+
+        if SponsorshipSurvey.objects.filter(contact=contact).exists():
+            return JsonResponse(
+                {"success": False, "message": "The form has already been pre-filled with this number!"},
+                status=400
+            )
+
+        if SponsorshipSurvey.objects.filter(email=email).exists():
+            return JsonResponse(
+                {"success": False, "message": "Email is already taken!"},
+                status=400
+            )
+
+        try:
+            full_name = request.POST.get("fullName")
+            college = request.POST.get("college")
+            year = request.POST.get("year")
+            source = request.POST.get("source")
+            interest = request.POST.getlist("interest")
+            internship = request.POST.get("internship")
+            updates = request.POST.get("updates")
+
+            if not full_name or not email or not college or not contact:
+                return JsonResponse(
+                    {"success": False, "message": "Missing required fields!"},
+                    status=400
+                )
+
+            SponsorshipSurvey.objects.create(
+                full_name=full_name,
+                email=email,
+                college=college,
+                year=year,
+                source=source,
+                interest=",".join(interest),
+                internship=internship,
+                updates=updates,
+                contact=contact
+            )
+            
+            # Track survey submission
+            if request.user.is_authenticated:
+                track_activity(request.user, 'survey_submitted', {
+                    'survey_type': 'sponsorship'
+                })
+
+            return JsonResponse(
+                {"success": True, "message": "Form submitted successfully!"},
+                status=200
+            )
+
+        except IntegrityError:
+            return JsonResponse(
+                {"success": False, "message": "The form has already been pre-filled with this number or email!"},
+                status=400
+            )
+
+        except Exception as e:
+            return JsonResponse(
+                {"success": False, "message": f"Error: {str(e)}"},
+                status=400
+            )
+
+    return JsonResponse(
+        {"success": False, "message": "Invalid request method!"},
+        status=400
+    )
+
+def employee_page(request):
+    if request.user.is_authenticated:
+        track_activity(request.user, 'employee_page_visit')
+    return render(request, 'index.html')
+
+@login_required
+def activity_dashboard(request):
+    if not request.user.is_superuser:
+        return redirect('home')
+    
+    activities = UserActivity.objects.all().order_by('-timestamp')[:100]
+    user_stats = {}
+    
+    users = User.objects.filter(useractivity__isnull=False).distinct()
+    
+    for user in users:
+        user_activities = UserActivity.objects.filter(user=user)
+        user_stats[user.phone] = {
+            'total_activities': user_activities.count(),
+            'last_activity': user_activities.first().timestamp if user_activities.exists() else None,
+            'login_count': user_activities.filter(action='login').count(),
+            'common_actions': dict(user_activities.values_list('action').annotate(count=Count('action')).order_by('-count')[:5])
+        }
+    
+    # Track admin dashboard access
+    track_activity(request.user, 'admin_dashboard_accessed')
+    
+    return render(request, 'activity_dashboard.html', {
+        'activities': activities,
+        'user_stats': user_stats,
+        'total_users': User.objects.count(),
+        'active_users': User.objects.filter(useractivity__timestamp__gte=datetime.now()-timedelta(days=7)).distinct().count(),
+        'recent_signups': User.objects.filter(date_joined__gte=datetime.now()-timedelta(days=7)).count()
+    })
