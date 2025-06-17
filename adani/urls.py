@@ -23,7 +23,7 @@ from django.shortcuts import render
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
-from myapp.views import employee_page
+from myapp.views import employee_page, user_activity_dashboard
 
 import os
 
@@ -43,6 +43,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include('myapp.urls')),
     path('member/', employee_page, name='employee_page'),
+    path('user-activity/', user_activity_dashboard, name='user_activity_dashboard'),
 ]
 
 if settings.DEBUG:

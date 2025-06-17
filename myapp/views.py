@@ -560,3 +560,45 @@ def activity_dashboard(request):
         'active_users': User.objects.filter(useractivity__timestamp__gte=datetime.now()-timedelta(days=7)).distinct().count(),
         'recent_signups': User.objects.filter(date_joined__gte=datetime.now()-timedelta(days=7)).count()
     })
+
+
+from django.contrib.auth.decorators import user_passes_test
+from django.shortcuts import render
+from django.utils import timezone
+from .models import UserActivity, CustomUser, Profile
+from django.db.models import Count, Q, OuterRef, Subquery
+from datetime import timedelta
+
+@user_passes_test(lambda u: u.is_superuser)
+def user_activity_dashboard(request):
+    # Active users (logged in last 15 minutes)
+        active_users = CustomUser.objects.filter(
+            last_login__gte=timezone.now()-timedelta(minutes=15))
+    
+    # User login stats
+        user_stats = CustomUser.objects.annotate(
+        activity_count=Count('useractivity'),
+        last_activity=Subquery(
+            UserActivity.objects.filter(
+                user=OuterRef('pk')
+            ).order_by('-timestamp').values('timestamp')[:1]
+        )
+    ).select_related('profile')
+    
+    # Inactive users (no login in 30 days)
+        inactive_users = CustomUser.objects.filter(
+        last_login__lte=timezone.now()-timedelta(days=30))
+    
+    # Activity metrics
+        total_logins = UserActivity.objects.filter(action='login').count()
+        recent_activities = UserActivity.objects.all().order_by('-timestamp')[:20]
+    
+        context = {
+        'active_users': active_users,
+        'user_stats': user_stats,
+        'inactive_users': inactive_users,
+        'total_logins': total_logins,
+        'recent_activities': recent_activities,
+        'now': timezone.now()
+    }
+        return render(request, 'dashboard.html', context)

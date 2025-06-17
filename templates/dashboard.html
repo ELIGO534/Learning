@@ -1,0 +1,453 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block extrastyle %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    :root {
+        --primary-color: #4361ee;
+        --secondary-color: #3f37c9;
+        --success-color: #4cc9f0;
+        --info-color: #4895ef;
+        --warning-color: #f8961e;
+        --danger-color: #f72585;
+        --light-color: #f8f9fa;
+        --dark-color: #212529;
+    }
+    
+    body {
+        background-color: #f5f7fa;
+    }
+    
+    .dashboard-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .dashboard-header {
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .dashboard-card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background: white;
+        overflow: hidden;
+        margin-bottom: 24px;
+    }
+    
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    
+    .card-header {
+        background-color: var(--primary-color);
+        color: white;
+        border-bottom: none;
+        padding: 16px 24px;
+        font-weight: 600;
+    }
+    
+    .stat-card {
+        padding: 20px;
+        border-radius: 12px;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .stat-card::before {
+        content: "";
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.1);
+    }
+    
+    .stat-card .stat-icon {
+        font-size: 2.5rem;
+        opacity: 0.3;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    
+    .stat-card .stat-value {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin: 10px 0 5px;
+    }
+    
+    .stat-card .stat-label {
+        font-size: 0.9rem;
+        opacity: 0.9;
+    }
+    
+    .user-card {
+        display: flex;
+        align-items: center;
+        padding: 12px;
+        border-radius: 8px;
+        background: white;
+        transition: all 0.3s ease;
+        margin-bottom: 12px;
+    }
+    
+    .user-card:hover {
+        background-color: #f8f9fa;
+        transform: translateX(5px);
+    }
+    
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #e9ecef;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        color: var(--primary-color);
+    }
+    
+    .user-info {
+        flex: 1;
+    }
+    
+    .user-name {
+        font-weight: 600;
+        margin-bottom: 2px;
+    }
+    
+    .user-meta {
+        font-size: 0.8rem;
+        color: #6c757d;
+    }
+    
+    .status-badge {
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 12px;
+    }
+    
+    .status-online {
+        background-color: rgba(40, 167, 69, 0.1);
+        color: #28a745;
+    }
+    
+    .status-offline {
+        background-color: rgba(108, 117, 125, 0.1);
+        color: #6c757d;
+    }
+    
+    .status-inactive {
+        background-color: rgba(220, 53, 69, 0.1);
+        color: #dc3545;
+    }
+    
+    .activity-table th {
+        font-weight: 600;
+        color: #495057;
+        border-top: none;
+    }
+    
+    .activity-table td {
+        vertical-align: middle;
+    }
+    
+    .activity-level {
+        width: 120px;
+    }
+    
+    .progress {
+        height: 8px;
+        border-radius: 4px;
+        background-color: #e9ecef;
+    }
+    
+    .progress-bar {
+        border-radius: 4px;
+    }
+    
+    .activity-list-item {
+        padding: 12px 16px;
+        border-left: none;
+        border-right: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .activity-list-item:first-child {
+        border-top: none;
+    }
+    
+    .activity-time {
+        font-size: 0.8rem;
+        color: #6c757d;
+    }
+    
+    .section-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: var(--dark-color);
+        display: flex;
+        align-items: center;
+    }
+    
+    .section-title i {
+        margin-right: 10px;
+        color: var(--primary-color);
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 40px 20px;
+        color: #6c757d;
+    }
+    
+    .empty-state i {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        color: #dee2e6;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1>User Activity Dashboard</h1>
+        <div class="text-muted">Last updated: {% now "DATETIME_FORMAT" %}</div>
+    </div>
+    
+    <!-- Summary Stats -->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="stat-card" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));">
+                <i class="fas fa-users stat-icon"></i>
+                <div class="stat-value">{{ user_stats.count }}</div>
+                <div class="stat-label">Total Users</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card" style="background: linear-gradient(135deg, var(--success-color), var(--info-color));">
+                <i class="fas fa-user-clock stat-icon"></i>
+                <div class="stat-value">{{ active_users.count }}</div>
+                <div class="stat-label">Active Now</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card" style="background: linear-gradient(135deg, var(--warning-color), #f3722c);">
+                <i class="fas fa-sign-in-alt stat-icon"></i>
+                <div class="stat-value">{{ total_logins }}</div>
+                <div class="stat-label">Total Logins</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card" style="background: linear-gradient(135deg, var(--danger-color), #b5179e);">
+                <i class="fas fa-user-slash stat-icon"></i>
+                <div class="stat-value">{{ inactive_users.count }}</div>
+                <div class="stat-label">Inactive Users</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <!-- Active Users Column -->
+        <div class="col-md-4">
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-bolt"></i> Active Users</h5>
+                </div>
+                <div class="card-body">
+                    {% if active_users %}
+                        {% for user in active_users %}
+                        <div class="user-card">
+                            <div class="user-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="user-info">
+                                <div class="user-name">{{ user.name }}</div>
+                                <div class="user-meta">
+                                    <span class="status-badge status-online">Online</span>
+                                    • Last seen: Now
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <small class="text-muted">{{ user.profile.login_count }} logins</small>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="empty-state">
+                            <i class="fas fa-user-times"></i>
+                            <p>No active users at the moment</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Inactive Users -->
+            <div class="dashboard-card mt-4">
+                <div class="card-header" style="background-color: var(--danger-color);">
+                    <h5 class="mb-0"><i class="fas fa-user-slash"></i> Inactive Users</h5>
+                </div>
+                <div class="card-body">
+                    {% if inactive_users %}
+                        {% for user in inactive_users|slice:":5" %}
+                        <div class="user-card">
+                            <div class="user-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="user-info">
+                                <div class="user-name">{{ user.name }}</div>
+                                <div class="user-meta">
+                                    <span class="status-badge status-inactive">Inactive</span>
+                                    • Last seen: {{ user.last_activity|timesince }} ago
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% if inactive_users.count > 5 %}
+                        <div class="text-center mt-2">
+                            <small class="text-muted">+{{ inactive_users.count|add:"-5" }} more inactive users</small>
+                        </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="empty-state">
+                            <i class="fas fa-check-circle"></i>
+                            <p>All users are active</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content Column -->
+        <div class="col-md-8">
+            <!-- User Activity Table -->
+            <div class="dashboard-card">
+                <div class="card-header" style="background-color: var(--info-color);">
+                    <h5 class="mb-0"><i class="fas fa-chart-line"></i> User Activity Overview</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table activity-table">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Status</th>
+                                    <th>Last Activity</th>
+                                    <th>Logins</th>
+                                    <th class="activity-level">Activity Level</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for user in user_stats|slice:":10" %}
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-avatar me-3">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <div>
+                                                <div class="user-name">{{ user.name }}</div>
+                                                <small class="text-muted">{{ user.phone }}</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        {% if user in active_users %}
+                                        <span class="status-badge status-online">Active</span>
+                                        {% elif user in inactive_users %}
+                                        <span class="status-badge status-inactive">Inactive</span>
+                                        {% else %}
+                                        <span class="status-badge status-offline">Offline</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if user.last_activity %}
+                                        {{ user.last_activity|timesince }} ago
+                                        {% else %}
+                                        <span class="text-muted">Never</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ user.profile.login_count }}</td>
+                                    <td>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" 
+                                                 style="width: {% widthratio user.activity_count user_stats.0.activity_count 100 %}%">
+                                            </div>
+                                        </div>
+                                        <small class="text-muted">{{ user.activity_count }} actions</small>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% if user_stats.count > 10 %}
+                    <div class="text-center mt-3">
+                        <a href="#" class="btn btn-sm btn-outline-primary">View All Users</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Recent Activities -->
+            <div class="dashboard-card mt-4">
+                <div class="card-header" style="background-color: var(--dark-color);">
+                    <h5 class="mb-0"><i class="fas fa-history"></i> Recent Activities</h5>
+                </div>
+                <div class="card-body p-0">
+                    {% if recent_activities %}
+                    <ul class="list-group list-group-flush">
+                        {% for activity in recent_activities|slice:":8" %}
+                        <li class="list-group-item activity-list-item">
+                            <div>
+                                <strong>{{ activity.user.name }}</strong> 
+                                <span class="text-muted">{{ activity.action|title }}</span>
+                                <div class="activity-time">{{ activity.timestamp|timesince }} ago</div>
+                            </div>
+                            <span class="badge bg-light text-dark rounded-pill">{{ activity.timestamp|date:"H:i" }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <div class="empty-state">
+                        <i class="fas fa-inbox"></i>
+                        <p>No recent activities found</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // You can add JavaScript for interactive charts here
+    document.addEventListener('DOMContentLoaded', function() {
+        // Example: Tooltips for status badges
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    });
+</script>
+{% endblock %}
