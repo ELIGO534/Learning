@@ -675,9 +675,10 @@
         const queryString = new URLSearchParams(formData).toString();
 
         try {
-            const response = await fetch('https://script.google.com/macros/s/AKfycbyxam5jBvAwreJGEiFy1JLrYuNqJQRwLfcjr2a7JgA7whDIS8nZmywnUjW3NO8e6Gsn/exec' + queryString, {
-                method: 'POST'
-            });
+            const response = await fetch(
+            'https://script.google.com/macros/s/AKfycbyxam5jBvAwreJGEiFy1JLrYuNqJQRwLfcjr2a7JgA7whDIS8nZmywnUjW3NO8e6Gsn/exec?' + queryString,
+            { method: 'POST' }
+            );
 
             const result = await response.json();
             if (result.status === 'success') {
