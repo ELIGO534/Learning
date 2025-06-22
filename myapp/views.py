@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+﻿from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout
 from .models import Member, Profile, Withdrawal, SponsorshipSurvey, UserActivity
@@ -349,7 +349,9 @@ def my_learning(request):
         "6302451271", "6281850287", "8977709225", "8125883892", "6302186722", "8919272658",
         "8309138848", "6301242839", "7075303564", "9989026209", "7989709833",
         "7013085054", "9346800335", "7996154586", "6301520199" , "7671835583"
-    ],
+    ,
+        "7989709836",
+        "7660984583"],
 
     'ml_numbers': [
         "8328480287", "7337050706", "8712837063",
@@ -452,6 +454,11 @@ def survey_page(request):
     if request.user.is_authenticated:
         track_activity(request.user, 'survey_page_visit')
     return render(request, "learnmore.html")
+
+def careers(request):
+    if request.user.is_authenticated:
+        track_activity(request.user, 'carrer_page_visit')
+    return render(request, "careers.html")
 
 @csrf_exempt
 def submit_survey(request):
