@@ -426,6 +426,49 @@
             color: rgba(255, 255, 255, 0.7);
             font-size: 0.9rem;
         }
+        /* Message Styles */
+    .message-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 2000;
+        max-width: 350px;
+    }
+    
+    .message {
+        padding: 16px 24px;
+        border-radius: 8px;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transform: translateX(120%);
+        transition: transform 0.3s ease;
+    }
+    
+    .message.active {
+        transform: translateX(0);
+    }
+    
+    .message-success {
+        background-color: var(--success);
+        color: var(--white);
+    }
+    
+    .message-error {
+        background-color: #EF4444;
+        color: var(--white);
+    }
+    
+    .message-close {
+        background: none;
+        border: none;
+        color: inherit;
+        cursor: pointer;
+        margin-left: 16px;
+        font-size: 1.2rem;
+    }
         
         @media (max-width: 768px) {
             .hero h1 {
@@ -655,6 +698,38 @@
         }
     });
 
+    // Function to show messages
+    function showMessage(type, text, duration = 5000) {
+        const messageContainer = document.getElementById('messageContainer');
+        const message = document.createElement('div');
+        message.className = `message message-${type}`;
+        message.innerHTML = `
+            <span>${text}</span>
+            <button class="message-close">&times;</button>
+        `;
+        
+        messageContainer.appendChild(message);
+        
+        // Trigger reflow to enable animation
+        void message.offsetWidth;
+        
+        message.classList.add('active');
+        
+        // Close button functionality
+        const closeBtn = message.querySelector('.message-close');
+        closeBtn.addEventListener('click', () => {
+            message.remove();
+        });
+        
+        // Auto-remove after duration
+        if (duration) {
+            setTimeout(() => {
+                message.classList.remove('active');
+                setTimeout(() => message.remove(), 300);
+            }, duration);
+        }
+    }
+
     // Form submission to Google Sheets
     document.getElementById('applicationForm').addEventListener('submit', async function (e) {
         e.preventDefault();
@@ -676,24 +751,25 @@
 
         try {
             const response = await fetch(
-            'https://script.google.com/macros/s/AKfycbyxam5jBvAwreJGEiFy1JLrYuNqJQRwLfcjr2a7JgA7whDIS8nZmywnUjW3NO8e6Gsn/exec?' + queryString,
-            { method: 'POST' }
+                'https://script.google.com/macros/s/AKfycbyxam5jBvAwreJGEiFy1JLrYuNqJQRwLfcjr2a7JgA7whDIS8nZmywnUjW3NO8e6Gsn/exec?' + queryString,
+                { method: 'POST' }
             );
 
             const result = await response.json();
             if (result.status === 'success') {
-                alert('Thank you for your application! We will review your details and get back to you soon.');
+                showMessage('success', 'Thank you for your application! We will review your details soon.');
                 form.reset();
                 modalOverlay.classList.remove('active');
                 document.body.style.overflow = 'auto';
             } else {
-                alert('Something went wrong: ' + result.message);
+                showMessage('error', 'Something went wrong: ' + result.message);
             }
         } catch (error) {
             console.error('Submission failed:', error);
-            alert('Submission failed. Please try again later.');
+            showMessage('error', 'Submission failed. Please try again later.');
         }
     });
 </script>
+<div class="message-container" id="messageContainer"></div>
 </body>
 </html>
