@@ -15,7 +15,7 @@ from django.contrib.auth.hashers import make_password
 
 # --- Connect to Google Sheet ---
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-creds = ServiceAccountCredentials.from_json_keyfile_name('adroit-outlet-453916-g6-1a7849adf277.json', scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name(os.getenv('GOOGLE_APPLICATION_CREDENTIALS'), scope)
 client = gspread.authorize(creds)
 
 sheet = client.open("Onboarding Sheet").worksheet("Form Responses 1")

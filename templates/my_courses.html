@@ -2037,7 +2037,7 @@
         </div>
       </li>
       <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title"
-    data-video-title="1.2 Introduction to CSS"
+    data-video-title="1.3 Introduction to CSS"
     data-video-id="4dBfBzG-PjE">
         <div class="completion-indicator completed">
     <i class="bi bi-check" style="font-size: 0.7rem;"></i>
@@ -2047,449 +2047,2168 @@
           <div class="text-xs text-gray-500 mt-1">Apx 1hr min</div>
         </div>
       </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
+      <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title"
+    data-video-title="1.4 Introduction to CSS|Part 2"
+    data-video-id="QnvWAAMe65o">
+        <div class="completion-indicator completed">
+    <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+  </div>
         <div class="flex-grow">
           <div class="text-gray-700 font-medium">1.4 Introduction to CSS|Part 2</div>
           <div class="text-xs text-gray-500 mt-1">Apx 50 min</div>
         </div>
       </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
+      <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title"
+    data-video-title="1.5 Introduction to CSS|Part 3"
+    data-video-id="DFO7YDy5xw4">
+        <div class="completion-indicator completed">
+    <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+  </div>
         <div class="flex-grow">
           <div class="text-gray-700 font-medium">1.5 Introduction to CSS|Part 3</div>
           <div class="text-xs text-gray-500 mt-1">Apx 1 Hr</div>
         </div>
       </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
+      <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title" onclick="openCheatsheetModal()">
+  <div class="completion-indicator">
+    <i class="bi bi-journal-code text-blue-600" style="font-size: 0.9rem;"></i>
+  </div>
+  <div class="flex-grow">
+    <div class="text-gray-700 font-medium">1.6 Ultimate Web Dev Cheatsheet</div>
+    <div class="text-xs text-gray-500 mt-1">Click to open interactive reference</div>
+  </div>
+  <i class="bi bi-arrows-fullscreen ml-2 text-gray-500"></i>
+</li>
+
+<!-- Fullscreen Modal -->
+<div id="cheatsheet-modal" class="fixed inset-0 z-50 hidden bg-white p-4 overflow-auto">
+  <div class="max-w-6xl mx-auto">
+    <!-- Modal Header -->
+    <div class="flex justify-between items-center mb-6 sticky top-0 bg-white py-4">
+      <h2 class="text-2xl font-bold text-orange-700">Ultimate Web Development Cheatsheet</h2>
+      <button onclick="closeCheatsheetModal()" class="text-gray-500 hover:text-gray-700 text-2xl">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <!-- HTML Section -->
+    <div class="mb-8">
+      <h3 class="text-xl font-bold text-blue-800 mb-4 border-b pb-2">HTML Reference</h3>
+      
+      <!-- Basic Structure -->
+      <div class="mb-6">
+        <h4 class="font-semibold text-blue-700 mb-2">Basic Structure</h4>
+        <pre class="bg-gray-100 p-3 rounded text-sm overflow-auto"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;!-- Content --&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        
+        <div class="quiz-question mt-4 p-4 bg-blue-50 rounded-lg">
+          <p class="font-medium mb-3">Question: What is the correct HTML structure?</p>
+          <div class="space-y-2">
+            <label class="flex items-start p-2 hover:bg-blue-100 rounded cursor-pointer">
+              <input type="radio" name="html-structure" value="1" class="mt-1 mr-2">
+              <code class="text-sm bg-gray-100 p-1 rounded">&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;</code>
+            </label>
+            <label class="flex items-start p-2 hover:bg-blue-100 rounded cursor-pointer">
+              <input type="radio" name="html-structure" value="2" class="mt-1 mr-2">
+              <code class="text-sm bg-gray-100 p-1 rounded">&lt;html&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;</code>
+            </label>
+          </div>
+          <button onclick="checkAnswer('html-structure', '1')" class="mt-3 px-4 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">Check Answer</button>
+          <div id="html-structure-feedback" class="mt-2 text-sm hidden"></div>
         </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">1.6 HTML and CSS cheatsheets</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 10 min</div>
+      </div>
+      
+      <!-- HTML Tags Reference -->
+      <div class="grid md:grid-cols-2 gap-4 mb-6">
+        <div>
+          <h4 class="font-semibold text-blue-700 mb-2">Common Tags</h4>
+          <div class="grid grid-cols-2 gap-2">
+            <div class="bg-blue-50 p-2 rounded border border-blue-200">
+              <span class="font-mono text-red-600">&lt;h1&gt;-&lt;h6&gt;</span> Headings
+            </div>
+            <div class="bg-blue-50 p-2 rounded border border-blue-200">
+              <span class="font-mono text-red-600">&lt;p&gt;</span> Paragraph
+            </div>
+            <div class="bg-blue-50 p-2 rounded border border-blue-200">
+              <span class="font-mono text-red-600">&lt;a&gt;</span> Link
+            </div>
+            <div class="bg-blue-50 p-2 rounded border border-blue-200">
+              <span class="font-mono text-red-600">&lt;img&gt;</span> Image
+            </div>
+          </div>
         </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
+        
+        <div>
+          <h4 class="font-semibold text-blue-700 mb-2">Semantic Tags</h4>
+          <div class="grid grid-cols-2 gap-2">
+            <div class="bg-blue-50 p-2 rounded border border-blue-200">
+              <span class="font-mono text-red-600">&lt;header&gt;</span>
+            </div>
+            <div class="bg-blue-50 p-2 rounded border border-blue-200">
+              <span class="font-mono text-red-600">&lt;nav&gt;</span>
+            </div>
+            <div class="bg-blue-50 p-2 rounded border border-blue-200">
+              <span class="font-mono text-red-600">&lt;section&gt;</span>
+            </div>
+            <div class="bg-blue-50 p-2 rounded border border-blue-200">
+              <span class="font-mono text-red-600">&lt;footer&gt;</span>
+            </div>
+          </div>
         </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">1.7 Assigment 1</div>
-          <div class="text-xs text-gray-500 mt-1">Quiz • 30 min</div>
+      </div>
+    </div>
+
+    <!-- CSS Section -->
+    <div class="mb-8">
+      <h3 class="text-xl font-bold text-purple-800 mb-4 border-b pb-2">CSS Reference</h3>
+      
+      <!-- Text Properties -->
+      <div class="mb-6">
+        <h4 class="font-semibold text-purple-700 mb-2">Text Properties</h4>
+        <div class="grid md:grid-cols-3 gap-4 mb-4">
+          <div class="bg-purple-50 p-3 rounded border border-purple-200">
+            <h5 class="font-medium text-purple-600 mb-1">Font Family</h5>
+            <pre class="text-xs bg-white p-1 rounded"><code>font-family: "Arial", sans-serif;</code></pre>
+            <div class="mt-2">
+              <p class="text-xs text-gray-600 mb-1">Common values:</p>
+              <ul class="text-xs space-y-1">
+                <li>"Arial", sans-serif</li>
+                <li>"Times New Roman", serif</li>
+                <li>"Courier New", monospace</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="bg-purple-50 p-3 rounded border border-purple-200">
+            <h5 class="font-medium text-purple-600 mb-1">Font Size</h5>
+            <pre class="text-xs bg-white p-1 rounded"><code>font-size: 16px;</code></pre>
+            <div class="mt-2">
+              <p class="text-xs text-gray-600 mb-1">Common values:</p>
+              <ul class="text-xs space-y-1">
+                <li>12px, 14px, 16px</li>
+                <li>1em, 1.2em, 2em</li>
+                <li>small, medium, large</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="bg-purple-50 p-3 rounded border border-purple-200">
+            <h5 class="font-medium text-purple-600 mb-1">Text Align</h5>
+            <pre class="text-xs bg-white p-1 rounded"><code>text-align: center;</code></pre>
+            <div class="mt-2">
+              <p class="text-xs text-gray-600 mb-1">Values:</p>
+              <ul class="text-xs space-y-1">
+                <li>left, right, center</li>
+                <li>justify, start, end</li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
+        
+        <!-- CSS Quiz -->
+        <div class="quiz-question p-4 bg-purple-50 rounded-lg">
+          <p class="font-medium mb-3">Question: Which property changes text color?</p>
+          <div class="space-y-2">
+            <label class="flex items-center p-2 hover:bg-purple-100 rounded cursor-pointer">
+              <input type="radio" name="css-color" value="1" class="mr-2">
+              text-color
+            </label>
+            <label class="flex items-center p-2 hover:bg-purple-100 rounded cursor-pointer">
+              <input type="radio" name="css-color" value="2" class="mr-2">
+              font-color
+            </label>
+            <label class="flex items-center p-2 hover:bg-purple-100 rounded cursor-pointer">
+              <input type="radio" name="css-color" value="3" class="mr-2">
+              color
+            </label>
+          </div>
+          <button onclick="checkAnswer('css-color', '3')" class="mt-3 px-4 py-1 bg-purple-600 text-white rounded hover:bg-purple-700">Check Answer</button>
+          <div id="css-color-feedback" class="mt-2 text-sm hidden"></div>
         </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">1.8 Assigment 2</div>
-          <div class="text-xs text-gray-500 mt-1">Quiz • 30 min</div>
+      </div>
+      
+      <!-- Color Reference -->
+      <div class="mb-6">
+        <h4 class="font-semibold text-purple-700 mb-2">Colors</h4>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 mb-4">
+          <div class="bg-red-500 p-4 rounded text-white text-center">Red</div>
+          <div class="bg-blue-500 p-4 rounded text-white text-center">Blue</div>
+          <div class="bg-green-500 p-4 rounded text-white text-center">Green</div>
+          <div class="bg-yellow-500 p-4 rounded text-center">Yellow</div>
+          <div class="bg-purple-500 p-4 rounded text-white text-center">Purple</div>
+          <div class="bg-pink-500 p-4 rounded text-white text-center">Pink</div>
         </div>
-      </li>
+      </div>
+    </div>
+
+    <!-- Code Editor Section -->
+    <div class="mb-8">
+      <h3 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">Practice Editor</h3>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">HTML/CSS Code:</label>
+          <textarea id="cheatsheet-editor" class="w-full h-64 font-mono text-sm p-3 border rounded" spellcheck="false">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My Page&lt;/title&gt;
+  &lt;style&gt;
+    body {
+      font-family: Arial;
+      text-align: center;
+      color: #333;
+    }
+    .container {
+      margin: 20px auto;
+      max-width: 800px;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="container"&gt;
+    &lt;h1&gt;Welcome&lt;/h1&gt;
+    &lt;p&gt;Edit this code to practice&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Live Preview:</label>
+          <iframe id="cheatsheet-preview" class="w-full h-64 border rounded bg-white"></iframe>
+        </div>
+      </div>
+      <div class="mt-3 flex space-x-3">
+        <button onclick="runCheatsheetCode()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Run Code</button>
+        <button onclick="resetCheatsheetCode()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300">Reset</button>
+      </div>
+    </div>
+  </div>
+</div>
+      <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title" onclick="openAssignmentModal()">
+  <div class="completion-indicator completed">
+    <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+  </div>
+  <div class="flex-grow">
+    <div class="text-gray-700 font-medium">1.7 Assignment: Build Your First Web Page</div>
+    <div class="text-xs text-gray-500 mt-1">Practical Exercise • 30 min</div>
+  </div>
+</li>
+
+<!-- Assignment Modal -->
+<div id="assignment-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black bg-opacity-50">
+  <div class="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] flex flex-col">
+    <!-- Modal Header -->
+    <div class="flex justify-between items-center p-4 border-b">
+      <h3 class="text-lg font-bold text-orange-800">Assignment: Build Your First Web Page</h3>
+      <div class="flex items-center space-x-4">
+        <div id="assignment-timer" class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">
+          30:00
+        </div>
+        <button onclick="toggleFullscreen()" class="text-gray-500 hover:text-gray-700">
+          <i class="bi bi-fullscreen"></i>
+        </button>
+        <button onclick="closeAssignmentModal()" class="text-gray-500 hover:text-gray-700">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Modal Body -->
+    <div class="flex-1 overflow-auto p-6 space-y-6">
+      <div class="bg-orange-50 p-4 rounded-lg">
+        <h4 class="font-bold text-orange-800 mb-2">📝 Instructions</h4>
+        <ul class="list-disc pl-5 space-y-2 text-sm">
+          <li>Create a complete HTML page with proper structure (DOCTYPE, html, head, body)</li>
+          <li>Include at least one heading, paragraph, and image</li>
+          <li>Style your page with CSS (font-family, color, and text-align properties)</li>
+          <li>Your page should have a clear theme (about you, your hobby, etc.)</li>
+        </ul>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <!-- Code Editor -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Your Code:</label>
+          <textarea id="assignment-editor" class="w-full h-64 font-mono text-sm p-3 border rounded focus:ring-orange-500 focus:border-orange-500" spellcheck="false">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My Page&lt;/title&gt;
+  &lt;style&gt;
+    /* Add your CSS here */
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Add your content here --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+        </div>
+        
+        <!-- Live Preview -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Live Preview:</label>
+          <iframe id="assignment-preview" class="w-full h-64 border rounded bg-white"></iframe>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Modal Footer -->
+    <div class="flex justify-between p-4 border-t bg-gray-50 rounded-b-lg">
+      <button onclick="showSolution()" class="text-orange-600 hover:text-orange-800 text-sm font-medium">
+        <i class="bi bi-lightbulb mr-1"></i> Show Solution
+      </button>
+      <div class="space-x-2">
+        <button onclick="validateAssignment()" class="bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700 text-sm">
+          Validate
+        </button>
+        <button onclick="resetAssignment()" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 text-sm">
+          Reset
+        </button>
+        <button onclick="submitAssignment()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 text-sm">
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Solution Modal -->
+<div id="solution-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black bg-opacity-50">
+  <div class="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] flex flex-col">
+    <div class="flex justify-between items-center p-4 border-b">
+      <h3 class="text-lg font-bold text-orange-800">Sample Solution</h3>
+      <button onclick="hideSolution()" class="text-gray-500 hover:text-gray-700">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+    <div class="p-6 overflow-auto">
+      <pre class="bg-gray-100 p-4 rounded text-sm overflow-auto"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My Favorite Hobby&lt;/title&gt;
+  &lt;style&gt;
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      text-align: center;
+      margin: 20px;
+    }
+    img {
+      border-radius: 8px;
+      max-width: 100%;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Photography&lt;/h1&gt;
+  &lt;p&gt;I love capturing beautiful moments in nature.&lt;/p&gt;
+  &lt;img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Nature photography"&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+  </div>
+</div>
+
     </ul>
   </div>
   <li class="flex items-center bg-orange-50 p-4 rounded-lg shadow-sm course-title" onclick="toggleModule(event, 'module2')">
-    <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-    <div class="flex-grow">
-      <div class="flex items-center justify-between">
-        <div class="text-gray-800 font-medium">2. CSS Box Model</div>
-        <i class="bi bi-chevron-down transition-transform duration-300 transform" id="module2-arrow"></i>
-      </div>
-      <div class="text-sm text-gray-500 mt-1">Week-2 | Schedule</div>
-    </div>
-  </li>
-  
-  <!-- Sub-modules for Module 1 -->
-  <div id="module2-content" class="sub-modules pl-12 pr-4 overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
-    <ul class="space-y-3 mt-2">
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">2.1 Introduction to CSS Box Model|Part 1</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 40 min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">2.2 Introduction to CSS Box Model|Part 1|CheatSheet</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 10 min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">2.3 Introduction to CSS Box Model|Part 2</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 1hr min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">2.4 Introduction to CSS Box Model|Part 2|CheatSheet</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 50 min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">2.5 Assignment-1</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 30 min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">2.6 Assignment-2</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 30 min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">2.7 Practice - Page</div>
-          <div class="text-xs text-gray-500 mt-1">Coding • 2 hrs</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">2.8 Practice - Styles</div>
-          <div class="text-xs text-gray-500 mt-1">Coding • 2 hrs</div>
-        </div>
-      </li>
-    </ul>
+  <div class="completion-indicator completed">
+    <i class="bi bi-check" style="font-size: 0.7rem;"></i>
   </div>
-  <li class="flex items-center bg-orange-50 p-4 rounded-lg shadow-sm course-title" onclick="toggleModule(event, 'module3')">
-    <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-    <div class="flex-grow">
-      <div class="flex items-center justify-between">
-        <div class="text-gray-800 font-medium">3. Bootstrap</div>
-        <i class="bi bi-chevron-down transition-transform duration-300 transform" id="module3-arrow"></i>
-      </div>
-      <div class="text-sm text-gray-500 mt-1">Week-3 | Schedule</div>
+  <div class="flex-grow">
+    <div class="flex items-center justify-between">
+      <div class="text-gray-800 font-medium">2. CSS Box Model</div>
+      <i class="bi bi-chevron-down transition-transform duration-300 transform" id="module2-arrow"></i>
     </div>
-  </li>
-  
-  <!-- Sub-modules for Module 1 -->
-  <div id="module3-content" class="sub-modules pl-12 pr-4 overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
-    <ul class="space-y-3 mt-2">
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">3.1 Introduction to BootStrap</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 40 min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">3.2 Introduction to BootStrap|Cheat Sheet</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 40 min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">3.3 Introduction to BootStrap|Part 2</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 40 min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">3.4 Introduction to BootStrap|Part 2|Cheat Sheet</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 10 min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">3.5 Pratice-1</div>
-          <div class="text-xs text-gray-500 mt-1">Coding • 1 Hr</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">3.6 Pratice-2</div>
-          <div class="text-xs text-gray-500 mt-1">Coding • 1 Hr</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">3.7 Pratice-3</div>
-          <div class="text-xs text-gray-500 mt-1">Coding • 1 Hr</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">3.8 Pratice-4</div>
-          <div class="text-xs text-gray-500 mt-1">Coding • 1 Hr</div>
-        </div>
-      </li>
-    </ul>
+    <div class="text-sm text-gray-500 mt-1">Week-2 | Schedule</div>
   </div>
+</li>
+
+<!-- Sub-modules for Module 2 -->
+<div id="module2-content" class="sub-modules pl-12 pr-4 overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+  <ul class="space-y-3 mt-2">
+    <!-- Video Lesson 1 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title"
+      data-video-title="2.1 Introduction to CSS Box Model|Part 1"
+      data-video-id="VMgMPx2l4iU">
+      <div class="completion-indicator completed">
+        <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">2.1 Introduction to CSS Box Model|Part 1</div>
+        <div class="text-xs text-gray-500 mt-1">Apx 40 min</div>
+      </div>
+    </li>
+
+    <!-- Cheatsheet 1 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title cheatsheet-item" onclick="openBoxModelCheatsheet('part1')">
+      <div class="completion-indicator completed">
+        <i class="bi bi-journal-code text-blue-600" style="font-size: 0.9rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">2.2 CSS Box Model CheatSheet</div>
+        <div class="text-xs text-gray-500 mt-1">Interactive Reference • 10 min</div>
+      </div>
+    </li>
+
+    <!-- Video Lesson 2 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title"
+      data-video-title="2.3 Introduction to CSS Box Model|Part 2"
+      data-video-id="6K84W0SUcjo">
+      <div class="completion-indicator completed">
+        <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">2.3 Advanced CSS Box Model</div>
+        <div class="text-xs text-gray-500 mt-1">Apx 1hr min</div>
+      </div>
+    </li>
+
+    <!-- Cheatsheet 2 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title cheatsheet-item" onclick="openBoxModelCheatsheet('part2')">
+      <div class="completion-indicator completed">
+        <i class="bi bi-journal-code text-blue-600" style="font-size: 0.9rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">2.4 Advanced Box Model Reference</div>
+        <div class="text-xs text-gray-500 mt-1">Interactive Guide • 10 min</div>
+      </div>
+    </li>
+
+    <!-- Practice 1 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title" onclick="openBoxModelPractice('layout')">
+      <div class="completion-indicator completed">
+        <i class="bi bi-code-square text-green-600" style="font-size: 0.9rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">2.5 Practice - Page Layout</div>
+        <div class="text-xs text-gray-500 mt-1">Coding Exercise • 2 hrs</div>
+      </div>
+    </li>
+
+    <!-- Practice 2 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title" onclick="openBoxModelPractice('styles')">
+      <div class="completion-indicator completed">
+        <i class="bi bi-code-square text-green-600" style="font-size: 0.9rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">2.6 Practice - Responsive Styles</div>
+        <div class="text-xs text-gray-500 mt-1">Coding Exercise • 2 hrs</div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- Box Model Cheatsheet Modal -->
+<div id="boxmodel-cheatsheet-modal" class="fixed inset-0 z-50 hidden bg-white p-6 overflow-auto">
+  <div class="max-w-4xl mx-auto">
+    <div class="flex justify-between items-center mb-6 sticky top-0 bg-white py-4">
+      <h2 class="text-2xl font-bold text-orange-700" id="cheatsheet-title">CSS Box Model Reference</h2>
+      <button onclick="closeBoxModelCheatsheet()" class="text-gray-500 hover:text-gray-700 text-2xl">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <!-- Part 1 Content -->
+    <div id="part1-content" class="cheatsheet-content">
+      <div class="mb-8">
+        <h3 class="text-xl font-bold text-blue-800 mb-4">The CSS Box Model</h3>
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <h4 class="font-semibold text-blue-700 mb-2">Box Model Components</h4>
+            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <div class="flex justify-center mb-4">
+                <div class="relative w-40 h-40 bg-orange-100 border-4 border-orange-300">
+                  <div class="absolute inset-4 bg-blue-100 border-4 border-blue-300">
+                    <div class="absolute inset-4 bg-green-100 border-4 border-green-300 flex items-center justify-center">
+                      <span class="text-xs font-bold">Content</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <ul class="text-sm space-y-2">
+                <li><strong>Content</strong> - The actual content of the box</li>
+                <li><strong>Padding</strong> - Clears an area around the content</li>
+                <li><strong>Border</strong> - A border that goes around the padding</li>
+                <li><strong>Margin</strong> - Clears an area outside the border</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold text-blue-700 mb-2">Box Model Properties</h4>
+            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <pre class="text-sm bg-white p-3 rounded overflow-auto"><code>.box {
+  width: 300px;
+  height: 200px;
+  padding: 20px;
+  border: 5px solid #333;
+  margin: 30px;
+}</code></pre>
+              <div class="mt-4 text-sm">
+                <p><strong>Total width</strong> = width + padding-left + padding-right + border-left + border-right</p>
+                <p><strong>Total height</strong> = height + padding-top + padding-bottom + border-top + border-bottom</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-question p-4 bg-blue-50 rounded-lg mb-6">
+          <p class="font-medium mb-3">Question: If an element has width: 200px, padding: 10px, and border: 2px, what is its total width?</p>
+          <div class="space-y-2">
+            <label class="flex items-center p-2 hover:bg-blue-100 rounded cursor-pointer">
+              <input type="radio" name="boxmodel-width" value="1" class="mr-2">
+              200px
+            </label>
+            <label class="flex items-center p-2 hover:bg-blue-100 rounded cursor-pointer">
+              <input type="radio" name="boxmodel-width" value="2" class="mr-2">
+              224px
+            </label>
+            <label class="flex items-center p-2 hover:bg-blue-100 rounded cursor-pointer">
+              <input type="radio" name="boxmodel-width" value="3" class="mr-2">
+              210px
+            </label>
+          </div>
+          <button onclick="checkBoxModelAnswer('boxmodel-width', '2')" class="mt-3 px-4 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">Check Answer</button>
+          <div id="boxmodel-width-feedback" class="mt-2 text-sm hidden"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Part 2 Content -->
+    <div id="part2-content" class="cheatsheet-content hidden">
+      <div class="mb-8">
+        <h3 class="text-xl font-bold text-purple-800 mb-4">Advanced Box Model Techniques</h3>
+        
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <h4 class="font-semibold text-purple-700 mb-2">Box Sizing</h4>
+            <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+              <pre class="text-sm bg-white p-3 rounded overflow-auto"><code>/* Default box model */
+.default-box {
+  box-sizing: content-box; /* default */
+  width: 300px;
+  padding: 20px;
+  /* Total width = 300 + 20 + 20 = 340px */
+}
+
+/* Border-box model */
+.better-box {
+  box-sizing: border-box;
+  width: 300px;
+  padding: 20px;
+  /* Total width = 300px (includes padding) */
+}</code></pre>
+              <p class="mt-3 text-sm">Using <code>box-sizing: border-box</code> makes layouts much easier to calculate.</p>
+            </div>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold text-purple-700 mb-2">Margin Collapsing</h4>
+            <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+              <div class="mb-3">
+                <p class="text-sm mb-2">When two vertical margins meet, they collapse to the larger of the two:</p>
+                <div class="border rounded p-2">
+                  <div class="mb-4 p-2 bg-blue-100">Element A (margin-bottom: 20px)</div>
+                  <div class="mt-4 p-2 bg-green-100">Element B (margin-top: 30px)</div>
+                  <p class="text-xs mt-2">Actual gap between them: 30px (not 50px)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-question p-4 bg-purple-50 rounded-lg">
+          <p class="font-medium mb-3">Question: Which box-sizing value includes padding and border in the element's width?</p>
+          <div class="space-y-2">
+            <label class="flex items-center p-2 hover:bg-purple-100 rounded cursor-pointer">
+              <input type="radio" name="boxmodel-sizing" value="1" class="mr-2">
+              content-box
+            </label>
+            <label class="flex items-center p-2 hover:bg-purple-100 rounded cursor-pointer">
+              <input type="radio" name="boxmodel-sizing" value="2" class="mr-2">
+              border-box
+            </label>
+            <label class="flex items-center p-2 hover:bg-purple-100 rounded cursor-pointer">
+              <input type="radio" name="boxmodel-sizing" value="3" class="mr-2">
+              padding-box
+            </label>
+          </div>
+          <button onclick="checkBoxModelAnswer('boxmodel-sizing', '2')" class="mt-3 px-4 py-1 bg-purple-600 text-white rounded hover:bg-purple-700">Check Answer</button>
+          <div id="boxmodel-sizing-feedback" class="mt-2 text-sm hidden"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Practice Editor -->
+    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+      <h3 class="text-lg font-bold text-gray-800 mb-3">Try It Yourself</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">CSS Code:</label>
+          <textarea id="boxmodel-editor" class="w-full h-48 font-mono text-sm p-3 border rounded focus:ring-orange-500 focus:border-orange-500" spellcheck="false">.box {
+  width: 200px;
+  height: 100px;
+  padding: 20px;
+  border: 5px solid #333;
+  margin: 10px;
+  background-color: #f0f0f0;
+}
+
+/* Try changing these values */
+.box-example {
+  width: 250px;
+  padding: 30px;
+  margin: 20px;
+  box-sizing: content-box;
+}</textarea>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Preview:</label>
+          <iframe id="boxmodel-preview" class="w-full h-48 border rounded bg-white"></iframe>
+        </div>
+      </div>
+      <div class="mt-3 flex space-x-3">
+        <button onclick="runBoxModelCode()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Run Code</button>
+        <button onclick="resetBoxModelCode()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300">Reset</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Box Model Practice Modal -->
+<div id="boxmodel-practice-modal" class="fixed inset-0 z-50 hidden bg-white p-6 overflow-auto">
+  <div class="max-w-4xl mx-auto">
+    <div class="flex justify-between items-center mb-6 sticky top-0 bg-white py-4">
+      <h2 class="text-2xl font-bold text-orange-700" id="practice-title">Box Model Practice</h2>
+      <button onclick="closeBoxModelPractice()" class="text-gray-500 hover:text-gray-700 text-2xl">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <!-- Layout Practice -->
+    <div id="layout-practice" class="practice-content">
+      <div class="mb-6">
+        <h3 class="text-xl font-bold text-blue-800 mb-3">Page Layout Challenge</h3>
+        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 mb-4">
+          <h4 class="font-semibold text-blue-700 mb-2">Instructions:</h4>
+          <ol class="list-decimal pl-5 space-y-2 text-sm">
+            <li>Create a header with 20px padding and 1px border</li>
+            <li>Add a main content area with 15px padding</li>
+            <li>Include a sidebar with 10px margin</li>
+            <li>Make sure the total width of each section matches the design</li>
+            <li>Use box-sizing: border-box for all elements</li>
+          </ol>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h4 class="font-medium text-gray-700 mb-2">HTML Structure:</h4>
+            <pre class="bg-gray-100 p-3 rounded text-sm"><code>&lt;div class="container"&gt;
+  &lt;header&gt;&lt;/header&gt;
+  &lt;div class="content-wrapper"&gt;
+    &lt;main&gt;&lt;/main&gt;
+    &lt;aside&gt;&lt;/aside&gt;
+  &lt;/div&gt;
+  &lt;footer&gt;&lt;/footer&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+          <div>
+            <h4 class="font-medium text-gray-700 mb-2">Target Design:</h4>
+            <div class="border rounded p-2">
+              <div class="border-b-2 border-gray-300 p-4 mb-2 bg-gray-100">Header</div>
+              <div class="flex mb-2">
+                <div class="w-2/3 p-4 bg-blue-100">Main Content</div>
+                <div class="w-1/3 p-4 bg-green-100">Sidebar</div>
+              </div>
+              <div class="border-t-2 border-gray-300 p-4 bg-gray-100">Footer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Styles Practice -->
+    <div id="styles-practice" class="practice-content hidden">
+      <div class="mb-6">
+        <h3 class="text-xl font-bold text-purple-800 mb-3">Responsive Styles Challenge</h3>
+        <div class="bg-purple-50 p-4 rounded-lg border border-purple-200 mb-4">
+          <h4 class="font-semibold text-purple-700 mb-2">Instructions:</h4>
+          <ol class="list-decimal pl-5 space-y-2 text-sm">
+            <li>Create a responsive grid of cards</li>
+            <li>Each card should have consistent spacing (margin/padding)</li>
+            <li>Implement proper margin collapsing between cards</li>
+            <li>Make the layout adapt to different screen sizes</li>
+            <li>Ensure the total width calculations are correct</li>
+          </ol>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h4 class="font-medium text-gray-700 mb-2">HTML Structure:</h4>
+            <pre class="bg-gray-100 p-3 rounded text-sm"><code>&lt;div class="card-container"&gt;
+  &lt;div class="card"&gt;&lt;/div&gt;
+  &lt;div class="card"&gt;&lt;/div&gt;
+  &lt;div class="card"&gt;&lt;/div&gt;
+  &lt;div class="card"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+          <div>
+            <h4 class="font-medium text-gray-700 mb-2">Target Design:</h4>
+            <div class="border rounded p-2">
+              <div class="grid grid-cols-2 gap-4">
+                <div class="p-4 bg-purple-100 rounded">Card</div>
+                <div class="p-4 bg-purple-100 rounded">Card</div>
+                <div class="p-4 bg-purple-100 rounded">Card</div>
+                <div class="p-4 bg-purple-100 rounded">Card</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Practice Editor -->
+    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+      <h3 class="text-lg font-bold text-gray-800 mb-3">Your Solution</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">HTML/CSS Code:</label>
+          <textarea id="practice-editor" class="w-full h-64 font-mono text-sm p-3 border rounded focus:ring-orange-500 focus:border-orange-500" spellcheck="false">&lt;!-- Write your solution here --&gt;
+&lt;style&gt;
+  /* Add your CSS here */
+&lt;/style&gt;</textarea>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Preview:</label>
+          <iframe id="practice-preview" class="w-full h-64 border rounded bg-white"></iframe>
+        </div>
+      </div>
+      <div class="mt-3 flex justify-between">
+        <div>
+          <button onclick="validatePractice()" class="px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700">Validate</button>
+          <button onclick="resetPractice()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 ml-2">Reset</button>
+        </div>
+        <button onclick="submitPractice()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Submit</button>
+      </div>
+      <div id="practice-feedback" class="mt-3 hidden p-3 rounded text-sm"></div>
+    </div>
+  </div>
+</div>
+
+ <li class="flex items-center bg-orange-50 p-4 rounded-lg shadow-sm course-title" onclick="toggleModule(event, 'module3')">
+  <div class="completion-indicator completed">
+    <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+  </div>
+  <div class="flex-grow">
+    <div class="flex items-center justify-between">
+      <div class="text-gray-800 font-medium">3. Bootstrap Framework</div>
+      <i class="bi bi-chevron-down transition-transform duration-300 transform" id="module3-arrow"></i>
+    </div>
+    <div class="text-sm text-gray-500 mt-1">Week-3 | Schedule</div>
+  </div>
+</li>
+
+<!-- Sub-modules for Module 3 -->
+<div id="module3-content" class="sub-modules pl-12 pr-4 overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+  <ul class="space-y-3 mt-2">
+    <!-- Video Lesson 1 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title"
+      data-video-title="3.1 Bootstrap Fundamentals"
+      data-video-id="6K84W0SUcj5">
+      <div class="completion-indicator completed">
+        <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">3.1 Bootstrap Fundamentals</div>
+        <div class="text-xs text-gray-500 mt-1">Apx 40 min</div>
+      </div>
+    </li>
+
+    <!-- Cheatsheet 1 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title cheatsheet-item" onclick="openBootstrapCheatsheet('fundamentals')">
+      <div class="completion-indicator completed">
+        <i class="bi bi-journal-code text-blue-600" style="font-size: 0.9rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">3.2 Bootstrap Quick Reference</div>
+        <div class="text-xs text-gray-500 mt-1">Cheat Sheet • 15 min</div>
+      </div>
+    </li>
+
+    <!-- Video Lesson 2 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title"
+      data-video-title="3.3 Advanced Bootstrap Components"
+      data-video-id="AzRXIU2JNrE">
+      <div class="completion-indicator completed">
+        <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">3.3 Advanced Bootstrap Components</div>
+        <div class="text-xs text-gray-500 mt-1">Apx 50 min</div>
+      </div>
+    </li>
+
+    <!-- Cheatsheet 2 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title cheatsheet-item" onclick="openBootstrapCheatsheet('components')">
+      <div class="completion-indicator completed">
+        <i class="bi bi-journal-code text-blue-600" style="font-size: 0.9rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">3.4 Components Reference</div>
+        <div class="text-xs text-gray-500 mt-1">Interactive Guide • 15 min</div>
+      </div>
+    </li>
+
+    <!-- Practice 1 - Layout -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title" onclick="openBootstrapPractice('layout')">
+      <div class="completion-indicator completed">
+        <i class="bi bi-code-square text-green-600" style="font-size: 0.9rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">3.5 Practice - Responsive Layout</div>
+        <div class="text-xs text-gray-500 mt-1">Coding Exercise • 1 hr</div>
+      </div>
+    </li>
+
+    <!-- Practice 2 - Components -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title" onclick="openBootstrapPractice('components')">
+      <div class="completion-indicator completed">
+        <i class="bi bi-code-square text-green-600" style="font-size: 0.9rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">3.6 Practice - Component Building</div>
+        <div class="text-xs text-gray-500 mt-1">Coding Exercise • 1.5 hrs</div>
+      </div>
+    </li>
+
+    <!-- Practice 3 - Dashboard -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title" onclick="openBootstrapPractice('dashboard')">
+      <div class="completion-indicator completed">
+        <i class="bi bi-code-square text-green-600" style="font-size: 0.9rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">3.7 Practice - Admin Dashboard</div>
+        <div class="text-xs text-gray-500 mt-1">Project • 2 hrs</div>
+      </div>
+    </li>
+
+    <!-- Practice 4 - E-commerce -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title" onclick="openBootstrapPractice('ecommerce')">
+      <div class="completion-indicator completed">
+        <i class="bi bi-code-square text-green-600" style="font-size: 0.9rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">3.8 Practice - E-commerce Page</div>
+        <div class="text-xs text-gray-500 mt-1">Project • 2.5 hrs</div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- Bootstrap Cheatsheet Modal -->
+<div id="bootstrap-cheatsheet-modal" class="fixed inset-0 z-50 hidden bg-white p-6 overflow-auto">
+  <div class="max-w-4xl mx-auto">
+    <div class="flex justify-between items-center mb-6 sticky top-0 bg-white py-4">
+      <h2 class="text-2xl font-bold text-orange-700" id="bootstrap-cheatsheet-title">Bootstrap Reference</h2>
+      <button onclick="closeBootstrapCheatsheet()" class="text-gray-500 hover:text-gray-700 text-2xl">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <!-- Fundamentals Content -->
+    <div id="fundamentals-content" class="cheatsheet-content">
+      <div class="mb-8">
+        <h3 class="text-xl font-bold text-blue-800 mb-4">Bootstrap Fundamentals</h3>
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <h4 class="font-semibold text-blue-700 mb-2">Grid System</h4>
+            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <pre class="text-sm bg-white p-3 rounded overflow-auto"><code>&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-md-6 col-lg-4"&gt;Column 1&lt;/div&gt;
+    &lt;div class="col-md-6 col-lg-4"&gt;Column 2&lt;/div&gt;
+    &lt;div class="col-md-12 col-lg-4"&gt;Column 3&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+              <ul class="text-sm space-y-2 mt-3">
+                <li><strong>.container</strong> - Fixed width container</li>
+                <li><strong>.container-fluid</strong> - Full width container</li>
+                <li><strong>.row</strong> - Horizontal group of columns</li>
+                <li><strong>.col-*</strong> - Column classes for different breakpoints</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold text-blue-700 mb-2">Utility Classes</h4>
+            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <div class="grid grid-cols-2 gap-2 text-sm">
+                <div class="p-2 bg-white rounded border">
+                  <strong>Spacing</strong><br>
+                  m-*, p-*, mx-*, py-*
+                </div>
+                <div class="p-2 bg-white rounded border">
+                  <strong>Text</strong><br>
+                  text-*, fs-*, fw-*
+                </div>
+                <div class="p-2 bg-white rounded border">
+                  <strong>Colors</strong><br>
+                  bg-*, text-*, border-*
+                </div>
+                <div class="p-2 bg-white rounded border">
+                  <strong>Display</strong><br>
+                  d-*, d-none, d-md-block
+                </div>
+              </div>
+              <p class="mt-3 text-sm">* can be 1-5 for sizes or breakpoints (sm, md, lg, xl)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-question p-4 bg-blue-50 rounded-lg mb-6">
+          <p class="font-medium mb-3">Question: Which class creates a full-width container?</p>
+          <div class="space-y-2">
+            <label class="flex items-center p-2 hover:bg-blue-100 rounded cursor-pointer">
+              <input type="radio" name="bootstrap-container" value="1" class="mr-2">
+              .container
+            </label>
+            <label class="flex items-center p-2 hover:bg-blue-100 rounded cursor-pointer">
+              <input type="radio" name="bootstrap-container" value="2" class="mr-2">
+              .container-fluid
+            </label>
+            <label class="flex items-center p-2 hover:bg-blue-100 rounded cursor-pointer">
+              <input type="radio" name="bootstrap-container" value="3" class="mr-2">
+              .container-full
+            </label>
+          </div>
+          <button onclick="checkBootstrapAnswer('bootstrap-container', '2')" class="mt-3 px-4 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">Check Answer</button>
+          <div id="bootstrap-container-feedback" class="mt-2 text-sm hidden"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Components Content -->
+    <div id="components-content" class="cheatsheet-content hidden">
+      <div class="mb-8">
+        <h3 class="text-xl font-bold text-purple-800 mb-4">Bootstrap Components</h3>
+        
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <h4 class="font-semibold text-purple-700 mb-2">Navigation</h4>
+            <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+              <pre class="text-sm bg-white p-3 rounded overflow-auto"><code>&lt;nav class="navbar navbar-expand-lg navbar-light bg-light"&gt;
+  &lt;div class="container-fluid"&gt;
+    &lt;a class="navbar-brand" href="#"&gt;Logo&lt;/a&gt;
+    &lt;button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"&gt;
+      &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div class="collapse navbar-collapse" id="navbarNav"&gt;
+      &lt;ul class="navbar-nav"&gt;
+        &lt;li class="nav-item"&gt;&lt;a class="nav-link active" href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+            </div>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold text-purple-700 mb-2">Cards</h4>
+            <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+              <pre class="text-sm bg-white p-3 rounded overflow-auto"><code>&lt;div class="card" style="width: 18rem;"&gt;
+  &lt;img src="..." class="card-img-top" alt="..."&gt;
+  &lt;div class="card-body"&gt;
+    &lt;h5 class="card-title"&gt;Card Title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;Some quick example text.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Go somewhere&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-question p-4 bg-purple-50 rounded-lg">
+          <p class="font-medium mb-3">Question: Which class makes a navbar collapse on mobile?</p>
+          <div class="space-y-2">
+            <label class="flex items-center p-2 hover:bg-purple-100 rounded cursor-pointer">
+              <input type="radio" name="bootstrap-navbar" value="1" class="mr-2">
+              navbar-mobile
+            </label>
+            <label class="flex items-center p-2 hover:bg-purple-100 rounded cursor-pointer">
+              <input type="radio" name="bootstrap-navbar" value="2" class="mr-2">
+              navbar-expand-lg
+            </label>
+            <label class="flex items-center p-2 hover:bg-purple-100 rounded cursor-pointer">
+              <input type="radio" name="bootstrap-navbar" value="3" class="mr-2">
+              navbar-collapse
+            </label>
+          </div>
+          <button onclick="checkBootstrapAnswer('bootstrap-navbar', '2')" class="mt-3 px-4 py-1 bg-purple-600 text-white rounded hover:bg-purple-700">Check Answer</button>
+          <div id="bootstrap-navbar-feedback" class="mt-2 text-sm hidden"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Practice Editor -->
+    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+      <h3 class="text-lg font-bold text-gray-800 mb-3">Try It Yourself</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">HTML Code:</label>
+          <textarea id="bootstrap-editor" class="w-full h-48 font-mono text-sm p-3 border rounded focus:ring-orange-500 focus:border-orange-500" spellcheck="false">&lt;div class="container mt-4"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-md-6"&gt;
+      &lt;div class="card"&gt;
+        &lt;div class="card-body"&gt;
+          &lt;h5 class="card-title"&gt;Example Card&lt;/h5&gt;
+          &lt;p class="card-text"&gt;Try Bootstrap components here&lt;/p&gt;
+          &lt;button class="btn btn-primary"&gt;Click Me&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</textarea>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Preview:</label>
+          <iframe id="bootstrap-preview" class="w-full h-48 border rounded bg-white"></iframe>
+        </div>
+      </div>
+      <div class="mt-3 flex space-x-3">
+        <button onclick="runBootstrapCode()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Run Code</button>
+        <button onclick="resetBootstrapCode()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300">Reset</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap Practice Modal -->
+<div id="bootstrap-practice-modal" class="fixed inset-0 z-50 hidden bg-white p-6 overflow-auto">
+  <div class="max-w-4xl mx-auto">
+    <div class="flex justify-between items-center mb-6 sticky top-0 bg-white py-4">
+      <h2 class="text-2xl font-bold text-orange-700" id="bootstrap-practice-title">Bootstrap Practice</h2>
+      <button onclick="closeBootstrapPractice()" class="text-gray-500 hover:text-gray-700 text-2xl">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <!-- Layout Practice -->
+    <div id="layout-practice" class="practice-content">
+      <div class="mb-6">
+        <h3 class="text-xl font-bold text-blue-800 mb-3">Responsive Layout Challenge</h3>
+        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 mb-4">
+          <h4 class="font-semibold text-blue-700 mb-2">Instructions:</h4>
+          <ol class="list-decimal pl-5 space-y-2 text-sm">
+            <li>Create a responsive layout with header, main content, sidebar and footer</li>
+            <li>Use Bootstrap's grid system for the layout</li>
+            <li>Header should span full width</li>
+            <li>Main content should be 2/3 width on desktop, full on mobile</li>
+            <li>Sidebar should be 1/3 width on desktop, full on mobile</li>
+            <li>Footer should span full width</li>
+          </ol>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h4 class="font-medium text-gray-700 mb-2">HTML Structure:</h4>
+            <pre class="bg-gray-100 p-3 rounded text-sm"><code>&lt;div class="container"&gt;
+  &lt;header class="..."&gt;Header&lt;/header&gt;
+  &lt;div class="row"&gt;
+    &lt;main class="..."&gt;Main Content&lt;/main&gt;
+    &lt;aside class="..."&gt;Sidebar&lt;/aside&gt;
+  &lt;/div&gt;
+  &lt;footer class="..."&gt;Footer&lt;/footer&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+          <div>
+            <h4 class="font-medium text-gray-700 mb-2">Target Design:</h4>
+            <div class="border rounded p-2">
+              <div class="bg-primary text-white p-3 mb-3">Header</div>
+              <div class="row">
+                <div class="col-md-8 p-3 bg-light border">Main Content</div>
+                <div class="col-md-4 p-3 bg-info text-white">Sidebar</div>
+              </div>
+              <div class="bg-dark text-white p-3 mt-3">Footer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Components Practice -->
+    <div id="components-practice" class="practice-content hidden">
+      <div class="mb-6">
+        <h3 class="text-xl font-bold text-purple-800 mb-3">Component Building Challenge</h3>
+        <div class="bg-purple-50 p-4 rounded-lg border border-purple-200 mb-4">
+          <h4 class="font-semibold text-purple-700 mb-2">Instructions:</h4>
+          <ol class="list-decimal pl-5 space-y-2 text-sm">
+            <li>Create a product card component with image, title, description and button</li>
+            <li>Add a navbar with brand logo and 3 navigation links</li>
+            <li>Include an alert component that dismisses when clicked</li>
+            <li>Create a responsive image gallery with 3 columns on desktop, 1 on mobile</li>
+            <li>Add a contact form with name, email and message fields</li>
+          </ol>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h4 class="font-medium text-gray-700 mb-2">Required Components:</h4>
+            <ul class="list-disc pl-5 space-y-2 text-sm">
+              <li>Navbar</li>
+              <li>Cards</li>
+              <li>Alerts</li>
+              <li>Grid Layout</li>
+              <li>Forms</li>
+              <li>Buttons</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-medium text-gray-700 mb-2">Example Components:</h4>
+            <div class="border rounded p-2">
+              <div class="mb-3">
+                <div class="card" style="width: 100%;">
+                  <img src="https://via.placeholder.com/300" class="card-img-top">
+                  <div class="card-body">
+                    <h5 class="card-title">Product Name</h5>
+                    <p class="card-text">Product description here.</p>
+                    <a href="#" class="btn btn-primary">Buy Now</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dashboard Practice -->
+    <div id="dashboard-practice" class="practice-content hidden">
+      <div class="mb-6">
+        <h3 class="text-xl font-bold text-teal-800 mb-3">Admin Dashboard Project</h3>
+        <div class="bg-teal-50 p-4 rounded-lg border border-teal-200 mb-4">
+          <h4 class="font-semibold text-teal-700 mb-2">Requirements:</h4>
+          <ol class="list-decimal pl-5 space-y-2 text-sm">
+            <li>Create a responsive admin dashboard layout</li>
+            <li>Include a collapsible sidebar navigation</li>
+            <li>Add summary cards for key metrics</li>
+            <li>Implement a data table with pagination</li>
+            <li>Include charts using Bootstrap-compatible libraries</li>
+            <li>Add a responsive top navigation bar</li>
+          </ol>
+          <p class="mt-3 text-sm font-medium">Estimated Time: 2 hours</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h4 class="font-medium text-gray-700 mb-2">Suggested Structure:</h4>
+            <pre class="bg-gray-100 p-3 rounded text-sm"><code>&lt;div class="dashboard-container"&gt;
+  &lt;!-- Sidebar --&gt;
+  &lt;div class="sidebar"&gt;...&lt;/div&gt;
+  
+  &lt;!-- Main Content --&gt;
+  &lt;div class="main-content"&gt;
+    &lt;!-- Top Nav --&gt;
+    &lt;nav class="top-nav"&gt;...&lt;/nav&gt;
+    
+    &lt;!-- Summary Cards --&gt;
+    &lt;div class="summary-cards"&gt;...&lt;/div&gt;
+    
+    &lt;!-- Charts and Tables --&gt;
+    &lt;div class="data-section"&gt;...&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+          <div>
+            <h4 class="font-medium text-gray-700 mb-2">Dashboard Example:</h4>
+            <div class="border rounded p-2">
+              <div class="d-flex">
+                <div class="bg-dark text-white p-3" style="width: 200px;">Sidebar</div>
+                <div class="flex-grow p-3">
+                  <div class="bg-light p-2 mb-3">Top Nav</div>
+                  <div class="row mb-3">
+                    <div class="col-md-3 p-3 bg-primary text-white">Metric 1</div>
+                    <div class="col-md-3 p-3 bg-success text-white">Metric 2</div>
+                    <div class="col-md-3 p-3 bg-warning text-dark">Metric 3</div>
+                    <div class="col-md-3 p-3 bg-danger text-white">Metric 4</div>
+                  </div>
+                  <div class="bg-white p-3 border">Data Table</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- E-commerce Practice -->
+    <div id="ecommerce-practice" class="practice-content hidden">
+      <div class="mb-6">
+        <h3 class="text-xl font-bold text-amber-800 mb-3">E-commerce Page Project</h3>
+        <div class="bg-amber-50 p-4 rounded-lg border border-amber-200 mb-4">
+          <h4 class="font-semibold text-amber-700 mb-2">Requirements:</h4>
+          <ol class="list-decimal pl-5 space-y-2 text-sm">
+            <li>Create a responsive e-commerce product page</li>
+            <li>Include a navigation bar with cart icon</li>
+            <li>Add a hero section with call-to-action</li>
+            <li>Implement a product grid with hover effects</li>
+            <li>Create product detail cards with pricing</li>
+            <li>Add a newsletter subscription form</li>
+            <li>Include a footer with multiple columns</li>
+          </ol>
+          <p class="mt-3 text-sm font-medium">Estimated Time: 2.5 hours</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h4 class="font-medium text-gray-700 mb-2">Key Components:</h4>
+            <ul class="list-disc pl-5 space-y-2 text-sm">
+              <li>Responsive Navbar</li>
+              <li>Hero/Jumbotron</li>
+              <li>Product Cards</li>
+              <li>Image Carousel</li>
+              <li>Call-to-Action Buttons</li>
+              <li>Newsletter Form</li>
+              <li>Multi-column Footer</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-medium text-gray-700 mb-2">Page Layout:</h4>
+            <div class="border rounded p-2">
+              <div class="bg-dark text-white p-2 mb-2">Navbar</div>
+              <div class="bg-primary text-white p-4 mb-2">Hero</div>
+              <div class="row mb-2">
+                <div class="col-md-4 p-3 bg-white border">Product 1</div>
+                <div class="col-md-4 p-3 bg-white border">Product 2</div>
+                <div class="col-md-4 p-3 bg-white border">Product 3</div>
+              </div>
+              <div class="bg-light p-3">Newsletter</div>
+              <div class="bg-secondary text-white p-3 mt-2">Footer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Practice Editor -->
+    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+      <h3 class="text-lg font-bold text-gray-800 mb-3">Your Solution</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">HTML/CSS Code:</label>
+          <textarea id="bootstrap-practice-editor" class="w-full h-64 font-mono text-sm p-3 border rounded focus:ring-orange-500 focus:border-orange-500" spellcheck="false">&lt;!-- Write your solution here --&gt;
+&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
+
+&lt;style&gt;
+  /* Custom CSS goes here */
+&lt;/style&gt;</textarea>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Preview:</label>
+          <iframe id="bootstrap-practice-preview" class="w-full h-64 border rounded bg-white"></iframe>
+        </div>
+      </div>
+      <div class="mt-3 flex justify-between">
+        <div>
+          <button onclick="validateBootstrapPractice()" class="px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700">Validate</button>
+          <button onclick="resetBootstrapPractice()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 ml-2">Reset</button>
+        </div>
+        <button onclick="submitBootstrapPractice()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Submit</button>
+      </div>
+      <div id="bootstrap-practice-feedback" class="mt-3 hidden p-3 rounded text-sm"></div>
+    </div>
+  </div>
+</div>
   <li class="flex items-center bg-orange-50 p-4 rounded-lg shadow-sm course-title" onclick="toggleModule(event, 'module4')">
-    <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-    <div class="flex-grow">
-      <div class="flex items-center justify-between">
-        <div class="text-gray-800 font-medium">4.Developing Layouts</div>
-        <i class="bi bi-chevron-down transition-transform duration-300 transform" id="module4-arrow"></i>
-      </div>
-      <div class="text-sm text-gray-500 mt-1">Week-4 | Schedule</div>
-    </div>
-  </li>
-  
-  <!-- Sub-modules for Module 1 -->
-  <div id="module4-content" class="sub-modules pl-12 pr-4 overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
-    <ul class="space-y-3 mt-2">
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">4.1 Favourite Place Section</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 50 min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">4.2 Favourite Place Section|Cheat Sheet</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 10 min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">4.3 Approach to develop a Layout</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 1hr 5min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">4.4 Approach to develop a Layout|Cheat Sheet</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 10 min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">4.5 Favourite Place Detailed View Section</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 50 min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">4.6 Favourite Place Detailed View Section|Cheat Sheet</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 10 min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">4.7 Practice - 5</div>
-          <div class="text-xs text-gray-500 mt-1">Coding • 1 Hr</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">4.8 Practice - 6</div>
-          <div class="text-xs text-gray-500 mt-1">Coding • 1 Hr</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">4.9 Practice - 7</div>
-          <div class="text-xs text-gray-500 mt-1">Coding • 1 Hr</div>
-        </div>
-      </li>
-    </ul>
+  <div class="completion-indicator completed">
+    <i class="bi bi-check" style="font-size: 0.7rem;"></i>
   </div>
-  <li class="flex items-center bg-orange-50 p-4 rounded-lg shadow-sm course-title" onclick="toggleModule(event, 'module5')">
-    <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-    <div class="flex-grow">
-      <div class="flex items-center justify-between">
-        <div class="text-gray-800 font-medium">5.Website Integration</div>
-        <i class="bi bi-chevron-down transition-transform duration-300 transform" id="module5-arrow"></i>
-      </div>
-      <div class="text-sm text-gray-500 mt-1">Week-5 | Schedule</div>
+  <div class="flex-grow">
+    <div class="flex items-center justify-between">
+      <div class="text-gray-800 font-medium">4. Developing Layouts</div>
+      <i class="bi bi-chevron-down transition-transform duration-300 transform" id="module4-arrow"></i>
     </div>
-  </li>
-  
-  <!-- Sub-modules for Module 1 -->
-  <div id="module5-content" class="sub-modules pl-12 pr-4 overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
-    <ul class="space-y-3 mt-2">
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">5.1 Website Integration</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 50 min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">5.2 Website Integration|Cheat Sheet</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 10 min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">5.3 Website Integration|Part 2</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 1hr 5min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">5.4 Website Integration|Part 2|Cheat Sheet</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 10 min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">5.5 Website Behind the Scenes</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 40 min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">5.6 HTML Hyperlinks</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 40 min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">5.7 HTML Hyperlinks|Cheat Sheet</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 10 min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">5.8 OnDemand Session</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 35 min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">5.9 OnDemand Session|Cheat Sheet</div>
-          <div class="text-xs text-gray-500 mt-1">Apx 15 min</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">Practice - 8</div>
-          <div class="text-xs text-gray-500 mt-1">Coding • 1 Hr</div>
-        </div>
-      </li>
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">Practice - 9</div>
-          <div class="text-xs text-gray-500 mt-1">Coding • 1 Hr</div>
-        </div>
-      </li>
-    </ul>
+    <div class="text-sm text-gray-500 mt-1">Week-4 | Schedule</div>
   </div>
+</li>
+
+<!-- Sub-modules for Module 4 -->
+<div id="module4-content" class="sub-modules pl-12 pr-4 overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+  <ul class="space-y-3 mt-2">
+    <!-- Video Lesson 1 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title"
+      data-video-title="4.1 Favourite Place Section"
+      data-video-id="pOnU_e-DtSw">
+      <div class="completion-indicator completed">
+        <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">4.1 Favourite Place Section</div>
+        <div class="text-xs text-gray-500 mt-1">Apx 50 min</div>
+      </div>
+    </li>
+
+    <!-- Cheatsheet 1 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title cheatsheet-item" onclick="openLayoutCheatsheet('favourite-place')">
+      <div class="completion-indicator">
+        <i class="bi bi-journal-code text-blue-600" style="font-size: 0.9rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">4.2 Favourite Place Section | Cheat Sheet</div>
+        <div class="text-xs text-gray-500 mt-1">Cheat Sheet • 10 min</div>
+      </div>
+    </li>
+
+    <!-- Video Lesson 2 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title"
+      data-video-title="4.3 Approach to develop a Layout"
+      data-video-id="pOnU_e-DtSx">
+      <div class="completion-indicator completed">
+        <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">4.3 Approach to develop a Layout</div>
+        <div class="text-xs text-gray-500 mt-1">Apx 1hr 5min</div>
+      </div>
+    </li>
+
+    <!-- Cheatsheet 2 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title cheatsheet-item" onclick="openLayoutCheatsheet('layout-approach')">
+      <div class="completion-indicator">
+        <i class="bi bi-journal-code text-blue-600" style="font-size: 0.9rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">4.4 Approach to develop a Layout | Cheat Sheet</div>
+        <div class="text-xs text-gray-500 mt-1">Cheat Sheet • 10 min</div>
+      </div>
+    </li>
+
+    <!-- Video Lesson 3 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title"
+      data-video-title="4.5 Favourite Place Detailed View Section"
+      data-video-id="7q42ZiJUNVY">
+      <div class="completion-indicator completed">
+        <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">4.5 Favourite Place Detailed View Section</div>
+        <div class="text-xs text-gray-500 mt-1">Apx 50 min</div>
+      </div>
+    </li>
+
+    <!-- Cheatsheet 3 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title cheatsheet-item" onclick="openLayoutCheatsheet('detailed-view')">
+      <div class="completion-indicator">
+        <i class="bi bi-journal-code text-blue-600" style="font-size: 0.9rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">4.6 Favourite Place Detailed View Section | Cheat Sheet</div>
+        <div class="text-xs text-gray-500 mt-1">Cheat Sheet • 10 min</div>
+      </div>
+    </li>
+
+    <!-- Practice 1 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title" onclick="openLayoutPractice('favourite-place')">
+      <div class="completion-indicator">
+        <i class="bi bi-code-square text-green-600" style="font-size: 0.9rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">4.7 Practice - 5</div>
+        <div class="text-xs text-gray-500 mt-1">Coding Exercise • 1 hr</div>
+      </div>
+    </li>
+
+    <!-- Practice 2 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title" onclick="openLayoutPractice('detailed-layout')">
+      <div class="completion-indicator">
+        <i class="bi bi-code-square text-green-600" style="font-size: 0.9rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">4.8 Practice - 6</div>
+        <div class="text-xs text-gray-500 mt-1">Coding Exercise • 1 hr</div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- Layout Cheatsheet Modal -->
+<div id="layout-cheatsheet-modal" class="fixed inset-0 z-50 hidden bg-white p-6 overflow-auto">
+  <div class="max-w-4xl mx-auto">
+    <div class="flex justify-between items-center mb-6 sticky top-0 bg-white py-4">
+      <h2 class="text-2xl font-bold text-orange-700" id="layout-cheatsheet-title">Layout Development Reference</h2>
+      <button onclick="closeLayoutCheatsheet()" class="text-gray-500 hover:text-gray-700 text-2xl">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <!-- Favourite Place Content -->
+    <div id="favourite-place-content" class="cheatsheet-content">
+      <div class="mb-8">
+        <h3 class="text-xl font-bold text-blue-800 mb-4">Favourite Place Section</h3>
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <h4 class="font-semibold text-blue-700 mb-2">HTML Structure</h4>
+            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <pre class="text-sm bg-white p-3 rounded overflow-auto"><code>&lt;section class="favourite-place"&gt;
+  &lt;div class="container"&gt;
+    &lt;h1 class="section-title"&gt;My Favourite Places&lt;/h1&gt;
+    &lt;div class="place-card"&gt;
+      &lt;img src="place-image.jpg" class="place-image"&gt;
+      &lt;div class="place-details"&gt;
+        &lt;h2&gt;Place Name&lt;/h2&gt;
+        &lt;p&gt;Description of the place...&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+            </div>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold text-blue-700 mb-2">CSS Styling</h4>
+            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <pre class="text-sm bg-white p-3 rounded overflow-auto"><code>.favourite-place {
+  padding: 40px 0;
+  background-color: #f8f9fa;
+}
+
+.place-card {
+  display: flex;
+  gap: 20px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.place-image {
+  width: 40%;
+  object-fit: cover;
+}
+
+.place-details {
+  padding: 20px;
+  width: 60%;
+}</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-question p-4 bg-blue-50 rounded-lg mb-6">
+          <p class="font-medium mb-3">Question: What's the best way to make the place card responsive?</p>
+          <div class="space-y-2">
+            <label class="flex items-center p-2 hover:bg-blue-100 rounded cursor-pointer">
+              <input type="radio" name="place-card-responsive" value="1" class="mr-2">
+              Using media queries to change flex-direction
+            </label>
+            <label class="flex items-center p-2 hover:bg-blue-100 rounded cursor-pointer">
+              <input type="radio" name="place-card-responsive" value="2" class="mr-2">
+              Using Bootstrap grid classes
+            </label>
+            <label class="flex items-center p-2 hover:bg-blue-100 rounded cursor-pointer">
+              <input type="radio" name="place-card-responsive" value="3" class="mr-2">
+              Using JavaScript to detect screen size
+            </label>
+          </div>
+          <button onclick="checkLayoutAnswer('place-card-responsive', '1')" class="mt-3 px-4 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">Check Answer</button>
+          <div id="place-card-responsive-feedback" class="mt-2 text-sm hidden"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Layout Approach Content -->
+    <div id="layout-approach-content" class="cheatsheet-content hidden">
+      <div class="mb-8">
+        <h3 class="text-xl font-bold text-purple-800 mb-4">Layout Development Approach</h3>
+        
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <h4 class="font-semibold text-purple-700 mb-2">Step-by-Step Process</h4>
+            <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+              <ol class="list-decimal pl-5 space-y-2">
+                <li>Analyze the design requirements</li>
+                <li>Break down into sections and components</li>
+                <li>Create HTML structure</li>
+                <li>Add basic CSS styling</li>
+                <li>Implement responsive design</li>
+                <li>Test across devices</li>
+                <li>Optimize performance</li>
+              </ol>
+            </div>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold text-purple-700 mb-2">Common Layout Patterns</h4>
+            <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+              <ul class="list-disc pl-5 space-y-2">
+                <li><strong>Card Layout:</strong> For displaying multiple items</li>
+                <li><strong>Split Screen:</strong> Two equal columns</li>
+                <li><strong>Holy Grail:</strong> Header, footer, and three columns</li>
+                <li><strong>Grid of Cards:</strong> Responsive grid system</li>
+                <li><strong>Full-Screen Hero:</strong> Large banner section</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detailed View Content -->
+    <div id="detailed-view-content" class="cheatsheet-content hidden">
+      <div class="mb-8">
+        <h3 class="text-xl font-bold text-teal-800 mb-4">Detailed View Section</h3>
+        
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <h4 class="font-semibold text-teal-700 mb-2">HTML Structure</h4>
+            <div class="bg-teal-50 p-4 rounded-lg border border-teal-200">
+              <pre class="text-sm bg-white p-3 rounded overflow-auto"><code>&lt;section class="detailed-view"&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="place-header"&gt;
+      &lt;h1&gt;Taj Mahal&lt;/h1&gt;
+      &lt;p class="location"&gt;Agra, India&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="place-gallery"&gt;
+      &lt;img src="main-image.jpg" class="main-image"&gt;
+      &lt;div class="thumbnail-container"&gt;
+        &lt;img src="thumb1.jpg" class="thumbnail"&gt;
+        &lt;img src="thumb2.jpg" class="thumbnail"&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="place-description"&gt;
+      &lt;p&gt;Detailed description goes here...&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+            </div>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold text-teal-700 mb-2">CSS Styling</h4>
+            <div class="bg-teal-50 p-4 rounded-lg border border-teal-200">
+              <pre class="text-sm bg-white p-3 rounded overflow-auto"><code>.detailed-view {
+  padding: 40px 0;
+}
+
+.place-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.place-gallery {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.main-image {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.thumbnail-container {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Practice Editor -->
+    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+      <h3 class="text-lg font-bold text-gray-800 mb-3">Try It Yourself</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">HTML/CSS Code:</label>
+          <textarea id="layout-editor" class="w-full h-48 font-mono text-sm p-3 border rounded focus:ring-orange-500 focus:border-orange-500" spellcheck="false">&lt;!-- Start coding here --&gt;
+&lt;style&gt;
+  /* Add your CSS here */
+&lt;/style&gt;</textarea>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Preview:</label>
+          <iframe id="layout-preview" class="w-full h-48 border rounded bg-white"></iframe>
+        </div>
+      </div>
+      <div class="mt-3 flex space-x-3">
+        <button onclick="runLayoutCode()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Run Code</button>
+        <button onclick="resetLayoutCode()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300">Reset</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Layout Practice Modal -->
+<div id="layout-practice-modal" class="fixed inset-0 z-50 hidden bg-white p-6 overflow-auto">
+  <div class="max-w-4xl mx-auto">
+    <div class="flex justify-between items-center mb-6 sticky top-0 bg-white py-4">
+      <h2 class="text-2xl font-bold text-orange-700" id="layout-practice-title">Layout Practice</h2>
+      <button onclick="closeLayoutPractice()" class="text-gray-500 hover:text-gray-700 text-2xl">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <!-- Favourite Place Practice -->
+    <div id="favourite-place-practice" class="practice-content">
+      <div class="mb-6">
+        <h3 class="text-xl font-bold text-blue-800 mb-3">Favourite Place Challenge</h3>
+        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 mb-4">
+          <h4 class="font-semibold text-blue-700 mb-2">Instructions:</h4>
+          <ol class="list-decimal pl-5 space-y-2 text-sm">
+            <li>Create a favourite place section with image and description</li>
+            <li>Use flexbox for the card layout</li>
+            <li>Make it responsive (stack on mobile)</li>
+            <li>Add appropriate spacing and shadows</li>
+            <li>Include a heading for the section</li>
+          </ol>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h4 class="font-medium text-gray-700 mb-2">HTML Structure:</h4>
+            <pre class="bg-gray-100 p-3 rounded text-sm"><code>&lt;section class="favourite-place"&gt;
+  &lt;div class="container"&gt;
+    &lt;h1&gt;My Favourite Places&lt;/h1&gt;
+    &lt;div class="place-card"&gt;
+      &lt;!-- Image and details here --&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+          </div>
+          <div>
+            <h4 class="font-medium text-gray-700 mb-2">Target Design:</h4>
+            <div class="border rounded p-2">
+              <div class="text-center font-bold mb-4">My Favourite Places</div>
+              <div class="flex flex-col md:flex-row gap-4 p-4 bg-white shadow rounded">
+                <div class="md:w-1/3 bg-gray-200 h-32"></div>
+                <div class="md:w-2/3">
+                  <h3 class="font-bold">Place Name</h3>
+                  <p class="text-sm">Brief description of the place...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detailed Layout Practice -->
+    <div id="detailed-layout-practice" class="practice-content hidden">
+      <div class="mb-6">
+        <h3 class="text-xl font-bold text-teal-800 mb-3">Detailed Layout Challenge</h3>
+        <div class="bg-teal-50 p-4 rounded-lg border border-teal-200 mb-4">
+          <h4 class="font-semibold text-teal-700 mb-2">Instructions:</h4>
+          <ol class="list-decimal pl-5 space-y-2 text-sm">
+            <li>Create a detailed view page for a place</li>
+            <li>Include a header with title and location</li>
+            <li>Add a main image gallery with thumbnails</li>
+            <li>Create a detailed description section</li>
+            <li>Make it responsive and visually appealing</li>
+          </ol>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h4 class="font-medium text-gray-700 mb-2">Key Components:</h4>
+            <ul class="list-disc pl-5 space-y-2 text-sm">
+              <li>Header section with title and subtitle</li>
+              <li>Image gallery with main image and thumbnails</li>
+              <li>Detailed description text</li>
+              <li>Responsive grid layout</li>
+              <li>Proper spacing and typography</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-medium text-gray-700 mb-2">Page Layout:</h4>
+            <div class="border rounded p-2">
+              <div class="text-center mb-4">
+                <h2 class="font-bold">Taj Mahal</h2>
+                <p class="text-sm">Agra, India</p>
+              </div>
+              <div class="grid grid-cols-3 gap-2 mb-4">
+                <div class="col-span-2 bg-gray-300 h-32"></div>
+                <div class="grid gap-2">
+                  <div class="bg-gray-200 h-15"></div>
+                  <div class="bg-gray-200 h-15"></div>
+                </div>
+              </div>
+              <div class="bg-gray-100 p-3 text-sm">
+                Detailed description would go here...
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Practice Editor -->
+    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+      <h3 class="text-lg font-bold text-gray-800 mb-3">Your Solution</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">HTML/CSS Code:</label>
+          <textarea id="layout-practice-editor" class="w-full h-64 font-mono text-sm p-3 border rounded focus:ring-orange-500 focus:border-orange-500" spellcheck="false">&lt;!-- Write your solution here --&gt;
+&lt;style&gt;
+  /* Add your CSS here */
+&lt;/style&gt;</textarea>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Preview:</label>
+          <iframe id="layout-practice-preview" class="w-full h-64 border rounded bg-white"></iframe>
+        </div>
+      </div>
+      <div class="mt-3 flex justify-between">
+        <div>
+          <button onclick="validateLayoutPractice()" class="px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700">Validate</button>
+          <button onclick="resetLayoutPractice()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 ml-2">Reset</button>
+        </div>
+        <button onclick="submitLayoutPractice()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Submit</button>
+      </div>
+      <div id="layout-practice-feedback" class="mt-3 hidden p-3 rounded text-sm"></div>
+    </div>
+  </div>
+</div>
+  <!-- Week 5 - Website Integration Module -->
+<li class="flex items-center bg-orange-50 p-4 rounded-lg shadow-sm course-title" onclick="toggleModule(event, 'module5')">
+  <div class="completion-indicator completed">
+    <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+  </div>
+  <div class="flex-grow">
+    <div class="flex items-center justify-between">
+      <div class="text-gray-800 font-medium">5. Website Integration</div>
+      <i class="bi bi-chevron-down transition-transform duration-300 transform" id="module5-arrow"></i>
+    </div>
+    <div class="text-sm text-gray-500 mt-1">Week-5 | Schedule</div>
+  </div>
+</li>
+
+<div id="module5-content" class="sub-modules pl-12 pr-4 overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+  <ul class="space-y-3 mt-2">
+    <!-- Video Lesson 1 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title"
+      data-video-title="5.1 Website Integration"
+      data-video-id="5pQyhFBRc5k">
+      <div class="completion-indicator completed">
+        <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">5.1 Website Integration</div>
+        <div class="text-xs text-gray-500 mt-1">Apx 50 min</div>
+      </div>
+    </li>
+
+    <!-- Cheatsheet 1 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title cheatsheet-item" onclick="openWebsiteCheatsheet('integration')">
+      <div class="completion-indicator">
+        <i class="bi bi-journal-code text-blue-600" style="font-size: 0.9rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">5.2 Website Integration | Cheat Sheet</div>
+        <div class="text-xs text-gray-500 mt-1">Cheat Sheet • 10 min</div>
+      </div>
+    </li>
+
+    <!-- Video Lesson 2 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title"
+      data-video-title="5.3 Website Integration | Part 2"
+      data-video-id="M1GE1cSXQPE">
+      <div class="completion-indicator completed">
+        <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">5.3 Website Integration | Part 2</div>
+        <div class="text-xs text-gray-500 mt-1">Apx 1hr 5min</div>
+      </div>
+    </li>
+
+    <!-- Cheatsheet 2 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title cheatsheet-item" onclick="openWebsiteCheatsheet('integration-part2')">
+      <div class="completion-indicator">
+        <i class="bi bi-journal-code text-blue-600" style="font-size: 0.9rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">5.4 Website Integration | Part 2 | Cheat Sheet</div>
+        <div class="text-xs text-gray-500 mt-1">Cheat Sheet • 10 min</div>
+      </div>
+    </li>
+
+    <!-- Video Lesson 3 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title"
+      data-video-title="5.5 Website Behind the Scenes"
+      data-video-id="ZHrTFVp6ovw">
+      <div class="completion-indicator completed">
+        <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">5.5 Website Behind the Scenes</div>
+        <div class="text-xs text-gray-500 mt-1">Apx 40 min</div>
+      </div>
+    </li>
+
+    <!-- Video Lesson 4 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title"
+      data-video-title="5.6 HTML Hyperlinks"
+      data-video-id="dQw4w9WgXcQ">
+      <div class="completion-indicator">
+        <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">5.6 HTML Hyperlinks</div>
+        <div class="text-xs text-gray-500 mt-1">Apx 40 min</div>
+      </div>
+    </li>
+
+    <!-- Cheatsheet 3 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title cheatsheet-item" onclick="openWebsiteCheatsheet('hyperlinks')">
+      <div class="completion-indicator">
+        <i class="bi bi-journal-code text-blue-600" style="font-size: 0.9rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">5.7 HTML Hyperlinks | Cheat Sheet</div>
+        <div class="text-xs text-gray-500 mt-1">Cheat Sheet • 10 min</div>
+      </div>
+    </li>
+
+    <!-- Practice 1 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title" onclick="openWebsitePractice('integration')">
+      <div class="completion-indicator">
+        <i class="bi bi-code-square text-green-600" style="font-size: 0.9rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">5.8 Practice - 8</div>
+        <div class="text-xs text-gray-500 mt-1">Coding Exercise • 1 hr</div>
+      </div>
+    </li>
+
+    <!-- Practice 2 -->
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg course-title" onclick="openWebsitePractice('hyperlinks')">
+      <div class="completion-indicator">
+        <i class="bi bi-code-square text-green-600" style="font-size: 0.9rem;"></i>
+      </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">5.9 Practice - 9</div>
+        <div class="text-xs text-gray-500 mt-1">Coding Exercise • 1 hr</div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- Website Cheatsheet Modal -->
+<div id="website-cheatsheet-modal" class="fixed inset-0 z-50 hidden bg-white p-6 overflow-auto">
+  <div class="max-w-4xl mx-auto">
+    <div class="flex justify-between items-center mb-6 sticky top-0 bg-white py-4">
+      <h2 class="text-2xl font-bold text-orange-700" id="website-cheatsheet-title">Website Integration Reference</h2>
+      <button onclick="closeWebsiteCheatsheet()" class="text-gray-500 hover:text-gray-700 text-2xl">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <!-- Integration Content -->
+    <div id="integration-content" class="cheatsheet-content">
+      <div class="mb-8">
+        <h3 class="text-xl font-bold text-blue-800 mb-4">Website Integration Basics</h3>
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <h4 class="font-semibold text-blue-700 mb-2">HTML Structure</h4>
+            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <pre class="text-sm bg-white p-3 rounded overflow-auto"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Integrated Website&lt;/title&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;&lt;/header&gt;
+  &lt;main&gt;&lt;/main&gt;
+  &lt;footer&gt;&lt;/footer&gt;
+  &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold text-blue-700 mb-2">File Structure</h4>
+            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <pre class="text-sm bg-white p-3 rounded overflow-auto"><code>project-folder/
+├── index.html
+├── styles/
+│   ├── main.css
+│   └── responsive.css
+├── images/
+│   ├── logo.png
+│   └── hero.jpg
+└── scripts/
+    └── main.js</code></pre>
+              <p class="mt-3 text-sm">Organize files logically for better maintenance</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Integration Part 2 Content -->
+    <div id="integration-part2-content" class="cheatsheet-content hidden">
+      <div class="mb-8">
+        <h3 class="text-xl font-bold text-purple-800 mb-4">Advanced Integration Techniques</h3>
+        
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <h4 class="font-semibold text-purple-700 mb-2">CSS Integration</h4>
+            <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+              <pre class="text-sm bg-white p-3 rounded overflow-auto"><code>/* Modern CSS Integration */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+}</code></pre>
+            </div>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold text-purple-700 mb-2">JavaScript Integration</h4>
+            <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+              <pre class="text-sm bg-white p-3 rounded overflow-auto"><code>// Modern JS Module Pattern
+document.addEventListener('DOMContentLoaded', function() {
+  // DOM manipulation code here
+  
+  // Event delegation example
+  document.body.addEventListener('click', function(e) {
+    if (e.target.matches('.btn')) {
+      // Button click handler
+    }
+  });
+});</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hyperlinks Content -->
+    <div id="hyperlinks-content" class="cheatsheet-content hidden">
+      <div class="mb-8">
+        <h3 class="text-xl font-bold text-teal-800 mb-4">HTML Hyperlinks Reference</h3>
+        
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <h4 class="font-semibold text-teal-700 mb-2">Link Types</h4>
+            <div class="bg-teal-50 p-4 rounded-lg border border-teal-200">
+              <pre class="text-sm bg-white p-3 rounded overflow-auto"><code>&lt;!-- Basic Link --&gt;
+&lt;a href="page.html"&gt;Link Text&lt;/a&gt;
+
+&lt;!-- External Link --&gt;
+&lt;a href="https://example.com" target="_blank"&gt;Example&lt;/a&gt;
+
+&lt;!-- Email Link --&gt;
+&lt;a href="mailto:contact@example.com"&gt;Email Us&lt;/a&gt;
+
+&lt;!-- Phone Link --&gt;
+&lt;a href="tel:+1234567890"&gt;Call Us&lt;/a&gt;
+
+&lt;!-- Anchor Link --&gt;
+&lt;a href="#section-id"&gt;Jump to Section&lt;/a&gt;</code></pre>
+            </div>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold text-teal-700 mb-2">Link Attributes</h4>
+            <div class="bg-teal-50 p-4 rounded-lg border border-teal-200">
+              <table class="w-full text-sm">
+                <tr>
+                  <th class="text-left p-2 border-b">Attribute</th>
+                  <th class="text-left p-2 border-b">Purpose</th>
+                </tr>
+                <tr>
+                  <td class="p-2 border-b">href</td>
+                  <td class="p-2 border-b">Specifies the link destination</td>
+                </tr>
+                <tr>
+                  <td class="p-2 border-b">target</td>
+                  <td class="p-2 border-b">Where to open (_blank, _self, etc.)</td>
+                </tr>
+                <tr>
+                  <td class="p-2 border-b">rel</td>
+                  <td class="p-2 border-b">Relationship (nofollow, noopener, etc.)</td>
+                </tr>
+                <tr>
+                  <td class="p-2 border-b">download</td>
+                  <td class="p-2 border-b">Forces file download</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Practice Editor -->
+    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+      <h3 class="text-lg font-bold text-gray-800 mb-3">Try It Yourself</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">HTML/CSS Code:</label>
+          <textarea id="website-editor" class="w-full h-48 font-mono text-sm p-3 border rounded focus:ring-orange-500 focus:border-orange-500" spellcheck="false">&lt;!-- Start coding here --&gt;
+&lt;style&gt;
+  /* Add your CSS here */
+&lt;/style&gt;</textarea>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Preview:</label>
+          <iframe id="website-preview" class="w-full h-48 border rounded bg-white"></iframe>
+        </div>
+      </div>
+      <div class="mt-3 flex space-x-3">
+        <button onclick="runWebsiteCode()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Run Code</button>
+        <button onclick="resetWebsiteCode()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300">Reset</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Website Practice Modal -->
+<div id="website-practice-modal" class="fixed inset-0 z-50 hidden bg-white p-6 overflow-auto">
+  <div class="max-w-4xl mx-auto">
+    <div class="flex justify-between items-center mb-6 sticky top-0 bg-white py-4">
+      <h2 class="text-2xl font-bold text-orange-700" id="website-practice-title">Website Practice</h2>
+      <button onclick="closeWebsitePractice()" class="text-gray-500 hover:text-gray-700 text-2xl">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <!-- Integration Practice -->
+    <div id="integration-practice" class="practice-content">
+      <div class="mb-6">
+        <h3 class="text-xl font-bold text-blue-800 mb-3">Website Integration Challenge</h3>
+        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 mb-4">
+          <h4 class="font-semibold text-blue-700 mb-2">Instructions:</h4>
+          <ol class="list-decimal pl-5 space-y-2 text-sm">
+            <li>Create a complete website structure with HTML, CSS and JS</li>
+            <li>Implement proper file organization</li>
+            <li>Link all resources correctly</li>
+            <li>Add a navigation system between pages</li>
+            <li>Make sure all external resources load properly</li>
+          </ol>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h4 class="font-medium text-gray-700 mb-2">Required Structure:</h4>
+            <pre class="bg-gray-100 p-3 rounded text-sm"><code>my-website/
+├── index.html
+├── about.html
+├── contact.html
+├── css/
+│   └── styles.css
+├── js/
+│   └── main.js
+└── images/
+    └── logo.png</code></pre>
+          </div>
+          <div>
+            <h4 class="font-medium text-gray-700 mb-2">Example Navigation:</h4>
+            <div class="border rounded p-2">
+              <nav class="flex space-x-4 mb-4">
+                <a href="#" class="text-blue-600">Home</a>
+                <a href="#" class="text-gray-600">About</a>
+                <a href="#" class="text-gray-600">Contact</a>
+              </nav>
+              <div class="bg-gray-100 p-4">
+                Main content area would go here
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hyperlinks Practice -->
+    <div id="hyperlinks-practice" class="practice-content hidden">
+      <div class="mb-6">
+        <h3 class="text-xl font-bold text-teal-800 mb-3">Hyperlinks Challenge</h3>
+        <div class="bg-teal-50 p-4 rounded-lg border border-teal-200 mb-4">
+          <h4 class="font-semibold text-teal-700 mb-2">Instructions:</h4>
+          <ol class="list-decimal pl-5 space-y-2 text-sm">
+            <li>Create a page with different types of hyperlinks</li>
+            <li>Include external, internal, email, and phone links</li>
+            <li>Add anchor links to page sections</li>
+            <li>Implement proper link attributes (target, rel)</li>
+            <li>Style the links with CSS for better UX</li>
+          </ol>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h4 class="font-medium text-gray-700 mb-2">Link Types to Include:</h4>
+            <ul class="list-disc pl-5 space-y-2 text-sm">
+              <li>External website links</li>
+              <li>Internal page navigation</li>
+              <li>Email and telephone links</li>
+              <li>Anchor links within page</li>
+              <li>Download links for files</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-medium text-gray-700 mb-2">Example Links:</h4>
+            <div class="border rounded p-2">
+              <ul class="space-y-2">
+                <li><a href="#" class="text-blue-600">Regular Link</a></li>
+                <li><a href="#" class="text-blue-600" target="_blank">External Link</a></li>
+                <li><a href="mailto:test@example.com" class="text-blue-600">Email Link</a></li>
+                <li><a href="#section" class="text-blue-600">Anchor Link</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Practice Editor -->
+    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+      <h3 class="text-lg font-bold text-gray-800 mb-3">Your Solution</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">HTML/CSS Code:</label>
+          <textarea id="website-practice-editor" class="w-full h-64 font-mono text-sm p-3 border rounded focus:ring-orange-500 focus:border-orange-500" spellcheck="false">&lt;!-- Write your solution here --&gt;
+&lt;style&gt;
+  /* Add your CSS here */
+&lt;/style&gt;</textarea>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Preview:</label>
+          <iframe id="website-practice-preview" class="w-full h-64 border rounded bg-white"></iframe>
+        </div>
+      </div>
+      <div class="mt-3 flex justify-between">
+        <div>
+          <button onclick="validateWebsitePractice()" class="px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700">Validate</button>
+          <button onclick="resetWebsitePractice()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 ml-2">Reset</button>
+        </div>
+        <button onclick="submitWebsitePractice()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Submit</button>
+      </div>
+      <div id="website-practice-feedback" class="mt-3 hidden p-3 rounded text-sm"></div>
+    </div>
+  </div>
+</div>
   <li class="flex items-center bg-orange-50 p-4 rounded-lg shadow-sm course-title" onclick="toggleModule(event, 'module6')">
     <div class="completion-indicator">
           <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
@@ -2503,30 +4222,39 @@
     </div>
   </li>
   <li class="flex items-center bg-orange-50 p-4 rounded-lg shadow-sm course-title" onclick="toggleModule(event, 'module7')">
-    <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-    <div class="flex-grow">
-      <div class="flex items-center justify-between">
-        <div class="text-gray-800 font-medium">7. Minor Project</div>
-        <i class="bi bi-chevron-down transition-transform duration-300 transform" id="module7-arrow"></i>
-      </div>
-      <div class="text-sm text-gray-500 mt-1">Week-7 | Schedule</div>
+  <div class="completion-indicator completed">
+    <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+  </div>
+  <div class="flex-grow">
+    <div class="flex items-center justify-between">
+      <div class="text-gray-800 font-medium">7. Minor Project</div>
+      <i class="bi bi-chevron-down transition-transform duration-300 transform" id="module7-arrow"></i>
     </div>
-  </li>
-  <div id="module7-content" class="sub-modules pl-12 pr-4 overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
-    <ul class="space-y-3 mt-2">
-      <li class="flex items-center bg-orange-100 p-3 rounded-lg">
-        <div class="completion-indicator">
-          <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
-        </div>
-        <div class="flex-grow">
-          <div class="text-gray-700 font-medium">Build Your own static Website</div>
-          <div class="text-xs text-gray-500 mt-1">Apx one week</div>
-        </div>
-      </li>
-      </ul>
+    <div class="text-sm text-gray-500 mt-1">Week-7 | Schedule</div>
+  </div>
+</li>
+<div id="module7-content" class="sub-modules pl-12 pr-4 overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+  <ul class="space-y-3 mt-2">
+    <li class="flex items-center bg-orange-100 p-3 rounded-lg">
+      <div class="completion-indicator completed">
+    <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+  </div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">Build Your Own Personal Portfolio Website</div>
+        <div class="text-xs text-gray-500 mt-1">Apx one week | Use HTML, CSS, JS</div>
+        <ul class="text-xs text-gray-600 mt-2 list-disc list-inside space-y-1">
+          <li>Create a homepage with a short bio and navigation</li>
+          <li>Showcase 3+ projects with descriptions or links</li>
+          <li>Include an "About Me" page and contact form</li>
+          <li>Make it responsive for all devices</li>
+          <li>Add interactivity with JavaScript (e.g., dark mode, scroll effects)</li>
+          <li>Optional: Deploy on GitHub Pages</li>
+        </ul>
       </div>
+    </li>
+  </ul>
+</div>
+
   <li class="flex items-center bg-orange-50 p-4 rounded-lg shadow-sm course-title" onclick="toggleModule(event, 'module8')">
     <div class="completion-indicator">
           <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
@@ -4173,6 +5901,1444 @@
       });
     });
   });
+
+
+let assignmentTimer;
+let timeLeft = 30 * 60; // 30 minutes in seconds
+let isFullscreen = false;
+
+function openAssignmentModal() {
+  document.getElementById('assignment-modal').classList.remove('hidden');
+  document.body.classList.add('overflow-hidden');
+  startTimer();
+  runAssignmentCode();
+}
+
+function closeAssignmentModal() {
+  if (confirm('Are you sure you want to close the assignment? Timer will stop.')) {
+    document.getElementById('assignment-modal').classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+    stopTimer();
+  }
+}
+
+function toggleFullscreen() {
+  const modal = document.querySelector('#assignment-modal > div');
+  if (!isFullscreen) {
+    if (modal.requestFullscreen) modal.requestFullscreen();
+    else if (modal.webkitRequestFullscreen) modal.webkitRequestFullscreen();
+    isFullscreen = true;
+  } else {
+    if (document.exitFullscreen) document.exitFullscreen();
+    isFullscreen = false;
+  }
+}
+
+function startTimer() {
+  updateTimerDisplay();
+  assignmentTimer = setInterval(() => {
+    timeLeft--;
+    updateTimerDisplay();
+    if (timeLeft <= 0) {
+      stopTimer();
+      alert('Time is up! Please submit your assignment.');
+    }
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(assignmentTimer);
+}
+
+function updateTimerDisplay() {
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+  document.getElementById('assignment-timer').textContent = 
+    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
+
+function runAssignmentCode() {
+  const code = document.getElementById('assignment-editor').value;
+  document.getElementById('assignment-preview').srcdoc = code;
+}
+
+function validateAssignment() {
+  const code = document.getElementById('assignment-editor').value;
+  const errors = [];
+  
+  // Check for required elements
+  if (!code.includes('<!DOCTYPE html>')) errors.push('Missing DOCTYPE declaration');
+  if (!code.includes('<html>')) errors.push('Missing &lt;html&gt; tag');
+  if (!code.includes('<head>')) errors.push('Missing &lt;head&gt; tag');
+  if (!code.includes('<body>')) errors.push('Missing &lt;body&gt; tag');
+  if (!code.includes('<h1') && !code.includes('<h2') && !code.includes('<h3')) errors.push('Missing heading element');
+  if (!code.includes('<p>')) errors.push('Missing paragraph element');
+  if (!code.includes('<img')) errors.push('Missing image element');
+  if (!code.includes('font-family')) errors.push('Missing font-family CSS property');
+  if (!code.includes('color:')) errors.push('Missing color CSS property');
+  if (!code.includes('text-align:')) errors.push('Missing text-align CSS property');
+  
+  if (errors.length > 0) {
+    alert('Validation failed:\n\n' + errors.join('\n'));
+  } else {
+    alert('All requirements met! Great job!');
+  }
+}
+
+function resetAssignment() {
+  if (confirm('Reset your code to the starting template?')) {
+    document.getElementById('assignment-editor').value = `<!DOCTYPE html>
+<html>
+<head>
+  <title>My Page</title>
+  <style>
+    /* Add your CSS here */
+  </style>
+</head>
+<body>
+  <!-- Add your content here -->
+</body>
+</html>`;
+    runAssignmentCode();
+  }
+}
+
+function submitAssignment() {
+  if (confirm('Submit your assignment? This will finalize your work.')) {
+    alert('Assignment submitted successfully!');
+    closeAssignmentModal();
+  }
+}
+
+function showSolution() {
+  document.getElementById('solution-modal').classList.remove('hidden');
+}
+
+function hideSolution() {
+  document.getElementById('solution-modal').classList.add('hidden');
+}
+
+// Run code when typing
+document.getElementById('assignment-editor').addEventListener('input', function() {
+  runAssignmentCode();
+});
+
+// Handle fullscreen change
+document.addEventListener('fullscreenchange', function() {
+  isFullscreen = !!document.fullscreenElement;
+});
+
+// Modal Functions
+function openCheatsheetModal() {
+  document.getElementById('cheatsheet-modal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+  runCheatsheetCode(); // Initialize preview
+}
+
+function closeCheatsheetModal() {
+  document.getElementById('cheatsheet-modal').classList.add('hidden');
+  document.body.style.overflow = 'auto';
+}
+
+// Quiz Functions
+function checkAnswer(questionName, correctValue) {
+  const selected = document.querySelector(`input[name="${questionName}"]:checked`);
+  const feedback = document.getElementById(`${questionName}-feedback`);
+  
+  if (!selected) {
+    feedback.textContent = "Please select an answer!";
+    feedback.className = "mt-2 text-sm text-yellow-600";
+    feedback.classList.remove('hidden');
+    return;
+  }
+  
+  if (selected.value === correctValue) {
+    feedback.textContent = "✓ Correct!";
+    feedback.className = "mt-2 text-sm text-green-600";
+  } else {
+    feedback.textContent = "✗ Incorrect, try again!";
+    feedback.className = "mt-2 text-sm text-red-600";
+  }
+  feedback.classList.remove('hidden');
+}
+
+// Code Editor Functions
+function runCheatsheetCode() {
+  const code = document.getElementById('cheatsheet-editor').value;
+  document.getElementById('cheatsheet-preview').srcdoc = code;
+}
+
+function resetCheatsheetCode() {
+  document.getElementById('cheatsheet-editor').value = `<!DOCTYPE html>
+<html>
+<head>
+  <title>My Page</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      color: #333;
+    }
+    .container {
+      margin: 20px auto;
+      max-width: 800px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome</h1>
+    <p>Edit this code to practice</p>
+  </div>
+</body>
+</html>`;
+  runCheatsheetCode();
+}
+
+// Close modal when clicking outside content
+document.getElementById('cheatsheet-modal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeCheatsheetModal();
+  }
+});
+
+// Run code when typing
+document.getElementById('cheatsheet-editor').addEventListener('input', function() {
+  runCheatsheetCode();
+});
+// Box Model Cheatsheet Functions
+function openBoxModelCheatsheet(part) {
+  const modal = document.getElementById('boxmodel-cheatsheet-modal');
+  const title = document.getElementById('cheatsheet-title');
+  
+  if (part === 'part1') {
+    title.textContent = 'CSS Box Model Fundamentals';
+    document.getElementById('part1-content').classList.remove('hidden');
+    document.getElementById('part2-content').classList.add('hidden');
+  } else {
+    title.textContent = 'Advanced Box Model Techniques';
+    document.getElementById('part1-content').classList.add('hidden');
+    document.getElementById('part2-content').classList.remove('hidden');
+  }
+  
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+  runBoxModelCode();
+}
+
+function closeBoxModelCheatsheet() {
+  document.getElementById('boxmodel-cheatsheet-modal').classList.add('hidden');
+  document.body.style.overflow = 'auto';
+}
+
+function checkBoxModelAnswer(questionName, correctValue) {
+  const selected = document.querySelector(`input[name="${questionName}"]:checked`);
+  const feedback = document.getElementById(`${questionName}-feedback`);
+  
+  if (!selected) {
+    feedback.textContent = "Please select an answer!";
+    feedback.className = "mt-2 text-sm text-yellow-600";
+    feedback.classList.remove('hidden');
+    return;
+  }
+  
+  if (selected.value === correctValue) {
+    feedback.textContent = "✓ Correct!";
+    feedback.className = "mt-2 text-sm text-green-600";
+  } else {
+    feedback.textContent = "✗ Incorrect, try again!";
+    feedback.className = "mt-2 text-sm text-red-600";
+  }
+  feedback.classList.remove('hidden');
+}
+
+function runBoxModelCode() {
+  const code = document.getElementById('boxmodel-editor').value;
+  const html = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        body { padding: 20px; }
+        ${code}
+        .box-example {
+          background-color: #e0e0e0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="box">Standard Box</div>
+      <div class="box-example">Your Box</div>
+    </body>
+    </html>
+  `;
+  document.getElementById('boxmodel-preview').srcdoc = html;
+}
+
+function resetBoxModelCode() {
+  document.getElementById('boxmodel-editor').value = `.box {
+  width: 200px;
+  height: 100px;
+  padding: 20px;
+  border: 5px solid #333;
+  margin: 10px;
+  background-color: #f0f0f0;
+}
+
+/* Try changing these values */
+.box-example {
+  width: 250px;
+  padding: 30px;
+  margin: 20px;
+  box-sizing: content-box;
+}`;
+  runBoxModelCode();
+}
+
+// Box Model Practice Functions
+function openBoxModelPractice(type) {
+  const modal = document.getElementById('boxmodel-practice-modal');
+  const title = document.getElementById('practice-title');
+  
+  if (type === 'layout') {
+    title.textContent = 'Page Layout Practice';
+    document.getElementById('layout-practice').classList.remove('hidden');
+    document.getElementById('styles-practice').classList.add('hidden');
+    document.getElementById('practice-editor').value = `<!-- Create a page layout using box model properties -->
+<div class="container">
+  <header>Header</header>
+  <div class="content-wrapper">
+    <main>Main Content</main>
+    <aside>Sidebar</aside>
+  </div>
+  <footer>Footer</footer>
+</div>
+
+<style>
+  /* Add your CSS here */
+</style>`;
+  } else {
+    title.textContent = 'Responsive Styles Practice';
+    document.getElementById('layout-practice').classList.add('hidden');
+    document.getElementById('styles-practice').classList.remove('hidden');
+    document.getElementById('practice-editor').value = `<!-- Create a responsive card grid -->
+<div class="card-container">
+  <div class="card">Card 1</div>
+  <div class="card">Card 2</div>
+  <div class="card">Card 3</div>
+  <div class="card">Card 4</div>
+</div>
+
+<style>
+  /* Add your CSS here */
+</style>`;
+  }
+  
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+  runPracticeCode();
+}
+
+function closeBoxModelPractice() {
+  document.getElementById('boxmodel-practice-modal').classList.add('hidden');
+  document.body.style.overflow = 'auto';
+}
+
+function runPracticeCode() {
+  const code = document.getElementById('practice-editor').value;
+  document.getElementById('practice-preview').srcdoc = code;
+}
+
+function resetPractice() {
+  if (confirm('Reset your code to the starting template?')) {
+    if (document.getElementById('layout-practice').classList.contains('hidden')) {
+      document.getElementById('practice-editor').value = `<!-- Create a responsive card grid -->
+<div class="card-container">
+  <div class="card">Card 1</div>
+  <div class="card">Card 2</div>
+  <div class="card">Card 3</div>
+  <div class="card">Card 4</div>
+</div>
+
+<style>
+  /* Add your CSS here */
+</style>`;
+    } else {
+      document.getElementById('practice-editor').value = `<!-- Create a page layout using box model properties -->
+<div class="container">
+  <header>Header</header>
+  <div class="content-wrapper">
+    <main>Main Content</main>
+    <aside>Sidebar</aside>
+  </div>
+  <footer>Footer</footer>
+</div>
+
+<style>
+  /* Add your CSS here */
+</style>`;
+    }
+    runPracticeCode();
+  }
+}
+
+function validatePractice() {
+  const feedback = document.getElementById('practice-feedback');
+  feedback.classList.remove('hidden');
+  
+  if (document.getElementById('layout-practice').classList.contains('hidden')) {
+    // Validate card grid
+    feedback.innerHTML = `
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-3">
+        <p class="font-medium">Check these requirements:</p>
+        <ul class="list-disc pl-5 mt-1 space-y-1">
+          <li>Cards should have consistent spacing</li>
+          <li>Layout should adapt to screen size</li>
+          <li>Margins should collapse properly</li>
+        </ul>
+      </div>
+    `;
+  } else {
+    // Validate page layout
+    feedback.innerHTML = `
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-3">
+        <p class="font-medium">Check these requirements:</p>
+        <ul class="list-disc pl-5 mt-1 space-y-1">
+          <li>Header with proper padding/border</li>
+          <li>Main content and sidebar layout</li>
+          <li>box-sizing: border-box used</li>
+        </ul>
+      </div>
+    `;
+  }
+}
+
+function submitPractice() {
+  if (confirm('Submit your practice work?')) {
+    alert('Practice submitted successfully!');
+    closeBoxModelPractice();
+  }
+}
+
+// Initialize code editors
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('boxmodel-editor').addEventListener('input', runBoxModelCode);
+  document.getElementById('practice-editor').addEventListener('input', runPracticeCode);
+  
+  // Close modals when clicking outside content
+  document.getElementById('boxmodel-cheatsheet-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeBoxModelCheatsheet();
+  });
+  
+  document.getElementById('boxmodel-practice-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeBoxModelPractice();
+  });
+});
+
+// Bootstrap Cheatsheet and Practice Functions
+function handleBootstrapItemClick(event) {
+  const item = event.currentTarget;
+  
+  // Only handle cheatsheet and practice items
+  if (item.classList.contains('cheatsheet-item')) {
+    event.preventDefault();
+    event.stopPropagation();
+    const cheatsheetType = item.getAttribute('onclick').match(/'([^']+)'/)[1];
+    openBootstrapCheatsheet(cheatsheetType);
+  } 
+  else if (item.getAttribute('onclick') && item.getAttribute('onclick').includes('openBootstrapPractice')) {
+    event.preventDefault();
+    event.stopPropagation();
+    const practiceType = item.getAttribute('onclick').match(/'([^']+)'/)[1];
+    openBootstrapPractice(practiceType);
+  }
+}
+
+function openBootstrapCheatsheet(type) {
+  const title = type === 'fundamentals' 
+    ? 'Bootstrap Fundamentals Reference' 
+    : 'Bootstrap Components Reference';
+  
+  const content = type === 'fundamentals' ? `
+    <div class="p-6 max-w-4xl mx-auto">
+      <h3 class="text-xl font-bold text-blue-800 mb-4">Bootstrap Fundamentals</h3>
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <h4 class="font-semibold text-blue-700 mb-2">Grid System</h4>
+          <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+            <pre class="text-sm bg-white p-3 rounded overflow-auto"><code>&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-md-6 col-lg-4"&gt;Column 1&lt;/div&gt;
+    &lt;div class="col-md-6 col-lg-4"&gt;Column 2&lt;/div&gt;
+    &lt;div class="col-md-12 col-lg-4"&gt;Column 3&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            <ul class="text-sm space-y-2 mt-3">
+              <li><strong>.container</strong> - Fixed width container</li>
+              <li><strong>.container-fluid</strong> - Full width container</li>
+              <li><strong>.row</strong> - Horizontal group of columns</li>
+              <li><strong>.col-*</strong> - Column classes for different breakpoints</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-semibold text-blue-700 mb-2">Utility Classes</h4>
+          <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="p-2 bg-white rounded border">
+                <strong>Spacing</strong><br>
+                m-*, p-*, mx-*, py-*
+              </div>
+              <div class="p-2 bg-white rounded border">
+                <strong>Text</strong><br>
+                text-*, fs-*, fw-*
+              </div>
+              <div class="p-2 bg-white rounded border">
+                <strong>Colors</strong><br>
+                bg-*, text-*, border-*
+              </div>
+              <div class="p-2 bg-white rounded border">
+                <strong>Display</strong><br>
+                d-*, d-none, d-md-block
+              </div>
+            </div>
+            <p class="mt-3 text-sm">* can be 1-5 for sizes or breakpoints (sm, md, lg, xl)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  ` : `
+    <div class="p-6 max-w-4xl mx-auto">
+      <h3 class="text-xl font-bold text-purple-800 mb-4">Bootstrap Components</h3>
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <h4 class="font-semibold text-purple-700 mb-2">Navigation</h4>
+          <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+            <pre class="text-sm bg-white p-3 rounded overflow-auto"><code>&lt;nav class="navbar navbar-expand-lg navbar-light bg-light"&gt;
+  &lt;div class="container-fluid"&gt;
+    &lt;a class="navbar-brand" href="#"&gt;Logo&lt;/a&gt;
+    &lt;button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"&gt;
+      &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div class="collapse navbar-collapse" id="navbarNav"&gt;
+      &lt;ul class="navbar-nav"&gt;
+        &lt;li class="nav-item"&gt;&lt;a class="nav-link active" href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-semibold text-purple-700 mb-2">Cards</h4>
+          <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+            <pre class="text-sm bg-white p-3 rounded overflow-auto"><code>&lt;div class="card" style="width: 18rem;"&gt;
+  &lt;img src="..." class="card-img-top" alt="..."&gt;
+  &lt;div class="card-body"&gt;
+    &lt;h5 class="card-title"&gt;Card Title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;Some quick example text.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Go somewhere&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const html = `
+    <div class="fixed inset-0 bg-white z-50 flex flex-col">
+      <div class="bg-orange-50 text-gray-800 p-4 flex justify-between items-center border-b">
+        <h2 class="text-xl font-bold">${title}</h2>
+        <button onclick="closeBootstrapFullscreen()" class="text-gray-800 text-2xl">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div class="flex-grow overflow-auto">
+        ${content}
+      </div>
+    </div>
+  `;
+
+  const container = document.createElement('div');
+  container.id = 'bootstrap-fullscreen';
+  container.innerHTML = html;
+  document.body.appendChild(container);
+  document.body.style.overflow = 'hidden';
+}
+
+function openBootstrapPractice(type) {
+  const titles = {
+    'layout': 'Responsive Layout Practice',
+    'components': 'Component Building Practice',
+    'dashboard': 'Admin Dashboard Project',
+    'ecommerce': 'E-commerce Page Project'
+  };
+
+  const instructions = {
+    'layout': `
+      <ol class="list-decimal pl-5 space-y-2 text-sm">
+        <li>Create a responsive layout with header, main content, sidebar and footer</li>
+        <li>Use Bootstrap's grid system for the layout</li>
+        <li>Header should span full width</li>
+        <li>Main content should be 2/3 width on desktop, full on mobile</li>
+        <li>Sidebar should be 1/3 width on desktop, full on mobile</li>
+        <li>Footer should span full width</li>
+      </ol>
+    `,
+    'components': `
+      <ol class="list-decimal pl-5 space-y-2 text-sm">
+        <li>Create a product card component with image, title, description and button</li>
+        <li>Add a navbar with brand logo and 3 navigation links</li>
+        <li>Include an alert component that dismisses when clicked</li>
+        <li>Create a responsive image gallery with 3 columns on desktop, 1 on mobile</li>
+        <li>Add a contact form with name, email and message fields</li>
+      </ol>
+    `,
+    'dashboard': `
+      <ol class="list-decimal pl-5 space-y-2 text-sm">
+        <li>Create a responsive admin dashboard layout</li>
+        <li>Include a collapsible sidebar navigation</li>
+        <li>Add summary cards for key metrics</li>
+        <li>Implement a data table with pagination</li>
+        <li>Include charts using Bootstrap-compatible libraries</li>
+        <li>Add a responsive top navigation bar</li>
+      </ol>
+      <p class="mt-3 text-sm font-medium">Estimated Time: 2 hours</p>
+    `,
+    'ecommerce': `
+      <ol class="list-decimal pl-5 space-y-2 text-sm">
+        <li>Create a responsive e-commerce product page</li>
+        <li>Include a navigation bar with cart icon</li>
+        <li>Add a hero section with call-to-action</li>
+        <li>Implement a product grid with hover effects</li>
+        <li>Create product detail cards with pricing</li>
+        <li>Add a newsletter subscription form</li>
+        <li>Include a footer with multiple columns</li>
+      </ol>
+      <p class="mt-3 text-sm font-medium">Estimated Time: 2.5 hours</p>
+    `
+  };
+
+  const templates = {
+    'layout': `<!-- Create responsive layout -->
+<div class="container">
+  <header class="bg-primary text-white p-3 mb-3">
+    Header
+  </header>
+  <div class="row">
+    <main class="col-md-8 p-3 bg-light border">
+      Main Content
+    </main>
+    <aside class="col-md-4 p-3 bg-info text-white">
+      Sidebar
+    </aside>
+  </div>
+  <footer class="bg-dark text-white p-3 mt-3">
+    Footer
+  </footer>
+</div>`,
+    'components': `<!-- Build Bootstrap components -->
+<div class="container">
+  <div class="alert alert-warning alert-dismissible fade show">
+    <strong>Welcome!</strong> This alert can be dismissed.
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Product Card</h5>
+          <p class="card-text">Example product description</p>
+          <a href="#" class="btn btn-primary">Add to Cart</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`,
+    'dashboard': `<!-- Admin Dashboard -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 col-lg-2 bg-dark text-white vh-100">
+      <h4 class="p-3">Dashboard</h4>
+      <ul class="nav flex-column">
+        <li class="nav-item"><a class="nav-link text-white" href="#">Users</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#">Products</a></li>
+      </ul>
+    </div>
+    <main class="col-md-9 col-lg-10 p-4">
+      <h2>Admin Dashboard</h2>
+    </main>
+  </div>
+</div>`,
+    'ecommerce': `<!-- E-commerce Page -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+  <div class="container">
+    <a class="navbar-brand" href="#">My Shop</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <img src="https://via.placeholder.com/300" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">Product</h5>
+          <p class="card-text">$19.99</p>
+          <a href="#" class="btn btn-primary">Add to Cart</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`
+  };
+
+  const html = `
+    <div class="fixed inset-0 bg-white z-50 flex flex-col">
+      <div class="bg-orange-50 text-gray-800 p-4 flex justify-between items-center border-b">
+        <h2 class="text-xl font-bold">${titles[type]}</h2>
+        <button onclick="closeBootstrapFullscreen()" class="text-gray-800 text-2xl">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div class="flex-grow overflow-auto p-6">
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-orange-50 p-4 rounded-lg border border-orange-200 mb-6">
+            <h3 class="font-bold mb-2">Instructions:</h3>
+            ${instructions[type]}
+          </div>
+          <div class="bg-gray-100 p-4 rounded-lg">
+            <h3 class="font-bold mb-2">Code Editor:</h3>
+            <textarea class="w-full h-64 font-mono text-sm p-3 border rounded">${templates[type]}</textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const container = document.createElement('div');
+  container.id = 'bootstrap-fullscreen';
+  container.innerHTML = html;
+  document.body.appendChild(container);
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBootstrapFullscreen() {
+  const container = document.getElementById('bootstrap-fullscreen');
+  if (container) {
+    container.remove();
+    document.body.style.overflow = 'auto';
+  }
+}
+
+// Initialize Bootstrap module
+document.addEventListener('DOMContentLoaded', function() {
+  // Add click handlers only to Bootstrap cheatsheet and practice items
+  const cheatsheetItems = document.querySelectorAll('#module3-content .cheatsheet-item');
+  const practiceItems = document.querySelectorAll('#module3-content [onclick*="openBootstrapPractice"]');
+  
+  cheatsheetItems.forEach(item => {
+    item.addEventListener('click', handleBootstrapItemClick);
+  });
+  
+  practiceItems.forEach(item => {
+    item.addEventListener('click', handleBootstrapItemClick);
+  });
+});
+
+// Week 4 Layout Development Module - Isolated Script
+document.addEventListener('DOMContentLoaded', function() {
+  // Only handle elements within Week 4 module
+  const week4Module = document.getElementById('module4-content');
+  
+  if (!week4Module) return;
+
+  // Cheatsheet Modal Elements
+  const cheatsheetModal = document.createElement('div');
+  cheatsheetModal.id = 'week4-cheatsheet-modal';
+  cheatsheetModal.className = 'fixed inset-0 z-50 hidden bg-white p-6 overflow-auto';
+  cheatsheetModal.innerHTML = `
+    <div class="max-w-4xl mx-auto">
+      <div class="flex justify-between items-center mb-6 sticky top-0 bg-white py-4">
+        <h2 class="text-2xl font-bold text-orange-700" id="week4-cheatsheet-title">Layout Cheatsheet</h2>
+        <button class="text-gray-500 hover:text-gray-700 text-2xl close-cheatsheet">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div id="week4-cheatsheet-content" class="content-area"></div>
+    </div>
+  `;
+  document.body.appendChild(cheatsheetModal);
+
+  // Practice Modal Elements
+  const practiceModal = document.createElement('div');
+  practiceModal.id = 'week4-practice-modal';
+  practiceModal.className = 'fixed inset-0 z-50 hidden bg-white p-6 overflow-auto';
+  practiceModal.innerHTML = `
+    <div class="max-w-4xl mx-auto">
+      <div class="flex justify-between items-center mb-6 sticky top-0 bg-white py-4">
+        <h2 class="text-2xl font-bold text-orange-700" id="week4-practice-title">Layout Practice</h2>
+        <button class="text-gray-500 hover:text-gray-700 text-2xl close-practice">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div id="week4-practice-content" class="content-area"></div>
+    </div>
+  `;
+  document.body.appendChild(practiceModal);
+
+  // Cheatsheet Content Templates
+  const cheatsheets = {
+    'favourite-place': {
+      title: 'Favourite Place Section',
+      content: `
+        <div class="mb-8">
+          <h3 class="text-xl font-bold text-blue-800 mb-4">Favourite Place Layout</h3>
+          <div class="grid md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <h4 class="font-semibold text-blue-700 mb-2">HTML Structure</h4>
+              <pre class="bg-gray-100 p-4 rounded text-sm"><code>&lt;section class="favourite-place"&gt;
+  &lt;div class="container"&gt;
+    &lt;h1&gt;My Favourite Places&lt;/h1&gt;
+    &lt;div class="place-card"&gt;
+      &lt;img src="place.jpg" alt="My Place"&gt;
+      &lt;div class="place-details"&gt;
+        &lt;h2&gt;Place Name&lt;/h2&gt;
+        &lt;p&gt;Description...&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+            </div>
+            <div>
+              <h4 class="font-semibold text-blue-700 mb-2">CSS Essentials</h4>
+              <pre class="bg-gray-100 p-4 rounded text-sm"><code>.favourite-place {
+  padding: 2rem 0;
+}
+
+.place-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.place-card img {
+  width: 100%;
+  max-width: 400px;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .place-card {
+    flex-direction: column;
+  }
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      `
+    },
+    'layout-approach': {
+      title: 'Layout Development Approach',
+      content: `
+        <div class="mb-8">
+          <h3 class="text-xl font-bold text-purple-800 mb-4">Layout Development Process</h3>
+          <div class="bg-purple-50 p-4 rounded-lg mb-6">
+            <ol class="list-decimal pl-5 space-y-2">
+              <li>Analyze the design mockup</li>
+              <li>Identify sections and components</li>
+              <li>Create semantic HTML structure</li>
+              <li>Apply base styling (typography, colors)</li>
+              <li>Implement layout (flexbox/grid)</li>
+              <li>Add responsive breakpoints</li>
+              <li>Test on multiple devices</li>
+            </ol>
+          </div>
+          <h4 class="font-semibold text-purple-700 mb-2">Pro Tips</h4>
+          <ul class="list-disc pl-5 space-y-2">
+            <li>Start mobile-first for better responsiveness</li>
+            <li>Use CSS variables for consistent styling</li>
+            <li>Keep your HTML clean and semantic</li>
+            <li>Comment your CSS for complex layouts</li>
+          </ul>
+        </div>
+      `
+    },
+    'detailed-view': {
+      title: 'Detailed View Section',
+      content: `
+        <div class="mb-8">
+          <h3 class="text-xl font-bold text-teal-800 mb-4">Detailed View Layout</h3>
+          <div class="grid md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <h4 class="font-semibold text-teal-700 mb-2">HTML Structure</h4>
+              <pre class="bg-gray-100 p-4 rounded text-sm"><code>&lt;section class="detailed-view"&gt;
+  &lt;div class="place-header"&gt;
+    &lt;h1&gt;Location Name&lt;/h1&gt;
+    &lt;p class="location"&gt;City, Country&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="gallery"&gt;
+    &lt;img class="main-image" src="main.jpg"&gt;
+    &lt;div class="thumbnails"&gt;
+      &lt;img src="thumb1.jpg"&gt;
+      &lt;img src="thumb2.jpg"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="description"&gt;
+    &lt;p&gt;Detailed description...&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+            </div>
+            <div>
+              <h4 class="font-semibold text-teal-700 mb-2">CSS Layout</h4>
+              <pre class="bg-gray-100 p-4 rounded text-sm"><code>.detailed-view {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.main-image {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.thumbnails {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      `
+    }
+  };
+
+  // Practice Content Templates
+  const practices = {
+    'favourite-place': {
+      title: 'Favourite Place Practice',
+      content: `
+        <div class="mb-6">
+          <div class="bg-blue-50 p-4 rounded-lg mb-6">
+            <h3 class="font-semibold text-blue-700 mb-2">Instructions</h3>
+            <ol class="list-decimal pl-5 space-y-2 text-sm">
+              <li>Create a favourite place section with image and text</li>
+              <li>Use flexbox for the card layout</li>
+              <li>Make it responsive (stack on mobile)</li>
+              <li>Add proper spacing and shadows</li>
+              <li>Include a heading for the section</li>
+            </ol>
+          </div>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="font-medium text-gray-700 mb-2">Starter Code</h4>
+              <textarea id="week4-practice-editor" class="w-full h-64 font-mono text-sm p-3 border rounded" spellcheck="false">&lt;section class="favourite-place"&gt;
+  &lt;div class="container"&gt;
+    &lt;h1&gt;My Favourite Places&lt;/h1&gt;
+    &lt;div class="place-card"&gt;
+      &lt;!-- Add your content here --&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+  /* Add your CSS here */
+&lt;/style&gt;</textarea>
+              <div class="mt-3 flex space-x-3">
+                <button class="run-practice px-4 py-2 bg-green-600 text-white rounded">Run Code</button>
+                <button class="reset-practice px-4 py-2 bg-gray-200 rounded">Reset</button>
+              </div>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-700 mb-2">Preview</h4>
+              <iframe id="week4-practice-preview" class="w-full h-64 border rounded bg-white"></iframe>
+            </div>
+          </div>
+        </div>
+      `
+    },
+    'detailed-layout': {
+      title: 'Detailed Layout Practice',
+      content: `
+        <div class="mb-6">
+          <div class="bg-teal-50 p-4 rounded-lg mb-6">
+            <h3 class="font-semibold text-teal-700 mb-2">Instructions</h3>
+            <ol class="list-decimal pl-5 space-y-2 text-sm">
+              <li>Create a detailed view page for a location</li>
+              <li>Include a header with title and subtitle</li>
+              <li>Add a main image with thumbnails</li>
+              <li>Create a detailed description section</li>
+              <li>Use CSS Grid for the gallery layout</li>
+            </ol>
+          </div>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="font-medium text-gray-700 mb-2">Starter Code</h4>
+              <textarea id="week4-practice-editor" class="w-full h-64 font-mono text-sm p-3 border rounded" spellcheck="false">&lt;section class="detailed-view"&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="place-header"&gt;
+      &lt;h1&gt;Location Name&lt;/h1&gt;
+      &lt;p&gt;Location Details&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="gallery"&gt;
+      &lt;!-- Add gallery here --&gt;
+    &lt;/div&gt;
+    &lt;div class="description"&gt;
+      &lt;!-- Add description here --&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+  /* Add your CSS here */
+&lt;/style&gt;</textarea>
+              <div class="mt-3 flex space-x-3">
+                <button class="run-practice px-4 py-2 bg-green-600 text-white rounded">Run Code</button>
+                <button class="reset-practice px-4 py-2 bg-gray-200 rounded">Reset</button>
+              </div>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-700 mb-2">Preview</h4>
+              <iframe id="week4-practice-preview" class="w-full h-64 border rounded bg-white"></iframe>
+            </div>
+          </div>
+        </div>
+      `
+    }
+  };
+
+  // Event Delegation for Week 4 Module
+  week4Module.addEventListener('click', function(e) {
+    const cheatsheetItem = e.target.closest('.cheatsheet-item');
+    const practiceItem = e.target.closest('[onclick*="openLayoutPractice"]');
+    
+    if (cheatsheetItem) {
+      e.preventDefault();
+      const type = cheatsheetItem.getAttribute('onclick').match(/'([^']+)'/)[1];
+      openWeek4Cheatsheet(type);
+    }
+    else if (practiceItem) {
+      e.preventDefault();
+      const type = practiceItem.getAttribute('onclick').match(/'([^']+)'/)[1];
+      openWeek4Practice(type);
+    }
+  });
+
+  // Modal Control Functions
+  function openWeek4Cheatsheet(type) {
+    document.getElementById('week4-cheatsheet-title').textContent = cheatsheets[type].title;
+    document.getElementById('week4-cheatsheet-content').innerHTML = cheatsheets[type].content;
+    cheatsheetModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function openWeek4Practice(type) {
+    document.getElementById('week4-practice-title').textContent = practices[type].title;
+    document.getElementById('week4-practice-content').innerHTML = practices[type].content;
+    practiceModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    
+    // Set up practice editor
+    const editor = document.querySelector('#week4-practice-content textarea');
+    const preview = document.getElementById('week4-practice-preview');
+    const runBtn = document.querySelector('#week4-practice-content .run-practice');
+    const resetBtn = document.querySelector('#week4-practice-content .reset-practice');
+    
+    editor.addEventListener('input', function() {
+      preview.srcdoc = editor.value;
+    });
+    
+    runBtn.addEventListener('click', function() {
+      preview.srcdoc = editor.value;
+    });
+    
+    resetBtn.addEventListener('click', function() {
+      editor.value = practices[type].content.match(/<textarea[^>]*>([\s\S]*?)<\/textarea>/)[1];
+      preview.srcdoc = editor.value;
+    });
+    
+    // Initialize with default content
+    preview.srcdoc = editor.value;
+  }
+
+  // Close buttons
+  document.querySelector('.close-cheatsheet').addEventListener('click', function() {
+    cheatsheetModal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  });
+
+  document.querySelector('.close-practice').addEventListener('click', function() {
+    practiceModal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  });
+
+  // Close modals when clicking outside content
+  cheatsheetModal.addEventListener('click', function(e) {
+    if (e.target === this) {
+      cheatsheetModal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+  });
+
+  practiceModal.addEventListener('click', function(e) {
+    if (e.target === this) {
+      practiceModal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+  });
+});
+
+// Week 5 - Website Integration Module (Isolated Script)
+document.addEventListener('DOMContentLoaded', function() {
+  // Only handle elements within Week 5 module
+  const week5Module = document.getElementById('module5-content');
+  
+  if (!week5Module) return;
+
+  // Cheatsheet Modal Elements
+  const cheatsheetModal = document.createElement('div');
+  cheatsheetModal.id = 'week5-cheatsheet-modal';
+  cheatsheetModal.className = 'fixed inset-0 z-50 hidden bg-white p-6 overflow-auto';
+  cheatsheetModal.innerHTML = `
+    <div class="max-w-4xl mx-auto">
+      <div class="flex justify-between items-center mb-6 sticky top-0 bg-white py-4">
+        <h2 class="text-2xl font-bold text-orange-700" id="week5-cheatsheet-title">Website Integration Cheatsheet</h2>
+        <button class="text-gray-500 hover:text-gray-700 text-2xl close-cheatsheet">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div id="week5-cheatsheet-content" class="content-area"></div>
+    </div>
+  `;
+  document.body.appendChild(cheatsheetModal);
+
+  // Practice Modal Elements
+  const practiceModal = document.createElement('div');
+  practiceModal.id = 'week5-practice-modal';
+  practiceModal.className = 'fixed inset-0 z-50 hidden bg-white p-6 overflow-auto';
+  practiceModal.innerHTML = `
+    <div class="max-w-4xl mx-auto">
+      <div class="flex justify-between items-center mb-6 sticky top-0 bg-white py-4">
+        <h2 class="text-2xl font-bold text-orange-700" id="week5-practice-title">Website Practice</h2>
+        <button class="text-gray-500 hover:text-gray-700 text-2xl close-practice">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div id="week5-practice-content" class="content-area"></div>
+    </div>
+  `;
+  document.body.appendChild(practiceModal);
+
+  // Cheatsheet Content Templates
+  const cheatsheets = {
+    'integration': {
+      title: 'Website Integration Basics',
+      content: `
+        <div class="mb-8">
+          <h3 class="text-xl font-bold text-blue-800 mb-4">Website Integration Basics</h3>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="font-semibold text-blue-700 mb-2">HTML Structure</h4>
+              <pre class="bg-gray-100 p-4 rounded text-sm"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;My Site&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Content --&gt;
+  &lt;script src="js/main.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+            <div>
+              <h4 class="font-semibold text-blue-700 mb-2">File Structure</h4>
+              <pre class="bg-gray-100 p-4 rounded text-sm"><code>my-site/
+├── index.html
+├── css/
+│   └── styles.css
+├── js/
+│   └── main.js
+└── images/
+    └── logo.png</code></pre>
+            </div>
+          </div>
+        </div>
+      `
+    },
+    'integration-part2': {
+      title: 'Advanced Integration',
+      content: `
+        <div class="mb-8">
+          <h3 class="text-xl font-bold text-purple-800 mb-4">Advanced Integration</h3>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="font-semibold text-purple-700 mb-2">CSS Integration</h4>
+              <pre class="bg-gray-100 p-4 rounded text-sm"><code>/* Modern CSS */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root {
+  --primary-color: #3498db;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}</code></pre>
+            </div>
+            <div>
+              <h4 class="font-semibold text-purple-700 mb-2">JS Integration</h4>
+              <pre class="bg-gray-100 p-4 rounded text-sm"><code>// Modern JavaScript
+document.addEventListener('DOMContentLoaded', () => {
+  // DOM ready
+  console.log('Website loaded');
+});</code></pre>
+            </div>
+          </div>
+        </div>
+      `
+    },
+    'hyperlinks': {
+      title: 'HTML Hyperlinks',
+      content: `
+        <div class="mb-8">
+          <h3 class="text-xl font-bold text-teal-800 mb-4">HTML Hyperlinks</h3>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="font-semibold text-teal-700 mb-2">Link Types</h4>
+              <pre class="bg-gray-100 p-4 rounded text-sm"><code>&lt;a href="page.html"&gt;Internal&lt;/a&gt;
+&lt;a href="https://example.com" target="_blank"&gt;External&lt;/a&gt;
+&lt;a href="mailto:email@example.com"&gt;Email&lt;/a&gt;
+&lt;a href="tel:+1234567890"&gt;Phone&lt;/a&gt;
+&lt;a href="#section"&gt;Anchor&lt;/a&gt;</code></pre>
+            </div>
+            <div>
+              <h4 class="font-semibold text-teal-700 mb-2">Best Practices</h4>
+              <ul class="list-disc pl-5 space-y-2">
+                <li>Use descriptive link text</li>
+                <li>Add rel="noopener" for external links</li>
+                <li>Style visited/unvisited states differently</li>
+                <li>Ensure links are keyboard-navigable</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      `
+    }
+  };
+
+  // Practice Content Templates
+  const practices = {
+    'integration': {
+      title: 'Website Integration Practice',
+      content: `
+        <div class="mb-6">
+          <div class="bg-blue-50 p-4 rounded-lg mb-6">
+            <h3 class="font-semibold text-blue-700 mb-2">Instructions</h3>
+            <ol class="list-decimal pl-5 space-y-2 text-sm">
+              <li>Create a complete website structure</li>
+              <li>Implement proper file organization</li>
+              <li>Link all resources correctly</li>
+              <li>Add navigation between pages</li>
+            </ol>
+          </div>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="font-medium text-gray-700 mb-2">Code Editor</h4>
+              <textarea id="week5-practice-editor" class="w-full h-64 font-mono text-sm p-3 border rounded" spellcheck="false">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;My Website&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;nav&gt;
+      &lt;a href="index.html"&gt;Home&lt;/a&gt;
+      &lt;a href="about.html"&gt;About&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+  &lt;main&gt;&lt;/main&gt;
+  &lt;script src="js/main.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+              <div class="mt-3 flex space-x-3">
+                <button class="run-practice px-4 py-2 bg-green-600 text-white rounded">Run Code</button>
+                <button class="reset-practice px-4 py-2 bg-gray-200 rounded">Reset</button>
+              </div>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-700 mb-2">Preview</h4>
+              <iframe id="week5-practice-preview" class="w-full h-64 border rounded bg-white"></iframe>
+            </div>
+          </div>
+        </div>
+      `
+    },
+    'hyperlinks': {
+      title: 'Hyperlinks Practice',
+      content: `
+        <div class="mb-6">
+          <div class="bg-teal-50 p-4 rounded-lg mb-6">
+            <h3 class="font-semibold text-teal-700 mb-2">Instructions</h3>
+            <ol class="list-decimal pl-5 space-y-2 text-sm">
+              <li>Create a page with different hyperlink types</li>
+              <li>Include external, internal, email and anchor links</li>
+              <li>Add proper attributes (target, rel)</li>
+              <li>Style the links appropriately</li>
+            </ol>
+          </div>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="font-medium text-gray-700 mb-2">Code Editor</h4>
+              <textarea id="week5-practice-editor" class="w-full h-64 font-mono text-sm p-3 border rounded" spellcheck="false">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Hyperlinks&lt;/title&gt;
+  &lt;style&gt;
+    a { color: #0066cc; }
+    a:hover { text-decoration: underline; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hyperlinks Examples&lt;/h1&gt;
+  &lt;a href="https://example.com" target="_blank"&gt;External&lt;/a&gt;
+  &lt;a href="page.html"&gt;Internal&lt;/a&gt;
+  &lt;a href="mailto:test@example.com"&gt;Email&lt;/a&gt;
+  &lt;a href="#section"&gt;Anchor&lt;/a&gt;
+  &lt;div id="section" style="height: 1000px;"&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+              <div class="mt-3 flex space-x-3">
+                <button class="run-practice px-4 py-2 bg-green-600 text-white rounded">Run Code</button>
+                <button class="reset-practice px-4 py-2 bg-gray-200 rounded">Reset</button>
+              </div>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-700 mb-2">Preview</h4>
+              <iframe id="week5-practice-preview" class="w-full h-64 border rounded bg-white"></iframe>
+            </div>
+          </div>
+        </div>
+      `
+    }
+  };
+
+  // Event Delegation for Week 5 Module
+  week5Module.addEventListener('click', function(e) {
+    const cheatsheetItem = e.target.closest('.cheatsheet-item');
+    const practiceItem = e.target.closest('[onclick*="openWebsitePractice"]');
+    
+    if (cheatsheetItem) {
+      e.preventDefault();
+      const type = cheatsheetItem.getAttribute('onclick').match(/'([^']+)'/)[1];
+      openWeek5Cheatsheet(type);
+    }
+    else if (practiceItem) {
+      e.preventDefault();
+      const type = practiceItem.getAttribute('onclick').match(/'([^']+)'/)[1];
+      openWeek5Practice(type);
+    }
+  });
+
+  // Modal Control Functions
+  function openWeek5Cheatsheet(type) {
+    document.getElementById('week5-cheatsheet-title').textContent = cheatsheets[type].title;
+    document.getElementById('week5-cheatsheet-content').innerHTML = cheatsheets[type].content;
+    cheatsheetModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function openWeek5Practice(type) {
+    document.getElementById('week5-practice-title').textContent = practices[type].title;
+    document.getElementById('week5-practice-content').innerHTML = practices[type].content;
+    practiceModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    
+    // Set up practice editor
+    const editor = document.querySelector('#week5-practice-content textarea');
+    const preview = document.getElementById('week5-practice-preview');
+    const runBtn = document.querySelector('#week5-practice-content .run-practice');
+    const resetBtn = document.querySelector('#week5-practice-content .reset-practice');
+    
+    editor.addEventListener('input', function() {
+      preview.srcdoc = editor.value;
+    });
+    
+    runBtn.addEventListener('click', function() {
+      preview.srcdoc = editor.value;
+    });
+    
+    resetBtn.addEventListener('click', function() {
+      editor.value = practices[type].content.match(/<textarea[^>]*>([\s\S]*?)<\/textarea>/)[1];
+      preview.srcdoc = editor.value;
+    });
+    
+    // Initialize with default content
+    preview.srcdoc = editor.value;
+  }
+
+  // Close buttons
+  document.querySelector('.close-cheatsheet').addEventListener('click', function() {
+    cheatsheetModal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  });
+
+  document.querySelector('.close-practice').addEventListener('click', function() {
+    practiceModal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  });
+
+  // Close modals when clicking outside content
+  cheatsheetModal.addEventListener('click', function(e) {
+    if (e.target === this) {
+      cheatsheetModal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+  });
+
+  practiceModal.addEventListener('click', function(e) {
+    if (e.target === this) {
+      practiceModal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+  });
+});
 </script>
+
 </body>
 </html>
