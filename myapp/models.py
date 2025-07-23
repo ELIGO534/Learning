@@ -166,3 +166,30 @@ class SponsorshipSurvey(models.Model):
     class Meta:
         verbose_name_plural = "Sponsorship Surveys"
         ordering = ['-created_at']
+
+from django.db import models
+from django.conf import settings
+from django.utils import timezone
+
+class AssignmentSubmission(models.Model):
+    STATUS_CHOICES = [
+        ('submitted', 'Submitted'),
+        ('under_review', 'Under Review'),  # Added status
+        ('reviewed', 'Reviewed'),
+        ('approved', 'Approved'),
+        ('rejected', 'Rejected'),
+    ]
+    
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    documentation = models.FileField(upload_to='assignments/%Y/%m/%d/')
+    submitted_at = models.DateTimeField(default=timezone.now)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='submitted')
+    feedback = models.TextField(blank=True, null=True)
+    
+    class Meta:
+        ordering = ['-submitted_at']
+        verbose_name = 'Assignment Submission'
+        verbose_name_plural = 'Assignment Submissions'
+    
+    def __str__(self):
+        return f"{self.user.username} - {self.submitted_at.strftime('%Y-%m-%d %H:%M')}"

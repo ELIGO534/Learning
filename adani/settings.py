@@ -73,6 +73,13 @@ WSGI_APPLICATION = 'adani.wsgi.application'
 DATABASES = {
     'default': env.db(),  # This line loads the DATABASE_URL from .env automatically
 }
+# File upload settings
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Max upload size (1MB)
+DATA_UPLOAD_MAX_MEMORY_SIZE = 1048576
+FILE_UPLOAD_MAX_MEMORY_SIZE = 1048576
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [

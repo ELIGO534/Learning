@@ -219,8 +219,6 @@
       padding-left: 25px;
     }
     
-    
-    
     .chat-page .upload-section {
       background: #e8f4fd;
       padding: 25px;
@@ -274,6 +272,48 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       padding: 25px;
       margin-bottom: 30px;
+    }
+    .spin {
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .list-group-item {
+      transition: all 0.3s ease;
+    }
+    .list-group-item:hover {
+      background-color: #f8f9fa;
+    }
+
+    .badge {
+      font-size: 0.85em;
+      padding: 0.35em 0.65em;
+    }
+    
+    .submission-status {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 5px;
+      background-color: #f8f9fa;
+      border-left: 4px solid #6c757d;
+    }
+    
+    .submission-status.pending {
+      border-left-color: #ffc107;
+      background-color: #fff8e1;
+    }
+    
+    .submission-status.approved {
+      border-left-color: #28a745;
+      background-color: #e8f5e9;
+    }
+    
+    .submission-status.rejected {
+      border-left-color: #dc3545;
+      background-color: #ffebee;
     }
   </style>
 </head>
@@ -503,13 +543,79 @@
           <div class="upload-section">
             <h3 class="section-title"><i class="bi bi-file-earmark-arrow-up"></i>Project Documentation Submission</h3>
             <p>Team lead should upload the complete project documentation here after completion. Include all source code, model files, and documentation in a zip file.</p>
-            <input type="file" id="documentation" name="documentation" accept=".pdf,.doc,.docx,.zip" style="display: none;">
-            <button class="upload-btn" onclick="document.getElementById('documentation').click()">
-              <i class="bi bi-cloud-upload"></i> Upload Documentation
-            </button>
-            <p class="meta-item" style="margin-top: 10px;">
-              <i class="bi bi-info-circle"></i> Max file size: 50MB (ZIP preferred)
-            </p>
+            
+            <form method="post" enctype="multipart/form-data" id="documentationForm" action="{% url 'assignment_view' %}">
+              {% csrf_token %}
+              <input type="file" id="documentation" name="documentation" style="display: none;" required>
+              <button type="button" class="upload-btn" onclick="document.getElementById('documentation').click()">
+                <i class="bi bi-cloud-upload"></i> Select File
+              </button>
+              <span id="fileName" style="margin-left: 10px;"></span>
+              <button type="submit" class="upload-btn" style="background-color: #27ae60; margin-left: 10px;" id="submitBtn">
+                <i class="bi bi-check-circle"></i> Submit
+              </button>
+              <p class="meta-item" style="margin-top: 10px;">
+                <i class="bi bi-info-circle"></i> Max file size: 50MB (All file types allowed)
+              </p>
+              <div id="uploadStatus" style="margin-top: 15px;"></div>
+            </form>
+
+            {% if submissions %}
+            <div class="mt-4">
+              <h4>Your Submissions</h4>
+              <div class="list-group">
+                {% for submission in submissions %}
+                <div class="list-group-item">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <strong>Submitted:</strong> {{ submission.submitted_at|date:"F j, Y H:i" }}
+                      <br>
+                      <strong>Status:</strong> 
+                      <span class="badge 
+                        {% if submission.status == 'approved' %}bg-success
+                        {% elif submission.status == 'rejected' %}bg-danger
+                        {% else %}bg-primary{% endif %}">
+                        {{ submission.get_status_display }}
+                      </span>
+                      {% if submission.feedback %}
+                        <div class="mt-2">
+                          <strong>Feedback:</strong> {{ submission.feedback }}
+                        </div>
+                      {% endif %}
+                    </div>
+                    <a href="{{ submission.documentation.url }}" class="btn btn-sm btn-outline-primary">
+                      <i class="bi bi-download"></i> Download
+                    </a>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+            
+            <div id="submissionStatus" class="submission-status {% if submissions %}mt-3{% endif %}">
+              {% if submissions %}
+                {% with latest_submission=submissions.last %}
+                  <h5>Current Status</h5>
+                  <div class="d-flex align-items-center">
+                    <strong>Status:</strong> 
+                    <span class="badge ms-2 
+                      {% if latest_submission.status == 'approved' %}bg-success
+                      {% elif latest_submission.status == 'rejected' %}bg-danger
+                      {% else %}bg-warning text-dark{% endif %}">
+                      {{ latest_submission.get_status_display }}
+                    </span>
+                  </div>
+                  {% if latest_submission.feedback %}
+                    <div class="mt-2">
+                      <strong>Feedback:</strong> {{ latest_submission.feedback }}
+                    </div>
+                  {% endif %}
+                {% endwith %}
+              {% else %}
+                <p>No submissions yet. Please upload your project documentation.</p>
+              {% endif %}
+            </div>
           </div>
         </div>
       </div>
@@ -599,6 +705,7 @@
   <!-- Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
   <script>
+    // Toggle task details function
     function toggleTaskDetails() {
       const details = document.getElementById('taskDetails');
       const chevron = document.querySelector('.chevron');
@@ -607,12 +714,181 @@
       chevron.classList.toggle('rotated');
 
       if(details.classList.contains('expanded')) {
-            details.style.maxHeight = 'none';
-        } else {
-            details.style.maxHeight = '0';
-        }
+        details.style.maxHeight = 'none';
+      } else {
+        details.style.maxHeight = '0';
+      }
     }
-  </script>
 
+    // Main DOM ready handler
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('documentationForm');
+        const fileInput = document.getElementById('documentation');
+        const fileNameSpan = document.getElementById('fileName');
+        const submitBtn = document.getElementById('submitBtn');
+        const uploadStatus = document.getElementById('uploadStatus');
+        const submissionStatus = document.getElementById('submissionStatus');
+
+        if (fileInput && fileNameSpan) {
+            fileInput.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    fileNameSpan.textContent = this.files[0].name;
+                    fileNameSpan.style.color = '#333';
+                    clearStatus(uploadStatus);
+                } else {
+                    fileNameSpan.textContent = 'No file selected';
+                    fileNameSpan.style.color = '#777';
+                }
+            });
+        }
+
+        if (form) {
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                if (!validateForm(fileInput, uploadStatus)) {
+                    return;
+                }
+
+                setLoadingState(true, submitBtn, uploadStatus);
+
+                try {
+                    const response = await submitForm(form);
+                    if (response.success) {
+                        showSuccess(uploadStatus, response.message);
+                        updateSubmissionStatus(response.submission);
+                        setTimeout(() => {
+                            toggleTaskDetails(); // Collapse the task details
+                            window.location.reload(); // Refresh to show new submission
+                        }, 1500);
+                    } else {
+                        throw new Error(response.error || 'Upload failed');
+                    }
+                } catch (error) {
+                    handleSubmissionError(error, uploadStatus);
+                } finally {
+                    setLoadingState(false, submitBtn, uploadStatus);
+                }
+            });
+        }
+
+        function validateForm(fileInput, statusElement) {
+            if (!fileInput.files.length) {
+                showError(statusElement, 'Please select a file first');
+                return false;
+            }
+
+            if (fileInput.files[0].size > 50 * 1024 * 1024) {
+                showError(statusElement, 'File must be less than 50MB');
+                return false;
+            }
+
+            return true;
+        }
+
+        async function submitForm(form) {
+            const formData = new FormData(form);
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRFToken': form.querySelector('[name=csrfmiddlewaretoken]').value,
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                return await response.json();
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                throw error;
+            }
+        }
+
+        function setLoadingState(isLoading, button, statusElement) {
+            button.disabled = isLoading;
+            button.innerHTML = isLoading 
+                ? '<i class="bi bi-arrow-repeat spin"></i> Uploading...' 
+                : '<i class="bi bi-check-circle"></i> Submit';
+            
+            if (isLoading) {
+                statusElement.innerHTML = '<div class="alert alert-info">Uploading file...</div>';
+            }
+        }
+
+        function showError(element, message) {
+            element.innerHTML = `<div class="alert alert-danger">${message}</div>`;
+        }
+
+        function showSuccess(element, message) {
+            element.innerHTML = `<div class="alert alert-success">${message}</div>`;
+        }
+
+        function clearStatus(element) {
+            element.innerHTML = '';
+        }
+
+        function updateSubmissionStatus(submission) {
+            if (!submissionStatus) return;
+            
+            let statusClass = 'pending';
+            let statusText = 'Pending Review';
+            
+            if (submission.status === 'approved') {
+                statusClass = 'approved';
+                statusText = 'Approved';
+            } else if (submission.status === 'rejected') {
+                statusClass = 'rejected';
+                statusText = 'Rejected';
+            }
+            
+            submissionStatus.className = `submission-status ${statusClass} mt-3`;
+            submissionStatus.innerHTML = `
+                <h5>Current Status</h5>
+                <div class="d-flex align-items-center">
+                    <strong>Status:</strong> 
+                    <span class="badge ms-2 
+                        ${submission.status === 'approved' ? 'bg-success' : 
+                          submission.status === 'rejected' ? 'bg-danger' : 'bg-warning text-dark'}">
+                        ${statusText}
+                    </span>
+                </div>
+                ${submission.feedback ? `
+                <div class="mt-2">
+                    <strong>Feedback:</strong> ${submission.feedback}
+                </div>` : ''}
+            `;
+        }
+
+        function handleSubmissionError(error, statusElement) {
+            console.error('Submission error:', error);
+            let userMessage = 'An error occurred during submission';
+            if (error.message.includes('CSRF')) {
+                userMessage = 'Session expired. Please refresh the page.';
+            } else if (error.message.includes('Expected JSON')) {
+                userMessage = 'Server responded with unexpected format';
+            } else if (error.message.includes('401')) {
+                userMessage = 'Please login to submit files';
+            } else if (error.message.includes('413')) {
+                userMessage = 'File size exceeds limit';
+            } else if (error.message.includes('400')) {
+                userMessage = 'Invalid file type';
+            }
+            showError(statusElement, userMessage);
+        }
+    });
+
+    // Add spin animation style
+    const spinStyle = document.createElement('style');
+    spinStyle.textContent = `
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .spin { animation: spin 1s linear infinite; display: inline-block; }
+    `;
+    document.head.appendChild(spinStyle);
+  </script>
 </body>
 </html>

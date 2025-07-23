@@ -26,6 +26,7 @@ urlpatterns = [
     path('income/', views.income, name='income'),
     path('my_courses/', views.my_courses, name='my_courses'),
     path('assignments/', views.assignments, name='assignments'),
+    path('assignments_submit/', views.assignment_view, name='assignment_view'),
     path('sponsorship/', views.sponsors, name='sponsors'),
     path('payment_success/', views.payment_success, name='payment_success'),
     path('privacypolicy/', views.privacypolicy, name='privacypolicy'),

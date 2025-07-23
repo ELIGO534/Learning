@@ -362,7 +362,7 @@ def my_learning(request):
         "8712837063" , "8712385254", "9908191735", "9603689566"
     ],
     'autocad' : [
-        "9866343114"
+        "9866343114","6281508930"
     ]
     }
     
@@ -395,7 +395,7 @@ def my_courses(request):
     ],
 
     'autocad' : [
-        "9866343114"
+        "9866343114","6281508930"
     ]
     }
     
@@ -609,3 +609,77 @@ def user_activity_dashboard(request):
         'now': timezone.now()
     }
         return render(request, 'dashboard.html', context)
+
+# views.py
+from django.shortcuts import render
+from django.http import JsonResponse
+from django.core.files.storage import default_storage
+from .models import AssignmentSubmission
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_http_methods
+import os
+import logging
+from datetime import datetime
+
+logger = logging.getLogger(__name__)
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def assignment_view(request):
+    if request.method == 'POST':
+        return handle_file_upload(request)
+    return handle_get_request(request)
+
+def handle_file_upload(request):
+    try:
+        # Validate file exists in request
+        if 'documentation' not in request.FILES:
+            return JsonResponse({
+                'success': False,
+                'error': 'No file was uploaded'
+            }, status=400)
+
+        file = request.FILES['documentation']
+        
+        # Validate file size (50MB max)
+        if file.size > 50 * 1024 * 1024:
+            return JsonResponse({
+                'success': False, 
+                'error': 'File size exceeds 50MB limit'
+            }, status=400)
+
+        # Save file and create record
+        submission = AssignmentSubmission.objects.create(
+            user=request.user,
+            documentation=file,
+            status='submitted'
+        )
+
+        return JsonResponse({
+            'success': True,
+            'message': 'File uploaded successfully',
+            'file_url': submission.documentation.url,
+            'submission_id': submission.id
+        })
+
+    except Exception as e:
+        logger.error(f"Upload failed: {str(e)}", exc_info=True)
+        return JsonResponse({
+            'success': False,
+            'error': 'An internal server error occurred'
+        }, status=500)
+
+def handle_get_request(request):
+    try:
+        submissions = AssignmentSubmission.objects.filter(
+            user=request.user
+        ).order_by('-submitted_at')
+        
+        return render(request, 'assignments.html', {
+            'submissions': submissions
+        })
+    except Exception as e:
+        logger.error(f"Page load failed: {str(e)}", exc_info=True)
+        return render(request, 'error.html', {
+            'error': 'Failed to load assignments'
+        }, status=500)

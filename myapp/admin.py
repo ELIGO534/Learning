@@ -137,3 +137,27 @@ class UserActivityAdmin(admin.ModelAdmin):
 
     def has_change_permission(self, request, obj=None):
         return False
+    from django.contrib import admin
+from .models import AssignmentSubmission
+from django.utils.safestring import mark_safe
+
+@admin.register(AssignmentSubmission)
+class AssignmentSubmissionAdmin(admin.ModelAdmin):
+    list_display = ('user', 'documentation_link', 'submitted_at', 'status')
+    list_filter = ('status', 'submitted_at')
+    search_fields = ('user__phone', 'user__name')  # ✅ Fixed here
+    list_editable = ('status',)
+    readonly_fields = ('submitted_at', 'documentation_link')
+    ordering = ('-submitted_at',)
+
+    def documentation_link(self, obj):
+        if obj.documentation:
+            return mark_safe(f'<a href="{obj.documentation.url}" target="_blank">Download File</a>')
+        return 'No File'
+    documentation_link.short_description = 'Documentation'
+
+    fieldsets = (
+        (None, {
+            'fields': ('user', 'documentation_link', 'documentation', 'submitted_at', 'status', 'feedback')
+        }),
+    )
