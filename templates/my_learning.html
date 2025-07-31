@@ -790,6 +790,12 @@
             <img src="{% static 'assets/img/courses/data-analytics.jpg.webp' %}" class="img-fluid course-image rounded-4" alt="Data Analysis Course">
             <span class="domain-badge bg-primary">Data Analytics</span>
           </div>
+
+          {% elif request.user.phone in java %}
+          <div class="course-image-container">
+            <img src="{% static 'assets/img/courses/java.jpg.webp' %}" class="img-fluid course-image rounded-4" alt="Java Development Course">
+            <span class="domain-badge bg-danger">Java Development</span>
+          </div>
           
           {% elif request.user.phone in web_dev_numbers %}
           <div class="course-image-container">
@@ -845,6 +851,8 @@
                 Mrs. Priya Singh
                 {% elif request.user.phone in autocad %}
                 Mr. Aryan
+                {% elif request.user.phone in java %}
+                Mr. Rajesh Kumar
                 {% elif request.user.name == "Veturi Sai Kishor" %}
                 Mr.Rajesh Prasad
                 {% else %}
@@ -854,6 +862,8 @@
               <span class="trainer-title">
                 {% if request.user.phone in data_analysis_numbers %}
                 <i class="bi bi-database-fill me-1"></i> Senior Data Scientist
+                {% elif request.user.phone in java %}
+                <i class="bi bi-filetype-java me-1"></i> Senior Java Architect
                 {% elif request.user.phone in web_dev_numbers %}
                 <i class="bi bi-globe me-1"></i> Full Stack Architect
                 {% elif request.user.phone in ml_numbers %}
@@ -869,6 +879,8 @@
               <p class="trainer-bio">
                 {% if request.user.phone in data_analysis_numbers %}
                 "10+ years experience at Google and Microsoft, specializing in big data analytics"
+                {% elif request.user.phone in java %}
+                "15+ years experience building enterprise Java applications at TCS and Infosys"
                 {% elif request.user.phone in web_dev_numbers %}
                 "Former tech lead at Amazon with expertise in scalable web applications"
                 {% elif request.user.phone in ml_numbers %}
@@ -907,12 +919,15 @@
                   Mr. Rahul Kumar
                   {% elif request.user.phone in ml_numbers %}
                   Mrs. Priya Singh
+                  {% elif request.user.phone in java %}
+                  Mr. Rajesh Kumar
                   {% elif request.user.phone in autocad %}
                   Mr. Aryan
                   {% elif request.user.name == "Veturi Sai Kishor" %}
                   Mr.Rajesh Prasad
                   {% else %}
-                  {% if request.user.name == "Sairam Barla" %}Mrs. Priya Singh{% else %}Dr. Ravi Verma{% endif %}
+                  {% if request.user.name == "Sairam Barla" %}Mrs. Priya Singh{% else %}Dr. Ravi Verma
+                  {% endif %}
                   {% endif %}
                 </p>
               </div>
@@ -931,6 +946,8 @@
                   Machine Learning Engineer
                   {% elif request.user.phone in autocad %}
                   Autocad Engineer
+                  {% elif request.user.phone in java %}
+                  Java Development
                   {% elif request.user.name == "Veturi Sai Kishor" %}
                   VLSI Engineer
                   {% else %}
@@ -991,6 +1008,8 @@
                   June 1, 2025
                   {% elif request.user.phone in autocad %}
                   June 17, 2025
+                  {% elif request.user.phone in java %}
+                  Aug 1, 2025
                   {% else %}
                   June 1, 2025
                   {% endif %}
@@ -1160,6 +1179,48 @@
             </div>
           </div>
 
+
+          {% elif request.user.phone in java %}
+          <!-- Java Development Modules -->
+          <div class="module-card">
+            <div class="module-header" data-bs-toggle="collapse" data-bs-target="#module1">
+              <i class="bi bi-filetype-java"></i>
+              <h5>Core Java</h5>
+              <span>4 Weeks</span>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+            <div id="module1" class="collapse show" data-bs-parent="#modulesAccordion">
+              <div class="module-content">
+                <ul>
+                  <li><i class="bi bi-check-circle-fill"></i> Java Fundamentals</li>
+                  <li><i class="bi bi-check-circle-fill"></i> OOP Concepts</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Collections Framework</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Exception Handling</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card">
+            <div class="module-header" data-bs-toggle="collapse" data-bs-target="#module2">
+              <i class="bi bi-server"></i>
+              <h5>Advanced Java</h5>
+              <span>4 Weeks</span>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+            <div id="module2" class="collapse" data-bs-parent="#modulesAccordion">
+              <div class="module-content">
+                <ul>
+                  <li><i class="bi bi-check-circle-fill"></i> JDBC and Database Connectivity</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Multithreading</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Networking in Java</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Java 8 Features</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Minor Project</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Major Project</li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
           {% elif request.user.name == "Veturi Sai Kishor" %}
   <!-- VLSI Modules -->
