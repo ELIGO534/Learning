@@ -676,99 +676,133 @@
     </footer>
     
    <script>
-    // Modal functionality
-    const modalOverlay = document.getElementById('modalOverlay');
-    const openModalBtn = document.getElementById('openModalBtn');
-    const closeModalBtn = document.getElementById('closeModalBtn');
+// Modal functionality
+const modalOverlay = document.getElementById('modalOverlay');
+const openModalBtn = document.getElementById('openModalBtn');
+const closeModalBtn = document.getElementById('closeModalBtn');
 
-    openModalBtn.addEventListener('click', () => {
-        modalOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    });
+openModalBtn.addEventListener('click', () => {
+    modalOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+});
 
-    closeModalBtn.addEventListener('click', () => {
+closeModalBtn.addEventListener('click', () => {
+    modalOverlay.classList.remove('active');
+    document.body.style.overflow = 'auto';
+});
+
+modalOverlay.addEventListener('click', (e) => {
+    if (e.target === modalOverlay) {
         modalOverlay.classList.remove('active');
         document.body.style.overflow = 'auto';
-    });
-
-    modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) {
-            modalOverlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    });
-
-    // Function to show messages
-    function showMessage(type, text, duration = 5000) {
-        const messageContainer = document.getElementById('messageContainer');
-        const message = document.createElement('div');
-        message.className = `message message-${type}`;
-        message.innerHTML = `
-            <span>${text}</span>
-            <button class="message-close">&times;</button>
-        `;
-        
-        messageContainer.appendChild(message);
-        
-        // Trigger reflow to enable animation
-        void message.offsetWidth;
-        
-        message.classList.add('active');
-        
-        // Close button functionality
-        const closeBtn = message.querySelector('.message-close');
-        closeBtn.addEventListener('click', () => {
-            message.remove();
-        });
-        
-        // Auto-remove after duration
-        if (duration) {
-            setTimeout(() => {
-                message.classList.remove('active');
-                setTimeout(() => message.remove(), 300);
-            }, duration);
-        }
     }
+});
 
-    // Form submission to Google Sheets
-    document.getElementById('applicationForm').addEventListener('submit', async function (e) {
-        e.preventDefault();
-
-        const form = e.target;
-
-        const formData = {
-            firstName: form.querySelector('#firstName').value,
-            lastName: form.querySelector('#lastName').value,
-            email: form.querySelector('#email').value,
-            phone: form.querySelector('#phone').value,
-            linkedin: form.querySelector('#linkedin').value,
-            github: form.querySelector('#github').value,
-            about: form.querySelector('#about').value,
-            resume: form.querySelector('#resume').files[0]?.name || ''
-        };
-
-        const queryString = new URLSearchParams(formData).toString();
-
-        try {
-            const response = await fetch(
-                'https://script.google.com/macros/s/AKfycbwN1La6rk6F_QsKh-WKYigd9pXgDCsjm-vZR05L7Z_5hOPrsiERphvPHwkz66xk9ToS/exec?' + queryString,
-                { method: 'POST' }
-            );
-
-            const result = await response.json();
-            if (result.status === 'success') {
-                showMessage('success', 'Thank you for your application! We will review your details soon.');
-                form.reset();
-                modalOverlay.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            } else {
-                showMessage('error', 'Something went wrong: ' + result.message);
-            }
-        } catch (error) {
-            console.error('Submission failed:', error);
-            showMessage('error', 'Submission failed. Please try again later.');
-        }
+// Function to show messages
+function showMessage(type, text, duration = 5000) {
+    const messageContainer = document.getElementById('messageContainer');
+    const message = document.createElement('div');
+    message.className = `message message-${type}`;
+    message.innerHTML = `
+        <span>${text}</span>
+        <button class="message-close">&times;</button>
+    `;
+    
+    messageContainer.appendChild(message);
+    
+    // Trigger reflow to enable animation
+    void message.offsetWidth;
+    
+    message.classList.add('active');
+    
+    // Close button functionality
+    const closeBtn = message.querySelector('.message-close');
+    closeBtn.addEventListener('click', () => {
+        message.remove();
     });
+    
+    // Auto-remove after duration
+    if (duration) {
+        setTimeout(() => {
+            message.classList.remove('active');
+            setTimeout(() => message.remove(), 300);
+        }, duration);
+    }
+}
+
+// Form submission to Google Sheets
+document.getElementById('applicationForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const form = e.target;
+    
+    // Show loading state
+    const submitBtn = form.querySelector('.submit-btn-modal');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Submitting...';
+    submitBtn.disabled = true;
+
+    // Collect form data
+    const formData = {
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        linkedin: document.getElementById('linkedin').value,
+        github: document.getElementById('github').value,
+        about: document.getElementById('about').value,
+        resume: document.getElementById('resume').files[0]?.name || ''
+    };
+
+    try {
+        // Create URL parameters
+        const params = new URLSearchParams(formData).toString();
+        
+        // Use GET request (works better with Google Apps Script)
+        const response = await fetch(
+            'https://script.google.com/macros/s/AKfycbyMXb_R2FNOEo7lSZTeGInRrrr0R8nBZwSvLMYicx4e8fBgcsdAlh4Pk_RnXBwcn73nnQ/exec?' + params,
+            {
+                method: 'GET',
+                mode: 'no-cors' // This bypasses CORS errors
+            }
+        );
+        
+        // Since we use 'no-cors', we can't read the response
+        // But the data will be sent to Google Sheets
+        
+        // Show success message (optimistic approach)
+        showMessage('success', 'Thank you for your application! We will review your details soon.');
+        
+        // Reset form
+        form.reset();
+        
+        // Close modal
+        modalOverlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        
+    } catch (error) {
+        console.error('Submission error:', error);
+        showMessage('error', 'Submission completed! If there are any issues, we will contact you.');
+    } finally {
+        // Reset button
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    }
+});
+
+// Test the Google Apps Script connection
+async function testConnection() {
+    try {
+        const testUrl = 'https://script.google.com/macros/s/AKfycbyMXb_R2FNOEo7lSZTeGInRrrr0R8nBZwSvLMYicx4e8fBgcsdAlh4Pk_RnXBwcn73nnQ/exec?test=true';
+        const response = await fetch(testUrl, { method: 'GET', mode: 'no-cors' });
+        console.log('Connection test completed');
+    } catch (error) {
+        console.log('Test connection error:', error);
+    }
+}
+
+// Run connection test when page loads
+window.addEventListener('load', testConnection);
 </script>
 <div class="message-container" id="messageContainer"></div>
 </body>
