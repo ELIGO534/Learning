@@ -464,6 +464,8 @@
                 Web Development
               {% elif request.user.phone in ml_numbers %}
                 Machine Learning
+              {% elif request.user.phone in project %}
+                VeAx Pay Project
               {% else %}
                 General
               {% endif %}
@@ -1029,6 +1031,199 @@
       <div class="flex-grow">
         <div class="text-gray-700 font-medium">End-to-End Data Analysis Project</div>
         <div class="text-xs text-gray-500 mt-1">Project • 3 weeks</div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+{% elif request.user.phone in project %}
+
+<!-- Vaex Project Introduction -->
+<li class="flex items-center bg-blue-100 p-3 rounded-lg course-title">
+  <div class="completion-indicator completed">
+    <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+  </div>
+  <div class="flex-grow">
+    <div class="text-gray-800 font-medium">1. Introduction to Vaex Project</div>
+    <div class="text-sm text-gray-500 mt-1">Overview • Available</div>
+  </div>
+</li>
+
+<!-- PHASE 1: PLANNING -->
+<li class="flex items-center bg-blue-50 p-4 rounded-lg shadow-sm course-title"
+    onclick="toggleModule(event, 'vaex-module1')">
+  <div class="completion-indicator completed">
+    <i class="bi bi-check" style="font-size: 0.7rem;"></i>
+  </div>
+  <div class="flex-grow">
+    <div class="flex items-center justify-between">
+      <div class="text-gray-800 font-medium">2. Phase 1: Planning & Requirement Analysis</div>
+      <i class="bi bi-chevron-down transition-transform duration-300 transform"
+         id="vaex-module1-arrow"></i>
+    </div>
+    <div class="text-sm text-gray-500 mt-1">Weeks 1–2</div>
+  </div>
+</li>
+
+<div id="vaex-module1-content"
+     class="sub-modules pl-12 pr-4 overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+  <ul class="space-y-3 mt-2">
+    <li class="flex items-center bg-blue-100 p-3 rounded-lg">
+      <div class="completion-indicator completed"><i class="bi bi-check"></i></div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">Requirement Gathering</div>
+        <div class="text-xs text-gray-500 mt-1">Business goals & user needs</div>
+      </div>
+    </li>
+    <li class="flex items-center bg-blue-100 p-3 rounded-lg">
+      <div class="completion-indicator completed"><i class="bi bi-check"></i></div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">System Architecture Design</div>
+        <div class="text-xs text-gray-500 mt-1">Tech stack & flow diagrams</div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- PHASE 2: APP DEVELOPMENT -->
+<li class="flex items-center bg-blue-50 p-4 rounded-lg shadow-sm course-title"
+    onclick="toggleModule(event, 'vaex-module2')">
+  <div class="completion-indicator">
+    <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
+  </div>
+  <div class="flex-grow">
+    <div class="flex items-center justify-between">
+      <div class="text-gray-800 font-medium">3. Phase 2: Application Development</div>
+      <i class="bi bi-chevron-down transition-transform duration-300 transform"
+         id="vaex-module2-arrow"></i>
+    </div>
+    <div class="text-sm text-gray-500 mt-1">Weeks 3–8</div>
+  </div>
+</li>
+
+<div id="vaex-module2-content"
+     class="sub-modules pl-12 pr-4 overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+  <ul class="space-y-3 mt-2">
+    <li class="flex items-center bg-blue-100 p-3 rounded-lg">
+      <div class="completion-indicator"><i class="bi bi-lock"></i></div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">UI/UX Design & Frontend Development</div>
+        <div class="text-xs text-gray-500 mt-1">Responsive screens & flows</div>
+      </div>
+    </li>
+    <li class="flex items-center bg-blue-100 p-3 rounded-lg">
+      <div class="completion-indicator"><i class="bi bi-lock"></i></div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">Core Feature Implementation</div>
+        <div class="text-xs text-gray-500 mt-1">Vaex modules & logic</div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- PHASE 3: BACKEND & PAYMENT -->
+<li class="flex items-center bg-blue-50 p-4 rounded-lg shadow-sm course-title"
+    onclick="toggleModule(event, 'vaex-module3')">
+  <div class="completion-indicator">
+    <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
+  </div>
+  <div class="flex-grow">
+    <div class="flex items-center justify-between">
+      <div class="text-gray-800 font-medium">4. Phase 3: Backend & Payment Integration</div>
+      <i class="bi bi-chevron-down transition-transform duration-300 transform"
+         id="vaex-module3-arrow"></i>
+    </div>
+    <div class="text-sm text-gray-500 mt-1">Weeks 9–12</div>
+  </div>
+</li>
+
+<div id="vaex-module3-content"
+     class="sub-modules pl-12 pr-4 overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+  <ul class="space-y-3 mt-2">
+    <li class="flex items-center bg-blue-100 p-3 rounded-lg">
+      <div class="completion-indicator"><i class="bi bi-lock"></i></div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">Backend APIs & Database</div>
+        <div class="text-xs text-gray-500 mt-1">Auth, roles, data flow</div>
+      </div>
+    </li>
+    <li class="flex items-center bg-blue-100 p-3 rounded-lg">
+      <div class="completion-indicator"><i class="bi bi-lock"></i></div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">Payment Gateway Integration</div>
+        <div class="text-xs text-gray-500 mt-1">Secure transactions</div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- PHASE 4: TESTING -->
+<li class="flex items-center bg-blue-50 p-4 rounded-lg shadow-sm course-title"
+    onclick="toggleModule(event, 'vaex-module4')">
+  <div class="completion-indicator">
+    <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
+  </div>
+  <div class="flex-grow">
+    <div class="flex items-center justify-between">
+      <div class="text-gray-800 font-medium">5. Phase 4: Testing & QA</div>
+      <i class="bi bi-chevron-down transition-transform duration-300 transform"
+         id="vaex-module4-arrow"></i>
+    </div>
+    <div class="text-sm text-gray-500 mt-1">Weeks 13–14</div>
+  </div>
+</li>
+
+<div id="vaex-module4-content"
+     class="sub-modules pl-12 pr-4 overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+  <ul class="space-y-3 mt-2">
+    <li class="flex items-center bg-blue-100 p-3 rounded-lg">
+      <div class="completion-indicator"><i class="bi bi-lock"></i></div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">Functional Testing</div>
+        <div class="text-xs text-gray-500 mt-1">Feature validation</div>
+      </div>
+    </li>
+    <li class="flex items-center bg-blue-100 p-3 rounded-lg">
+      <div class="completion-indicator"><i class="bi bi-lock"></i></div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">Bug Fixing & Optimization</div>
+        <div class="text-xs text-gray-500 mt-1">Performance improvements</div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- PHASE 5: DEPLOYMENT -->
+<li class="flex items-center bg-blue-50 p-4 rounded-lg shadow-sm course-title"
+    onclick="toggleModule(event, 'vaex-module5')">
+  <div class="completion-indicator">
+    <i class="bi bi-lock" style="font-size: 0.7rem;"></i>
+  </div>
+  <div class="flex-grow">
+    <div class="flex items-center justify-between">
+      <div class="text-gray-800 font-medium">6. Phase 5: Deployment & Go Live</div>
+      <i class="bi bi-chevron-down transition-transform duration-300 transform"
+         id="vaex-module5-arrow"></i>
+    </div>
+    <div class="text-sm text-gray-500 mt-1">Weeks 15–16</div>
+  </div>
+</li>
+
+<div id="vaex-module5-content"
+     class="sub-modules pl-12 pr-4 overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+  <ul class="space-y-3 mt-2">
+    <li class="flex items-center bg-blue-100 p-3 rounded-lg">
+      <div class="completion-indicator"><i class="bi bi-lock"></i></div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">Production Deployment</div>
+        <div class="text-xs text-gray-500 mt-1">Server & domain setup</div>
+      </div>
+    </li>
+    <li class="flex items-center bg-blue-100 p-3 rounded-lg">
+      <div class="completion-indicator"><i class="bi bi-lock"></i></div>
+      <div class="flex-grow">
+        <div class="text-gray-700 font-medium">Monitoring & Support</div>
+        <div class="text-xs text-gray-500 mt-1">Post-launch support</div>
       </div>
     </li>
   </ul>

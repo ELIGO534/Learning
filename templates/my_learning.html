@@ -819,6 +819,12 @@
             <img src="{% static 'assets/img/courses/machine-learning.jpg' %}" class="img-fluid course-image rounded-4" alt="Machine Learning Course">
             <span class="domain-badge bg-danger">Machine Learning</span>
           </div>
+
+          {% elif request.user.phone in project %}
+          <div class="course-image-container">
+            <img src="{% static 'assets/img/courses/vaexpay.jpeg' %}" class="img-fluid course-image rounded-4" alt="VeAx Pay Project Course">
+            <span class="domain-badge bg-danger">VeAx Pay Project</span>
+          </div>
           
           {% else %}
           <!-- Default to AI/ML Course -->
@@ -948,6 +954,8 @@
                   Autocad Engineer
                   {% elif request.user.phone in java %}
                   Java Development
+                  {% elif request.user.phone in project %}
+                  VeAx Pay Project
                   {% elif request.user.name == "Veturi Sai Kishor" %}
                   VLSI Engineer
                   {% else %}
@@ -970,6 +978,8 @@
                   8 Weeks
                   {% elif request.user.phone in autocad %}
                   16 Weeks
+                  {% elif request.user.phone in project %}
+                  3 Months
                   {% else %}
                   8 Weeks
                   {% endif %}
@@ -1010,6 +1020,8 @@
                   June 17, 2025
                   {% elif request.user.phone in java %}
                   Aug 1, 2025
+                  {% elif request.user.phone in project %}
+                  Feb 1, 2026
                   {% else %}
                   June 1, 2025
                   {% endif %}
@@ -1179,7 +1191,41 @@
             </div>
           </div>
 
+          {% elif request.user.phone in project %}
 
+<!-- Implementation Timeline -->
+<div class="module-card">
+  <div class="module-header">
+    <i class="bi bi-clock-history"></i>
+    <h5>Implementation Timeline</h5>
+    <span>Total Duration</span>
+  </div>
+
+  <div class="module-content">
+    <ul>
+      <li>
+        <i class="bi bi-check-circle-fill"></i>
+        <strong>PHASE 1:</strong> Planning – <span>2 Weeks</span>
+      </li>
+      <li>
+        <i class="bi bi-check-circle-fill"></i>
+        <strong>PHASE 2:</strong> App Development – <span>6 Weeks</span>
+      </li>
+      <li>
+        <i class="bi bi-check-circle-fill"></i>
+        <strong>PHASE 3:</strong> Backend & Payment – <span>4 Weeks</span>
+      </li>
+      <li>
+        <i class="bi bi-check-circle-fill"></i>
+        <strong>PHASE 4:</strong> Testing – <span>2 Weeks</span>
+      </li>
+      <li>
+        <i class="bi bi-check-circle-fill"></i>
+        <strong>PHASE 5:</strong> Deployment – <span>2 Weeks</span>
+      </li>
+    </ul>
+  </div>
+</div>
           {% elif request.user.phone in java %}
           <!-- Java Development Modules -->
           <div class="module-card">
